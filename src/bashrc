@@ -1,0 +1,347 @@
+# .my_bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+if [ -f /opt/local/etc/bash_completion ]; then
+	. /opt/local/etc/bash_completion
+fi
+
+
+umask 0027
+
+OSTYPE=$(uname)
+
+# User specific aliases and functions
+
+# don't put duplicate lines in the history. See bash(1) for more options
+#export HISTCONTROL=ignoredups
+# ... and ignore same sucessive entries.
+export HISTCONTROL=ignoredups
+# Keep a long hister
+export HISTSIZE=10000000
+export HISTFILESIZE=1000000000
+
+export PATH="$HOME/bin:$PATH"
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	if [[ -d /opt/local/bin ]]; then
+		export PATH="/opt/local/bin:$PATH"
+	fi
+	if [[ -d /opt/local/sbin ]]; then
+		export PATH="/opt/local/sbin:$PATH"
+	fi
+	if [[ -d /opt/local/share/man ]]; then
+		export MANPATH="$MANPATH:/opt/local/share/man"
+	fi
+	if [[ -d /usr/local/mysql/bin ]]; then
+		export PATH="/usr/local/mysql/bin:$PATH"
+	fi
+fi
+
+VIMPATH=/usr/bin
+# Use vimpager?
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	export PAGER=more
+	if [[ -f /opt/local/bin/vim ]]; then
+		VIMPATH=/opt/local/bin
+	fi
+	alias yum='sudo port'
+else 
+	export PAGER=~/pkgs/vimpager/vimpager
+	if [[ -f /usr/local/bin/vim ]]; then
+		VIMPATH=/usr/local/bin
+	fi
+fi
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# colors for ls, etc.
+alias d="ls --color -h"
+alias ls="ls -h --color=auto --group-directories-first"
+alias dir="ls --color=auto"
+alias ll="ls  --group-directories-first --color=auto -l -t -h "
+# alias ll="ls -G -l -h "
+alias svi="sudo vim"
+#alias vim="TERM=xterm-256color;vim"
+alias rm='rm -i'
+alias priest='ssh jeff@newjes.us'
+alias onyx='ssh jbuttars@onyx.boisestate.edu'
+alias rotateimage='mogrify -rotate'
+alias sshnj='ssh newjesus@newjes.us' 
+alias less=$PAGER
+alias jobs='jobs -l'
+alias yum='sudo yum'
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	alias ctags='/opt/local/bin/ctags'
+fi
+
+export CVSCP=':ext:cvs.cradlepoint.com:/opt/cvsroot'
+export CVSBUT=:ext:jeff@newjes.us:/home/cvsroot
+
+#export SSH_ASKPASS=''
+
+export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH:/usr/sbin:/sbin"
+export PATH="$PATH:/usr/libexec"
+export PATH="$PATH:/usr/local/heroku-client"
+export MANPATH="$MANPATH:$HOME/system/share/man"
+
+export EDITOR='vim'
+export SVN_EDITOR=$EDITOR
+export SVN_MERGE='vimdiff'
+#. .bash_kde4
+#export KDEDIRS="$KDEDIRS:/home/kde4/kde" 
+
+# CP dev stuff
+#export cpdevdir='/opt/cradlepoint' 
+export cpdevdir="$HOME/Development/cradlepoint" 
+export ctr="$cpdevdir/ctrcore" 
+export ctrj="$cpdevdir/ctrjeff" 
+export ctrf="$cpdevdir/ctrfresh" 
+export mbr="$HOME/Development/cradlepoint/mbrcore/trunk" 
+
+# default grep options.
+# Ignore .svn directories
+# Ignore .cvs directories
+# Ignore tags files 
+GREP_OPTIONS='--exclude=*.git* --exclude=*.hg* --exclude=*.svn* --exclude=*.cvs* --exclude=*\.pyo --exclude=*\.pyc --exclude=*~ --exclude=tags'
+export GREP_OPTIONS
+
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	if [[ -f /opt/local/bin/grep  ]]; then
+		alias grep='/opt/local/bin/grep'
+	fi
+fi
+
+# CP SVN Repo
+export SVNCP='https://cvs.cradlepoint.com/svn'
+export SVNNJ='https://svn.newjes.us/repos'
+export SVNCP='https://cvs.cradlepoint.com/svn'
+export SVNVWB='https://vimingwithbuttar.googlecode.com/svn'
+
+# set up colors to work with based on the term type
+#start out with some generic BASH, xterm stuff so we don't get undefines
+          BLACK="\033[0;30m"
+       DARKGRAY="\033[1;30m"
+           BLUE="\033[0;34m"
+      LIGHTBLUE="\033[1;34m"
+          GREEN="\033[0;32m"
+     LIGHTGREEN="\033[1;32m"
+           CYAN="\033[0;36m"
+      LIGHTCYAN="\033[1;36m"
+            RED="\033[0;31m"
+       LIGHTRED="\033[1;31m"
+         PURPLE="\033[0;35m"
+    LIGHTPURPLE="\033[1;35m"
+          BROWN="\033[0;33m"
+         YELLOW="\033[1;33m"
+      LIGHTGRAY="\033[0;37m"
+          WHITE="\033[1;37m"
+            END="\033[0m"
+
+if [ -z $TERM_META ]; then
+export TERM_META='dark'
+fi
+
+TC_HOSTNAME=$LIGHTGREEN
+TC_CDIR=$LIGHTCYAN
+TC_PROMPT=$LIGHTRED
+TC_PROMPT_DELIM=$LIGHTCYAN
+if [ -n $TERM_META ]; then
+	if [[ $TERM_META =~ 'white' ]]; then
+		TC_HOSTNAME=$GREEN
+		TC_CDIR=$CYAN
+		TC_PROMPT=$RED
+		TC_PROMPT_DELIM=$CYAN
+	fi
+fi
+
+if [ $TERM != "linux" ]
+then
+        PROMPT_COMMAND='echo -ne "\033]0;$HOSTNAME : $PWD\007$TC_HOSTNAME$HOSTNAME$END:$TC_CDIR$PWD$END\n"'
+else
+        PROMPT_COMMAND='echo -ne "$TC_HOSTNAME$HOSTNAME$END:$TC_CDIR$PWD$END\n"'
+fi
+
+function _update_ps1()
+{
+    export PS1="$(~/.powerline-bash/powerline-bash.py $?)"
+} #_update_ps1
+if [[ -f ~/.powerline-bash/powerline-bash.py ]]; then
+    export PROMPT_COMMAND="_update_ps1"
+fi
+
+PS1="\[$TC_PROMPT\]\u\[$END\] \[$TC_PROMPT_DELIM\]>\[$END\] "
+#LSCOLORS       The value of this variable describes what color to use
+#for which attribute when colors are enabled with
+    #CLICOLOR.  This string is a concatenation of pairs of the
+    #format fb, where f is the foreground color and b is the
+    #background color.
+
+    #The color designators are as follows:
+
+    #a     black
+    #b     red
+    #c     green
+    #d     brown
+    #e     blue
+    #f     magenta
+    #g     cyan
+    #h     light grey
+    #A     bold black, usually shows up as dark grey
+    #B     bold red
+    #C     bold green
+    #D     bold brown, usually shows up as yellow
+    #E     bold blue
+    #F     bold magenta
+    #G     bold cyan
+    #H     bold light grey; looks like bright white
+    #x     default foreground or background
+
+    #Note that the above are standard ANSI colors.  The actual
+    #display may differ depending on the color capabilities of
+    #the terminal in use.
+
+    #The order of the attributes are as follows:
+
+    #1.   directory
+    #2.   symbolic link
+    #3.   socket
+    #4.   pipe
+    #5.   executable
+    #6.   block special
+    #7.   character special
+    #8.   executable with setuid bit set
+    #9.   executable with setgid bit set
+    #10.  directory writable to others, with sticky bit
+    #11.  directory writable to others, without sticky
+    #bit
+
+    #The default is "exfxcxdxbxegedabagacad", i.e. blue fore-
+    #ground and default background for regular directories,
+    #black foreground and red background for setuid executa-
+    #bles, etc.
+#LS_COLORS='no=00:fi=00:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.png=01;35:*.mpg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:';
+#LS_COLORS='no=00:fi=00:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.png=01;35:*.mpg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:';
+#export LS_COLORS
+export CLICOLOR=1
+export LSCOLORS=DxGxcxdxCxegedabagacad
+
+# Use the dircolors file.
+#eval `dircolors $HOME/.dir_colors` 
+
+# My custom svn commands/wrappers
+[[ -f ~/.config/bash/svn.sh ]] && \
+  source ~/.config/bash/svn.sh 
+
+# ubicom development helper functions.
+# [[ -f ~/.config/bash/ubicom.sh ]] && \
+#   source ~/.config/bash/ubicom.sh 
+
+# Setup readline to our tastes
+#Use Vi mode
+set -o vi
+
+# ^p check for partial match in history
+# bind -m vi-insert "\C-p":dynamic-complete-history
+
+# ^n cycle through the list of partial matches
+# bind -m vi-insert "\C-n":menu-complete
+
+# Case insensitive completion
+#set completion-ignore-case On 
+
+set print-completions-horizontally On
+set visible-stats On
+ 
+# shortcuts
+export wpc="$HOME/public_html/cradlepoint/cpsas"
+export mgmtdev="$HOME/Development/cradlepoint/mbrcore/mgmt"
+export velodev="$HOME/public_html/velocache/sites/all/modules"
+export bsd="/home/jeff/Development/cradlepoint/cpbsd_dev"
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	export cloudy="/home/jeffbuttars/Development/cloudy"
+else
+	export cloudy="/home/jeff/Development/cradlepoint/cloudy"
+fi
+
+# colorize man pages
+# Don't do this on OS X
+if [[ "$OSTYPE" != "Darwin" ]]; then
+	export LESS_TERMCAP_mb=$'\E[01;31m' # begin blinking
+	export LESS_TERMCAP_md=$'\E[01;38;5;74m' # begin bold
+	export LESS_TERMCAP_me=$'\E[0m' # end mode
+	export LESS_TERMCAP_se=$'\E[0m' # end standout-mode
+	export LESS_TERMCAP_so=$'\E[38;5;246m' # begin standout-mode - info box export LESS_TERMCAP_ue=$'\E[0m' # end underline
+	export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+fi
+
+export BROWSER=google-chrome
+
+# GO Vars
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	export GOOS=darwin
+else
+	export GOOS=linux
+fi
+export GOROOT=$HOME/go
+export GOBIN=$HOME/bin
+export GOARCH=amd64
+
+# CPBSD VARS
+#export CPBSDSRCDIR=/home/jeff/Development/cradlepoint/cpbsd_dev/cpbsd
+export TFTPTARGET=/home/jeff/Development/cradlepoint/cpbsd_dev/tftpboot/cpbsd
+	export TOOLPATH="$HOME/Development/cradlepoint/cpbsd_dev/cpbsd_tools"
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	export TOOLPATH="$HOME/Development/cpbsd_dev/cpbsd_tools"
+	export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include/c++/4.2.1/x86_64-apple-darwin10"
+	export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include/c++/4.2.1"
+	export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin
+	export TFTPTARGET=$HOME/Development/repos/tftpboot/cpbsd
+else
+export PATH=$PATH:$TOOLPATH/bin
+fi
+
+export DJANGO_DEBUG=yes
+
+# Android SDK
+export PATH=$PATH:$HOME/Development/android/android-sdk-linux/tools:$HOME/Development/android/android-sdk-linux/platform-tools
+
+export PSQL_EDITOR='vim -c"set ft=sql"'
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+HPCC='/opt/HPCCSystems/bin'
+if [[ -d $HPCC ]]; then
+    export PATH="$PATH:$HPCC"
+fi
+
+# vim:set ft=sh:
+
+
+
+export UN_NPHASE='/home/jeff/Development/uceem/un_nphase'
+
+if [[ -f ~/pkgs/virtualcandy/virtualcandy/virtualcandy.sh ]]; then
+    # DEFUALT_VENV_NAME='.venv'
+    # DEFUALT_VENV_REQFILE='requirements.txt'
+    VC_AUTO_ACTIVATION=true
+    . ~/pkgs/virtualcandy/virtualcandy/virtualcandy.sh
+fi
+
+. /opt/bcm/bcm_47xx/bcmenv.sh
+
+export BCM_REPO_BASE="$HOME/Development/uceem"
+export BCM_TEST_BUILD_DIR="$HOME/Development/uceem/tmp/bcmtestbuild"
+export BCM_TEST_BUILD_REPOS_NAMES="uceem_ng_mbr1210_bcm4718_gpl \
+    uceem_ng_mbr1515_bcm4718_gpl \
+    uceem_ref_bcm47xx_gpl"
+
+. ~/pkgs/.pkgs.sh
+
+#vim:set ft=sh:

@@ -1,0 +1,5 @@
+--sort=yes
+--tag-relative=no
+-R
+--python-kinds=-i
+--c-kinds=+mdefgpstux

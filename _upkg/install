@@ -1,0 +1,30 @@
+#!/bin/bash
+
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source "$THIS_DIR/upkg.sh"
+
+brc="$HOME/.bashrc"
+zrc="$HOME/.zshrc"
+
+# install our own .zshrc and prepare oh-my-zsh
+if [[ -f  $zrc ]]; then
+    pr_info "Backup up existing $zrc"
+    mv --backup=numbered -f $zrc "$zrc.bak"
+fi
+
+# create our own .zshrc
+pr_info "Installing our ~/.zshrc"
+echo "# source autojump befor oh-my"
+echo "source /etc/profile.d/autojump.zsh\n"
+echo "source $PKGS_PKG_DIR/oh-my-zsh/templates/zshrc.zsh-template\n"
+echo "source $PKGS_PKG_DIR/env/src/zshrc"
+
+
+
+myz="$THIS_DIR/zshrc"
+myb="$THIS_DIR/bashrc"
+
+# ctags is easy, we'll just link it up.
+
+pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
