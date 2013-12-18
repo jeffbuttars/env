@@ -32,7 +32,7 @@ fi
 #     ZSH_THEME='robbyrussell'
 #     # ZSH_THEME='blinks'
 # fi
-ZSH_THEME='robbyrussell'
+ZSH_THEME='philips'
 
 # echo "Theme: $ZSH_THEME"
 

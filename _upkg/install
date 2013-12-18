@@ -20,4 +20,17 @@ for df in $(ls -1 "$DOTF_DIR/") ; do
     ln -nsf "$DOTF_DIR/$df" "$dest"
 done
 
+# Setup vimpager if it's installed
+vimpagerdir="$PKGS_PKG_DIR/vimpager.git" 
+if [[ -d $vimpagerdir ]]; then
+    cd $vimpagerdir
+
+    install -D -m 755 vimpager $HOME/bin/vimpager
+    install -D -m 755 vimcat $HOME/bin/vimcat
+    if [[ ! -f $HOME/.vimpagerrc ]]; then
+        install -D -m 644 vimpagerrc $HOME/.vimpagerrc
+    fi
+fi
+
+
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
