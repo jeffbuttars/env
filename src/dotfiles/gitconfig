@@ -1,0 +1,44 @@
+[user] name = Jeff Buttars
+	email = jeffbuttars@gmail.com
+
+[alias]
+    co = checkout
+    ci = commit
+    cia = commit -a
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+	vd = difftool
+    serve = !ip a && git daemon --enable=receive-pack --reuseaddr --verbose --base-path=. --export-all ./.git
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	switch = !legit switch \"$@\"
+	branches = !legit branches
+	sprout = !legit sprout \"$@\"
+	unpublish = !legit unpublish \"$@\"
+	harvest = !legit harvest \"$@\"
+	sync = !legit sync \"$@\"
+	publish = !legit publish \"$@\"
+	graft = !legit graft \"$@\"
+    deploy = push deploy
+    head = !git st | head -n 25
+    sreset = !git co -- . && git status | grep "^#" | tail -n +5 | awk '{print $2}' | xargs rm -vrf
+
+[pager]
+    diff = vimpager
+    defaultToUpstream = true
+
+[diff]
+    tool = vimdiff
+
+[push]
+	default = simple
+
+[merge]
+    tool = diffconflicts
+    defaultToUpstream = true
+[mergetool "diffconflicts"]
+    cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+    trustExitCode = true
+    keepBackup = false
