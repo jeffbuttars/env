@@ -1,3 +1,12 @@
+
+# source autojump befor oh-my
+if [[ -f /etc/profile.d/autojump.zsh ]]; then
+    source /etc/profile.d/autojump.zsh
+fi
+
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.upkg/oh-my-zsh.git
+
 # # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -52,10 +61,6 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-if [[ -f /opt/vagrant ]]
-then
-    PATH=$PATH:/opt/vagrant/bin # Add Vagrant to PATH for scripting
-fi
 
 if [[ -x /usr/bin/keychain ]]
 then
@@ -63,7 +68,15 @@ then
    eval `keychain --eval id_rsa id_dsa_uceemapi`
 fi
 
-export PATH="$HOME/bin:$PATH"
+# PATH alterations
+export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
+
+if [[ -f /opt/vagrant ]]
+then
+    PATH=$PATH:/opt/vagrant/bin # Add Vagrant to PATH for scripting
+fi
+export PATH=$PATH:/usr/local/stata12
+export PATH=$PATH:/home/jeff/.gem/ruby/2.0.0/bin
 
 # Turn off spelling correction
 unsetopt correct
@@ -169,7 +182,5 @@ source ~/pkgs/.pkgs.zsh
 # Try to acativate a virtualenv if we're in one.
 vcactivate 2>&1 > /dev/null
 
-export PATH=$PATH:/usr/local/stata12
-export PATH=$PATH:/home/jeff/.gem/ruby/2.0.0/bin
 
 # vim:set ft=zsh:
