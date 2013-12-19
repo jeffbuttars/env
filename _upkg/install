@@ -14,11 +14,11 @@ safe_link()
     
     if [[ -f $to ]]; then
         if [[ ! -L $to ]]; then
-            mv -f --backup=numbered $to "${to}.bak"
+            mv -v -f --backup=numbered $to "${to}.bak"
         fi
     fi
 
-    ln -nsf "$from" "$to"
+    ln -vnsf "$from" "$to"
 } #safe_link
 
 # install our dotfiles by backing up existing files and linking in our own.
