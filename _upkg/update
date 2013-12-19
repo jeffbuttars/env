@@ -1,3 +1,5 @@
 #!/bin/bash
 
-. install
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. "$THIS_DIR/install"
