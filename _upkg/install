@@ -21,7 +21,7 @@ for df in $(ls -1 "$DOTF_DIR/") ; do
 done
 
 # Setup vimpager if it's installed
-vimpagerdir="$PKGS_PKG_DIR/vimpager.git" 
+vimpagerdir="$PKGS_PKG_DIR/vimpager" 
 if [[ -d $vimpagerdir ]]; then
     cd $vimpagerdir
 
