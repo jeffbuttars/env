@@ -57,6 +57,7 @@ fi
 # Do the solarized dance
 soldir="$PKGS_PKG_DIR/kde-colors-solarized.git" 
 if [[ -d "$soldir" ]]; then
+    pr_info "installing solarized"
     cd $soldir 
     bash ./install.sh
     cd -
