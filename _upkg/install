@@ -2,8 +2,9 @@
 
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 REPO_TOP=$(readlink -f "$THIS_DIR/..")
-DOTF_DIR="$REPO_TOP/src/dotfiles"
-BIN_DIR="$REPO_TOP/src/bin"
+SRC_DIR="$REPO_TOP/src"
+DOTF_DIR="$SRC_DIR/dotfiles"
+BIN_DIR="$SRC_DIR/bin"
 
 source "$THIS_DIR/upkg.sh"
 
@@ -54,9 +55,14 @@ else
 fi
 
 # Do the solarized dance
-# cd $sdir 
-# sh ./install.sh
-# cd -
+soldir="$PKGS_PKG_DIR/kde-colors-solarized.git" 
+if [[ -d "$soldir" ]]; then
+    cd $soldir 
+    bash ./install.sh
+    cd -
 
+	cp -f "$SRC_DIR/xresources" ~/.Xresources
+	xrdb -merge ~/.Xresources
+fi
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
