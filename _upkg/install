@@ -11,7 +11,10 @@ safe_link()
 {
     from=$1
     to=$2
-    
+
+    bname=$(dirname $to)
+    mkdir -p $bname
+
     if [[ -f $to ]]; then
         if [[ ! -L $to ]]; then
             mv -v -f --backup=numbered $to "${to}.bak"
@@ -22,14 +25,16 @@ safe_link()
 } #safe_link
 
 # install our dotfiles by backing up existing files and linking in our own.
+pr_info "Updating dotfiles."
 for df in $(ls -1 "$DOTF_DIR/") ; do
     dest="$HOME/.${df}"
     safe_link "$DOTF_DIR/$df" "$dest"
 done
 
 # install our bin files by backing up existing files and linking in our own.
+pr_info "Updating ~/bin files"
 for df in $(ls -1 "$BIN_DIR/") ; do
-    dest="$HOME/${df}"
+    dest="$HOME/bin/${df}"
     safe_link "$BIN_DIR/$df" "$dest"
 done
 
