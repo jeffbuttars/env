@@ -3,19 +3,34 @@
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 REPO_TOP=$(readlink -f "$THIS_DIR/..")
 DOTF_DIR="$REPO_TOP/src/dotfiles"
+BIN_DIR="$REPO_TOP/src/bin"
 
 source "$THIS_DIR/upkg.sh"
+
+safe_link()
+{
+    from=$1
+    to=$2
+    
+    if [[ -f $to ]]; then
+        if [[ ! -L $to ]]; then
+            mv -f --backup=numbered $to "${to}.bak"
+        fi
+    fi
+
+    ln -nsf "$from" "$to"
+} #safe_link
 
 # install our dotfiles by backing up existing files and linking in our own.
 for df in $(ls -1 "$DOTF_DIR/") ; do
     dest="$HOME/.${df}"
-    if [[ -f $dest ]]; then
-        if [[ ! -L $dest ]]; then
-            mv -f --backup=numbered $dest "${dest}.bak"
-        fi
-    fi
+    safe_link "$DOTF_DIR/$df" "$dest"
+done
 
-    ln -nsf "$DOTF_DIR/$df" "$dest"
+# install our bin files by backing up existing files and linking in our own.
+for df in $(ls -1 "$BIN_DIR/") ; do
+    dest="$HOME/${df}"
+    safe_link "$BIN_DIR/$df" "$dest"
 done
 
 # Setup vimpager if it's installed
