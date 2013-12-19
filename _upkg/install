@@ -23,6 +23,7 @@ done
 # Setup vimpager if it's installed
 vimpagerdir="$PKGS_PKG_DIR/vimpager" 
 if [[ -d $vimpagerdir ]]; then
+    pr_info "installing vimpager"
     cd $vimpagerdir
 
     install -D -m 755 vimpager $HOME/bin/vimpager
@@ -30,6 +31,8 @@ if [[ -d $vimpagerdir ]]; then
     if [[ ! -f $HOME/.vimpagerrc ]]; then
         install -D -m 644 vimpagerrc $HOME/.vimpagerrc
     fi
+else
+    pr_info "didn't find vimpager pager installation at $vimpagerdir"
 fi
 
 
