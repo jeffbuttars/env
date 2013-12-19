@@ -26,10 +26,10 @@ if [[ -d $vimpagerdir ]]; then
     pr_info "installing vimpager"
     cd $vimpagerdir
 
-    install -D -m 755 vimpager $HOME/bin/vimpager
-    install -D -m 755 vimcat $HOME/bin/vimcat
+    install -v -D -m 755 vimpager $HOME/bin/vimpager
+    install -v -D -m 755 vimcat $HOME/bin/vimcat
     if [[ ! -f $HOME/.vimpagerrc ]]; then
-        install -D -m 644 vimpagerrc $HOME/.vimpagerrc
+        install -v -D -m 644 vimpagerrc $HOME/.vimpagerrc
     fi
 else
     pr_info "didn't find vimpager pager installation at $vimpagerdir"
