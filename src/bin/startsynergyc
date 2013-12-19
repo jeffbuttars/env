@@ -1,0 +1,35 @@
+#!/bin/bash
+
+synergyc 192.168.15.89
+# synergyc greenbean
+exit
+
+sleep 30
+
+# get the eth0 address
+intaddr=$(qdbus --system org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/0 org.freedesktop.NetworkManager.Device.Ip4Address)
+intstate=$(qdbus --system org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/0 org.freedesktop.NetworkManager.Device.State)
+intname=$(qdbus --system org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/0 org.freedesktop.NetworkManager.Device.Interface)
+
+byte1=$(($intaddr & 0x000000FF))
+byte2=$(( ($intaddr & 0x0000FF00) >> 8  ))
+byte3=$(( ($intaddr & 0x00FF0000) >> 16 ))
+byte4=$(( ($intaddr & 0xFF000000) >> 24 ))
+
+intip="$byte1.$byte2.$byte3.$byte4"
+echo "Interface $intname state is $intstate, ipaddr is $intip"
+
+if [[ $intstate -ne 8 ]]; then
+	echo "Not on a known network, bailing."
+	exit 1
+fi
+
+if [[ "$byte1.$byte2.$byte3" == "172.22.22" ]]; then
+	synergyc 172.22.22.227
+	exit 0
+fi
+
+if [[ "$byte1.$byte2.$byte3" == "192.168.0" ]]; then
+	synergyc 192.168.0.100
+	exit 0
+fi
