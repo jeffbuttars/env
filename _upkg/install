@@ -53,5 +53,10 @@ else
     pr_info "didn't find vimpager pager installation at $vimpagerdir"
 fi
 
+# Do the solarized dance
+# cd $sdir 
+# sh ./install.sh
+# cd -
+
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
