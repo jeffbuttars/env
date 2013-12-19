@@ -1,7 +1,5 @@
 #!/bin/bash
 
-exit 0
-
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 REPO_TOP=$(readlink -f "$THIS_DIR/..")
 DOTF_DIR="$REPO_TOP/src/dotfiles"
