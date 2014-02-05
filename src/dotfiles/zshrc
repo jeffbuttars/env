@@ -177,8 +177,6 @@ function marks {
 
 export PIP_DOWNLOAD_CACHE=/tmp/pipcache
 
-source ~/pkgs/.pkgs.zsh
-
 # Try to acativate a virtualenv if we're in one.
 vcactivate 2>&1 > /dev/null
 
