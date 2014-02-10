@@ -66,6 +66,7 @@ set $sol_green   #859900
 
 # A client which currently has the focus.
 client.focused #002b36 $sol_base3 #002b36 $sol_red
+client.focused $sol_base03 $sol_base02 $sol_base3 $sol_red
 
 # A client which is the focused one of its container, but it does not have the
 # focus at the moment.
@@ -238,5 +239,6 @@ bindsym $mod+F3 exec dolphin applications:///
 bindsym $mod+Escape exec krunner
 
 exec_always xmodmap ~/.Xmodmap
+exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83702
