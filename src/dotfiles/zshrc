@@ -86,7 +86,7 @@ unsetopt correctall
 alias svi='sudo vim'
 alias vis='vim -O'
 alias yum='sudo yum'
-alias pcm='sudo pcm'
+alias pcm='sudo .upkg/pcm/pcm'
 alias dnf='sudo dnf'
 
 HISTFILE=~/.histfile
@@ -176,8 +176,6 @@ function marks {
 }
 
 export PIP_DOWNLOAD_CACHE=/tmp/pipcache
-
-source ~/pkgs/.pkgs.zsh
 
 # Try to acativate a virtualenv if we're in one.
 vcactivate 2>&1 > /dev/null

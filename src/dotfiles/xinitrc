@@ -1,0 +1,3 @@
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+exec /usr/bin/i3
