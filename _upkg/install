@@ -20,6 +20,10 @@ safe_link()
         if [[ ! -L $to ]]; then
             mv -v -f --backup=numbered $to "${to}.bak"
         fi
+    elif [[ -d $to ]]; then
+        if [[ ! -L $to ]]; then
+            mv -v -f --backup=numbered $to "${to}.bak"
+        fi
     fi
 
     ln -vnsf "$from" "$to"
