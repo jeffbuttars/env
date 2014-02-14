@@ -1,35 +1,107 @@
 #!/bin/bash
+# 4accc50facff4fed8f721237f474ae40
 
-synergyc 192.168.15.89
-# synergyc greenbean
-exit
+PIDFILE="$HOME/.config/startsynergyc/pid"
+mkdir -p $(dirname $PIDFILE)
 
-sleep 30
-
-# get the eth0 address
-intaddr=$(qdbus --system org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/0 org.freedesktop.NetworkManager.Device.Ip4Address)
-intstate=$(qdbus --system org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/0 org.freedesktop.NetworkManager.Device.State)
-intname=$(qdbus --system org.freedesktop.NetworkManager /org/freedesktop/NetworkManager/Devices/0 org.freedesktop.NetworkManager.Device.Interface)
-
-byte1=$(($intaddr & 0x000000FF))
-byte2=$(( ($intaddr & 0x0000FF00) >> 8  ))
-byte3=$(( ($intaddr & 0x00FF0000) >> 16 ))
-byte4=$(( ($intaddr & 0xFF000000) >> 24 ))
-
-intip="$byte1.$byte2.$byte3.$byte4"
-echo "Interface $intname state is $intstate, ipaddr is $intip"
-
-if [[ $intstate -ne 8 ]]; then
-	echo "Not on a known network, bailing."
-	exit 1
+if [[ -f $PIDFILE ]]; then
+    PID=$(cat $PIDFILE)
+    if [[ -n $PID ]]; then
+        echo "$0 is already running, exiting"
+        exit 1
+    fi
 fi
 
-if [[ "$byte1.$byte2.$byte3" == "172.22.22" ]]; then
-	synergyc 172.22.22.227
-	exit 0
-fi
+echo $$ > $PIDFILE
 
-if [[ "$byte1.$byte2.$byte3" == "192.168.0" ]]; then
-	synergyc 192.168.0.100
-	exit 0
-fi
+echo "Killing any previous instances of synergyc"
+killall synergyc
+
+# A map of network gateway to synergys IP
+declare -A GWMAP=( ["192.168.15.1"]="192.168.15.89" )
+
+# Interfaces we care about.
+intfcs="enp0s25 wlp3s0"
+syns_ip=""
+syns_pid=""
+
+# Finds the fist IP available
+find_ip()
+{
+    for intf in $intfcs ; do
+        ip=$(ip addr | grep inet | grep $intf | awk -F" " '{print $2}'| sed -e 's/\/.*$//')
+        if [[ -n $ip ]]; then
+            echo $ip
+        fi
+    done
+
+    echo ""
+} #find_ip
+
+kill_syns()
+{
+    if [[ -n $syns_pid ]]; then
+        echo "Killing syngergyc $syns_pid"
+        kill $syns_pid
+        wait $syns_pid
+        syns_pid=""
+        syns_ip=""
+        rm -f $PIDFILE
+    fi
+} #kill_syns
+
+trap "kill_syns; exit 0" SIGTERM SIGINT
+
+while [[ true ]]; do
+
+    ip=$(find_ip)
+    echo "Do we have an IP: '$ip' ?"
+
+    if [[ $ip == "" ]]; then
+        echo "No IP found, waiting to check again."
+        kill_syns
+        sleep 10 
+        continue
+    fi
+
+    gw=$(ip route | awk '/default/ {print $3}')
+    echo "See if we have and like the gateway $gw"
+    if [[ -z $gw ]]; then
+        echo "No gateway found, waiting a little bit and trying again."
+        kill_syns
+        sleep 5
+        continue
+    fi
+
+    syns_ip=""
+    echo "Found a gateway: $gw, let's see if it's in our map: $GWMAP"
+    for sgw in ${!GWMAP[@]} ; do
+        if [[ "$sgw" == "$gw" ]]; then
+            echo "The gateway matches, setting synergys IP to ${GWMAP[$sgw]}"
+            syns_ip=${GWMAP[$sgw]}
+        else
+            echo "Supported gateway $sgw does not match $gw"
+        fi
+    done
+
+    echo "synergys IP: $syns_ip, synergyc PID: $syns_pid"
+    if [[ -n $syns_ip ]]; then
+        if [[ -z $syns_pid ]]; then
+            echo "We have a synergys IP, but no PID: Starting synergyc"
+            synergyc -f $syns_ip 2>&1 > /dev/null &
+            syns_pid=$!
+            echo "Started synergyc $sys_pid"
+        else
+            echo "synergyc is already running."
+            sleep 30
+            continue
+        fi
+    else
+        kill_syns
+    fi
+
+    echo "sleeping for a while"
+    sleep 10
+done;
+
+exit 0
