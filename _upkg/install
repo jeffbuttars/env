@@ -20,6 +20,10 @@ safe_link()
         if [[ ! -L $to ]]; then
             mv -v -f --backup=numbered $to "${to}.bak"
         fi
+    elif [[ -d $to ]]; then
+        if [[ ! -L $to ]]; then
+            mv -v -f --backup=numbered $to "${to}.bak"
+        fi
     fi
 
     ln -vnsf "$from" "$to"
@@ -54,7 +58,7 @@ else
     pr_info "didn't find vimpager pager installation at $vimpagerdir"
 fi
 
-# Do the solarized dance
+echo "Do the solarized dance"
 soldir="$PKGS_PKG_DIR/kde-colors-solarized.git" 
 if [[ -d "$soldir" ]]; then
     pr_info "installing solarized"
@@ -65,5 +69,8 @@ if [[ -d "$soldir" ]]; then
 	cp -f "$SRC_DIR/xresources" ~/.Xresources
 	xrdb -merge ~/.Xresources
 fi
+
+echo "Update i3 config"
+~/.i3/genconfig.sh
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
