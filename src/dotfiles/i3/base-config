@@ -65,16 +65,16 @@ set $sol_green   #859900
 #client.focused  #000000 #950002 #FFFFFF
 
 # A client which currently has the focus.
-client.focused #002b36 $sol_base3 #002b36 $sol_red
-client.focused $sol_base03 $sol_base02 $sol_base3 $sol_red
+# client.focused #002b36 $sol_base3 #002b36 $sol_red
+# client.focused $sol_base03 $sol_base02 $sol_base3 $sol_red
 
 # A client which is the focused one of its container, but it does not have the
 # focus at the moment.
 # client.focused_inactive  #000000 #950002 #FFFFFF
-client.focused_inactive #073642 #002b36 $sol_base2 $sol_red
+# client.focused_inactive #073642 #002b36 $sol_base2 $sol_red
 
 # A client which is not the focused one of its container.
-client.unfocused #073642 #002b36 $sol_base1 $sol_red
+# client.unfocused #073642 #002b36 $sol_base1 $sol_red
 
 #  A client which has its urgency hint activated.
 client.urgent $sol_base2 $sol_base3 $sol_red $sol_blue

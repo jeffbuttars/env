@@ -1,7 +1,17 @@
 
 
+bar {
+        #font xft:DejaVu Sans 16
+        font xft:Eurostile Bold 14
+        mode hide
+        modifier Mod1
+        status_command i3status
+        position bottom
+}
 
 
+#font xft:Eurostile-Normal Bold 16
+font xft:Eurostile  14
 
 
 ## Configure the touchpad
