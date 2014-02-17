@@ -33,7 +33,7 @@ for_window [class="Smplayer"] floating enable
 for_window [class="Kmix"] floating enable
 for_window [class="Vlc"] floating enable
 
-for_window [class="Plasma-desktop"] floating enable
+for_window [class="Plasma-desktop"] floating enable; border none
 # for_window [class="Plasma-desktop"] border none
 for_window [class="krunner"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable;
