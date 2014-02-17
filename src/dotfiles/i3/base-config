@@ -15,6 +15,7 @@ set $mod Mod1
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # font xft:Droid Sans Regular 11
 font xft:Inconsolata Medium 11
+font xft:Eurostile  12
 # font xft:Ubuntu Bold 11
 # font xft:DejaVu Sans Bold 11
 
