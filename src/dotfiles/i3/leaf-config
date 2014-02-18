@@ -24,4 +24,4 @@ font xft:Eurostile  14
 # exec_always synclient FingerLow=13
 # exec_always synclient FingerHigh=16
 
-exec_always ~/bin/startsynergyc
+exec_always ~/bin/startsynergyc -f
