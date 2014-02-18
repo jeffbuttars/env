@@ -15,7 +15,7 @@ set $mod Mod1
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # font xft:Droid Sans Regular 11
 font xft:Inconsolata Medium 11
-font xft:Eurostile  12
+font xft:Eurostile Bold  10
 # font xft:Ubuntu Bold 11
 # font xft:DejaVu Sans Bold 11
 
@@ -232,6 +232,14 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 #         position top
 # }
+bar {
+        font xft:DejaVu Sans 12
+        font xft:Eurostile Bold 10
+        mode hide
+        modifier Mod1
+        status_command i3status
+        position bottom
+}
 
 # My own hotkeys
 bindsym $mod+F1 exec google-chrome-stable --remote-debugging-port 9222
