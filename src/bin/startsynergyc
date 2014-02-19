@@ -4,19 +4,6 @@
 PIDFILE="$HOME/.config/startsynergyc/pid"
 mkdir -p $(dirname $PIDFILE)
 
-if [[ -f $PIDFILE ]]; then
-    PID=$(cat $PIDFILE)
-    if [[ -n $PID ]]; then
-        echo "$0 is already running, exiting"
-        exit 1
-    fi
-fi
-
-echo $$ > $PIDFILE
-
-echo "Killing any previous instances of synergyc"
-killall synergyc
-
 # A map of network gateway to synergys IP
 declare -A GWMAP=( ["192.168.15.1"]="192.168.15.89" )
 
@@ -46,11 +33,34 @@ kill_syns()
         wait $syns_pid
         syns_pid=""
         syns_ip=""
-        rm -f $PIDFILE
+    else
+        echo "hail marry killing"
+        killall synergyc
     fi
+    rm -f $PIDFILE
 } #kill_syns
 
+
 trap "kill_syns; exit 0" SIGTERM SIGINT
+
+if [[ "$1" == "-f" ]]; then
+    echo "Forcing a restart"
+    kill_syns
+fi
+
+if [[ -f $PIDFILE ]]; then
+    PID=$(cat $PIDFILE)
+    if [[ -n $PID ]]; then
+        echo "$0 is already running, exiting"
+        exit 1
+    fi
+fi
+
+echo $$ > $PIDFILE
+
+echo "Killing any previous instances of synergyc"
+killall synergyc
+
 
 while [[ true ]]; do
 

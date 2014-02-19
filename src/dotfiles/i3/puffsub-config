@@ -11,6 +11,14 @@ workspace 4 output DVI-I-3
 workspace 6 output DVI-I-3
 workspace 8 output DVI-I-3
 
+bar {
+        font xft:DejaVu Sans 12
+        font xft:Eurostile Bold 10
+        mode hide
+        modifier Mod1
+        status_command i3status
+        position bottom
+}
 
 exec_always synergys
 
