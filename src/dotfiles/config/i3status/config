@@ -1,0 +1,39 @@
+general {
+    output_format = "i3bar"
+    colors = true
+    interval = 1
+}
+
+order += "ethernet eno1"
+/* order += "run_watch VPN" */
+/* order += "disk /" */
+/* order += "disk /home" */
+order += "cpu_temperature 0"
+order += "load"
+order += "time"
+
+ethernet eno1 {
+    format_up = "eno1: %ip %speed"
+    format_down = "eno1: Down"
+}
+
+run_watch VPN {
+    pidfile = "/var/run/vpnc/pid"
+}
+
+load {
+    format = "load %1min %5min %15min"
+}
+
+/* cpu_temperature 0 { */
+/*         format = "T: %degrees °C" */
+/*         path = "/sys/devices/platform/coretemp.0/temp1_input" */
+/* } */
+
+disk "/" {
+        format = "/ %used/%total"
+}
+
+disk "/home" {
+        format = "/home %used/%total"
+}
