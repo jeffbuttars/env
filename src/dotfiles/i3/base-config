@@ -38,7 +38,7 @@ for_window [class="Plasma-desktop"] floating enable
 for_window [class="krunner"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable;
 for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasma"] floating enable
+for_window [class="Plasma"] floating enable; border none
 
 # Solaraized colors:
 set $sol_base03  #002b36
