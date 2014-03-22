@@ -38,7 +38,7 @@ for_window [class="Plasma-desktop"] floating enable
 for_window [class="krunner"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable;
 for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasma"] floating enable
+for_window [class="Plasma"] floating enable; border none
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -234,7 +234,7 @@ bindsym $mod+r mode "resize"
 # }
 
 # My own hotkeys
-bindsym $mod+F1 exec google-chrome-stable --remote-debugging-port 9222
+bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin 
 bindsym $mod+F3 exec dolphin applications:///
 bindsym $mod+Escape exec krunner

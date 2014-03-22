@@ -12,6 +12,7 @@ bar {
 #font xft:Eurostile-Normal Bold 16
 font xft:Eurostile  14
 
+for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 ## Configure the touchpad
 # exec_always synclient TapButton1=1
