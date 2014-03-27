@@ -62,10 +62,11 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 
+KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
+
 if [[ -x /usr/bin/keychain ]]
 then
-   # keychain --eval --agents ssh -Q --quiet ~/.ssh/id_rsa  ~/.ssh/id_dsa_uceemapi
-   eval `keychain --eval id_rsa id_dsa_uceemapi gb/id_rsa`
+   keychain --quiet --eval --agents ssh -Q --inherit any $KEYLIST
 fi
 
 # PATH alterations
