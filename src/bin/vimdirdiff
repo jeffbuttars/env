@@ -1,0 +1,9 @@
+#!/bin/bash
+# f791fa29a579468685d04ce3e2c0cb3f
+
+if [[ $# -ne 2 ]]; then
+    echo "usage: $0 <dir1> <dir2>"
+    exit 1
+fi
+
+vim -c "DirDiff $1 $2"
