@@ -66,7 +66,7 @@ KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
 
 if [[ -x /usr/bin/keychain ]]
 then
-   eval `keychain --quiet --eval --agents ssh -Q --inherit any $KEYLIST`
+   eval `keychain --eval --agents ssh --inherit any $KEYLIST`
 fi
 
 # PATH alterations
@@ -182,5 +182,10 @@ export PIP_DOWNLOAD_CACHE=/tmp/pipcache
 # Try to acativate a virtualenv if we're in one.
 vcactivate 2>&1 > /dev/null
 
+# Look for $HOME/.zsh_local
+# That's where you put computer specific things that don't go in the repo
+if [[ -f $HOME/.zsh_local ]]; then
+    source $HOME/.zsh_local
+fi
 
 # vim:set ft=zsh:
