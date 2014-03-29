@@ -1,4 +1,18 @@
 
+# If we're in a tty and fbterm-bi is available, use it.
+
+tty | grep 'tty'
+if [[ "$?" == "0" ]]
+then
+    if [[ -x /usr/bin/fbterm ]]
+    then
+        if [[ -x "$HOME/bin/fbterm-bi" ]]
+        then
+            $HOME/bin/fbterm-bi
+        fi
+    fi
+fi
+
 # source autojump befor oh-my
 if [[ -f /etc/profile.d/autojump.zsh ]]; then
     source /etc/profile.d/autojump.zsh
