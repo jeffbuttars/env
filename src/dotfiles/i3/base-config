@@ -102,6 +102,9 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 bindsym $mod+j focus down
 
+# Toggle border between default, none and 1px
+bindsym $mod+t border toggle
+
 # alternatively, you can use the cursor keys:
 # bindsym $mod+Left focus left
 # bindsym $mod+Down focus down
