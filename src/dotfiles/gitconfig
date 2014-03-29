@@ -7,6 +7,8 @@
     cia = commit -a
     st = status
     br = branch
+    stl = stash list
+    stp = stash pop
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     type = cat-file -t
     dump = cat-file -p
@@ -45,4 +47,5 @@
     keepBackup = false
 [core]
 	excludesfile = /home/jeff/.gitignore_global
+	editor = vim
 

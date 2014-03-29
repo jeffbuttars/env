@@ -99,12 +99,14 @@ export PATH=$PATH:/usr/local/stata12
 export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
 export PATH=$PATH:/usr/lib/qt4/bin
 
+export bacos="$HOME/Dev/A10/acos/bacos/target/sources/sto/apps/axgui"
+
 # Turn off spelling correction
 unsetopt correct
 unsetopt correctall
 
 # Aliases
-alias svi='sudo vim'
+alias svi='sudo -E vim'
 alias vis='vim -O'
 alias yum='sudo yum'
 alias pcm='sudo ~/.upkg/pcm/pcm'
