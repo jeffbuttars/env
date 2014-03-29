@@ -4,7 +4,7 @@
 #def_args="--font-size=28 --font-names=DroidSansMono ''"
 
 FB_ARGS="--font-size=28 --font-names=DroidSansMono --color-foreground=7"
-BIMG="$HOME/Pictures/Eterm/faye2bw.jpg"
+BIMG="$HOME/Pictures/Eterm/faye-darkbw.png"
 
 if [[ -n $1 ]]; then
     BIMG="$1"
