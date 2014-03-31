@@ -1,0 +1,7 @@
+#!/bin/bash
+# 64b5c372ae894c018a9899189273bad5
+
+while inotifywait -e modify -r $@
+do
+    ctage *
+done
