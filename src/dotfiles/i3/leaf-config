@@ -25,4 +25,4 @@ for_window [class="sun-awt-X11-XFramePeer"] floating enable
 # exec_always synclient FingerHigh=16
 
 exec_always ~/bin/startsynergyc -f
-exec xscreensaver
+exec xscreensaver -no-splash
