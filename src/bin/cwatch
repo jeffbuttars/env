@@ -1,8 +1,13 @@
 #!/bin/bash
 # 64b5c372ae894c018a9899189273bad5
 
-ctags *
-while inotifywait -e modify -r $@
+args=$@
+if [[ -z $1 ]]; then
+    args="./"
+fi
+
+ctags $args
+while inotifywait -e modify -r $args
 do
-    ctags *
+    ctags $args
 done

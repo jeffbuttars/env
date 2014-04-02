@@ -3,6 +3,5 @@
 -R
 --python-kinds=-i
 --c-kinds=+mdefgpstux
---exclude=/.venv/*
 --exclude=/.git/*
 --exclude=/.svn/*
