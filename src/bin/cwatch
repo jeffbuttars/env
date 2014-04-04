@@ -1,13 +1,18 @@
 #!/bin/bash
 # 64b5c372ae894c018a9899189273bad5
 
+SLEEP_TIME=30
 args=$@
+
 if [[ -z $1 ]]; then
     args="./"
 fi
 
 ctags $args
+sleep $SLEEP_TIME
+
 while inotifywait -e modify -r $args
 do
+    sleep $SLEEP_TIME
     ctags $args
 done
