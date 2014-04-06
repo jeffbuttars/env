@@ -6,6 +6,8 @@ bar {
         modifier Mod1
         status_command i3status
         position bottom
+        output DVI-I-3
+        output DVI-I-2
 }
 
 
