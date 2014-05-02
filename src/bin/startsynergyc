@@ -5,7 +5,7 @@ PIDFILE="$HOME/.config/startsynergyc/pid"
 mkdir -p $(dirname $PIDFILE)
 
 # A map of network gateway to synergys IP
-declare -A GWMAP=( ["192.168.15.1"]="192.168.15.89" )
+declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" )
 
 # Interfaces we care about.
 intfcs="enp0s25 wlp3s0"
