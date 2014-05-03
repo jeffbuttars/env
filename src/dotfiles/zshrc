@@ -77,7 +77,6 @@ then
     PATH=$PATH:/opt/vagrant/bin # Add Vagrant to PATH for scripting
 fi
 export PATH=$PATH:/usr/local/stata12
-export PATH=$PATH:/home/jeff/.gem/ruby/2.0.0/bin
 export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
 export PATH=$PATH:/usr/lib/qt4/bin
 
