@@ -2,4 +2,4 @@
 requirements.txt
 axgui/running.py
 axgui/settings.py
-
+*.pyc
