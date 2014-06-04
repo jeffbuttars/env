@@ -138,30 +138,6 @@ fi
 
 
 export DONTDATECHK=y
-export BCM_DEV_BOARD_IP='192.168.210.1'
-export BCM_COMMON_SRC="$HOME/Development/uceem/bcm_common"
-export BCM_DEV_BOARD_USER=admin
-export BCM_DEV_BOARD_PASS=password
-export BCM_REPO_BASE="$HOME/Development/uceem"
-export BCM_TEST_BUILD_DIR="$HOME/Development/uceem/tmp/bcmtestbuild"
-export BCM_TEST_BUILD_REPOS_NAMES="uceem_ng_mbr1210_bcm4718_gpl \
-    uceem_ng_mbr1515_bcm4718_gpl \
-    bcm_47XX_uceem uceem_ng_wnr3500_bcm4718_gpl"
-
-
-# function _activate_bcmenv()
-# {
-#     if [[ "$PWD"=~"^$BCM_DEV_PREFIX*"  ]]; then
-#     fi
-    
-# } #_activate_bcmenv
-
-# if [[ -n $BCM_DEV_PREFIX ]]; then
-#     chpwd_functions=(${chpwd_functions[@]} "_activate_bcmenv")
-#     # We want to run it now in case the terminal was started
-#     # with CWD in a virtuanenv directory
-#     _activate_bcmenv
-# fi
 
 export MARKPATH=$HOME/.marks
 function jump { 
