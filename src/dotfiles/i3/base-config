@@ -23,6 +23,12 @@ font xft:Eurostile Bold  10
 floating_modifier $mod
 floating_minimum_size 100 x 300
 
+# Scratchpad settings
+# send window to the scratch pad. Use what is typically my minimize shortcut
+bindsym $mod+Control+i move scratchpad window
+# Show the scratchpad
+bindsym $mod+Shift+i move scratchpad show
+
 # Let Yakuake float by defaul
 # Use the xprop command to get window info
 for_window [class="Yakuake"] floating enable
