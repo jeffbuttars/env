@@ -1,0 +1,4 @@
+#!/bin/bash
+# 379656615be842e18c4d6061f532e0f5
+
+exec $HOME/bin/startsynergyc -f
