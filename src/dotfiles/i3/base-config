@@ -41,8 +41,8 @@ for_window [class="Vlc"] floating enable
 # Juniper VPN client, float it
 for_window [class="NC"] floating enable
 
-# for_window [class="Plasma-desktop"] floating enable; border none
-for_window [class="Plasma-desktop"] border none
+for_window [class="Plasma-desktop"] floating enable; border none
+# for_window [class="Plasma-desktop"] border none
 for_window [class="krunner"] floating enable; border none
 for_window [class="Plasmoidviewer"] floating enable;
 for_window [class="Klipper"] floating enable; border none
