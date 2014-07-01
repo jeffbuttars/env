@@ -7,8 +7,8 @@
     cia = commit -a
     st = status
     br = branch
-    stl = git stash
-    stp = git pop
+    stl = stash list
+    stp = stash pop
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     type = cat-file -t
     dump = cat-file -p
