@@ -85,7 +85,7 @@ unsetopt correct
 unsetopt correctall
 
 # Aliases
-alias svi='sudo vim'
+alias svi='sudo -E vim'
 alias vis='vim -O'
 alias yum='sudo yum'
 alias pcm='sudo ~/.upkg/pcm/pcm'
