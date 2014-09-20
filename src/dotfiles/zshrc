@@ -1,4 +1,18 @@
 
+# If we're in a tty and fbterm-bi is available, use it.
+
+tty | grep 'tty'
+if [[ "$?" == "0" ]]
+then
+    if [[ -x /usr/bin/fbterm ]]
+    then
+        if [[ -x "$HOME/bin/fbterm-bi" ]]
+        then
+            $HOME/bin/fbterm-bi
+        fi
+    fi
+fi
+
 # source autojump befor oh-my
 if [[ -f /etc/profile.d/autojump.zsh ]]; then
     source /etc/profile.d/autojump.zsh
@@ -64,6 +78,11 @@ source $ZSH/oh-my-zsh.sh
 
 KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
 
+if [[ -x /usr/bin/ksshaskpass ]]
+    export SSH_ASKPASS=/usr/bin/ksshaskpass
+then
+    
+fi
 if [[ -x /usr/bin/keychain ]]
 then
    eval `keychain --eval --agents ssh --inherit any $KEYLIST`
@@ -89,9 +108,11 @@ unsetopt correctall
 # Aliases
 alias svi='sudo -E vim'
 alias vis='vim -O'
-alias yum='sudo yum'
+# alias yum='sudo yum'
 alias pcm='sudo ~/.upkg/pcm/pcm'
-alias dnf='sudo dnf'
+# alias dnf='sudo dnf'
+alias gs='git status'
+
 
 HISTFILE=~/.histfile
 HISTSIZE=1000000
@@ -164,6 +185,11 @@ vcactivate 2>&1 > /dev/null
 # That's where you put computer specific things that don't go in the repo
 if [[ -f $HOME/.zsh_local ]]; then
     source $HOME/.zsh_local
+fi
+
+if [[ -x /usr/bin/nyancat ]]
+then
+    nyancat --frame 10
 fi
 
 # vim:set ft=zsh:
