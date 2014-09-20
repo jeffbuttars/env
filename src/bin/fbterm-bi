@@ -1,0 +1,27 @@
+#!/bin/bash
+# fbterm-bi: a wrapper script to enable background image with fbterm
+# usage: fbterm-bi /path/to/image fbterm-options
+#def_args="--font-size=28 --font-names=DroidSansMono ''"
+
+FB_ARGS="--font-size=28 --font-names=DroidSansMono --color-foreground=7"
+BIMG="$HOME/Pictures/Eterm/faye-darkbw.png"
+
+if [[ -n $1 ]]; then
+    BIMG="$1"
+    shift
+fi
+
+if [[ -n $1 ]]; then
+    FB_ARGS="$@"
+fi
+
+echo "using image $BIMG"
+echo "using args $FB_ARGS"
+
+echo -ne "\e[?25l" # hide cursor
+fbv -ciuker "$BIMG" << EOF
+q
+EOF
+export FBTERM_BACKGROUND_IMAGE=1
+# exec fbterm $FB_ARGS
+exec fbterm $FB_ARGS -- $SHELL -c "echo -en '\e]P7ffffff'; $SHELL -i"
