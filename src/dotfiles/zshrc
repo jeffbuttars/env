@@ -89,9 +89,11 @@ unsetopt correctall
 # Aliases
 alias svi='sudo -E vim'
 alias vis='vim -O'
-alias yum='sudo yum'
+# alias yum='sudo yum'
 alias pcm='sudo ~/.upkg/pcm/pcm'
-alias dnf='sudo dnf'
+# alias dnf='sudo dnf'
+alias gs='git status'
+
 
 HISTFILE=~/.histfile
 HISTSIZE=1000000
@@ -164,6 +166,11 @@ vcactivate 2>&1 > /dev/null
 # That's where you put computer specific things that don't go in the repo
 if [[ -f $HOME/.zsh_local ]]; then
     source $HOME/.zsh_local
+fi
+
+if [[ -x /usr/bin/nyancat ]]
+then
+    nyancat --frame 10
 fi
 
 # vim:set ft=zsh:
