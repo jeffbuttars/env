@@ -7,6 +7,7 @@
     cia = commit -a
     st = status
     br = branch
+    brl = branch --list
     stl = stash list
     stp = stash pop
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
