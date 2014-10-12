@@ -4,6 +4,7 @@
 [alias]
     co = checkout
     ci = commit
+    cim = commit -m
     cia = commit -a
     st = status
     br = branch
