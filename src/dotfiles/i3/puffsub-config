@@ -25,3 +25,8 @@ exec_always synergys
 # Go to default spaces
 bindsym $mod+Insert workspace 2, workspace 1
 bindsym $mod+End workspace 4, workspace 1
+
+# Setup default apps for workspaces
+exec --no-startup-id i3-msg 'workspace 1:Term; exec /usr/bin/konsole'
+exec --no-startup-id i3-msg 'workspace 4:Web; exec /usr/bin/google-chrome-stable'
+exec --no-startup-id i3-msg 'workspace 5:Mail; exec /usr/bin/thunderbird'
