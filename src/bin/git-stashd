@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Only stash if we have a 'dirty' situation.
+# Return 0 if stashed, 1 otherwise.
+changes=$(git status -uno --porcelain)
+if [[ -n $changes ]]; then
+    git stash -q
+    echo "stashed"
+    exit 0
+fi
+
+echo ""
+exit 1
