@@ -29,7 +29,6 @@
     head = !git st | head -n 25
     sreset = !git co -- . && git status | grep "^#" | tail -n +5 | awk '{print $2}' | xargs rm -vrf
     as = "!f() { git add \"$*\"; git status; }; f"
-    remaster = "!stashed=$(git stashd); git rebase master; if [[ -n $stashed ]] ; then git stash pop; fi"
 
 [pager]
     diff = vimpager
