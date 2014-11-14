@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+stashed=$(git stashd)
+git rebase master
+
+if [[ -n $stashed ]]; then
+    git stash pop
+fi
