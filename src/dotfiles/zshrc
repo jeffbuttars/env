@@ -75,6 +75,29 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Set vi mode
+bindkey -v
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+function zle-line-init zle-keymap-select {
+    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
+# By default, there is a 0.4 second delay after you hit the <ESC> key and when
+# the mode change is registered. This results in a very jarring and frustrating
+# transition between modes. Let's reduce this delay to 0.1 seconds.
+export KEYTIMEOUT=1
+
 
 KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
 
@@ -123,14 +146,6 @@ HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=10000000
 
-# Set vi mode
-bindkey -v
-bindkey '^R' history-incremental-pattern-search-backward
-# By default, there is a 0.4 second delay after you hit the <ESC> key and when
-# the mode change is registered. This results in a very jarring and frustrating
-# transition between modes. Let's reduce this delay to 0.1 seconds.
-export KEYTIMEOUT=1
-
 # CD whitout typing cd
 AUTO_CD="true"
 
@@ -140,7 +155,7 @@ alias -s html=google-chrome
 # Ignore .svn directories
 # Ignore .cvs directories
 # Ignore tags files 
-alias grep='grep --exclude=*.git* --exclude=*.hg* --exclude=*.svn* --exclude=*.cvs* --exclude=*\.pyo --exclude=*\.pyc --exclude=*~ --exclude=TAGS --exclude=tags'
+alias grep="grep --exclude='*.git*' --exclude='*.hg*' --exclude='*.svn*' --exclude='*.cvs*' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
 
 # If we have a source installation of vim, prefer it
 if [[ -f /usr/local/bin/vim ]]; then
