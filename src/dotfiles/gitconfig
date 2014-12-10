@@ -15,6 +15,7 @@
     type = cat-file -t
     dump = cat-file -p
 	vd = difftool
+    rvdiff = diff --no-color --full-index --ignore-submodules --no-ext-diff
     serve = !ip a && git daemon --enable=receive-pack --reuseaddr --verbose --base-path=. --export-all ./.git
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	switch = !legit switch \"$@\"
@@ -38,6 +39,8 @@
     tool = vimdiff
 
 [push]
+	default = simple
+[pull]
 	default = simple
 
 [merge]
