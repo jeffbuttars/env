@@ -25,35 +25,6 @@ export HISTSIZE=10000000
 export HISTFILESIZE=1000000000
 
 export PATH="$HOME/bin:$PATH"
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	if [[ -d /opt/local/bin ]]; then
-		export PATH="/opt/local/bin:$PATH"
-	fi
-	if [[ -d /opt/local/sbin ]]; then
-		export PATH="/opt/local/sbin:$PATH"
-	fi
-	if [[ -d /opt/local/share/man ]]; then
-		export MANPATH="$MANPATH:/opt/local/share/man"
-	fi
-	if [[ -d /usr/local/mysql/bin ]]; then
-		export PATH="/usr/local/mysql/bin:$PATH"
-	fi
-fi
-
-VIMPATH=/usr/bin
-# Use vimpager?
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	export PAGER=more
-	if [[ -f /opt/local/bin/vim ]]; then
-		VIMPATH=/opt/local/bin
-	fi
-	alias yum='sudo port'
-else 
-	export PAGER=~/pkgs/vimpager/vimpager
-	if [[ -f /usr/local/bin/vim ]]; then
-		VIMPATH=/usr/local/bin
-	fi
-fi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -95,32 +66,11 @@ export SVN_MERGE='vimdiff'
 #. .bash_kde4
 #export KDEDIRS="$KDEDIRS:/home/kde4/kde" 
 
-# CP dev stuff
-#export cpdevdir='/opt/cradlepoint' 
-export cpdevdir="$HOME/Development/cradlepoint" 
-export ctr="$cpdevdir/ctrcore" 
-export ctrj="$cpdevdir/ctrjeff" 
-export ctrf="$cpdevdir/ctrfresh" 
-export mbr="$HOME/Development/cradlepoint/mbrcore/trunk" 
-
 # default grep options.
 # Ignore .svn directories
 # Ignore .cvs directories
 # Ignore tags files 
-GREP_OPTIONS='--exclude=*.git* --exclude=*.hg* --exclude=*.svn* --exclude=*.cvs* --exclude=*\.pyo --exclude=*\.pyc --exclude=*~ --exclude=tags'
-export GREP_OPTIONS
-
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	if [[ -f /opt/local/bin/grep  ]]; then
-		alias grep='/opt/local/bin/grep'
-	fi
-fi
-
-# CP SVN Repo
-export SVNCP='https://cvs.cradlepoint.com/svn'
-export SVNNJ='https://svn.newjes.us/repos'
-export SVNCP='https://cvs.cradlepoint.com/svn'
-export SVNVWB='https://vimingwithbuttar.googlecode.com/svn'
+alias grep='grep --exclude=*.git* --exclude=*.hg* --exclude=*.svn* --exclude=*.cvs* --exclude=*\.pyo --exclude=*\.pyc --exclude=*~ --exclude=tags'
 
 # set up colors to work with based on the term type
 #start out with some generic BASH, xterm stuff so we don't get undefines
@@ -230,17 +180,6 @@ PS1="\[$TC_PROMPT\]\u\[$END\] \[$TC_PROMPT_DELIM\]>\[$END\] "
 export CLICOLOR=1
 export LSCOLORS=DxGxcxdxCxegedabagacad
 
-# Use the dircolors file.
-#eval `dircolors $HOME/.dir_colors` 
-
-# My custom svn commands/wrappers
-[[ -f ~/.config/bash/svn.sh ]] && \
-  source ~/.config/bash/svn.sh 
-
-# ubicom development helper functions.
-# [[ -f ~/.config/bash/ubicom.sh ]] && \
-#   source ~/.config/bash/ubicom.sh 
-
 # Setup readline to our tastes
 #Use Vi mode
 set -o vi
@@ -257,17 +196,6 @@ set -o vi
 set print-completions-horizontally On
 set visible-stats On
  
-# shortcuts
-export wpc="$HOME/public_html/cradlepoint/cpsas"
-export mgmtdev="$HOME/Development/cradlepoint/mbrcore/mgmt"
-export velodev="$HOME/public_html/velocache/sites/all/modules"
-export bsd="/home/jeff/Development/cradlepoint/cpbsd_dev"
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	export cloudy="/home/jeffbuttars/Development/cloudy"
-else
-	export cloudy="/home/jeff/Development/cradlepoint/cloudy"
-fi
-
 # colorize man pages
 # Don't do this on OS X
 if [[ "$OSTYPE" != "Darwin" ]]; then
@@ -281,30 +209,6 @@ fi
 
 export BROWSER=google-chrome
 
-# GO Vars
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	export GOOS=darwin
-else
-	export GOOS=linux
-fi
-export GOROOT=$HOME/go
-export GOBIN=$HOME/bin
-export GOARCH=amd64
-
-# CPBSD VARS
-#export CPBSDSRCDIR=/home/jeff/Development/cradlepoint/cpbsd_dev/cpbsd
-export TFTPTARGET=/home/jeff/Development/cradlepoint/cpbsd_dev/tftpboot/cpbsd
-	export TOOLPATH="$HOME/Development/cradlepoint/cpbsd_dev/cpbsd_tools"
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	export TOOLPATH="$HOME/Development/cpbsd_dev/cpbsd_tools"
-	export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include/c++/4.2.1/x86_64-apple-darwin10"
-	export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include/c++/4.2.1"
-	export PATH=$PATH:/opt/local/Library/Frameworks/Python.framework/Versions/Current/bin
-	export TFTPTARGET=$HOME/Development/repos/tftpboot/cpbsd
-else
-export PATH=$PATH:$TOOLPATH/bin
-fi
-
 export DJANGO_DEBUG=yes
 
 # Android SDK
@@ -316,32 +220,11 @@ export PSQL_EDITOR='vim -c"set ft=sql"'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-HPCC='/opt/HPCCSystems/bin'
-if [[ -d $HPCC ]]; then
-    export PATH="$PATH:$HPCC"
-fi
-
-# vim:set ft=sh:
-
-
-
-export UN_NPHASE='/home/jeff/Development/uceem/un_nphase'
-
-if [[ -f ~/pkgs/virtualcandy/virtualcandy/virtualcandy.sh ]]; then
+if [[ -f ~/.upkg/virtualcandy.git/src/virtualcandy.sh ]]; then
     # DEFUALT_VENV_NAME='.venv'
     # DEFUALT_VENV_REQFILE='requirements.txt'
     VC_AUTO_ACTIVATION=true
-    . ~/pkgs/virtualcandy/virtualcandy/virtualcandy.sh
+    . ~/.upkg/virtualcandy.git/src/virtualcandy.sh
 fi
-
-. /opt/bcm/bcm_47xx/bcmenv.sh
-
-export BCM_REPO_BASE="$HOME/Development/uceem"
-export BCM_TEST_BUILD_DIR="$HOME/Development/uceem/tmp/bcmtestbuild"
-export BCM_TEST_BUILD_REPOS_NAMES="uceem_ng_mbr1210_bcm4718_gpl \
-    uceem_ng_mbr1515_bcm4718_gpl \
-    uceem_ref_bcm47xx_gpl"
-
-. ~/pkgs/.pkgs.sh
 
 #vim:set ft=sh:
