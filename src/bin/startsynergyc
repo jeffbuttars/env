@@ -5,7 +5,8 @@ PIDFILE="$HOME/.config/startsynergyc/pid"
 mkdir -p $(dirname $PIDFILE)
 
 # A map of network gateway to synergys IP
-declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" )
+#declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" )
+declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" ["172.18.61.254"]="172.18.61.21" )
 
 # Interfaces we care about.
 intfcs="enp0s25 wlp3s0"
@@ -86,6 +87,7 @@ while [[ true ]]; do
     syns_ip=""
     echo "Found a gateway: $gw, let's see if it's in our map: $GWMAP"
     for sgw in ${!GWMAP[@]} ; do
+        echo "Checking map entry: $sgw"
         if [[ "$sgw" == "$gw" ]]; then
             echo "The gateway matches, setting synergys IP to ${GWMAP[$sgw]}"
             syns_ip=${GWMAP[$sgw]}
@@ -98,9 +100,11 @@ while [[ true ]]; do
     if [[ -n $syns_ip ]]; then
         if [[ -z $syns_pid ]]; then
             echo "We have a synergys IP, but no PID: Starting synergyc"
+            echo "synergyc -f $syns_ip"
             synergyc -f $syns_ip 2>&1 > /dev/null &
+            # synergyc -f $syns_ip &
             syns_pid=$!
-            echo "Started synergyc $sys_pid"
+            echo "Started synergyc $syns_pid"
         else
             echo "synergyc is already running."
             sleep 30
