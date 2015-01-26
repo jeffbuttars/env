@@ -1,5 +1,3 @@
 .venv
-axgui/running.py
-axgui/settings.py
 *.pyc
 *.pyo

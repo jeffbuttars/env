@@ -123,11 +123,6 @@ export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
 export PATH=$PATH:/usr/lib/qt4/bin
 
 export bacos="$HOME/Dev/A10/acos/bacos/target/sources/sto/apps/axgui"
-export bacosp="$HOME/Dev/A10/acos/bacos-patch/target/sources/sto/apps/axgui"
-export BACOS_PATH="$HOME/Dev/A10/acos/bacos-patch"
-export acos="$HOME/Dev/A10/acos/br_acos_4_0_0/target/sources/sto/apps/axgui"
-export pacos="$HOME/Dev/A10/acos/acos-patch/target/sources/sto/apps/axgui"
-export BRANCH_MOD='-P1'
 
 # Turn off spelling correction
 unsetopt correct
