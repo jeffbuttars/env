@@ -132,7 +132,7 @@ unsetopt correctall
 alias svi='sudo -E vim'
 alias vis='vim -O'
 # alias yum='sudo yum'
-alias pcm='sudo ~/.upkg/pcm/pcm.sh'
+alias pcm='~/.upkg/pcm/pcm.sh'
 # alias dnf='sudo dnf'
 alias gs='git status'
 
