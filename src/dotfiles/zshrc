@@ -195,8 +195,6 @@ function marks {
     ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
 }
 
-export PIP_DOWNLOAD_CACHE=/tmp/pipcache
-
 # Try to acativate a virtualenv if we're in one.
 vcactivate 2>&1 > /dev/null
 
