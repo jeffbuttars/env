@@ -16,6 +16,7 @@
     dump = cat-file -p
 	vd = difftool
     rvdiff = diff --no-color --full-index --ignore-submodules --no-ext-diff
+    svn-diff = !git-svn-diff.sh
     serve = !ip a && git daemon --enable=receive-pack --reuseaddr --verbose --base-path=. --export-all ./.git
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 	switch = !legit switch \"$@\"
@@ -29,6 +30,8 @@
     deploy = push deploy
     head = !git st | head -n 25
     sreset = !git co -- . && git status | grep "^#" | tail -n +5 | awk '{print $2}' | xargs rm -vrf
+    svn-diff = !git-svn-diff.sh
+    svnsync = !git co svn && git svn rebase && git push --force origin svn:master && git co master && git pull -Xtheirs origin master
     as = "!f() { git add \"$*\"; git status; }; f"
 
 [pager]
