@@ -30,5 +30,6 @@ bindsym $mod+End workspace 4, workspace 1
 exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
 exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
 exec --no-startup-id i3-msg 'workspace 5; exec /usr/bin/thunderbird'
+exec --no-startup-id i3-msg 'workspace 1;'
 
 exec plasmashell

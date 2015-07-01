@@ -1,0 +1,113 @@
+#!/bin/bash
+
+PGDATA='/var/lib/postgres'
+DB_USER=''
+DB_PASS=''
+DB_NAME=''
+
+__ScriptVersion="version 11"
+
+#===  FUNCTION  ================================================================
+#         NAME:  usage
+#  DESCRIPTION:  Display usage information.
+#===============================================================================
+function usage ()
+{
+cat <<- EOT
+
+  Usage :  $0 [options] [--]
+
+  Options:
+  -u|user       Username
+  -p|password   User password
+  -d|db_name    Database Name
+  -h|help       Display this message
+  -v|version    Display script version
+
+EOT
+}    # ----------  end of function usage  ----------
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+while getopts "u:p:d:hv" opt
+do
+  case $opt in
+
+    u|user     ) DB_USER="$OPTARG" ;;
+    p|password     ) DB_PASS="$OPTARG" ;;
+    d|db_name     ) DB_NAME="$OPTARG" ;;
+    h|help     )  usage; exit 0   ;;
+
+    v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+
+    \? )  echo -e "\n  Option does not exist : $OPTARG\n"
+          usage; exit 1   ;;
+
+  esac    # --- end of case ---
+done
+shift $(($OPTIND-1))
+
+if [[ -z $DB_NAME ]]; then
+    echo -e "\tDatabase name is required"
+    usage
+    exit 1
+fi
+
+if [[ -z $DB_USER ]]; then
+    echo -e "\tDatabase user name is required"
+    usage
+    exit 1
+fi
+
+if [[ -z $DB_PASS ]]; then
+    echo -e "\tDatabase password is required"
+    usage
+    exit 1
+fi
+
+# echo "DB NAME $DB_NAME"
+# echo "DB USER $DB_USER"
+# echo "DB PASS $DB_PASS"
+# exit
+
+sed -r -i "/host[ 	]+$DB_NAME[ 	]+$DB_USER[ 	]+127\.0\.0\.1\/32[ 	]+md5[ 	]*$$/d" $PGDATA/data/pg_hba.conf
+sed -r -i "/host[ 	]+$DB_NAME[ 	]+$DB_USER[ 	]+::1\/128[ 	]+md5[ 	]*$$/d" $PGDATA/data/pg_hba.conf
+sed -r -i "/host[ 	]+test_$DB_NAME[ 	]+$DB_USER[ 	]+127\.0\.0\.1\/32[ 	]+md5[ 	]*$$/d" $PGDATA/data/pg_hba.conf
+sed -r -i "/host[ 	]+test_$DB_NAME[ 	]+$DB_USER[ 	]+::1\/128[ 	]+md5[ 	]*$$/d" $PGDATA/data/pg_hba.conf
+sed -r -i "/^[ ]*host[ 	]+all[ 	]+all[ 	]+127\.0\.0\.1\/32[ 	]+ident[ 	]*$$/s/^/#/" $PGDATA/data/pg_hba.conf
+sed -r -i "/^[ ]*host[ 	]+all[ 	]+all[ 	]+::1\/128[ 	]+ident[ 	]*$$/s/^/#/" $PGDATA/data/pg_hba.conf
+echo "host	$DB_NAME	$DB_USER	127.0.0.1/32	md5" | sudo tee -a $PGDATA/data/pg_hba.conf
+echo "host	$DB_NAME	$DB_USER	::1/128	        md5" | sudo tee -a $PGDATA/data/pg_hba.conf
+echo "host	test_$DB_NAME	$DB_USER	127.0.0.1/32	md5" | sudo tee -a $PGDATA/data/pg_hba.conf
+echo "host	test_$DB_NAME	$DB_USER	::1/128	        md5" | sudo tee -a $PGDATA/data/pg_hba.conf
+
+# A strange 'bug'? Create the log dir if necessary
+if [[ ! -d "$PGDATA/data/pg_log" ]]; then
+    mkdir -p "$PGDATA/data/pg_log"
+    chown postgres:postgres $PGDATA/data/pg_log
+fi
+systemctl restart postgresql.service
+
+# $(PGDATA): system_pkgs
+#     $(BEROOT)
+#     -test ! -d $@/data/base && systemd-tmpfiles --create postgresql.conf
+#     mkdir -p $@/data
+#     -test ! -d $@/data/base && chown -c postgres:postgres $@/data
+#     -test ! -d $@/data/base && sudo -u postgres initdb -D '$@/data'
+#     $(MAKE) postgresql_conf
+#     systemctl enable postgresql.service
+#     systemctl restart postgresql.service
+
+# Enable the hstore extension and enable it on the db template
+#sudo -u postgres psql template1 -f /usr/share/postgresql/extension/hstore--1.3.sql
+sudo -u postgres psql template1 -c "CREATE EXTENSION IF NOT EXISTS hstore;"
+sudo -u postgres psql -c "CREATE USER $DB_USER WITH PASSWORD '$DB_PASS'"
+sudo -u postgres psql -c "CREATE DATABASE $DB_NAME;"
+# If the DB already exists, we need put hstore on it.
+sudo -u postgres psql $DB_NAME -c "CREATE EXTENSION IF NOT EXISTS hstore;"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME to $DB_USER;"
+# sudo -u postgres psql -c "GRANT ALL ON ALL TABLES IN SCHEMA public TO $DB_USER;"
+# sudo -u postgres psql -c "GRANT USAGE ON SCHEMA public TO $DB_USER;"
+sudo -u postgres psql -c "ALTER USER $DB_USER createdb;"

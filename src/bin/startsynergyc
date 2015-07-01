@@ -4,9 +4,10 @@
 PIDFILE="$HOME/.config/startsynergyc/pid"
 mkdir -p $(dirname $PIDFILE)
 
+S_SERVER='172.18.61.21'
 # A map of network gateway to synergys IP
-#declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" )
-declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" ["172.18.61.254"]="172.18.61.21" )
+# declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" )
+declare -A GWMAP=( ["172.18.61.1"]="$S_SERVER" ["172.18.61.254"]="$S_SERVER" )
 
 # Interfaces we care about.
 intfcs="enp0s25 wlp3s0"
@@ -75,7 +76,7 @@ while [[ true ]]; do
         continue
     fi
 
-    gw=$(ip route | awk '/default/ {print $3}')
+    gw=$(ip route | awk '/default/ {print $3}' | head -1)
     echo "See if we have and like the gateway $gw"
     if [[ -z $gw ]]; then
         echo "No gateway found, waiting a little bit and trying again."
@@ -92,7 +93,7 @@ while [[ true ]]; do
             echo "The gateway matches, setting synergys IP to ${GWMAP[$sgw]}"
             syns_ip=${GWMAP[$sgw]}
         else
-            echo "Supported gateway $sgw does not match $gw"
+            echo "Supported gateway '$sgw' does not match '$gw'"
         fi
     done
 

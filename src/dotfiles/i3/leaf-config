@@ -1,30 +1,43 @@
 
-bar {
-        #font xft:DejaVu Sans 16
-        font xft:Eurostile Bold 14
-        mode hide
-        modifier Mod1
-        status_command i3status
-        position bottom
-        output DVI-I-3
-        output DVI-I-2
-}
+# Workspace layout, use xrandr to find names
+# Odds on left, evens on right
+# eDPI1 is built in monitor of laptop.
+# external screens are DP1, DP2, HDMI1, HDMI2
+workspace 1 output eDP1
+workspace 3 output eDP1
+workspace 5 output eDP1
+workspace 7 output eDP1
+workspace 9 output eDP1
+# workspace 2 output HDMI1
+# workspace 4 output HDMI1
+# workspace 6 output HDMI1
+# workspace 8 output HDMI1
+workspace 2 output HDMI2
+workspace 4 output HDMI2
+workspace 6 output HDMI2
+workspace 8 output HDMI2
+workspace 0 output HDMI2
+# workspace 2 output DP1
+# workspace 4 output DP1
+# workspace 6 output DP1
+# workspace 8 output DP1
+# workspace 2 output DP2
+# workspace 4 output DP2
+# workspace 6 output DP2
+# workspace 8 output DP2
 
 
 #font xft:Eurostile-Normal Bold 16
-font xft:Eurostile  14
+# font xft:Eurostile  14
+# font xft:Oxygen-Sans Bold 14
+font xft:Oxygen-Sans 12
 
 for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
-## Configure the touchpad
-# exec_always synclient TapButton1=1
-# exec_always synclient TapButton2=2
-# exec_always synclient TapButton3=3
-# exec_always synclient RBCornerButton=3
-# exec_always synclient HorizTwoFingerScroll=1
-
-# exec_always synclient FingerLow=13
-# exec_always synclient FingerHigh=16
+exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
+exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
+exec --no-startup-id i3-msg 'workspace 1;'
 
 exec_always ~/bin/startsynergyc -f
-exec xscreensaver -no-splash
+#exec xscreensaver -no-splash
+exec plasmashell
