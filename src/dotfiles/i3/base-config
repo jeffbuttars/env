@@ -246,3 +246,4 @@ exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83702
 exec krunner
+exec kmix --keepvisibility
