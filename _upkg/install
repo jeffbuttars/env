@@ -5,6 +5,7 @@ REPO_TOP=$(readlink -f "$THIS_DIR/..")
 SRC_DIR="$REPO_TOP/src"
 DOTF_DIR="$SRC_DIR/dotfiles"
 BIN_DIR="$SRC_DIR/bin"
+CUSTOM_DIR="$SRC_DIR/custom"
 
 source "$THIS_DIR/upkg.sh"
 
@@ -72,5 +73,8 @@ fi
 
 echo "Update i3 config"
 ~/.i3/genconfig.sh
+
+# Install the Myi3 desktop file...
+sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/myi3.desktop /usr/share/xsessions/myi3.desktop
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
