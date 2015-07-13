@@ -34,8 +34,8 @@ font xft:Oxygen-Sans 12
 
 for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
-exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
-exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
+# exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
+# exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
 exec --no-startup-id i3-msg 'workspace 1;'
 
 exec_always ~/bin/startsynergyc -f

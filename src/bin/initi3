@@ -387,7 +387,13 @@ KSMSERVEROPTIONS=""
 test -n "$dl" && KSMSERVEROPTIONS=" --lockscreen"
 # kwrapper5 ksmserver $KDEWM $KSMSERVEROPTIONS
 
+# Start the ssh-agent
+[ -n "$SSH_AGENT_PID" ] || eval "$(ssh-agent -s)"
+
 i3
+
+# Stop the ssh-agent
+[ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
 
 # if test $? -eq 255; then
 #   # Startup error
