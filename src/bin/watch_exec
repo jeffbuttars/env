@@ -1,0 +1,17 @@
+#!/bin/bash
+
+SLEEP_TIME=3
+args=$@
+
+if [[ -z $args ]]; then
+    "No args given to exec"
+    exit 1
+fi
+
+echo "Running command '$args' on modify"
+while inotifywait -e modify -r ./
+do
+    echo "running $args"
+    sleep $SLEEP_TIME
+    $args
+done
