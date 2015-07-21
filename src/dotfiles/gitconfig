@@ -33,6 +33,7 @@
     svn-diff = !git-svn-diff.sh
     svnsync = !git co svn && git svn rebase && git push --force origin svn:master && git co master && git pull -Xtheirs origin master
     as = "!f() { git add \"$*\"; git status; }; f"
+    edit = "!vim $(git ls-files -m) -p"
 
 [pager]
     diff = vimpager
