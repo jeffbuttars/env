@@ -3,6 +3,8 @@
 #  DEFAULT KDE STARTUP SCRIPT ( 5.3.2 )
 #
 
+kbuildsycoca5
+
 if test "x$1" = x--failsafe; then
     KDE_FAILSAFE=1 # General failsafe flag
     KWIN_COMPOSE=N # Disable KWin's compositing
