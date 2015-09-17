@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+    echo "No input file(s) provided"
+    exit 1
+fi
+
+for ifile in $@ ; do
+    tfile="/tmp/tmp_$$_convert.html"
+    markdown_py "$ifile" > "$tfile"
+
+    ofile="$(dirname $ifile)/$(basename $ifile .${ifile##*.}).pdf"
+    wkhtmltopdf "$tfile" "${ofile}"
+done
