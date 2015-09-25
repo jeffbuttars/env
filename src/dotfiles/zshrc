@@ -114,6 +114,11 @@ fi
 # PATH alterations
 export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
 
+# If we have a source installation of vim, prefer it
+if [[ -f /opt/neovim/bin/nvim ]]; then
+    export PATH="$PATH:/opt/neovim/bin"
+fi
+
 if [[ -f /opt/vagrant ]]
 then
     PATH=$PATH:/opt/vagrant/bin # Add Vagrant to PATH for scripting
@@ -129,13 +134,27 @@ unsetopt correct
 unsetopt correctall
 
 # Aliases
-alias svi='sudo -E vim'
-alias vis='vim -O'
+vims=('nvim' 'gvim -v' 'vim' 'v')
+
+for var in $vims
+do
+    echo "Trying $var"
+    v=$(which $var 2>&1 > /dev/null)
+    if [[ "0" == "$?" ]]
+    then
+        echo "Using $var"
+        alias vim="$var"
+        alias vi="$var"
+        alias svi="sudo -E $var"
+        alias vis="$var -O"
+        break
+    fi
+done
+
 # alias yum='sudo yum'
 alias pcm='~/.upkg/pcm/pcm.sh'
 # alias dnf='sudo dnf'
 alias gs='git status'
-
 
 HISTFILE=~/.histfile
 HISTSIZE=1000000
@@ -152,32 +171,13 @@ alias -s html=google-chrome
 # Ignore tags files 
 alias grep="grep --exclude='*.git*' --exclude='*.hg*' --exclude='*.svn*' --exclude='*.cvs*' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
 
-# If we have a source installation of vim, prefer it
-if [[ -f /usr/local/bin/vim ]]; then
-    VIMPATH=/usr/local/bin
-fi
-
 # Enable virtualcandy
 VC_AUTO_ACTIVATION='true'
 source $HOME/.upkg/virtualcandy.git/src/virtualcandy.zsh
 
 # My convenience envs.
 
-# My local nphase prod clone
-# user: root, password: winadmin
-export UCEEM_LOCAL_PROD=192.168.15.16
-
 export DJANGO_DEBUG='yes'
-
-# source /opt/bcm/bcm_47xx/bcmenv.sh
-
-g=$(which gvim)
-if [[ "0" == "$?" ]]
-then
-    alias vim='gvim -v'
-    alias vi='gvim -v'
-fi
-
 
 export DONTDATECHK=y
 
