@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Myi3
 Comment=improved dynamic tiling window manager
-Exec=/home/jeff/bin/initi3
-TryExec=/home/jeff/bin/initi3
+Exec=/usr/local/bin/initi3
+TryExec=/usr/local/bin/initi3
 Type=Application
 X-LightDM-DesktopName=Myi3
 DesktopNames=Myi3

@@ -111,3 +111,13 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE $DB_NAME to $DB_USER;
 # sudo -u postgres psql -c "GRANT ALL ON ALL TABLES IN SCHEMA public TO $DB_USER;"
 # sudo -u postgres psql -c "GRANT USAGE ON SCHEMA public TO $DB_USER;"
 sudo -u postgres psql -c "ALTER USER $DB_USER createdb;"
+
+# Dump the corresponding Django config, for fun.
+echo -e "{"
+echo -e "\t'ENGINE': 'django.db.backends.postgresql_psycopg2',"
+echo -e "\t'NAME': '$DB_NAME',"
+echo -e "\t'USER': '$DB_USER',"
+echo -e "\t'PASSWORD': '$DB_PASS',"
+#echo -e "\t'HOST': '',"
+#echo -e "\t'PORT': '',"
+echo -e "}"

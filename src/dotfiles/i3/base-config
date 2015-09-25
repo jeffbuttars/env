@@ -41,8 +41,8 @@ for_window [class="Vlc"] floating enable
 for_window [class="NC"] floating enable
 for_window [class="Skype"] floating enable
 
-# for_window [class="Plasma-desktop"] floating enable; border none
-# for_window [class="Plasma-desktop"] border none
+for_window [class="Plasma-desktop"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none;
 for_window [class="krunner"] floating enable; border none
 # for_window [class="Plasmoidviewer"] floating enable;
 for_window [class="Klipper"] floating enable; border none
@@ -240,6 +240,7 @@ bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin 
 bindsym $mod+F3 exec dolphin applications:///
 bindsym $mod+Escape exec krunner
+bindsym $ctrl+mod+l exec i3lock
 
 exec_always xmodmap ~/.Xmodmap
 exec_always xrdb -merge ~/.Xresources
