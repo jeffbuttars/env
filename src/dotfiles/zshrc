@@ -34,6 +34,8 @@ then
     export TERM_META=white
 fi
 
+fpath=( "$HOME/.zfunctions" $fpath )
+
 # if [[ $TERM_META == 'white' ]]
 # then
 #     ZSH_THEME="kphoen"
@@ -75,6 +77,11 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Use the pure prompt
+autoload -U promptinit && promptinit
+prompt pure
+
+
 # Set vi mode
 bindkey -v
 
@@ -114,7 +121,7 @@ fi
 # PATH alterations
 export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
 
-# If we have a source installation of vim, prefer it
+# If we have a source installation of neovim, prefer it
 if [[ -f /opt/neovim/bin/nvim ]]; then
     export PATH="$PATH:/opt/neovim/bin"
 fi
@@ -134,8 +141,9 @@ unsetopt correct
 unsetopt correctall
 
 # Aliases
-vims=('nvim' 'gvim -v' 'vim' 'v')
+vims=('nvim' 'gvim -v' 'vim' 'vi')
 
+# Select which vim to use in order of preference. First found wins.
 for var in $vims
 do
     echo "Trying $var"
@@ -147,6 +155,10 @@ do
         alias vi="$var"
         alias svi="sudo -E $var"
         alias vis="$var -O"
+        if [[ "$var" == "nvim"` ]]
+        then
+            alias vimdiff="$var -O"
+        fi
         break
     fi
 done
