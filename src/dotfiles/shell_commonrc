@@ -31,7 +31,7 @@ fi
 
 if [[ -x /usr/bin/keychain ]]
 then
-   eval `keychain --eval --agents ssh --inherit any $KEYLIST`
+   eval $(keychain --eval --agents ssh --inherit any $KEYLIST)
 fi
 
 # Aliases
