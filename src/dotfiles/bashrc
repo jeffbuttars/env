@@ -9,11 +9,6 @@ if [ -f /opt/local/etc/bash_completion ]; then
 	. /opt/local/etc/bash_completion
 fi
 
-
-umask 0027
-
-OSTYPE=$(uname)
-
 # User specific aliases and functions
 
 # don't put duplicate lines in the history. See bash(1) for more options
@@ -24,53 +19,12 @@ export HISTCONTROL=ignoredups
 export HISTSIZE=10000000
 export HISTFILESIZE=1000000000
 
-export PATH="$HOME/bin:$PATH"
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# colors for ls, etc.
-alias d="ls --color -h"
-alias ls="ls -h --color=auto --group-directories-first"
-alias dir="ls --color=auto"
-alias ll="ls  --group-directories-first --color=auto -l -t -h "
-# alias ll="ls -G -l -h "
-alias svi="sudo vim"
-#alias vim="TERM=xterm-256color;vim"
-alias rm='rm -i'
-alias priest='ssh jeff@newjes.us'
-alias onyx='ssh jbuttars@onyx.boisestate.edu'
-alias rotateimage='mogrify -rotate'
-alias sshnj='ssh newjesus@newjes.us' 
-alias less=$PAGER
-alias jobs='jobs -l'
-alias yum='sudo yum'
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	alias ctags='/opt/local/bin/ctags'
-fi
-
-export CVSCP=':ext:cvs.cradlepoint.com:/opt/cvsroot'
-export CVSBUT=:ext:jeff@newjes.us:/home/cvsroot
-
-#export SSH_ASKPASS=''
-
-export PATH="$HOME/bin:/usr/local/sbin:/usr/local/bin:$PATH:/usr/sbin:/sbin"
-export PATH="$PATH:/usr/libexec"
-export PATH="$PATH:/usr/local/heroku-client"
-export MANPATH="$MANPATH:$HOME/system/share/man"
-
-export EDITOR='vim'
-export SVN_EDITOR=$EDITOR
-export SVN_MERGE='vimdiff'
 #. .bash_kde4
 #export KDEDIRS="$KDEDIRS:/home/kde4/kde" 
-
-# default grep options.
-# Ignore .svn directories
-# Ignore .cvs directories
-# Ignore tags files 
-alias grep='grep --exclude=*.git* --exclude=*.hg* --exclude=*.svn* --exclude=*.cvs* --exclude=*\.pyo --exclude=*\.pyc --exclude=*~ --exclude=tags'
 
 # set up colors to work with based on the term type
 #start out with some generic BASH, xterm stuff so we don't get undefines
@@ -207,24 +161,12 @@ if [[ "$OSTYPE" != "Darwin" ]]; then
 	export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 fi
 
-export BROWSER=google-chrome
-
-export DJANGO_DEBUG=yes
-
-# Android SDK
-export PATH=$PATH:$HOME/Development/android/android-sdk-linux/tools:$HOME/Development/android/android-sdk-linux/platform-tools
-
-export PSQL_EDITOR='vim -c"set ft=sql"'
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # This loads RVM into a shell session.
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 if [[ -f ~/.upkg/virtualcandy.git/src/virtualcandy.sh ]]; then
-    # DEFUALT_VENV_NAME='.venv'
-    # DEFUALT_VENV_REQFILE='requirements.txt'
     VC_AUTO_ACTIVATION=true
     . ~/.upkg/virtualcandy.git/src/virtualcandy.sh
 fi
+
+# Source common rc
+. ~/.shell_commonrc
 
 #vim:set ft=sh:

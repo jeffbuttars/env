@@ -78,4 +78,16 @@ echo "Update i3 config"
 sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/myi3.desktop /usr/share/xsessions/myi3.desktop
 sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
 
+# Install the 'pure' command prompt for zsh
+if [[ -d pure ]]; then
+    cd pure
+    git pull
+    cd -
+else
+    git clone https://github.com/sindresorhus/pure pure
+fi
+mkdir -p "$HOME/.zfunctions"
+ln -nsf "$PWD/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
+ln -nsf "$PWD/pure/async.zsh" "$HOME/.zfunctions/async"
+
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."

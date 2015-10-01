@@ -28,11 +28,7 @@ ZSH=$HOME/.upkg/oh-my-zsh.git
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="gentoo"
 
-# Default to a white shell if not set otherwise.
-if [[ -z $TERM_META ]]
-then
-    export TERM_META=white
-fi
+fpath=( "$HOME/.zfunctions" $fpath )
 
 # if [[ $TERM_META == 'white' ]]
 # then
@@ -75,6 +71,11 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
+# Use the pure prompt
+autoload -U promptinit && promptinit
+prompt pure
+
+
 # Set vi mode
 bindkey -v
 
@@ -98,44 +99,9 @@ zle -N zle-keymap-select
 # transition between modes. Let's reduce this delay to 0.1 seconds.
 export KEYTIMEOUT=1
 
-
-KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
-
-if [[ -x /usr/bin/ksshaskpass ]]
-    export SSH_ASKPASS=/usr/bin/ksshaskpass
-then
-
-fi
-if [[ -x /usr/bin/keychain ]]
-then
-   eval `keychain --eval --agents ssh --inherit any $KEYLIST`
-fi
-
-# PATH alterations
-export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
-
-if [[ -f /opt/vagrant ]]
-then
-    PATH=$PATH:/opt/vagrant/bin # Add Vagrant to PATH for scripting
-fi
-export PATH=$PATH:/usr/local/stata12
-export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
-export PATH=$PATH:/usr/lib/qt4/bin
-
-export bacos="$HOME/Dev/A10/acos/bacos/target/sources/sto/apps/axgui"
-
 # Turn off spelling correction
 unsetopt correct
 unsetopt correctall
-
-# Aliases
-alias svi='sudo -E vim'
-alias vis='vim -O'
-# alias yum='sudo yum'
-alias pcm='~/.upkg/pcm/pcm.sh'
-# alias dnf='sudo dnf'
-alias gs='git status'
-
 
 HISTFILE=~/.histfile
 HISTSIZE=1000000
@@ -144,59 +110,12 @@ SAVEHIST=10000000
 # CD whitout typing cd
 AUTO_CD="true"
 
-alias -s html=google-chrome
-
-# default grep options.
-# Ignore .svn directories
-# Ignore .cvs directories
-# Ignore tags files 
-alias grep="grep --exclude='*.git*' --exclude='*.hg*' --exclude='*.svn*' --exclude='*.cvs*' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
-
-# If we have a source installation of vim, prefer it
-if [[ -f /usr/local/bin/vim ]]; then
-    VIMPATH=/usr/local/bin
-fi
-
 # Enable virtualcandy
 VC_AUTO_ACTIVATION='true'
 source $HOME/.upkg/virtualcandy.git/src/virtualcandy.zsh
 
-# My convenience envs.
-
-# My local nphase prod clone
-# user: root, password: winadmin
-export UCEEM_LOCAL_PROD=192.168.15.16
-
-export DJANGO_DEBUG='yes'
-
-# source /opt/bcm/bcm_47xx/bcmenv.sh
-
-g=$(which gvim)
-if [[ "0" == "$?" ]]
-then
-    alias vim='gvim -v'
-    alias vi='gvim -v'
-fi
-
-
-export DONTDATECHK=y
-
-export MARKPATH=$HOME/.marks
-function jump { 
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark { 
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark { 
-    rm -i "$MARKPATH/$1"
-}
-function marks {
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-
-# Try to acativate a virtualenv if we're in one.
-vcactivate 2>&1 > /dev/null
+# Source common rc
+source ~/.shell_commonrc
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
@@ -204,9 +123,5 @@ if [[ -f $HOME/.zsh_local ]]; then
     source $HOME/.zsh_local
 fi
 
-if [[ -x /usr/bin/nyancat ]]
-then
-    nyancat --frame 10
-fi
 
 # vim:set ft=zsh:

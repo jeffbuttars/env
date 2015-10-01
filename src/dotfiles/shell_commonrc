@@ -1,0 +1,98 @@
+
+OSTYPE=$(uname)
+umask 0027
+
+# PATH alterations
+export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
+# export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
+# export bacos="$HOME/Dev/A10/acos/bacos/target/sources/sto/apps/axgui"
+
+# If we have a source installation of neovim, prefer it
+if [[ -f /opt/neovim/bin/nvim ]]; then
+    export PATH="$PATH:/opt/neovim/bin"
+fi
+
+if [[ -f /opt/vagrant ]]
+then
+    PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
+fi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+
+# SSH Keychain
+KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
+
+if [[ -x /usr/bin/ksshaskpass ]]
+    export SSH_ASKPASS=/usr/bin/ksshaskpass
+then
+
+fi
+
+if [[ -x /usr/bin/keychain ]]
+then
+   eval `keychain --eval --agents ssh --inherit any $KEYLIST`
+fi
+
+# Aliases
+vims=('nvim' 'gvim -v' 'vim' 'vi')
+
+# Select which vim to use in order of preference. First found wins.
+for var in $vims
+do
+    echo "Trying $var"
+    v=$(which $var 2>&1 > /dev/null)
+    if [[ "0" == "$?" ]]
+    then
+        echo "Using $var"
+        alias vim="$var"
+        alias vi="$var"
+        alias svi="sudo -E $var"
+        alias vis="$var -O"
+        if [[ "$var" == "nvim"` ]]
+        then
+            alias vimdiff="$var -O"
+        fi
+        break
+    fi
+done
+
+# default grep options
+# Ignore VCS directories
+# Ignore tags files 
+# Ignore binary files
+alias grep="grep -Ir --exclude-dir='.git' --exclude-dir='.hg' --exclude-dir='.svn' --exclude-dir='.cvs' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
+alias pcm='~/.upkg/pcm/pcm.sh'
+alias gs='git status'
+alias jobs='jobs -l'
+alias less=$PAGER
+if [[ "$OSTYPE" == "Darwin" ]]; then
+	alias ctags='/opt/local/bin/ctags'
+fi
+alias ll="ls  --group-directories-first --color=auto -l -t -h "
+alias ls="ls -h --color=auto --group-directories-first"
+
+
+
+# Env vars
+export DJANGO_DEBUG='yes'
+
+# Default to a white shell if not set otherwise.
+if [[ -z $TERM_META ]]
+then
+    export TERM_META=white
+fi
+
+export PSQL_EDITOR='vim -c"set ft=sql"'
+export BROWSER=google-chrome
+export EDITOR='vim'
+
+
+# Try to acativate a virtualenv if we're in one.
+vcactivate 2>&1 > /dev/null
+
+if [[ -x /usr/bin/nyancat ]]
+then
+    nyancat --frame 10
+fi
+
