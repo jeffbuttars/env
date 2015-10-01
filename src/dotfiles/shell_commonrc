@@ -49,10 +49,6 @@ do
         alias vi="$var"
         alias svi="sudo -E $var"
         alias vis="$var -O"
-        if [[ "$var" == "nvim" ]]
-        then
-            alias vimdiff="$var -O"
-        fi
         break
     fi
 done
