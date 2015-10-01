@@ -28,12 +28,6 @@ ZSH=$HOME/.upkg/oh-my-zsh.git
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="gentoo"
 
-# Default to a white shell if not set otherwise.
-if [[ -z $TERM_META ]]
-then
-    export TERM_META=white
-fi
-
 fpath=( "$HOME/.zfunctions" $fpath )
 
 # if [[ $TERM_META == 'white' ]]
@@ -105,68 +99,9 @@ zle -N zle-keymap-select
 # transition between modes. Let's reduce this delay to 0.1 seconds.
 export KEYTIMEOUT=1
 
-
-KEYLIST=(id_rsa id_dsa id_dsa_uceemapi)
-
-if [[ -x /usr/bin/ksshaskpass ]]
-    export SSH_ASKPASS=/usr/bin/ksshaskpass
-then
-
-fi
-if [[ -x /usr/bin/keychain ]]
-then
-   eval `keychain --eval --agents ssh --inherit any $KEYLIST`
-fi
-
-# PATH alterations
-export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
-
-# If we have a source installation of neovim, prefer it
-if [[ -f /opt/neovim/bin/nvim ]]; then
-    export PATH="$PATH:/opt/neovim/bin"
-fi
-
-if [[ -f /opt/vagrant ]]
-then
-    PATH=$PATH:/opt/vagrant/bin # Add Vagrant to PATH for scripting
-fi
-export PATH=$PATH:/usr/local/stata12
-export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
-export PATH=$PATH:/usr/lib/qt4/bin
-
-export bacos="$HOME/Dev/A10/acos/bacos/target/sources/sto/apps/axgui"
-
 # Turn off spelling correction
 unsetopt correct
 unsetopt correctall
-
-# Aliases
-vims=('nvim' 'gvim -v' 'vim' 'vi')
-
-# Select which vim to use in order of preference. First found wins.
-for var in $vims
-do
-    echo "Trying $var"
-    v=$(which $var 2>&1 > /dev/null)
-    if [[ "0" == "$?" ]]
-    then
-        echo "Using $var"
-        alias vim="$var"
-        alias vi="$var"
-        alias svi="sudo -E $var"
-        alias vis="$var -O"
-        if [[ "$var" == "nvim"` ]]
-        then
-            alias vimdiff="$var -O"
-        fi
-        break
-    fi
-done
-
-# alias yum='sudo yum'
-alias pcm='~/.upkg/pcm/pcm.sh'
-# alias dnf='sudo dnf'
-alias gs='git status'
 
 HISTFILE=~/.histfile
 HISTSIZE=1000000
@@ -175,40 +110,12 @@ SAVEHIST=10000000
 # CD whitout typing cd
 AUTO_CD="true"
 
-alias -s html=google-chrome
-
-# default grep options.
-# Ignore .svn directories
-# Ignore .cvs directories
-# Ignore tags files 
-alias grep="grep --exclude='*.git*' --exclude='*.hg*' --exclude='*.svn*' --exclude='*.cvs*' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
-
 # Enable virtualcandy
 VC_AUTO_ACTIVATION='true'
 source $HOME/.upkg/virtualcandy.git/src/virtualcandy.zsh
 
-# My convenience envs.
-
-export DJANGO_DEBUG='yes'
-
-export DONTDATECHK=y
-
-export MARKPATH=$HOME/.marks
-function jump { 
-    cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
-}
-function mark { 
-    mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
-}
-function unmark { 
-    rm -i "$MARKPATH/$1"
-}
-function marks {
-    ls -l "$MARKPATH" | sed 's/  / /g' | cut -d' ' -f9- | sed 's/ -/\t-/g' && echo
-}
-
-# Try to acativate a virtualenv if we're in one.
-vcactivate 2>&1 > /dev/null
+# Source common rc
+source ~/.shell_commonrc
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
@@ -216,9 +123,5 @@ if [[ -f $HOME/.zsh_local ]]; then
     source $HOME/.zsh_local
 fi
 
-if [[ -x /usr/bin/nyancat ]]
-then
-    nyancat --frame 10
-fi
 
 # vim:set ft=zsh:

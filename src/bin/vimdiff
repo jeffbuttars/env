@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Diffing: $@"
+
+if [[ -d "$1" ]]; then
+    vim "+DirDiff $1 $2"
+else
+    vim -d "$1" "$2"
+fi
