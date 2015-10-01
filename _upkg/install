@@ -79,6 +79,7 @@ sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/myi3.desktop /usr/share/xsess
 sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
 
 # Install the 'pure' command prompt for zsh
+pr_info "Installing pure prompt..."
 if [[ -d pure ]]; then
     cd pure
     git pull
