@@ -80,15 +80,15 @@ sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
 
 # Install the 'pure' command prompt for zsh
 pr_info "Installing pure prompt..."
-if [[ -d pure ]]; then
-    cd pure
+if [[ -d "${THIS_DIR}/pure" ]]; then
+    cd "${THIS_DIR}/pure"
     git pull
     cd -
 else
-    git clone https://github.com/sindresorhus/pure pure
+    git clone https://github.com/sindresorhus/pure "${THIS_DIR}/pure"
 fi
 mkdir -p "$HOME/.zfunctions"
-ln -nsf "$PWD/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
-ln -nsf "$PWD/pure/async.zsh" "$HOME/.zfunctions/async"
+ln -nsf "${THIS_DIR}/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
+ln -nsf "${THIS_DIR}/pure/async.zsh" "$HOME/.zfunctions/async"
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
