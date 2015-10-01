@@ -24,9 +24,8 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 KEYLIST='id_rsa id_dsa id_dsa_uceemapi'
 
 if [[ -x /usr/bin/ksshaskpass ]]
-    export SSH_ASKPASS=/usr/bin/ksshaskpass
 then
-
+    export SSH_ASKPASS=/usr/bin/ksshaskpass
 fi
 
 if [[ -x /usr/bin/keychain ]]
