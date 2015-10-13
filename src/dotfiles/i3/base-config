@@ -96,7 +96,8 @@ default_orientation horizontal
 bindsym $mod+Return exec konsole 
 bindsym $mod+F10 exec konsole; exec konsole --profile red; resize shrink width 20 px or 20 ppt
 bindsym $mod+F11 exec konsole --profile Red
-bindsym $mod+F12 exec konsole --profile Dark
+# bindsym $mod+F12 exec konsole --profile Dark
+bindsym $mod+F12 exec terminology
 
 # kill focused window
 # bindsym $mod+Shift+Q kill
