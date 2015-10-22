@@ -242,6 +242,8 @@ bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec dolphin applications:///
 bindsym $mod+Escape exec krunner
 # bindsym $ctrl+mod+l exec i3lock
+# Jump to urgent window
+bindsym $mod+x [urgent=latest] focus
 
 exec_always xmodmap ~/.Xmodmap
 exec_always xrdb -merge ~/.Xresources
