@@ -17,6 +17,7 @@ exec_always synergys
 # Go to default spaces
 bindsym $mod+Insert workspace 2, workspace 1
 bindsym $mod+End workspace 4, workspace 1
+bindsym $ctrl+mod+l exec xscreensaver-command -lock
 
 # Setup default apps for workspaces
 # exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
@@ -25,3 +26,4 @@ bindsym $mod+End workspace 4, workspace 1
 exec --no-startup-id i3-msg 'workspace 1;'
 
 exec plasmashell
+exec xscreensaver

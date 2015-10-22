@@ -241,7 +241,7 @@ bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin 
 bindsym $mod+F3 exec dolphin applications:///
 bindsym $mod+Escape exec krunner
-bindsym $ctrl+mod+l exec i3lock
+# bindsym $ctrl+mod+l exec i3lock
 
 exec_always xmodmap ~/.Xmodmap
 exec_always xrdb -merge ~/.Xresources
