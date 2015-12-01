@@ -75,7 +75,7 @@ export DJANGO_DEBUG='yes'
 # Default to a white shell if not set otherwise.
 if [[ -z $TERM_META ]]
 then
-    export TERM_META=white
+    export TERM_META=light
 fi
 
 export PSQL_EDITOR='vim -c"set ft=sql"'
