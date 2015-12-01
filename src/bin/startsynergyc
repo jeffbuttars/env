@@ -93,6 +93,7 @@ while [[ true ]]; do
         if [[ "$sgw" == "$gw" ]]; then
             echo "The gateway matches, setting synergys IP to ${GWMAP[$sgw]}"
             syns_ip=${GWMAP[$sgw]}
+            break
         else
             echo "Supported gateway '$sgw' does not match '$gw'"
         fi

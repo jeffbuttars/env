@@ -28,7 +28,7 @@ safe_link()
     fi
 
     ln -vnsf "$from" "$to"
-} #safe_link
+}
 
 # install our dotfiles by backing up existing files and linking in our own.
 pr_info "Updating dotfiles."
