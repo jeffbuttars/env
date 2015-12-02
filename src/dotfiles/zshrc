@@ -42,7 +42,9 @@ fpath=( "$HOME/.zfunctions" $fpath )
 #     ZSH_THEME='robbyrussell'
 #     # ZSH_THEME='blinks'
 # fi
-ZSH_THEME='philips'
+# ZSH_THEME='philips'
+# ZSH_THEME='miloshadzic'
+# ZSH_THEME='pure'
 
 # echo "Theme: $ZSH_THEME"
 
@@ -70,7 +72,8 @@ zstyle ':completion:*' hosts off
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+# plugins=(git)
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
