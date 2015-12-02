@@ -91,4 +91,6 @@ mkdir -p "$HOME/.zfunctions"
 ln -nsf "${THIS_DIR}/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
 ln -nsf "${THIS_DIR}/pure/async.zsh" "$HOME/.zfunctions/async"
 
+${THIS_DIR}/install_fonts.sh
+
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
