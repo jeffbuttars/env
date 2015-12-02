@@ -58,3 +58,5 @@
 	excludesfile = /home/jeff/.gitignore_global
 	editor = vim
 
+[oh-my-zsh]
+	hide-status = 1
