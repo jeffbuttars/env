@@ -111,6 +111,7 @@ if [[ -d "${THIS_DIR}/.zprezto" ]]; then
 else
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${THIS_DIR}/.zprezto"
 fi
+ln -nsf  "${THIS_DIR}/.zprezto" "${HOME}/.zprezto"
 
 
 ${THIS_DIR}/install_fonts.sh
