@@ -1,5 +1,9 @@
 #!/bin/bash
 
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+. ${THIS_DIR}/upkg.sh
+
 pr_info "Updating/installing fonts..."
 
 GIT_DST_DIR="${PWD}/nerd-fonts"
