@@ -33,7 +33,7 @@
     svn-diff = !git-svn-diff.sh
     svnsync = !git co svn && git svn rebase && git push --force origin svn:master && git co master && git pull -Xtheirs origin master
     as = "!f() { git add \"$*\"; git status; }; f"
-    edit = "!vim $(git ls-files -m)"
+    edit = "!nvim $(git ls-files -m)"
 
 [pager]
     diff = vimpager
@@ -51,12 +51,12 @@
     tool = diffconflicts
     defaultToUpstream = true
 [mergetool "diffconflicts"]
-    cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+    cmd = diffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
     trustExitCode = true
     keepBackup = false
 [core]
 	excludesfile = /home/jeff/.gitignore_global
-	editor = vim
+	editor = nvim
 
 [oh-my-zsh]
 	hide-status = 1
