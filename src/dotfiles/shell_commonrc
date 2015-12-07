@@ -21,7 +21,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
 # SSH Keychain
-KEYLIST='id_rsa id_dsa id_dsa_uceemapi'
+KEYLIST='id_rsa id_dsa'
 
 if [[ -x /usr/bin/ksshaskpass ]]
 then
