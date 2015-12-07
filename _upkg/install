@@ -78,31 +78,39 @@ echo "Update i3 config"
 sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/myi3.desktop /usr/share/xsessions/myi3.desktop
 sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
 
-# Install the 'pure' command prompt for zsh
-pr_info "Installing pure prompt..."
-if [[ -d "${THIS_DIR}/pure" ]]; then
-    cd "${THIS_DIR}/pure"
-    git pull
+# # Install the 'pure' command prompt for zsh
+# pr_info "Installing pure prompt..."
+# if [[ -d "${THIS_DIR}/pure" ]]; then
+#     cd "${THIS_DIR}/pure"
+#     git pull
+#     cd -
+# else
+#     git clone https://github.com/sindresorhus/pure "${THIS_DIR}/pure"
+# fi
+# mkdir -p "$HOME/.zfunctions"
+# ln -nsf "${THIS_DIR}/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
+# ln -nsf "${THIS_DIR}/pure/async.zsh" "$HOME/.zfunctions/async"
+
+# pr_info "Installing powerline ZSH plugin..."
+# if [[ -d "${THIS_DIR}/oh-my-zsh-powerline-theme" ]]; then
+#     cd "${THIS_DIR}/oh-my-zsh-powerline-theme"
+#     git pull
+#     cd -
+# else
+#     git clone "https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme.git" "${THIS_DIR}/oh-my-zsh-powerline-theme"
+# fi
+# cd "${THIS_DIR}/oh-my-zsh-powerline-theme"
+# ./install_in_omz.sh 
+# cd -
+
+pr_info "Installing Prezto..."
+if [[ -d "${THIS_DIR}/.zprezto" ]]; then
+    cd "${THIS_DIR}/.zprezto"
+    git pull && git submodule update --init --recursive
     cd -
 else
-    git clone https://github.com/sindresorhus/pure "${THIS_DIR}/pure"
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${THIS_DIR}/.zprezto"
 fi
-mkdir -p "$HOME/.zfunctions"
-ln -nsf "${THIS_DIR}/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
-ln -nsf "${THIS_DIR}/pure/async.zsh" "$HOME/.zfunctions/async"
-
-pr_info "Installing powerline ZSH plugin..."
-if [[ -d "${THIS_DIR}/oh-my-zsh-powerline-theme" ]]; then
-    cd "${THIS_DIR}/oh-my-zsh-powerline-theme"
-    git pull
-    cd -
-else
-    git clone "https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme.git" "${THIS_DIR}/oh-my-zsh-powerline-theme"
-fi
-cd "${THIS_DIR}/oh-my-zsh-powerline-theme"
-./install_in_omz.sh 
-cd -
-
 
 
 ${THIS_DIR}/install_fonts.sh
