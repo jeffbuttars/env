@@ -44,7 +44,7 @@ fpath=( "$HOME/.zfunctions" $fpath )
 # fi
 # ZSH_THEME='philips'
 # ZSH_THEME='miloshadzic'
-# ZSH_THEME='pure'
+ZSH_THEME='powerline'
 
 # echo "Theme: $ZSH_THEME"
 
@@ -78,8 +78,8 @@ plugins=()
 source $ZSH/oh-my-zsh.sh
 
 # Use the pure prompt
-autoload -U promptinit && promptinit
-prompt pure
+# autoload -U promptinit && promptinit
+# prompt pure
 
 
 # Set vi mode

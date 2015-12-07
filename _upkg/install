@@ -91,6 +91,20 @@ mkdir -p "$HOME/.zfunctions"
 ln -nsf "${THIS_DIR}/pure/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
 ln -nsf "${THIS_DIR}/pure/async.zsh" "$HOME/.zfunctions/async"
 
+pr_info "Installing powerline ZSH plugin..."
+if [[ -d "${THIS_DIR}/oh-my-zsh-powerline-theme" ]]; then
+    cd "${THIS_DIR}/oh-my-zsh-powerline-theme"
+    git pull
+    cd -
+else
+    git clone "https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme.git" "${THIS_DIR}/oh-my-zsh-powerline-theme"
+fi
+cd "${THIS_DIR}/oh-my-zsh-powerline-theme"
+./install_in_omz.sh 
+cd -
+
+
+
 ${THIS_DIR}/install_fonts.sh
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
