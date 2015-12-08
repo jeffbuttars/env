@@ -18,8 +18,9 @@ if [[ -f /etc/profile.d/autojump.zsh ]]; then
     source /etc/profile.d/autojump.zsh
 fi
 
+
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.upkg/oh-my-zsh.git
+# ZSH=$HOME/.upkg/oh-my-zsh.git
 
 # # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -28,23 +29,10 @@ ZSH=$HOME/.upkg/oh-my-zsh.git
 # ZSH_THEME="robbyrussell"
 # ZSH_THEME="gentoo"
 
-fpath=( "$HOME/.zfunctions" $fpath )
+# For pure
+# fpath=( "$HOME/.zfunctions" $fpath )
 
-# if [[ $TERM_META == 'white' ]]
-# then
-#     ZSH_THEME="kphoen"
-#     # ZSH_THEME="philips"
-# elif [[ $TERM_META == 'blue' ]]
-# then
-#     # ZSH_THEME="af-magic"
-#     ZSH_THEME="gentoo"
-# else
-#     ZSH_THEME='robbyrussell'
-#     # ZSH_THEME='blinks'
-# fi
-# ZSH_THEME='philips'
-# ZSH_THEME='miloshadzic'
-# ZSH_THEME='pure'
+# ZSH_THEME='powerline'
 
 # echo "Theme: $ZSH_THEME"
 
@@ -64,22 +52,25 @@ fpath=( "$HOME/.zfunctions" $fpath )
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-COMPLETION_WAITING_DOTS="true"
+# (OMZSH) COMPLETION_WAITING_DOTS="true"
 
-# Disable hostname lookups on completion
-zstyle ':completion:*' hosts off
+# (OMZSH) Disable hostname lookups on completion
+# zstyle ':completion:*' hosts off
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # plugins=(git)
-plugins=()
+# plugins=()
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
+
+# (Prezto)
+source "$HOME/.upkg/env.git/_upkg/.zprezto/init.zsh"
 
 # Use the pure prompt
-autoload -U promptinit && promptinit
-prompt pure
+# autoload -U promptinit && promptinit
+# prompt pure
 
 
 # Set vi mode
