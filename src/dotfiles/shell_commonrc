@@ -21,8 +21,6 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 
 # SSH Keychain
-KEYLIST='id_rsa id_dsa'
-
 if [[ -x /usr/bin/ksshaskpass ]]
 then
     export SSH_ASKPASS=/usr/bin/ksshaskpass
@@ -30,7 +28,7 @@ fi
 
 if [[ -x /usr/bin/keychain ]]
 then
-   eval $(keychain --eval --agents ssh --inherit any $KEYLIST)
+   eval $(keychain --eval --agents ssh --inherit any id_rsa id_dsa)
 fi
 
 # Aliases

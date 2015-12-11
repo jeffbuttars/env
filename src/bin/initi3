@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#  DEFAULT KDE STARTUP SCRIPT ( 5.4.3 )
+#  DEFAULT KDE STARTUP SCRIPT ( 5.5.0 )
 #
 
 if test "x$1" = x--failsafe; then
@@ -283,10 +283,6 @@ fi
 export XDG_DATA_DIRS
 
 # Make sure that D-Bus is running
-# D-Bus autolaunch is broken
-if test -z "$DBUS_SESSION_BUS_ADDRESS" ; then
-    eval `dbus-launch --sh-syntax --exit-with-session`
-fi
 if $qdbus >/dev/null 2>/dev/null; then
     : # ok
 else
@@ -387,7 +383,7 @@ test -n "$KDEWM" && KDEWM="--windowmanager $KDEWM"
 # lock now and do the rest of the KDE startup underneath the locker.
 KSMSERVEROPTIONS=""
 test -n "$dl" && KSMSERVEROPTIONS=" --lockscreen"
-kwrapper5 ksmserver $KDEWM $KSMSERVEROPTIONS
+kwrapper5 /usr/bin/ksmserver $KDEWM $KSMSERVEROPTIONS
 if test $? -eq 255; then
   # Startup error
   echo 'startkde: Could not start ksmserver. Check your installation.'  1>&2
@@ -413,13 +409,6 @@ if test x"$wait_drkonqi"x = x"true"x ; then
         fi
     done
 fi
-
-# # Start the ssh-agent
-# [ -n "$SSH_AGENT_PID" ] || eval "$(ssh-agent -s)"
-
-# kbuildsycoca5
-
-# i3
 
 # Stop the ssh-agent
 [ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
