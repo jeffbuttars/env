@@ -1,9 +1,17 @@
 #!/bin/bash
 
+VIM='vim'
+garbage=$(which nvim)
+lres="$?"
+
+if [[ "$lres" = "0" ]]; then
+    VIM='nvim'
+fi
+
 echo "Diffing: $@"
 
 if [[ -d "$1" ]]; then
-    vim "+DirDiff $1 $2"
+    $VIM "+DirDiff $1 $2"
 else
-    vim -d "$1" "$2"
+    $VIM -d "$1" "$2"
 fi
