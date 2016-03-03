@@ -55,7 +55,9 @@ done
 # Ignore tags files 
 # Ignore binary files
 alias grep="grep -I --exclude-dir='.git' --exclude-dir='.hg' --exclude-dir='.svn' --exclude-dir='.cvs' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
-alias pcm='~/.upkg/pcm/pcm.sh'
+if [ -f '~/.upkg/pcm/pcm.sh' ]; then
+    alias pcm='~/.upkg/pcm/pcm.sh'
+fi
 alias gs='git status'
 alias jobs='jobs -l'
 alias less=$PAGER
