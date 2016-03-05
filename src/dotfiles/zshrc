@@ -124,4 +124,6 @@ fi
 export EDITOR=vim
 export VISUAL=vim
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # vim:set ft=zsh:

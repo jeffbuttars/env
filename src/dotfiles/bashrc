@@ -169,4 +169,5 @@ fi
 # Source common rc
 . ~/.shell_commonrc
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 #vim:set ft=sh:
