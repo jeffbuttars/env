@@ -121,5 +121,9 @@ if [[ -f $HOME/.zsh_local ]]; then
     source $HOME/.zsh_local
 fi
 
+export EDITOR=vim
+export VISUAL=vim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # vim:set ft=zsh:
