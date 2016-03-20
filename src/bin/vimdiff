@@ -11,6 +11,7 @@ fi
 echo "Diffing: $@"
 
 if [[ -d "$1" ]]; then
+    echo "Using Plugin DirDiff..."
     $VIM "+DirDiff $1 $2"
 else
     $VIM -d "$1" "$2"
