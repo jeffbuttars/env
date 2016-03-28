@@ -35,7 +35,7 @@ bindsym $mod+Shift+i scratchpad show
 for_window [class="plasmashell"] floating enable, border none
 # for_window [title="Plasma"] floating enable, border none
 for_window [class="Yakuake"] floating enable
-for_window [class="Yakuake"] floating enable
+for_window [title="Yakuake"] floating enable
 for_window [class="Smplayer"] floating enable
 for_window [class="Kmix"] floating enable
 for_window [class="Kcalc"] floating enable
