@@ -4,7 +4,7 @@ set -e
 
 MERGE_MASTER=false
 
-if [[ "$1" = "-n" ]]; then
+if [[ "$1" = "-m" ]]; then
     MERGE_MASTER=true
 fi
 
@@ -38,11 +38,10 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
         echo "REUP: restoring from stash..."
         git stash pop
     fi
-fi
 
-
-# If -m was given as an option, merge master back to the branch
-if [[ "$MERGE_MASTER" = "true" ]]; then
-    echo "REUP: Merge back from master..."
-    git merge master
+    # If -m was given as an option, merge master back to the branch
+    if [[ "$MERGE_MASTER" = "true" ]]; then
+        echo "REUP: Merge back from master..."
+        git merge master
+    fi
 fi
