@@ -10,20 +10,22 @@ fi
 
 ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+DIRTY=$(git status -uno --porcelain)
+if [[ -n $DIRTY ]]; then
+    # Stash if needed
+    echo "REUP: $ORIG_BRANCH is dirty, stashing changes..."
+    git stash save "Stashed by reup $$"
+    echo "REUP: stashed"
+fi
+
 # If not on branch master, stash and change to branch master
 if [[ "$ORIG_BRANCH" != "master" ]]; then
     echo "REUP: current branch is $ORIG_BRANCH"
-    DIRTY=$(git status -uno --porcelain)
-    if [[ -n $DIRTY ]]; then
-        echo "REUP: $ORIG_BRANCH is dirty, stashing changes..."
-        git stash save "Stashed by reup $$"
-        echo "REUP: stashed"
-    fi
+    echo "REUP: checking out master..."
+    git checkout master
 fi
 
-# checkout master and pull --rebase from upstream.
-echo "REUP: Checking out master and rebasing from upstream..."
-git checkout master
+echo "REUP: rebasing from upstream..."
 git pull --rebase upstream master
 
 # push update to origin master
