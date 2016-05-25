@@ -157,6 +157,7 @@ bindsym $mod+e layout default
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+Control+F floating toggle
+bindsym $mod+Control+S sticky toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -235,7 +236,7 @@ bar {
         mode hide
         modifier Mod1
         status_command i3status
-        position bottom
+        position top
 }
 
 # My own hotkeys
