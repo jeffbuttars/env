@@ -65,6 +65,7 @@ fi
 
 # source $ZSH/oh-my-zsh.sh
 
+export PURE_PROMPT_SYMBOL='$'
 # (Prezto)
 source "$HOME/.zprezto/init.zsh"
 
