@@ -1,0 +1,19 @@
+#!/bin/bash
+
+WORK_DIR='~/Dev/Forsta/forsta-api'
+shellexec ()
+{
+    RED_SHELL='konsole --profile red --workdir $WORK_DIR -e bash --rcfile'
+    tmpfile=$(mktemp)
+    echo "$1" > "$tmpfile"
+    $RED_SHELL $tmpfile
+    sleep 1
+}
+
+shellexec "npm run mongo"
+shellexec "npm start"
+shellexec "npm run livequery"
+shellexec "npm run dashboard"
+
+WORK_DIR='~/Dev/Forsta/nikex'
+shellexec "npm start"

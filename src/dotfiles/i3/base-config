@@ -50,6 +50,7 @@ for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable
 for_window [class="Klipper"] floating enable, border none
+for_window [id="qpaeq"] floating enable, border 1px
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -155,10 +156,9 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout default
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+space floating toggle
 bindsym $mod+Control+F floating toggle
 bindsym $mod+Control+S sticky toggle
-
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -236,7 +236,7 @@ bar {
         mode hide
         modifier Mod1
         status_command i3status
-        position top
+        position bottom
 }
 
 # My own hotkeys
@@ -257,7 +257,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

@@ -25,6 +25,7 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
     git checkout master
 fi
 
+git pull
 echo "REUP: rebasing from upstream..."
 git pull --rebase upstream master
 

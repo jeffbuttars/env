@@ -19,10 +19,10 @@ bindsym $mod+Insert workspace 2, workspace 1
 bindsym $mod+End workspace 4, workspace 1
 bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 
-# Setup default apps for workspaces
-# exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
-# exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
-# exec --no-startup-id i3-msg 'workspace 5; exec /usr/bin/thunderbird'
+# Mouse bindings
+bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
+bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
+
 exec --no-startup-id i3-msg 'workspace 1;'
 
 exec --no-startup-id plasmashell
