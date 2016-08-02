@@ -3,7 +3,7 @@
 WORK_DIR='~/Dev/Forsta/forsta-api'
 shellexec ()
 {
-    RED_SHELL='konsole --profile red --workdir $WORK_DIR -e bash --rcfile'
+    RED_SHELL="konsole --profile red --workdir $WORK_DIR -e bash --rcfile"
     tmpfile=$(mktemp)
     echo "$1" > "$tmpfile"
     $RED_SHELL $tmpfile
