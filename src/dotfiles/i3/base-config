@@ -33,6 +33,7 @@ bindsym $mod+Shift+i scratchpad show
 # Let Yakuake float by defaul
 # Use the xprop command to get window info
 for_window [class="plasmashell"] floating enable, border none
+for_window [class="google-chrome"] border pixel 2
 # for_window [title="Plasma"] floating enable, border none
 for_window [class="Yakuake"] floating enable
 for_window [title="Yakuake"] floating enable
@@ -96,8 +97,7 @@ default_orientation horizontal
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole 
-# bindsym $mod+F10 exec konsole, exec konsole --profile red
+bindsym $mod+Return exec konsole
 bindsym $mod+F11 exec konsole --profile Red
 bindsym $mod+F12 exec konsole --profile Dark
 # bindsym $mod+F12 exec terminology
