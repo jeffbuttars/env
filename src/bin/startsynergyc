@@ -4,11 +4,11 @@
 PIDFILE="$HOME/.config/startsynergyc/pid"
 mkdir -p $(dirname $PIDFILE)
 
-S_SERVER='172.18.61.21'
+FORSTA_SERVER='192.168.1.36'
 HOMEW_SERVER='10.6.6.76'
 # A map of network gateway to synergys IP
 # declare -A GWMAP=( ["172.18.61.1"]="172.18.61.21" )
-declare -A GWMAP=( ["10.6.6.1"]="$HOMEW_SERVER" ["172.18.61.1"]="$S_SERVER" ["172.18.61.254"]="$S_SERVER" )
+declare -A GWMAP=( ["10.6.6.1"]="$HOMEW_SERVER" ["192.168.1.1"]="$FORSTA_SERVER" )
 
 # Interfaces we care about.
 intfcs="enp0s25 wlp3s0"
@@ -26,7 +26,7 @@ find_ip()
     done
 
     echo ""
-} #find_ip
+}
 
 kill_syns()
 {
