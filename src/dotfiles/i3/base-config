@@ -49,7 +49,6 @@ for_window [class="Skype"] floating enable
 for_window [class="Plasma-desktop"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable
 for_window [class="Klipper"] floating enable, border none
 for_window [id="qpaeq"] floating enable, border 1px
 
@@ -75,8 +74,14 @@ set $sol_green   #859900
 # window colors: border background text
 # colorclass border background text indicator
 #
-#client.focused      #000099 #000099 #FFFFFF
-#client.focused  #000000 #950002 #FFFFFF
+
+# Yellow
+# client.focused #b58900 #b58900 #FFFFFF
+# Red
+# client.focused #dc322f #dc322f #FFFFFF
+# Green
+client.focused #859900 #859900 #FFFFFF
+
 
 # A client which currently has the focus.
 # client.focused #002b36 $sol_base3 #002b36 $sol_red
