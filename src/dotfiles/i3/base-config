@@ -22,7 +22,7 @@ font xft:Oxygen-Sans 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-floating_minimum_size 100 x 300
+floating_minimum_size 50 x 50
 
 # Scratchpad settings
 # send window to the scratch pad. Use what is typically my minimize shortcut
@@ -102,7 +102,7 @@ default_orientation horizontal
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec konsole --profile Light
 bindsym $mod+F11 exec konsole --profile Red
 bindsym $mod+F12 exec konsole --profile Dark
 # bindsym $mod+F12 exec terminology

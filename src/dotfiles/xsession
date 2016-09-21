@@ -1,5 +1,1 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
-
-# exec /usr/bin/i3
-#exec dbus-launch --sh-syntax --exit-with-session /usr/bin/i3
-exec ksmserver -w i3
