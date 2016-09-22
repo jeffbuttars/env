@@ -3,9 +3,14 @@
 set -e
 
 MERGE_MASTER=false
+SQUISH_FROM_MASTER=true
 
 if [[ "$1" = "-m" ]]; then
     MERGE_MASTER=true
+fi
+
+if [[ "$1" = "-n" ]]; then
+    SQUISH_FROM_MASTER=true
 fi
 
 ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -42,9 +47,16 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
         git stash pop
     fi
 
-    # If -m was given as an option, merge master back to the branch
-    if [[ "$MERGE_MASTER" = "true" ]]; then
-        echo "REUP: Merge back from master..."
-        git merge master
+    if [[ "$SQUISH_FROM_MASTER" = "true" ]]; then
+        # If -m was given as an option, merge master back to the branch instead of rebase
+        if [[ "$MERGE_MASTER" = "true" ]]; then
+            echo "REUP: Merge back from master..."
+            git merge master
+        else
+            echo "REUP: Rebasing from master..."
+            git rebase master
+        fi
     fi
 fi
+
+echo -e "\n### REUP IS DONE ###"
