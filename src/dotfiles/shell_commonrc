@@ -66,7 +66,7 @@ if [[ "$OSTYPE" == "Darwin" ]]; then
 fi
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
-
+alias open='xdg-open'
 
 
 # Env vars
