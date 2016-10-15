@@ -23,8 +23,5 @@ bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
 
-# exec --no-startup-id i3-msg 'workspace 1;'
-
-#exec --no-startup-id plasmashell
 exec --no-startup-id xscreensaver
 exec --no-startup-id compton -b --config ~/.config/compton.conf
