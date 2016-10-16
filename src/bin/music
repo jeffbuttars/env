@@ -1,0 +1,7 @@
+#!/bin/bash
+
+i3-msg 'workspace 10; append_layout ~/.i3/timehook-ws-layout-10.json'
+
+qpaeq &
+pavucontrol &
+google-chrome --app=https://play.google.com/music/listen?u=0#/now &
