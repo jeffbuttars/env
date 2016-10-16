@@ -12,10 +12,13 @@ shellexec ()
     sleep 1
 }
 
+i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'
+
 shellexec "npm run mongo"
-shellexec "npm start"
 # shellexec "npm run livequery"
 shellexec "npm run dashboard"
 
+shellexec "npm start"
 WORK_DIR='~/Dev/Forsta/nikex'
+
 shellexec "npm start"

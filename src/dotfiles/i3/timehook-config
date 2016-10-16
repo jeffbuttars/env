@@ -1,16 +1,22 @@
 
 # Workspace layout
-# Odds on left, evens on right
+# Odds on left, evens on right, except 10
 workspace 1 output DVI-I-2
 workspace 3 output DVI-I-2
 workspace 5 output DVI-I-2
 workspace 7 output DVI-I-2
 workspace 9 output DVI-I-2
+workspace 10 output DVI-I-2
 workspace 2 output DVI-I-3
 workspace 4 output DVI-I-3
 workspace 6 output DVI-I-3
 workspace 8 output DVI-I-3
 
+# Saved layouts
+# (Could be automated by config building script)
+exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'"
+
+for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
 
 exec_always --no-startup-id synergys
 
