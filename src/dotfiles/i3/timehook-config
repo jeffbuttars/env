@@ -14,7 +14,7 @@ workspace 8 output DVI-I-3
 
 # Saved layouts
 # (Could be automated by config building script)
-exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'"
+# exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'"
 
 for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
 

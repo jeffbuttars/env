@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#  DEFAULT KDE STARTUP SCRIPT ( 5.7.4 )
+#  DEFAULT KDE STARTUP SCRIPT ( 5.8.2 )
 #
 
 if test "x$1" = x--failsafe; then
@@ -20,7 +20,7 @@ unset DYLD_FORCE_FLAT_NAMESPACE
 # in case we have been started with full pathname spec without being in PATH
 bindir=`echo "$0" | sed -n 's,^\(/.*\)/[^/][^/]*$,\1,p'`
 if [ -n "$bindir" ]; then
-  qbindir=`qtpaths-qt5 --binaries-dir`
+  qbindir=`qtpaths --binaries-dir`
   qdbus=$qbindir/qdbus
   case $PATH in
     $bindir|$bindir:*|*:$bindir|*:$bindir:*) ;;
@@ -193,7 +193,7 @@ fi
 
 # Source scripts found in <config locations>/plasma-workspace/env/*.sh
 # (where <config locations> correspond to the system and user's configuration
-# directories, as identified by Qt's qtpaths-qt5,  e.g.  $HOME/.config
+# directories, as identified by Qt's qtpaths,  e.g.  $HOME/.config
 # and /etc/xdg/ on Linux)
 #
 # This is where you can define environment variables that will be available to
@@ -206,7 +206,7 @@ fi
 # better use the Autostart folder.
 
 # TODO: Use GenericConfigLocation once we depend on Qt 5.4
-scriptpath=`qtpaths-qt5 --paths ConfigLocation | tr ':' '\n' | sed 's,$,/plasma-workspace,g'`
+scriptpath=`qtpaths --paths ConfigLocation | tr ':' '\n' | sed 's,$,/plasma-workspace,g'`
 
 # Add /env/ to the directory to locate the scripts to be sourced
 for prefix in `echo $scriptpath`; do
@@ -359,7 +359,7 @@ if test $? -ne 0; then
   exit 1
 fi
 
-qdbus org.kde.KSplash /KSplash org.kde.KSplash.setStage kinit
+$qdbus org.kde.KSplash /KSplash org.kde.KSplash.setStage kinit
 
 # finally, give the session control to the session manager
 # see kdebase/ksmserver for the description of the rest of the startup sequence
