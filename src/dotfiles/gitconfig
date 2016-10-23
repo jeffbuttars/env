@@ -10,6 +10,7 @@
     stu = status -uno
     br = branch
     brl = branch --list
+    blowbranch = 
     stl = stash list
     stp = stash pop
     type = cat-file -t

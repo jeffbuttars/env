@@ -1,18 +1,26 @@
 #!/bin/bash
 
+LAUNCH_VTOP=''
+if [[ $1 == '-t' ]]; then
+    LAUNCH_VTOP='true'
+fi
+
 WORK_DIR='~/Dev/Forsta/forsta-api'
 shellexec ()
 {
-    # WINTITLE="\033]2;${1}\007"
-    # WINTITLE="\033]30;${1}\007"
     tmpfile=$(mktemp)
     echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1; zsh" > "$tmpfile"
-    cat "$tmpfile"
+    # cat "$tmpfile"
     konsole --show-tabbar -p tabtitle="$1" --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
     sleep 1
 }
 
-i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'
+if [[ -n $LAUNCH_VTOP ]]; then
+    # i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7-vtop.json'
+    i3-msg 'workspace 7; append_layout ~/.i3/layout7.json'
+else
+    i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'
+fi
 
 shellexec "npm run mongo"
 # shellexec "npm run livequery"
@@ -22,3 +30,14 @@ shellexec "npm start"
 WORK_DIR='~/Dev/Forsta/nikex'
 
 shellexec "npm start"
+
+
+if [[ -n $LAUNCH_VTOP ]]; then
+    # konsole --profile red -e vtop &
+    cd
+    tmpfile=$(mktemp)
+    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\nPROMPT_COMMAND='echo -ne \"\033]0\nvtop\007\"'\nvtop; zsh" > "$tmpfile"
+    cat "$tmpfile"
+    sleep 1
+    konsole --profile red --workdir $HOME -e "bash --rcfile $tmpfile" &
+fi

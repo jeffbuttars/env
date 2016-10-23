@@ -51,6 +51,8 @@ for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [id="qpaeq"] floating enable, border 1px
+for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
+for_window [title="Plex"] floating enable, sticky enable, border pixel 3
 
 # Solaraized colors:
 set $sol_base03  #002b36
