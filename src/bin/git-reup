@@ -2,11 +2,11 @@
 
 set -e
 
-MERGE_MASTER=false
+REBASE_MASTER=false
 SQUISH_FROM_MASTER=true
 
-if [[ "$1" = "-m" ]]; then
-    MERGE_MASTER=true
+if [[ "$1" = "-r" ]]; then
+    REBASE_MASTER=true
 fi
 
 if [[ "$1" = "-n" ]]; then
@@ -48,13 +48,13 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
     fi
 
     if [[ "$SQUISH_FROM_MASTER" = "true" ]]; then
-        # If -m was given as an option, merge master back to the branch instead of rebase
-        if [[ "$MERGE_MASTER" = "true" ]]; then
-            echo "REUP: Merge back from master..."
-            git merge master
-        else
+        # If -r was given as an option, rebase master back to the branch instead of merge
+        if [[ "$REBASE_MASTER" = "true" ]]; then
             echo "REUP: Rebasing from master..."
             git rebase master
+        else
+            echo "REUP: Merge back from master..."
+            git merge master
         fi
     fi
 fi
