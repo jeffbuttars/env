@@ -1,0 +1,16 @@
+#!/bin/bash
+
+FLIST=$(find . -iname '*.orig')
+echo -e ".orig files found:\n"
+echo $FLIST
+
+echo "Do you want to forcefully remove those files?"
+while true; do
+    read -p "Type 'Yes' if so: " yn
+    case $yn in
+        Yes ) break;;
+        * ) exit 1;;
+    esac
+done
+
+# echo $FLIST | xargs rm -f
