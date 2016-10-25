@@ -9,8 +9,8 @@ while true; do
     read -p "Type 'Yes' if so: " yn
     case $yn in
         Yes ) break;;
-        * ) exit 1;;
+        * ) echo "Doing nothing"; exit 1;;
     esac
 done
 
-# echo $FLIST | xargs rm -f
+echo $FLIST | xargs rm -vf
