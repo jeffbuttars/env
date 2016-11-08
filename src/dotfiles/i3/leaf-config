@@ -38,18 +38,12 @@ workspace 0 output eDP1
 # workspace 6 output DP2
 # workspace 8 output DP2
 
+# Mouse bindings
+bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
+bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
 
-#font xft:Eurostile-Normal Bold 16
-# font xft:Eurostile  14
-# font xft:Oxygen-Sans Bold 14
-font xft:Oxygen-Sans 12
-
-for_window [class="sun-awt-X11-XFramePeer"] floating enable
-
-# exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
-# exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
-exec --no-startup-id i3-msg 'workspace 1;'
+# for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 exec_always ~/bin/startsynergyc -f
-#exec xscreensaver -no-splash
-exec plasmashell
+exec --no-startup-id compton -b --config ~/.config/compton.conf
+# exec plasmashell

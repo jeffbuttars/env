@@ -33,6 +33,7 @@ bindsym $mod+Shift+i scratchpad show
 # Let Yakuake float by defaul
 # Use the xprop command to get window info
 for_window [class="plasmashell"] floating enable, border none
+for_window [class="plasmashell" title="Desktop"] floating disable, border none
 for_window [class="google-chrome"] border pixel 2
 # for_window [title="Plasma"] floating enable, border none
 for_window [class="Yakuake"] floating enable
@@ -280,3 +281,4 @@ exec yakuake
 exec xflux -z 83702
 exec krunner
 exec kmix --keepvisibility
+exec --no-startup-id xscreensaver -no-splash
