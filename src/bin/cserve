@@ -1,6 +1,6 @@
 #!/bin/bash
 
-WORK_DIR='~/Dev/Forsta/ccsm-api/ccsm_api'
+WORK_DIR='~/Dev/Forsta/ccsm-api'
 # LAUNCH_VTOP=''
 # if [[ $1 == '-t' ]]; then
 #     LAUNCH_VTOP='true'
@@ -9,7 +9,7 @@ WORK_DIR='~/Dev/Forsta/ccsm-api/ccsm_api'
 shellexec ()
 {
     tmpfile=$(mktemp)
-    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1; zsh" > "$tmpfile"
+    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n. ~/.bashrc\n$1; zsh" > "$tmpfile"
     # cat "$tmpfile"
     konsole --show-tabbar -p tabtitle="$1" --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
     sleep 1
@@ -24,15 +24,10 @@ shellexec ()
 
 i3-msg 'workspace 7'
 
-cd '~/Dev/Forsta/ccsm-api'
-vcstart
-cd -
+shellexec "vcin; cd ccsm_api; ./manage.py runserver --traceback --verbosity 3"
 
-shellexec "./manage.py runserver"
 WORK_DIR='~/Dev/Forsta/ccsm-ui'
-cd $WORK_DIR
-yarn
-shellexec "yarn start"
+shellexec "yarn install; yarn start"
 
 # if [[ -n $LAUNCH_VTOP ]]; then
 #     # konsole --profile red -e vtop &
@@ -43,4 +38,3 @@ shellexec "yarn start"
 #     sleep 1
 #     konsole --profile red --workdir $HOME -e "bash --rcfile $tmpfile" &
 # fi
-
