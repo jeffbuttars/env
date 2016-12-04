@@ -82,10 +82,6 @@ export PSQL_EDITOR='vim -c"set ft=sql"'
 export BROWSER=google-chrome
 export EDITOR='vim'
 
-
-# Try to acativate a virtualenv if we're in one.
-vcactivate 2>&1 > /dev/null
-
 # if [[ -x /usr/bin/nyancat ]]
 # then
 #     nyancat --frame 10

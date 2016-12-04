@@ -1,0 +1,46 @@
+#!/bin/bash
+
+WORK_DIR='~/Dev/Forsta/ccsm-api/ccsm_api'
+# LAUNCH_VTOP=''
+# if [[ $1 == '-t' ]]; then
+#     LAUNCH_VTOP='true'
+# fi
+
+shellexec ()
+{
+    tmpfile=$(mktemp)
+    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1; zsh" > "$tmpfile"
+    # cat "$tmpfile"
+    konsole --show-tabbar -p tabtitle="$1" --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
+    sleep 1
+}
+
+# if [[ -n $LAUNCH_VTOP ]]; then
+#     # i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7-vtop.json'
+#     i3-msg 'workspace 7; append_layout ~/.i3/layout7.json'
+# else
+#     i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'
+# fi
+
+i3-msg 'workspace 7'
+
+cd '~/Dev/Forsta/ccsm-api'
+vcstart
+cd -
+
+shellexec "./manage.py runserver"
+WORK_DIR='~/Dev/Forsta/ccsm-ui'
+cd $WORK_DIR
+yarn
+shellexec "yarn start"
+
+# if [[ -n $LAUNCH_VTOP ]]; then
+#     # konsole --profile red -e vtop &
+#     cd
+#     tmpfile=$(mktemp)
+#     echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\nPROMPT_COMMAND='echo -ne \"\033]0\nvtop\007\"'\nvtop; zsh" > "$tmpfile"
+#     cat "$tmpfile"
+#     sleep 1
+#     konsole --profile red --workdir $HOME -e "bash --rcfile $tmpfile" &
+# fi
+
