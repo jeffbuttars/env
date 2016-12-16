@@ -9,8 +9,7 @@
     st = status
     stu = status -uno
     br = branch
-    brl = branch --list
-    blowbranch = 
+    brl = branch --list --sort=-committerdate
     stl = stash list
     stp = stash pop
     type = cat-file -t

@@ -54,6 +54,7 @@ for_window [class="Klipper"] floating enable, border none
 # for_window [id="qpaeq"] floating enable, border 1px
 for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
 for_window [title="Plex"] floating enable, sticky enable, border pixel 3
+for_window [title="Netflix"] floating enable, sticky enable, border pixel 3
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -157,6 +158,7 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen global
 
 # change container layout (stacked, tabbed, default)
 bindsym $mod+s layout stacking

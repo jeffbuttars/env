@@ -14,9 +14,12 @@ then
 fi
 
 # source autojump befor oh-my
-if [[ -f /etc/profile.d/autojump.zsh ]]; then
-    source /etc/profile.d/autojump.zsh
-fi
+# if [[ -f /etc/profile.d/autojump.zsh ]]; then
+#     source /etc/profile.d/autojump.zsh
+# fi
+
+# Initialize fasd
+eval "$(fasd --init auto)"
 
 
 # Path to your oh-my-zsh configuration.

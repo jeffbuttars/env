@@ -1,11 +1,8 @@
 
-OSTYPE=$(uname)
 umask 0027
 
 # PATH alterations
 export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
-# export PATH=$PATH:/home/jeff/.gem/ruby/2.1.0/bin
-# export bacos="$HOME/Dev/A10/acos/bacos/target/sources/sto/apps/axgui"
 
 # If we have a source installation of neovim, prefer it
 if [[ -f /opt/neovim/bin/nvim ]]; then
@@ -19,7 +16,6 @@ fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]
 then
@@ -28,7 +24,7 @@ fi
 
 if [[ -x /usr/bin/keychain ]]
 then
-   eval $(keychain --eval --agents ssh --inherit any id_rsa id_dsa)
+   eval $(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)
 fi
 
 # Aliases
@@ -37,11 +33,9 @@ vims=('nvim' 'gvim -v' 'vim' 'vi')
 # Select which vim to use in order of preference. First found wins.
 for var in $vims
 do
-    # echo "Trying $var"
     v=$(which $var 2>&1 > /dev/null)
     if [[ "0" == "$?" ]]
     then
-        echo "Using $var as EDITOR"
         alias vim="$var"
         alias vi="$var"
         alias svi="sudo -E $var"
@@ -54,23 +48,26 @@ done
 # Ignore VCS directories
 # Ignore tags files 
 # Ignore binary files
-alias grep="grep -I --exclude-dir='.git' --exclude-dir='.hg' --exclude-dir='.svn' --exclude-dir='.cvs' --exclude='*\.pyo' --exclude='*\.pyc' --exclude='*~' --exclude=TAGS --exclude=tags"
+alias grep="grep -I \
+    --exclude-dir='.git'\
+    --exclude-dir='.hg'\
+    --exclude-dir='.svn'\
+    --exclude-dir='.cvs'\
+    --exclude='*\.pyo'\
+    --exclude='*\.pyc'\
+    --exclude='*~'\
+    --exclude=TAGS\
+    --exclude=tags"
+
 if [ -f ~/.upkg/pcm/pcm.sh ]; then
     alias pcm='~/.upkg/pcm/pcm.sh'
 fi
 alias gs='git status'
 alias jobs='jobs -l'
 alias less=$PAGER
-if [[ "$OSTYPE" == "Darwin" ]]; then
-	alias ctags='/opt/local/bin/ctags'
-fi
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
-
-
-# Env vars
-export DJANGO_DEBUG='yes'
 
 # Default to a white shell if not set otherwise.
 if [[ -z $TERM_META ]]
@@ -81,9 +78,3 @@ fi
 export PSQL_EDITOR='vim -c"set ft=sql"'
 export BROWSER=google-chrome
 export EDITOR='vim'
-
-# if [[ -x /usr/bin/nyancat ]]
-# then
-#     nyancat --frame 10
-# fi
-

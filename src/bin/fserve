@@ -5,6 +5,11 @@ if [[ $1 == '-t' ]]; then
     LAUNCH_VTOP='true'
 fi
 
+LAUNCH_HTOP=''
+if [[ $1 == '-o' ]]; then
+    LAUNCH_HTOP='true'
+fi
+
 WORK_DIR='~/Dev/Forsta/forsta-api'
 shellexec ()
 {
@@ -16,7 +21,8 @@ shellexec ()
 }
 
 if [[ -n $LAUNCH_VTOP ]]; then
-    # i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7-vtop.json'
+    i3-msg 'workspace 7; append_layout ~/.i3/layout7.json'
+elif [[ -n $LAUNCH_HTOP ]]; then
     i3-msg 'workspace 7; append_layout ~/.i3/layout7.json'
 else
     i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'
@@ -31,9 +37,16 @@ WORK_DIR='~/Dev/Forsta/nikex'
 
 shellexec "npm start"
 
+if [[ -n $LAUNCH_HTOP ]]; then
+    cd
+    tmpfile=$(mktemp)
+    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\nPROMPT_COMMAND='echo -ne \"\033]0\nhtop\007\"'\nvtop; zsh" > "$tmpfile"
+    cat "$tmpfile"
+    sleep 1
+    konsole --profile red --workdir $HOME -e "bash --rcfile $tmpfile" &
+fi
 
 if [[ -n $LAUNCH_VTOP ]]; then
-    # konsole --profile red -e vtop &
     cd
     tmpfile=$(mktemp)
     echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\nPROMPT_COMMAND='echo -ne \"\033]0\nvtop\007\"'\nvtop; zsh" > "$tmpfile"
