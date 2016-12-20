@@ -5,6 +5,9 @@
 --c-kinds=+mdefgpstux
 --exclude=/.git/*
 --exclude=/.svn/*
+--exclude=.hg
+--exclude=log
+--exclude=tmp
 
 --languages=-javascript
 
