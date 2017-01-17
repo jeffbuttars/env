@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [[ "$1" == "stop" ]]; then
+    kill $(cat /tmp/sshtunnels.pid)
+    exit
+fi
+
+trap ctrl_c INT
+
+function ctrl_c() {
+    echo "Killing tunnel pids: $(cat /tmp/sshtunnels.pid)"
+    kill $(cat /tmp/sshtunnels.pid)
+}
+
+SSH_USER=jeff
+PUBLIC_HOST=jeffbuttars.com
+
+REMOTE_HTTPS_PORT_REMOTE=8443
+REMOTE_HTTPS_PORT_LOCAL=1337
+REMOTE_TCP_PORT=9090
+
+echo "Starting tunnel: ${REMOTE_HTTPS_PORT_LOCAL}:localhost:${REMOTE_HTTPS_PORT_LOCAL}"
+ssh ${SSH_USER}@${PUBLIC_HOST} -N -R ${REMOTE_HTTPS_PORT_LOCAL}:localhost:${REMOTE_HTTPS_PORT_LOCAL} &
+ssh_pid=$!
+echo -en $ssh_pid > /tmp/sshtunnels.pid
+
+echo "Starting tunnel: ${REMOTE_TCP_PORT}:localhost:${REMOTE_TCP_PORT}"
+ssh ${SSH_USER}@${PUBLIC_HOST} -N -R ${REMOTE_TCP_PORT}:localhost:${REMOTE_TCP_PORT} &
+ssh_pid=$!
+echo -en " " >> /tmp/sshtunnels.pid
+echo -en $ssh_pid >> /tmp/sshtunnels.pid
+
+wait $ssh_pid
