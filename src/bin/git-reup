@@ -3,14 +3,14 @@
 set -e
 
 REBASE_MASTER=false
-SQUISH_FROM_MASTER=true
+MERGE_FROM_MASTER=true
 
 if [[ "$1" = "-r" ]]; then
     REBASE_MASTER=true
 fi
 
 if [[ "$1" = "-n" ]]; then
-    SQUISH_FROM_MASTER=true
+    MERGE_FROM_MASTER=false
 fi
 
 ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -47,7 +47,7 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
         git stash pop
     fi
 
-    if [[ "$SQUISH_FROM_MASTER" = "true" ]]; then
+    if [[ "$MERGE_FROM_MASTER" = "true" ]]; then
         # If -r was given as an option, rebase master back to the branch instead of merge
         if [[ "$REBASE_MASTER" = "true" ]]; then
             echo "REUP: Rebasing from master..."

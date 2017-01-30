@@ -8,6 +8,8 @@
 --exclude=.hg
 --exclude=log
 --exclude=tmp
+--exclude=build
+--exclude=dist
 
 --languages=-javascript
 

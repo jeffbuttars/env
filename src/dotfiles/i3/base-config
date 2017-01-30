@@ -46,6 +46,7 @@ for_window [class="Mplayer"] floating enable
 # Juniper VPN client, float it
 for_window [class="NC"] floating enable
 for_window [class="Skype"] floating enable
+for_window [title="^Android Emulator.*"] floating enable
 
 for_window [class="Plasma-desktop"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
@@ -53,9 +54,12 @@ for_window [class="krunner"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [id="qpaeq"] floating enable, border 1px
 for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
+for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 3
 for_window [title="Plex"] floating enable, sticky enable, border pixel 3
 for_window [title="Netflix"] floating enable, sticky enable, border pixel 3
 for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
+for_window [class="urxvt"] floating enable, border pixel 3
+for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -110,10 +114,10 @@ default_orientation horizontal
 bindsym $mod+Return exec konsole --profile Light
 bindsym $mod+F11 exec konsole --profile Red
 bindsym $mod+F12 exec konsole --profile Dark
-# bindsym $mod+F12 exec terminology
+
+bindsym $mod+Shift+Return exec konsole --profile Dark
 
 # kill focused window
-# bindsym $mod+Shift+Q kill
 bindsym $mod+Control+x kill
 
 # start dmenu (a program launcher)
