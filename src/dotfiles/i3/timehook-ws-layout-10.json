@@ -47,13 +47,13 @@
                "x": 0,
                "y": 0
             },
-            "name": "Volume Control",
+            "name": "Audio Volume",
             "percent": 0.68,
             "swallows": [
                {
-               "class": "^Pavucontrol$",
-               "instance": "^pavucontrol$",
-               "title": "^Volume\\ Control$"
+               "class": "^kcmshell5$",
+               "instance": "^kcmshell5$",
+               "title": "^Audio\\ Volume\\ —\\ System\\ Settings\\ Module$"
                }
             ],
             "type": "con"
