@@ -22,7 +22,7 @@ shellexec ()
 #     i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'
 # fi
 
-i3-msg 'workspace 7'
+i3-msg 'workspace 6'
 
 shellexec "vcin; cd ccsm_api; ./manage.py runserver --traceback --verbosity 3"
 
