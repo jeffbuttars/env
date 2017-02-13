@@ -18,9 +18,6 @@ fi
 #     source /etc/profile.d/autojump.zsh
 # fi
 
-# Initialize fasd
-eval "$(fasd --init auto)"
-
 
 # Path to your oh-my-zsh configuration.
 # ZSH=$HOME/.upkg/oh-my-zsh.git
@@ -116,9 +113,6 @@ AUTO_CD="true"
 VC_AUTO_ACTIVATION='true'
 source $HOME/.upkg/virtualcandy.git/src/virtualcandy.zsh
 
-# Source common rc
-source ~/.shell_commonrc
-
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
 if [[ -f $HOME/.zsh_local ]]; then
@@ -130,13 +124,7 @@ export VISUAL=vim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias vif='nvim +Files'
-
-# like normal z when used with arguments but displays an fzf prompt when used without.
-unalias z 2> /dev/null
-z() {
-    [ $# -gt 0 ] && fasd_cd -d "$*" && return
-  cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
-}
+# Source common rc
+source ~/.shell_commonrc
 
 # vim:set ft=zsh:

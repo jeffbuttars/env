@@ -4,11 +4,6 @@ umask 0027
 # PATH alterations
 export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
 
-# If we have a source installation of neovim, prefer it
-if [[ -f /opt/neovim/bin/nvim ]]; then
-    export PATH="$PATH:/opt/neovim/bin"
-fi
-
 if [[ -f /opt/vagrant ]]
 then
     PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
@@ -62,12 +57,27 @@ alias grep="grep -I \
 if [ -f ~/.upkg/pcm/pcm.sh ]; then
     alias pcm='~/.upkg/pcm/pcm.sh'
 fi
-alias gs='git status'
+alias gits='git status'
+alias gitsp='git status -uno'
+alias gitp='git push'
+alias gitpl='git pull'
 alias jobs='jobs -l'
 alias less=$PAGER
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
+alias vif='nvim +Files'
+
+# Initialize fasd
+eval "$(fasd --init auto)"
+
+# like normal z when used with arguments but displays an fzf prompt when used without.
+unalias z 2> /dev/null
+z() {
+    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+  cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
+}
+
 
 # Default to a white shell if not set otherwise.
 if [[ -z $TERM_META ]]
@@ -78,3 +88,5 @@ fi
 export PSQL_EDITOR='vim -c"set ft=sql"'
 export BROWSER=google-chrome
 export EDITOR='vim'
+
+# vim:set ft=sh:
