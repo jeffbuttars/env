@@ -59,6 +59,7 @@ for_window [title="Plex"] floating enable, sticky enable, border pixel 3
 for_window [title="Netflix"] floating enable, sticky enable, border pixel 3
 for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
 for_window [class="urxvt"] floating enable, border pixel 3
+for_window [class="Deadbeef"] floating enable, border pixel 2
 for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
 
 # Solaraized colors:
