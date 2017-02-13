@@ -21,7 +21,7 @@ gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","size":"
 gtkui.embolden_current_track 1
 gtkui.eq.visible 1
 gtkui.hide_remove_from_disk 1
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } vsplitter pos=481 locked=0 {hsplitter pos=331 locked=0 {vbox expand="1 1" fill="1 1" homogeneous=1 {coverart {} vbox expand="1 1 1" fill="1 1 1" homogeneous=1 {button color="#000000" textcolor="#000000" icon="gtk-dialog-question" label="Random" action="order_random" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-justify-fill" label="Linear" action="order_linear" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-ok" label="Current Track" action="jump_to_current_track" use_color=0 use_textcolor=0 {} } } tabbed_playlist hideheaders=0 width=863 {} } waveform_seekbar {} } } 
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } vsplitter pos=562 locked=0 {hsplitter pos=281 locked=0 {vbox expand="1 1" fill="1 1" homogeneous=1 {coverart {} vbox expand="1 1 1" fill="1 1 1" homogeneous=1 {button color="#000000" textcolor="#000000" icon="gtk-dialog-question" label="Random" action="order_random" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-justify-fill" label="Linear" action="order_linear" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-ok" label="Current Track" action="jump_to_current_track" use_color=0 use_textcolor=0 {} } } tabbed_playlist hideheaders=0 width=1423 {} } hsplitter pos=1204 locked=0 {waveform_seekbar {} infobar {} } } } 
 gtkui.mmb_delete_playlist 1
 gtkui.name_playlist_from_folder 1
 gtkui.statusbar.visible 1
@@ -62,10 +62,10 @@ hotkey.key30 "Ctrl k" 0 0 toggle_stop_after_album
 hotkeys_created 1
 ignore_archives 1
 junk.enable_cp1251_detection 1
-mainwin.geometry.h 953
-mainwin.geometry.w 1195
-mainwin.geometry.x 650
-mainwin.geometry.y 134
+mainwin.geometry.h 1094
+mainwin.geometry.w 1705
+mainwin.geometry.x 714
+mainwin.geometry.y 133
 network.http_user_agent deadbeef
 network.proxy.port 8080
 network.proxy.type HTTP
@@ -74,10 +74,10 @@ playback.loop 0
 playback.order 2
 playback.volume 0.0000000
 playlist.current 0
-playlist.cursor.0 2270
+playlist.cursor.0 23842
 playlist.cursor.1 0
 playlist.cursor.2 0
-playlist.scroll.0 45043
+playlist.scroll.0 476663
 playlist.scroll.1 0
 playlist.scroll.2 0
 playlist.scroll.cursorfollowplayback 1
@@ -87,17 +87,17 @@ playlist.tab.00002 Default
 prefwin.geometry.h 801
 prefwin.geometry.w 1450
 prefwin.geometry.x 501
-prefwin.geometry.y 290
+prefwin.geometry.y 288
 replaygain_mode 0
 replaygain_scale 1
-resume.paused 0
+resume.paused 1
 resume.playlist 0
-resume.position -1.000000
-resume.track -1
+resume.position 101.56626
+resume.track 23842
 searchwin.geometry.h 635
 searchwin.geometry.w 1050
 searchwin.geometry.x 826
-searchwin.geometry.y 442
+searchwin.geometry.y 440
 streamer.8_to_16 0
 waveform.bg_alpha 65535
 waveform.bg_color_b 50000
@@ -107,7 +107,7 @@ waveform.border_width 1
 waveform.cache_enabled 1
 waveform.cursor_width 3
 waveform.display_rms 1
-waveform.display_ruler 0
+waveform.display_ruler 1
 waveform.fg_alpha 65535
 waveform.fg_color_b 20000
 waveform.fg_color_g 20000
@@ -120,7 +120,7 @@ waveform.fill_waveform 1
 waveform.font_size 18
 waveform.log_enabled 0
 waveform.max_file_length 180
-waveform.mix_to_mono 0
+waveform.mix_to_mono 1
 waveform.num_samples 2048
 waveform.pb_alpha 20000
 waveform.pb_color_b 0
@@ -130,4 +130,4 @@ waveform.refresh_interval 33
 waveform.render_method 2
 waveform.scroll_enabled 1
 waveform.shade_waveform 0
-waveform.soundcloud_style 0
+waveform.soundcloud_style 1
