@@ -24,7 +24,7 @@ shellexec ()
 
 i3-msg 'workspace 6'
 
-shellexec "vcin; cd ccsm_api; ./manage.py runserver --traceback --verbosity 3"
+shellexec "vcin; . ./.vc_proj; cd ccsm_api; ./manage.py runserver --traceback --verbosity 3"
 
 WORK_DIR='~/Dev/Forsta/ccsm-ui'
 shellexec "yarn install; yarn start"
