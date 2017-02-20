@@ -1,6 +1,6 @@
 #!/bin/bash
 
-i3-msg 'workspace 10; append_layout ~/.i3/timehook-ws-layout-10.json'
+i3-msg 'workspace " 9  "; append_layout ~/.i3/timehook-ws-layout-10.json'
 
 # pavucontrol &
 

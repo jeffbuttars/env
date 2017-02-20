@@ -82,16 +82,16 @@ set $sol_cyan    #2aa198
 set $sol_green   #859900
 
 # Workspace names
-set $ws1 " 1  "
-set $ws2 " 2  "
-set $ws3 " 3  "
-set $ws4 " 4  "
-set $ws5 " 5  "
-set $ws6 " 6  "
-set $ws7 " 7 ? "
-set $ws8 " 8 ? "
-set $ws9 " 9  "
-set $ws10 " 10  "
+# set $ws1 " 1  "
+# set $ws2 " 2  "
+# set $ws3 " 3  "
+# set $ws4 " 4  "
+# set $ws5 " 5  "
+# set $ws6 " 6  "
+# set $ws7 " 7 ? "
+# set $ws8 " 8 ? "
+# set $ws9 " 9  "
+# set $ws10 " 10  "
 
 # Make the focused window very obvious
 # window colors: border background text
@@ -197,30 +197,6 @@ bindsym $mod+shift+A focus child
 
 # focus the child container
 #bindcode $mod+d focus child
-
-# switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace 1
-bindsym $mod+Shift+at move container to workspace 2
-bindsym $mod+Shift+numbersign move container to workspace 3
-bindsym $mod+Shift+dollar move container to workspace 4
-bindsym $mod+Shift+percent move container to workspace 5
-bindsym $mod+Shift+asciicircum move container to workspace 6
-bindsym $mod+Shift+ampersand move container to workspace 7
-bindsym $mod+Shift+asterisk move container to workspace 8
-bindsym $mod+Shift+parenleft move container to workspace 9
-bindsym $mod+Shift+parenright move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+C exec ~/.i3/genconfig.sh; reload

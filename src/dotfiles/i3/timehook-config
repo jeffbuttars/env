@@ -1,16 +1,71 @@
 
-# Workspace layout
+# Main code window
+set $ws1 " 1  "
+# Main web dev output windows
+set $ws2 " 2  "
+# Doc window
+set $ws3 " 3  "
+# Slack
+set $ws4 " 4  "
+# Mail
+set $ws5 " 5  "
+# Dev Services
+set $ws6 " 6  "
+# Scratch
+set $ws7 " 7 ? "
+# Scratch
+set $ws8 " 8 ? "
+# Music
+set $ws9 " 9  "
+# Scratch
+set $ws10 " 10  "
+
+# Workspace layout [ DVI-D-0] [ DP-4 ] [ DP-0 ]
+#                    $ws3       $ws1     $ws2
+#                    $ws4
+#                    $ws5
+#                               $ws6
+#                               $ws7
+#                                        $ws8
+#                    $ws9
+#                    $ws10
+
 # Odds on left, evens on right, except 10
-workspace 1 output DVI-D-0
-workspace 3 output DVI-D-0
-workspace 5 output DVI-D-0
-workspace 7 output DVI-D-0
-workspace 9 output DVI-D-0
-workspace 10 output DVI-D-0
-workspace 2 output HDMI-0
-workspace 4 output HDMI-0
-workspace 6 output HDMI-0
-workspace 8 output HDMI-0
+workspace $ws1 output DP-4
+workspace $ws2 output DP-0
+workspace $ws3 output HDMI-0
+workspace $ws4 output HDMI-0
+workspace $ws5 output DP-4
+workspace $ws6 output HDMI-0
+workspace $ws7 output DP-4
+workspace $ws8 output DP-0
+workspace $ws9 output HDMI-0
+workspace $ws10 output HDMI-0
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+exclam move container to workspace $ws1
+bindsym $mod+Shift+at move container to workspace $ws2
+bindsym $mod+Shift+numbersign move container to workspace $ws3
+bindsym $mod+Shift+dollar move container to workspace $ws4
+bindsym $mod+Shift+percent move container to workspace $ws5
+bindsym $mod+Shift+asciicircum move container to workspace $ws6
+bindsym $mod+Shift+ampersand move container to workspace $ws7
+bindsym $mod+Shift+asterisk move container to workspace $ws8
+bindsym $mod+Shift+parenleft move container to workspace $ws9
+bindsym $mod+Shift+parenright move container to workspace $ws10
+
 
 # Saved layouts
 # (Could be automated by config building script)
