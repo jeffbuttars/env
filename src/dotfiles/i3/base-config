@@ -127,9 +127,9 @@ default_orientation horizontal
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec konsole --profile Light
 bindsym $mod+F11 exec konsole --profile Red
-bindsym $mod+F12 exec konsole --profile Dark
+bindsym $mod+F12 exec konsole --profile dark
 
-bindsym $mod+Shift+Return exec konsole --profile Dark
+bindsym $mod+Shift+Return exec konsole --profile dark
 
 # kill focused window
 bindsym $mod+Control+x kill
