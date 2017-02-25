@@ -1,46 +1,69 @@
 
-# Main code window
-set $ws1 " 1  "
-# Main web dev output windows
-set $ws2 " 2  "
+
+# Output vars
+set $left_op DP-2
+set $center_op DP-4
+set $right_op  HDMI-0
+
+# Workspace vars
 # Doc window
-set $ws3 " 3  "
+set $ws1 " 1  "
 # Slack
-set $ws4 " 4  "
-# Mail
-set $ws5 " 5  "
+set $ws2 " 2  "
 # Dev Services
-set $ws6 " 6  "
+set $ws3 " 3  "
+set $ws4 " 4  "
+# Main code window
+set $ws5 " 5  "
+# Mail
+set $ws6 " 6  "
 # Scratch
 set $ws7 " 7 ? "
 # Scratch
 set $ws8 " 8 ? "
-# Music
-set $ws9 " 9  "
+# Main web dev output windows
+set $ws9 " 9  "
 # Scratch
 set $ws10 " 10  "
+set $ws11 " 11 ? "
+set $ws12 " 12 ? "
 
-# Workspace layout [ DVI-D-0] [ DP-4 ] [ DP-0 ]
-#                    $ws3       $ws1     $ws2
+# Workspace layout
+# [ $left_op ] $ws1 $ws2 $ws3 $ws4
+# [ $center_op ] $ws5 $ws6 $ws7 $ws8
+# [ $right_op ] $ws9 $ws10 $ws11 $ws12
+
+bindsym Control+1 focus output $left_op
+bindsym Control+2 focus output $center_op
+bindsym Control+3 focus output $right_op
+
+# Workspace layout [ $left_op ] [ $center_op ] [ $right_op ]
+#                    $ws1
+#                    $ws2
+#                    $ws3
 #                    $ws4
-#                    $ws5
+#                               $ws5
 #                               $ws6
 #                               $ws7
-#                                        $ws8
-#                    $ws9
-#                    $ws10
+#                               $ws8
+#                                        $ws9
+#                                        $ws10
+#                                        $ws11
+#                                        $ws12
 
 # Odds on left, evens on right, except 10
-workspace $ws1 output DP-4
-workspace $ws2 output DP-0
-workspace $ws3 output HDMI-0
-workspace $ws4 output HDMI-0
-workspace $ws5 output DP-4
-workspace $ws6 output HDMI-0
-workspace $ws7 output DP-4
-workspace $ws8 output DP-0
-workspace $ws9 output HDMI-0
-workspace $ws10 output HDMI-0
+workspace $ws1 output $left_op
+workspace $ws2 output $left_op
+workspace $ws3 output $left_op
+workspace $ws4 output $left_op
+workspace $ws5 output $center_op
+workspace $ws6 output $center_op
+workspace $ws7 output $center_op
+workspace $ws8 output $center_op
+workspace $ws9 output $right_op
+workspace $ws10 output $right_op
+workspace $ws11 output $right_op
+workspace $ws12 output $right_op
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -53,6 +76,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+minus workspace $ws11
+bindsym $mod+equal workspace $ws12
 
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace $ws1
@@ -65,6 +90,8 @@ bindsym $mod+Shift+ampersand move container to workspace $ws7
 bindsym $mod+Shift+asterisk move container to workspace $ws8
 bindsym $mod+Shift+parenleft move container to workspace $ws9
 bindsym $mod+Shift+parenright move container to workspace $ws10
+bindsym $mod+Shift+underscore move container to workspace $ws11
+bindsym $mod+Shift+plus move container to workspace $ws12
 
 
 # Saved layouts

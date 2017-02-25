@@ -19,6 +19,9 @@ set $mod Mod1
 # font xft:Ubuntu Bold 11
 # font xft:DejaVu Sans Bold 11
 font xft:Oxygen-Sans 12
+# font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
+# font pango:Meslo LG L DZ, FontAwesome 8
+# font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -237,7 +240,10 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         #font xft:DejaVu Sans 16
-        font xft:Oxygen-Sans Bold 10
+        # font xft:Oxygen-Sans Bold 10
+        # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
+        # font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons Mono
+        font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons 10
         mode hide
         modifier Mod1
         status_command i3status

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+CLEAR='false'
+
+if [[ $1 == '-c' ]]; then
+    shift
+    CLEAR='true'
+fi
+
 SLEEP_TIME=3
 args=$@
 
@@ -8,9 +15,15 @@ if [[ -z $args ]]; then
     exit 1
 fi
 
+$args
+
 echo "Running command '$args' on modify"
 while inotifywait -e modify -r ./
 do
+    if [[ $CLEAR == 'true' ]]; then
+        printf "\ec"
+    fi
+
     echo "running $args"
     sleep $SLEEP_TIME
     $args
