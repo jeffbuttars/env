@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=SolarizedLight
-Font=Meslo LG M for Powerline Plus Nerd File Types Mono Plus Font Awesome Plus Octicons Plus Pomicons,14,-1,5,50,0,0,0,0,0
+Font=MesloLGMDZ Nerd Font,14,-1,0,50,0,0,0,0,0,RegularForPowerline
 
 [Cursor Options]
 CursorShape=0

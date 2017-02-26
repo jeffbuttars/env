@@ -1,8 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
-BoldIntense=false
+BoldIntense=true
 ColorScheme=RedOnBlack
-Font=Meslo LG S DZ for Powerline Plus Nerd File Types Mono Plus Font Awesome Plus Octicons Plus Pomicons,12,-1,0,50,0,0,0,0,0,Book
+Font=MesloLGMDZ Nerd Font,12,-1,0,50,0,0,0,0,0,RegularForPowerline
 
 [Encoding Options]
 DefaultEncoding=UTF-8
@@ -22,7 +22,7 @@ TrimTrailingSpacesInSelectedText=true
 [Scrolling]
 HistoryMode=2
 ScrollBarPosition=1
-ScrollFullPage=0
+ScrollFullPage=false
 
 [Terminal Features]
 BidiRenderingEnabled=false

@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=Solarized Dark
-Font=Meslo LG M DZ for Powerline Plus Nerd File Types Mono Plus Font Awesome Plus Octicons Plus Pomicons,14,-1,0,50,0,0,0,0,0,Book
+Font=MesloLGMDZ Nerd Font,14,-1,0,50,0,0,0,0,0,RegularForPowerline
 
 [Encoding Options]
 DefaultEncoding=UTF-8
@@ -16,4 +16,4 @@ ShowTerminalSizeHint=false
 [Scrolling]
 HistoryMode=2
 ScrollBarPosition=2
-ScrollFullPage=1
+ScrollFullPage=true
