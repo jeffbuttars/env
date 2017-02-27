@@ -30,5 +30,5 @@ ssh_pid=$!
 echo -en " " >> /tmp/sshtunnels.pid
 echo -en $ssh_pid >> /tmp/sshtunnels.pid
 
-wait $ssh_pid
+wait
 # nc -l -p $REMOTE_TCP_PORT

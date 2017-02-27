@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PIDFILE='/tmp/ccsmsynctunnels.pid'
+
+if [[ "$1" == "stop" ]]; then
+    kill $(cat $PIDFILE)
+    exit
+fi
+
+trap ctrl_c INT
+
+function ctrl_c() {
+    echo "Killing tunnel pids: $(cat $PIDFILE)"
+    kill $(cat $PIDFILE)
+}
+
+SSH_USER=jeff
+PUBLIC_HOST=jeffbuttars.com
+
+REMOTE_HTTPS_PORT_REMOTE=8443
+REMOTE_HTTP_PORT_REMOTE=8442
+REMOTE_HTTPS_PORT_LOCAL=1337
+REMOTE_HTTP_PORT_LOCAL=1336
+REMOTE_TCP_PORT=9090
+
+echo "Starting HTTPS tunnel: ${PUBLIC_HOST}:${REMOTE_HTTPS_PORT_LOCAL} -> localhost:${REMOTE_HTTPS_PORT_LOCAL}"
+ssh ${SSH_USER}@${PUBLIC_HOST} -N -R ${REMOTE_HTTPS_PORT_LOCAL}:localhost:${REMOTE_HTTPS_PORT_LOCAL} &
+ssh_http_pid=$!
+echo -en $ssh_http_pid > $PIDFILE
+
+wait
+# nc -l -p $REMOTE_TCP_PORT
