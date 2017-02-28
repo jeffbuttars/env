@@ -2,7 +2,7 @@
 Frames=0
 
 [Desktop Entry]
-DefaultProfile=
+DefaultProfile=Shell.profile
 
 [Dialogs]
 FirstRun=false
