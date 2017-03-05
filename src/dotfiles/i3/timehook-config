@@ -111,4 +111,6 @@ bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
 
 exec --no-startup-id xscreensaver
-exec --no-startup-id compton -b --config ~/.config/compton.conf
+exec --no-startup-id compton -b --config ~/.config/compton-timehook.conf
+
+# exec xrandr --output $right_op --scale 1.5x1.5
