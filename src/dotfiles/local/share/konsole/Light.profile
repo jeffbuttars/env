@@ -1,8 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=SolarizedLight
-Font=MesloLGMDZ Nerd Font,11,-1,0,50,0,0,0,0,0,RegularForPowerline
+ColorScheme=Solarized Light
+Font=MesloLGMDZ Nerd Font,10,-1,0,50,0,0,0,0,0,Regular
 
 [Cursor Options]
 CursorShape=0

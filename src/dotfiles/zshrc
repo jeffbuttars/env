@@ -106,6 +106,12 @@ HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=10000000
 
+# FZF command history : https://github.com/junegunn/fzf/wiki/examples#command-history
+# fh - repeat history
+# fh() {
+#   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+# }
+
 # CD whitout typing cd
 AUTO_CD="true"
 

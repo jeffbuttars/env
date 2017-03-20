@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=Solarized Dark
-Font=MesloLGMDZ Nerd Font,11,-1,0,50,0,0,0,0,0,RegularForPowerline
+Font=MesloLGMDZ Nerd Font,10,-1,0,50,0,0,0,0,0,Regular
 
 [Encoding Options]
 DefaultEncoding=UTF-8

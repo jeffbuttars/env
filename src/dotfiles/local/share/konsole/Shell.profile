@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=SolarizedLight
+ColorScheme=Solarized Dark
 Font=MesloLGMDZ Nerd Font,10,-1,0,50,0,0,0,0,0,RegularForPowerline
 
 [Cursor Options]
@@ -13,7 +13,7 @@ UseCustomCursorColor=true
 DefaultEncoding=UTF-8
 
 [General]
-Environment=TERM=xterm-256color,TERM_META=light
+Environment=TERM=xterm-256color,TERM_META=dark
 Icon=utilities-terminal
 Name=Shell
 Parent=FALLBACK/

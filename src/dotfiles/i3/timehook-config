@@ -3,7 +3,8 @@
 # Output vars
 set $left_op DP-0
 set $center_op DP-2
-set $right_op DP-4
+# set $right_op DP-4
+set $right_op HDMI-0
 
 # Workspace vars
 # Doc window
@@ -98,6 +99,8 @@ bindsym $mod+Shift+plus move container to workspace $ws12
 # (Could be automated by config building script)
 # exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'"
 
+
+for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 
 exec_always --no-startup-id synergys
 
