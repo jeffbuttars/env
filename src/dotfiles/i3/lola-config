@@ -97,7 +97,7 @@ bindsym $mod+Shift+plus move container to workspace $ws12
 
 # Saved layouts
 # (Could be automated by config building script)
-# exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.i3/timehook-ws-layout-7.json'"
+# exec --no-startup-id "i3-msg 'workspace 7; append_layout ~/.i3/lola-ws-layout-7.json'"
 
 
 for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
@@ -114,6 +114,6 @@ bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
 
 exec --no-startup-id xscreensaver
-exec --no-startup-id compton -b --config ~/.config/compton-timehook.conf
+exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
 
 # exec xrandr --output $right_op --scale 1.5x1.5
