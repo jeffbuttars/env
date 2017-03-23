@@ -1,34 +1,18 @@
 #!/bin/sh
 #
-#  DEFAULT KDE STARTUP SCRIPT ( 5.6.0 )
+#  DEFAULT KDE STARTUP SCRIPT ( 5.9.3 )
 #
 
-if test "x$1" = x--failsafe; then
-    KDE_FAILSAFE=1 # General failsafe flag
-    KWIN_COMPOSE=N # Disable KWin's compositing
-    QT_XCB_FORCE_SOFTWARE_OPENGL=1
-    export KWIN_COMPOSE KDE_FAILSAFE QT_XCB_FORCE_SOFTWARE_OPENGL
-fi
+# if test "x$1" = x--failsafe; then
+#     KDE_FAILSAFE=1 # General failsafe flag
+#     KWIN_COMPOSE=N # Disable KWin's compositing
+#     QT_XCB_FORCE_SOFTWARE_OPENGL=1
+#     export KWIN_COMPOSE KDE_FAILSAFE QT_XCB_FORCE_SOFTWARE_OPENGL
+# fi
 
 # When the X server dies we get a HUP signal from xinit. We must ignore it
 # because we still need to do some cleanup.
 trap 'echo GOT SIGHUP' HUP
-
-# we have to unset this for Darwin since it will screw up KDE's dynamic-loading
-unset DYLD_FORCE_FLAT_NAMESPACE
-
-# in case we have been started with full pathname spec without being in PATH
-bindir=`echo "$0" | sed -n 's,^\(/.*\)/[^/][^/]*$,\1,p'`
-if [ -n "$bindir" ]; then
-  qbindir=`qtpaths-qt5 --binaries-dir`
-  qdbus=$qbindir/qdbus
-  case $PATH in
-    $bindir|$bindir:*|*:$bindir|*:$bindir:*) ;;
-    *) PATH=$bindir:$PATH; export PATH;;
-  esac
-else
-  qdbus=qdbus
-fi
 
 # Check if a KDE session already is running and whether it's possible to connect to X
 kcheckrunning
@@ -71,7 +55,7 @@ kcminputrc Mouse cursorTheme 'breeze_cursors'
 kcminputrc Mouse cursorSize ''
 ksplashrc KSplash Theme Breeze
 ksplashrc KSplash Engine KSplashQML
-kdeglobals KScreen ScaleFactor 1
+kdeglobals KScreen ScreenScaleFactors ''
 kcmfonts General forceFontDPI 0
 EOF
 
@@ -102,38 +86,6 @@ XftSubPixel=none
 EOF
 }
 
-# Make sure the Oxygen font is installed
-# This is necessary for setups where CMAKE_INSTALL_PREFIX
-# is not in /usr. fontconfig looks in /usr, ~/.fonts and
-# $XDG_DATA_HOME for fonts. In this case, we symlink the
-# Oxygen font under ${XDG_DATA_HOME} and make it known to
-# fontconfig
-
-usr_share="/usr/share"
-install_share="/usr/share"
-
-if [ ! $install_share = $usr_share ]; then
-
-    if [ ${XDG_DATA_HOME} ]; then
-        fontsDir="${XDG_DATA_HOME}/fonts"
-    else
-        fontsDir="${HOME}/.fonts"
-    fi
-
-    test -d $fontsDir || {
-        mkdir -p $fontsDir
-    }
-
-    oxygenDir=$fontsDir/oxygen
-    prefixDir="/usr/share/fonts/oxygen"
-
-    # if the oxygen dir doesn't exist, create a symlink to be sure that the
-    # Oxygen font is available to the user
-    test -d $oxygenDir || test -d $prefixDir && {
-        test -h $oxygenDir || ln -s $prefixDir $oxygenDir && fc-cache $oxygenDir
-    }
-fi
-
 kstartupconfig5
 returncode=$?
 if test $returncode -ne 0; then
@@ -142,9 +94,13 @@ if test $returncode -ne 0; then
 fi
 [ -r $configDir/startupconfig ] && . $configDir/startupconfig
 
-if test "$kdeglobals_kscreen_scalefactor" -ne 1; then
-    export QT_DEVICE_PIXEL_RATIO=$kdeglobals_kscreen_scalefactor
+if [ "$kdeglobals_kscreen_screenscalefactors" ]; then
+    export QT_SCREEN_SCALE_FACTORS="$kdeglobals_kscreen_screenscalefactors"
 fi
+#Manually disable auto scaling because we are scaling above
+#otherwise apps that manually opt in for high DPI get auto scaled by the developer AND manually scaled by us
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
 
 # XCursor mouse theme needs to be applied here to work even for kded or ksmserver
 if test -n "$kcminputrc_mouse_cursortheme" -o -n "$kcminputrc_mouse_cursorsize" ; then
@@ -189,7 +145,7 @@ fi
 
 # Source scripts found in <config locations>/plasma-workspace/env/*.sh
 # (where <config locations> correspond to the system and user's configuration
-# directories, as identified by Qt's qtpaths-qt5,  e.g.  $HOME/.config
+# directories, as identified by Qt's qtpaths,  e.g.  $HOME/.config
 # and /etc/xdg/ on Linux)
 #
 # This is where you can define environment variables that will be available to
@@ -201,8 +157,7 @@ fi
 # For anything else (that doesn't set env vars, or that needs a window manager),
 # better use the Autostart folder.
 
-# TODO: Use GenericConfigLocation once we depend on Qt 5.4
-scriptpath=`qtpaths-qt5 --paths ConfigLocation | tr ':' '\n' | sed 's,$,/plasma-workspace,g'`
+scriptpath=`qtpaths --locate-dirs GenericConfigLocation plasma-workspace | tr ':' '\n'`
 
 # Add /env/ to the directory to locate the scripts to be sourced
 for prefix in `echo $scriptpath`; do
@@ -283,17 +238,6 @@ if test -z "$XDG_DATA_DIRS"; then
 fi
 export XDG_DATA_DIRS
 
-# Make sure that D-Bus is running
-if $qdbus >/dev/null 2>/dev/null; then
-    : # ok
-else
-    echo 'startkde: Could not start D-Bus. Can you call qdbus?'  1>&2
-    test -n "$ksplash_pid" && kill "$ksplash_pid" 2>/dev/null
-    xmessage -geometry 500x100 "Could not start D-Bus. Can you call qdbus?"
-    exit 1
-fi
-
-
 # Mark that full KDE session is running (e.g. Konqueror preloading works only
 # with full KDE running). The KDE_FULL_SESSION property can be detected by
 # any X client connected to the same X session, even if not launched
@@ -330,15 +274,6 @@ export KDE_SESSION_UID
 XDG_CURRENT_DESKTOP=KDE
 export XDG_CURRENT_DESKTOP
 
-# At this point all the environment is ready, let's send it to kwalletd if running
-if test -n "$PAM_KWALLET_LOGIN" ; then
-    env | socat STDIN UNIX-CONNECT:$PAM_KWALLET_LOGIN
-fi
-# ...and also to kwalletd5
-if test -n "$PAM_KWALLET5_LOGIN" ; then
-    env | socat STDIN UNIX-CONNECT:$PAM_KWALLET5_LOGIN
-fi
-
 # At this point all environment variables are set, let's send it to the DBus session server to update the activation environment
 if which dbus-update-activation-environment >/dev/null 2>/dev/null ; then
     dbus-update-activation-environment --systemd --all
@@ -363,6 +298,8 @@ if test $? -ne 0; then
   xmessage -geometry 500x100 "Could not start kdeinit5. Check your installation."
   exit 1
 fi
+
+$qdbus org.kde.KSplash /KSplash org.kde.KSplash.setStage kinit
 
 # finally, give the session control to the session manager
 # see kdebase/ksmserver for the description of the rest of the startup sequence
@@ -391,6 +328,8 @@ if test $? -eq 255; then
   test -n "$ksplash_pid" && kill "$ksplash_pid" 2>/dev/null
   xmessage -geometry 500x100 "Could not start ksmserver. Check your installation."
 fi
+
+#Anything after here is logout/shutdown
 
 wait_drkonqi=`kreadconfig5 --file startkderc --group WaitForDrKonqi --key Enabled --default true`
 

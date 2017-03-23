@@ -1,0 +1,102 @@
+{
+  "border": "pixel",
+  "current_border_width": 1,
+  "floating": "auto_off",
+  "layout": "splitv",
+  "percent": 0.213333333333333,
+  "type": "con",
+  "nodes": [
+    {
+      "border": "pixel",
+      "current_border_width": 1,
+      "floating": "auto_off",
+      "layout": "splith",
+      "percent": 0.5,
+      "type": "con",
+      "nodes": [
+        {
+          "border": "pixel",
+          "current_border_width": 1,
+          "floating": "auto_off",
+          "geometry": {
+            "height": 1382,
+            "width": 1276,
+            "x": 0,
+            "y": 0
+          },
+          "name": "npm run mongo — Konsole",
+          "percent": 1,
+          "swallows": [
+            {
+              "class": "^konsole$",
+              "title": "^npm\\ run\\ mongo\\ \\—\\ Konsole$"
+            }
+          ],
+          "type": "con"
+        }
+      ]
+    },
+    {
+      "border": "pixel",
+      "current_border_width": 1,
+      "floating": "auto_off",
+      "geometry": {
+        "height": 1382,
+        "width": 1276,
+        "x": 0,
+        "y": 0
+      },
+      "name": "npm run dashboard — Konsole",
+      "percent": 0.5,
+      "swallows": [
+        {
+          "class": "^konsole$",
+          "title": "^npm\\ run\\ dashboard\\ \\—\\ Konsole$"
+        }
+      ],
+      "type": "con"
+    }
+  ]
+}
+
+{
+  "border": "pixel",
+  "current_border_width": 1,
+  "floating": "auto_off",
+  "geometry": {
+    "height": 1382,
+    "width": 2556,
+    "x": 0,
+    "y": 0
+  },
+  "name": "forsta-api: npm start — Konsole",
+  "percent": 0.393333333333333,
+  "swallows": [
+    {
+      "class": "^konsole$",
+      "title": "^npm\\ start"
+    }
+  ],
+  "type": "con"
+}
+
+{
+  "border": "pixel",
+  "current_border_width": 1,
+  "floating": "auto_off",
+  "geometry": {
+    "height": 1382,
+    "width": 850,
+    "x": 0,
+    "y": 0
+  },
+  "name": "nikex: npm start — Konsole",
+  "percent": 0.393333333333333,
+  "swallows": [
+    {
+      "class": "^konsole$",
+      "title": "^npm\\ start"
+    }
+  ],
+  "type": "con"
+}

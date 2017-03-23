@@ -1,4 +1,3 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-# exec dbus-launch --sh-syntax --exit-with-session /usr/bin/i3
-#exec ksmserver -w i3
+#xrandr --output DP-4 --scale 1.5x1.5

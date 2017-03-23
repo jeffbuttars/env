@@ -18,11 +18,15 @@ set $mod Mod1
 # font xft:Eurostile Bold  10
 # font xft:Ubuntu Bold 11
 # font xft:DejaVu Sans Bold 11
-font xft:Oxygen-Sans 12
+# font xft:Oxygen-Sans 12
+font pango: MesloLGMDZ Nerd Font Mono 10
+# font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
+# font pango:Meslo LG L DZ, FontAwesome 8
+# font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-floating_minimum_size 100 x 300
+floating_minimum_size 50 x 50
 
 # Scratchpad settings
 # send window to the scratch pad. Use what is typically my minimize shortcut
@@ -33,6 +37,9 @@ bindsym $mod+Shift+i scratchpad show
 # Let Yakuake float by defaul
 # Use the xprop command to get window info
 for_window [class="plasmashell"] floating enable, border none
+for_window [class="plasmashell" title="Desktop"] floating disable, border none
+for_window [class="google-chrome"] border pixel 2
+for_window [class="konsole"] border pixel 2
 # for_window [title="Plasma"] floating enable, border none
 for_window [class="Yakuake"] floating enable
 for_window [title="Yakuake"] floating enable
@@ -44,12 +51,22 @@ for_window [class="Mplayer"] floating enable
 # Juniper VPN client, float it
 for_window [class="NC"] floating enable
 for_window [class="Skype"] floating enable
+for_window [title="^Android Emulator.*"] floating enable
 
 for_window [class="Plasma-desktop"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable
 for_window [class="Klipper"] floating enable, border none
+# for_window [id="qpaeq"] floating enable, border 1px
+for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
+for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 3
+for_window [title="Audio Volume — System Settings Module"] floating disable, border pixel 3
+for_window [title="Plex"] floating enable, sticky enable, border pixel 3
+for_window [title="Netflix"] floating enable, sticky enable, border pixel 3
+for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
+for_window [class="urxvt"] floating enable, border pixel 3
+for_window [class="Deadbeef"] floating enable, border pixel 2
+for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -69,12 +86,30 @@ set $sol_blue    #268bd2
 set $sol_cyan    #2aa198
 set $sol_green   #859900
 
+# Workspace names
+# set $ws1 " 1  "
+# set $ws2 " 2  "
+# set $ws3 " 3  "
+# set $ws4 " 4  "
+# set $ws5 " 5  "
+# set $ws6 " 6  "
+# set $ws7 " 7 ? "
+# set $ws8 " 8 ? "
+# set $ws9 " 9  "
+# set $ws10 " 10  "
+
 # Make the focused window very obvious
 # window colors: border background text
 # colorclass border background text indicator
 #
-#client.focused      #000099 #000099 #FFFFFF
-#client.focused  #000000 #950002 #FFFFFF
+
+# Yellow
+# client.focused #b58900 #b58900 #FFFFFF
+# Red
+# client.focused #dc322f #dc322f #FFFFFF
+# Green
+client.focused #859900 #859900 #FFFFFF
+
 
 # A client which currently has the focus.
 # client.focused #002b36 $sol_base3 #002b36 $sol_red
@@ -95,14 +130,13 @@ default_orientation horizontal
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole 
-# bindsym $mod+F10 exec konsole, exec konsole --profile red
-bindsym $mod+F11 exec konsole --profile Red
-bindsym $mod+F12 exec konsole --profile Dark
-# bindsym $mod+F12 exec terminology
+bindsym $mod+Return exec konsole --profile Light
+bindsym $mod+F11 exec konsole --profile red
+bindsym $mod+F12 exec konsole --profile dark
+
+bindsym $mod+Shift+Return exec konsole --profile dark
 
 # kill focused window
-# bindsym $mod+Shift+Q kill
 bindsym $mod+Control+x kill
 
 # start dmenu (a program launcher)
@@ -148,6 +182,7 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+bindsym $mod+Shift+f fullscreen global
 
 # change container layout (stacked, tabbed, default)
 bindsym $mod+s layout stacking
@@ -155,9 +190,9 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout default
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+space floating toggle
 bindsym $mod+Control+F floating toggle
-
+bindsym $mod+Control+S sticky toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -167,30 +202,6 @@ bindsym $mod+shift+A focus child
 
 # focus the child container
 #bindcode $mod+d focus child
-
-# switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace 1
-bindsym $mod+Shift+at move container to workspace 2
-bindsym $mod+Shift+numbersign move container to workspace 3
-bindsym $mod+Shift+dollar move container to workspace 4
-bindsym $mod+Shift+percent move container to workspace 5
-bindsym $mod+Shift+asciicircum move container to workspace 6
-bindsym $mod+Shift+ampersand move container to workspace 7
-bindsym $mod+Shift+asterisk move container to workspace 8
-bindsym $mod+Shift+parenleft move container to workspace 9
-bindsym $mod+Shift+parenright move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+C exec ~/.i3/genconfig.sh; reload
@@ -231,7 +242,10 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         #font xft:DejaVu Sans 16
-        font xft:Oxygen-Sans Bold 10
+        # font xft:Oxygen-Sans Bold 10
+        # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
+        # font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons Mono
+        font pango: MesloLGMDZ Nerd Font Mono 12
         mode hide
         modifier Mod1
         status_command i3status
@@ -256,7 +270,7 @@ mode "$mode_system" {
     bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
     bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

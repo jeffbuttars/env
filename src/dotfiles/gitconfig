@@ -7,8 +7,9 @@
     cim = commit -m
     cia = commit -a
     st = status
+    stu = status -uno
     br = branch
-    brl = branch --list
+    brl = branch --list --sort=-committerdate
     stl = stash list
     stp = stash pop
     type = cat-file -t
@@ -26,6 +27,9 @@
 
 [diff]
     tool = vimdiff
+
+[difftool "vimdiff"]
+    cmd = vimdiff $REMOTE $LOCAL
 
 [push]
 	default = current

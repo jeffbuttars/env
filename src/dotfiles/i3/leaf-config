@@ -3,20 +3,32 @@
 # Odds on left, evens on right
 # eDPI1 is built in monitor of laptop.
 # external screens are DP1, DP2, HDMI1, HDMI2
-workspace 1 output eDP1
-workspace 3 output eDP1
-workspace 5 output eDP1
-workspace 7 output eDP1
-workspace 9 output eDP1
+# workspace 1 output eDP1
+# workspace 3 output eDP1
+# workspace 5 output eDP1
+# workspace 7 output eDP1
+# workspace 9 output eDP1
+# workspace 2 output HDMI2
+# workspace 4 output HDMI2
+# workspace 6 output HDMI2
+# workspace 8 output HDMI2
+# workspace 0 output HDMI2
+
+workspace 1 output HDMI1
+workspace 3 output HDMI1
+workspace 5 output HDMI1
+workspace 7 output HDMI1
+workspace 9 output HDMI1
+workspace 2 output eDP1
+workspace 4 output eDP1
+workspace 6 output eDP1
+workspace 8 output eDP1
+workspace 0 output eDP1
+
 # workspace 2 output HDMI1
 # workspace 4 output HDMI1
 # workspace 6 output HDMI1
 # workspace 8 output HDMI1
-workspace 2 output HDMI2
-workspace 4 output HDMI2
-workspace 6 output HDMI2
-workspace 8 output HDMI2
-workspace 0 output HDMI2
 # workspace 2 output DP1
 # workspace 4 output DP1
 # workspace 6 output DP1
@@ -26,18 +38,37 @@ workspace 0 output HDMI2
 # workspace 6 output DP2
 # workspace 8 output DP2
 
+# Mouse bindings
+bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
+bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
 
-#font xft:Eurostile-Normal Bold 16
-# font xft:Eurostile  14
-# font xft:Oxygen-Sans Bold 14
-font xft:Oxygen-Sans 12
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
-for_window [class="sun-awt-X11-XFramePeer"] floating enable
+# move focused container to workspace
+bindsym $mod+Shift+exclam move container to workspace 1
+bindsym $mod+Shift+at move container to workspace 2
+bindsym $mod+Shift+numbersign move container to workspace 3
+bindsym $mod+Shift+dollar move container to workspace 4
+bindsym $mod+Shift+percent move container to workspace 5
+bindsym $mod+Shift+asciicircum move container to workspace 6
+bindsym $mod+Shift+ampersand move container to workspace 7
+bindsym $mod+Shift+asterisk move container to workspace 8
+bindsym $mod+Shift+parenleft move container to workspace 9
+bindsym $mod+Shift+parenright move container to workspace 10
 
-# exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/konsole'
-# exec --no-startup-id i3-msg 'workspace 4; exec /usr/bin/google-chrome-stable'
-exec --no-startup-id i3-msg 'workspace 1;'
+
+# for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
 exec_always ~/bin/startsynergyc -f
-#exec xscreensaver -no-splash
-exec plasmashell
+exec --no-startup-id compton -b --config ~/.config/compton.conf
+# exec plasmashell

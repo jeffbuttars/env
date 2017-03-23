@@ -14,9 +14,9 @@ then
 fi
 
 # source autojump befor oh-my
-if [[ -f /etc/profile.d/autojump.zsh ]]; then
-    source /etc/profile.d/autojump.zsh
-fi
+# if [[ -f /etc/profile.d/autojump.zsh ]]; then
+#     source /etc/profile.d/autojump.zsh
+# fi
 
 
 # Path to your oh-my-zsh configuration.
@@ -65,6 +65,7 @@ fi
 
 # source $ZSH/oh-my-zsh.sh
 
+export PURE_PROMPT_SYMBOL='$'
 # (Prezto)
 source "$HOME/.zprezto/init.zsh"
 
@@ -105,15 +106,18 @@ HISTFILE=~/.histfile
 HISTSIZE=1000000
 SAVEHIST=10000000
 
+# FZF command history : https://github.com/junegunn/fzf/wiki/examples#command-history
+# fh - repeat history
+# fh() {
+#   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+# }
+
 # CD whitout typing cd
 AUTO_CD="true"
 
 # Enable virtualcandy
 VC_AUTO_ACTIVATION='true'
 source $HOME/.upkg/virtualcandy.git/src/virtualcandy.zsh
-
-# Source common rc
-source ~/.shell_commonrc
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
@@ -125,5 +129,8 @@ export EDITOR=vim
 export VISUAL=vim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Source common rc
+source ~/.shell_commonrc
 
 # vim:set ft=zsh:
