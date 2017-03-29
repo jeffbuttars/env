@@ -250,12 +250,18 @@ bar {
         modifier Mod1
         status_command i3status
         position bottom
+        tray_output primary
 }
 
 # My own hotkeys
 bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin 
-bindsym $mod+F3 exec dolphin applications:///
+bindsym $mod+F3 exec ~/bin/cserver
+bindsym $mod+F4 exec ~/bin/music
+bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
+bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
+bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
+bindsym $mod+F8 workspace $ws2, exec slack
 bindsym $mod+Escape exec krunner
 # bindsym $ctrl+mod+l exec i3lock
 # Jump to urgent window

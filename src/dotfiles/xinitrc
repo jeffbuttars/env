@@ -1,3 +1,4 @@
+export LIBGL_DRI3_DISABLE=1
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 #xrandr --output DP-4 --scale 1.5x1.5
