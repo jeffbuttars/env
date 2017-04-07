@@ -1,9 +1,10 @@
 
 # Output vars
-set $left_op HDMI1
-set $center_op HDMI2
+set $left_op eDP1
+#set $center_op HDMI2
 # set $right_op DP-4
-set $right_op eDP1
+# set $right_op eDP1
+set $right_op HDMI1
 
 # Workspace vars
 # Doc window
@@ -47,10 +48,10 @@ workspace $ws1 output $left_op
 workspace $ws2 output $left_op
 workspace $ws3 output $left_op
 workspace $ws4 output $left_op
-workspace $ws5 output $center_op
-workspace $ws6 output $center_op
-workspace $ws7 output $center_op
-workspace $ws8 output $center_op
+workspace $ws5 output $left_op
+workspace $ws6 output $left_op
+workspace $ws7 output $right_op
+workspace $ws8 output $right_op
 workspace $ws9 output $right_op
 workspace $ws10 output $right_op
 workspace $ws11 output $right_op
