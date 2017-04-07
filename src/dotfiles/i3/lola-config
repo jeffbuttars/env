@@ -101,7 +101,7 @@ exec_always --no-startup-id synergys
 # Go to default spaces
 bindsym $mod+Insert workspace 2, workspace 1
 bindsym $mod+End workspace 4, workspace 1
-bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
+# bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 
 # Mouse bindings
 bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
