@@ -1,0 +1,7 @@
+#!/bin/bash
+
+oldumask=$(umask)
+
+umask 0022
+sudo /usr/bin/pip $@
+umask $oldumask
