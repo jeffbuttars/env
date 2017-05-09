@@ -2,3 +2,5 @@ export LIBGL_DRI3_DISABLE=1
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 #xrandr --output DP-4 --scale 1.5x1.5
+# xrandr --output HDMI-0 --panning 3840x2160+7680+0 --scale 2x2
+

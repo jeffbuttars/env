@@ -16,14 +16,25 @@ cli_add_to_specific_playlist 1
 close_send_to_tray 0
 deadbeef_version 0.7.2
 filechooser.lastdir file:///home/jeff/.config/deadbeef/presets/equalizer
+filechooser.playlist.lastdir file:///home/jeff/.config/deadbeef/playlists
 gtkui.autoresize_columns 0
-gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","size":"317","align":"0","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","size":"267","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","size":"97","align":"1","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","size":"117","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.color.listview_even_row 62451 62451 62451
+gtkui.color.listview_selection 65535 65535 65535
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","size":"762","align":"0","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","size":"419","align":"0","color_override":"0","color":"#ff000000"},{"title":"Track No","id":"-1","format":"%tracknumber%","size":"97","align":"1","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","size":"117","align":"0","color_override":"0","color":"#ff000000"}]
 gtkui.embolden_current_track 1
 gtkui.eq.visible 1
+gtkui.font.listview_column_text Noto Sans UI 14
+gtkui.font.listview_group_text Noto Sans UI 14
+gtkui.font.listview_text Noto Sans UI 14
+gtkui.font.tabstrip_text Noto Sans UI 12
 gtkui.hide_remove_from_disk 1
-gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } vsplitter pos=473 locked=0 {hsplitter pos=281 locked=0 {vbox expand="1 1" fill="1 1" homogeneous=1 {coverart {} vbox expand="1 1 1" fill="1 1 1" homogeneous=1 {button color="#000000" textcolor="#000000" icon="gtk-dialog-question" label="Random" action="order_random" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-justify-fill" label="Linear" action="order_linear" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-ok" label="Current Track" action="jump_to_current_track" use_color=0 use_textcolor=0 {} } } tabbed_playlist hideheaders=0 width=1732 {} } hsplitter pos=809 locked=0 {waveform_seekbar {} infobar {} } } } 
+gtkui.last_playlist_save_name /home/jeff/.config/deadbeef/playlists/radio.dbpl
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } vsplitter pos=1173 locked=0 {hsplitter pos=281 locked=0 {vbox expand="1 1" fill="1 1" homogeneous=1 {coverart {} vbox expand="1 1 1" fill="1 1 1" homogeneous=1 {button color="#000000" textcolor="#000000" icon="gtk-dialog-question" label="Random" action="order_random" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-justify-fill" label="Linear" action="order_linear" use_color=0 use_textcolor=0 {} button color="#000000" textcolor="#000000" icon="gtk-ok" label="Current Track" action="jump_to_current_track" use_color=0 use_textcolor=0 {} } } tabbed_playlist hideheaders=0 width=1344 {} } hsplitter pos=809 locked=0 {waveform_seekbar {} infobar {} } } } 
 gtkui.mmb_delete_playlist 1
 gtkui.name_playlist_from_folder 1
+gtkui.override_bar_colors 1
+gtkui.override_listview_colors 1
+gtkui.override_tabstrip_colors 1
 gtkui.statusbar.visible 1
 gtkui.tabscroll 0
 gtkui.titlebar_playing_tf %artist% - %title% - DeaDBeeF-%_deadbeef_version%
@@ -62,10 +73,10 @@ hotkey.key30 "Ctrl k" 0 0 toggle_stop_after_album
 hotkeys_created 1
 ignore_archives 1
 junk.enable_cp1251_detection 1
-mainwin.geometry.h 1188
-mainwin.geometry.w 1414
-mainwin.geometry.x 77
-mainwin.geometry.y 621
+mainwin.geometry.h 2152
+mainwin.geometry.w 1626
+mainwin.geometry.x 2206
+mainwin.geometry.y 0
 network.http_user_agent deadbeef
 network.proxy.port 8080
 network.proxy.type HTTP
@@ -77,7 +88,7 @@ playlist.current 3
 playlist.cursor.0 23842
 playlist.cursor.1 0
 playlist.cursor.2 0
-playlist.cursor.3 0
+playlist.cursor.3 3
 playlist.scroll.0 476663
 playlist.scroll.1 0
 playlist.scroll.2 0
@@ -89,12 +100,12 @@ playlist.tab.00002 Default
 playlist.tab.00003 Radio
 prefwin.geometry.h 801
 prefwin.geometry.w 1450
-prefwin.geometry.x 553
-prefwin.geometry.y 689
+prefwin.geometry.x 1651
+prefwin.geometry.y 882
 replaygain_mode 0
 replaygain_scale 1
 resume.paused 0
-resume.playlist 0
+resume.playlist 3
 resume.position -1.000000
 resume.track -1
 searchwin.geometry.h 635

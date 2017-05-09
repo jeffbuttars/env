@@ -267,7 +267,7 @@ bindsym $mod+Escape exec krunner
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
-set $Locker xscreensaver-command -lock && sleep 1
+# set $Locker xscreensaver-command -lock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {

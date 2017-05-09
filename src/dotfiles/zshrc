@@ -99,12 +99,14 @@ bindkey '^r' history-incremental-search-backward
 export KEYTIMEOUT=1
 
 # Turn off spelling correction
-unsetopt correct
+# unsetopt correct
 unsetopt correctall
 
-HISTFILE=~/.histfile
-HISTSIZE=1000000
-SAVEHIST=10000000
+unsetopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt APPEND_HISTORY
+export HISTFILE=~/.histfile
+export HISTSIZE=1000000
+export SAVEHIST=1000000
 
 # FZF command history : https://github.com/junegunn/fzf/wiki/examples#command-history
 # fh - repeat history
@@ -114,10 +116,6 @@ SAVEHIST=10000000
 
 # CD whitout typing cd
 AUTO_CD="true"
-
-# Enable virtualcandy
-VC_AUTO_ACTIVATION='true'
-source $HOME/.upkg/virtualcandy.git/src/virtualcandy.zsh
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
@@ -132,5 +130,10 @@ export VISUAL=vim
 
 # Source common rc
 source ~/.shell_commonrc
+
+# Add the following 3 lines into your /home/jeff/.zshrc file
+if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+    . "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh"
+fi
 
 # vim:set ft=zsh:

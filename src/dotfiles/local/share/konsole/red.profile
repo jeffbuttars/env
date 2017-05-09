@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=RedOnBlack
-Font=MesloLGMDZ Nerd Font,9,-1,0,50,0,0,0,0,0,Regular
+Font=MesloLGSDZ Nerd Font,9,-1,0,50,0,0,0,0,0,RegularForPowerline
 
 [Encoding Options]
 DefaultEncoding=UTF-8
