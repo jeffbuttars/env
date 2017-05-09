@@ -15,18 +15,31 @@ function ctrl_c() {
 }
 
 SSH_USER=jeff
-PUBLIC_HOST=jeffbuttars.com
+# PUBLIC_HOST=jeffbuttars.com
+PUBLIC_HOST='192.81.128.23'
 
-REMOTE_HTTPS_PORT_REMOTE=8443
-REMOTE_HTTP_PORT_REMOTE=8442
-REMOTE_HTTPS_PORT_LOCAL=1337
-REMOTE_HTTP_PORT_LOCAL=1336
-REMOTE_TCP_PORT=9090
+HTTPS_PORT_REMOTE=8443
+HTTPS_PORT_LOCAL=1337
 
-echo "Starting HTTPS tunnel: ${PUBLIC_HOST}:${REMOTE_HTTPS_PORT_LOCAL} -> localhost:${REMOTE_HTTPS_PORT_LOCAL}"
-ssh ${SSH_USER}@${PUBLIC_HOST} -N -R ${REMOTE_HTTPS_PORT_LOCAL}:localhost:${REMOTE_HTTPS_PORT_LOCAL} &
-ssh_http_pid=$!
-echo -en $ssh_http_pid > $PIDFILE
+HTTP_PORT_REMOTE=8442
+HTTP_PORT_LOCAL=1336
+# REMOTE_TCP_PORT=9090
 
-wait
+
+# sudo iptables -t nat -A PREROUTING -s 127.0.0.1 -p tcp --dport ${HTTPS_PORT_REMOTE} -j REDIRECT --to 8181
+# sudo iptables -t nat -A OUTPUT -s 127.0.0.1 -p tcp --dport ${HTTPS_PORT_REMOTE} -j REDIRECT --to 8181
+
+# sudo iptables -v -t nat -A PREROUTING -s 127.0.0.1 -p tcp --dport ${HTTP_PORT_LOCAL} -j REDIRECT --to 8000
+# sudo iptables -v -t nat -A OUTPUT -s 127.0.0.1 -p tcp --dport ${HTTP_PORT_LOCAL} -j REDIRECT --to 8000
+
+echo "Starting HTTP tunnel: ${PUBLIC_HOST}:${HTTP_PORT_REMOTE} -> localhost:${HTTP_PORT_LOCAL}"
+ssh ${SSH_USER}@${PUBLIC_HOST} -N -R ${HTTP_PORT_REMOTE}:localhost:${HTTP_PORT_LOCAL}
+
+# echo "Starting HTTP tunnel: ${PUBLIC_HOST}:${HTTPS_PORT_REMOTE} -> localhost:${HTTPS_PORT_LOCAL}"
+# ssh -v -N -R ${HTTPS_PORT_REMOTE}:localhost:${HTTPS_PORT_LOCAL} ${SSH_USER}@${PUBLIC_HOST}
+
+# ssh_http_pid=$!
+# echo -en $ssh_http_pid > $PIDFILE
+
+# wait
 # nc -l -p $REMOTE_TCP_PORT
