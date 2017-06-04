@@ -15,7 +15,7 @@ if [[ -z $args ]]; then
     exit 1
 fi
 
-$args
+eval $args
 
 echo "Running command '$args' on modify"
 while inotifywait -e modify -r ./
@@ -26,5 +26,5 @@ do
 
     echo "running $args"
     sleep $SLEEP_TIME
-    $args
+    eval $args
 done

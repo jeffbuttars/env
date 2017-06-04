@@ -255,7 +255,7 @@ bar {
 
 # My own hotkeys
 bindsym $mod+F1 exec google-chrome-stable
-bindsym $mod+F2 exec dolphin 
+bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/cserve
 bindsym $mod+F4 exec ~/bin/music
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
@@ -267,7 +267,7 @@ bindsym $mod+Escape exec krunner
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
-set $Locker xscreensaver-command -lock && sleep 1
+# set $Locker xscreensaver-command -lock && sleep 1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {

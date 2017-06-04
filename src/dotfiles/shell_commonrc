@@ -2,7 +2,7 @@
 umask 0027
 
 # PATH alterations
-export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH:/home/jeff/.gem/ruby/2.4.0/bin"
 
 if [[ -f /opt/vagrant ]]
 then
