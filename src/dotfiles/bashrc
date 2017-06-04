@@ -161,9 +161,9 @@ if [[ "$OSTYPE" != "Darwin" ]]; then
 	export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 fi
 
-if [[ -f ~/.upkg/virtualcandy.git/src/virtualcandy.sh ]]; then
-    VC_AUTO_ACTIVATION=true
-    . ~/.upkg/virtualcandy.git/src/virtualcandy.sh
+# if [[ -f ~/.upkg/virtualcandy.git/src/virtualcandy.sh ]]; then
+if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh" ]]; then
+    . "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh"
 fi
 
 # Source common rc
