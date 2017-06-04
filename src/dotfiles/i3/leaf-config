@@ -89,8 +89,8 @@ for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 
 # for_window [class="sun-awt-X11-XFramePeer"] floating enable
 
-bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
+# bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 
 exec_always ~/bin/startsynergyc -f
-exec --no-startup-id xscreensaver
+# exec --no-startup-id xscreensaver
 #exec --no-startup-id compton -b --config ~/.config/compton-leaf.conf
