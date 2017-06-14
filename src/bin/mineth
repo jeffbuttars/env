@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+HRATE=24
+ADDRESS="$(cat ~/Documents/Eth/miningaddress)"
+RIG="Ephi"
+
+echo "Connecting..."
+echo "ethminer -U -F http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
+sleep 2
+ethminer -U -F "http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
