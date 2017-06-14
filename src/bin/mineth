@@ -4,8 +4,18 @@
 HRATE=24
 ADDRESS="$(cat ~/Documents/Eth/miningaddress)"
 RIG="Ephi"
+KNAPID=''
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [[ -f "$THIS_DIR/keepNetAlive" ]]; then
+    echo "Starting keep net alive in bg"
+    $THIS_DIR/keepNetAlive &
+    KNAPID="$?"
+fi
 
 echo "Connecting..."
 echo "ethminer -U -F http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
 sleep 2
 ethminer -U -F "http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
+
+kill $KNAPID
