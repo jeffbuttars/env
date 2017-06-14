@@ -1,8 +1,10 @@
 #!/bin/bash
 
-i3-msg 'workspace " 4  "; append_layout ~/.i3/timehook-ws-layout-10.json'
+# i3-msg 'workspace " 4  "; append_layout ~/.i3/timehook-ws-layout-10.json'
+i3-msg 'workspace " 4  "'
 
 # pavucontrol &
 
 # qpaeq &
-google-chrome --app=https://play.google.com/music/listen?u=0#/now &
+#kcmshell5 kcm_pulseaudio &
+google-chrome-stable --app=https://play.google.com/music/listen?u=0#/now &
