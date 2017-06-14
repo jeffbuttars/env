@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while [[ true ]]; do
+    ping -c 3 google.com
+    res="$?"
+
+    if [[ "$res" != "0" ]]; then
+        echo "Network looks down, restarting Network Manager..."
+        sudo systemctl restart NetworkManager
+    fi
+
+    sleep 30
+done
