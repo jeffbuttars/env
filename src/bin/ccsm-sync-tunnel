@@ -1,18 +1,18 @@
 #!/bin/bash
 
-PIDFILE='/tmp/ccsmsynctunnels.pid'
+# PIDFILE='/tmp/ccsmsynctunnels.pid'
 
-if [[ "$1" == "stop" ]]; then
-    kill $(cat $PIDFILE)
-    exit
-fi
+# if [[ "$1" == "stop" ]]; then
+#     kill $(cat $PIDFILE)
+#     exit
+# fi
 
-trap ctrl_c INT
+# trap ctrl_c INT
 
-function ctrl_c() {
-    echo "Killing tunnel pids: $(cat $PIDFILE)"
-    kill $(cat $PIDFILE)
-}
+# function ctrl_c() {
+#     echo "Killing tunnel pids: $(cat $PIDFILE)"
+#     kill $(cat $PIDFILE)
+# }
 
 SSH_USER=jeff
 # PUBLIC_HOST=jeffbuttars.com
@@ -22,7 +22,8 @@ HTTPS_PORT_REMOTE=8443
 HTTPS_PORT_LOCAL=1337
 
 HTTP_PORT_REMOTE=8442
-HTTP_PORT_LOCAL=1336
+# HTTP_PORT_LOCAL=1336
+HTTP_PORT_LOCAL=8000
 # REMOTE_TCP_PORT=9090
 
 
@@ -32,8 +33,10 @@ HTTP_PORT_LOCAL=1336
 # sudo iptables -v -t nat -A PREROUTING -s 127.0.0.1 -p tcp --dport ${HTTP_PORT_LOCAL} -j REDIRECT --to 8000
 # sudo iptables -v -t nat -A OUTPUT -s 127.0.0.1 -p tcp --dport ${HTTP_PORT_LOCAL} -j REDIRECT --to 8000
 
-echo "Starting HTTP tunnel: ${PUBLIC_HOST}:${HTTP_PORT_REMOTE} -> localhost:${HTTP_PORT_LOCAL}"
-ssh ${SSH_USER}@${PUBLIC_HOST} -N -R ${HTTP_PORT_REMOTE}:localhost:${HTTP_PORT_LOCAL}
+cmd="ssh -v -v -v ${SSH_USER}@${PUBLIC_HOST} -N -R ${PUBLIC_HOST}:${HTTP_PORT_REMOTE}:127.0.0.1:${HTTP_PORT_LOCAL}"
+echo "Starting HTTP tunnel: $cmd"
+$cmd
+
 
 # echo "Starting HTTP tunnel: ${PUBLIC_HOST}:${HTTPS_PORT_REMOTE} -> localhost:${HTTPS_PORT_LOCAL}"
 # ssh -v -N -R ${HTTPS_PORT_REMOTE}:localhost:${HTTPS_PORT_LOCAL} ${SSH_USER}@${PUBLIC_HOST}

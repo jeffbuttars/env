@@ -7,7 +7,8 @@ shellexec ()
     tmpfile=$(mktemp)
     echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n. ~/.bashrc\n$1; zsh" > "$tmpfile"
     # cat "$tmpfile"
-    konsole --show-tabbar -p tabtitle="$1" --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
+    # konsole --show-tabbar -p tabtitle="$1" --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
+    konsole --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
     sleep 1
 }
 
@@ -16,4 +17,4 @@ i3-msg 'workspace " 3  "'
 shellexec "echo 'Reseting workspace $WORK_DIR and starting Django dev server'; vcreset; . ./.vc_proj; cd ccsm_api; ./manage.py runserver --traceback --verbosity 3"
 
 WORK_DIR='~/Dev/Forsta/ccsm-ui'
-shellexec "yarn install; yarn start"
+shellexec "yarn yrebuild; yarn start"

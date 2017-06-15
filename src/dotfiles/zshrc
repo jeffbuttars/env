@@ -99,14 +99,14 @@ bindkey '^r' history-incremental-search-backward
 export KEYTIMEOUT=1
 
 # Turn off spelling correction
-# unsetopt correct
+unsetopt correct
 unsetopt correctall
 
 unsetopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
 setopt APPEND_HISTORY
 export HISTFILE=~/.histfile
-export HISTSIZE=1000000
-export SAVEHIST=1000000
+export HISTSIZE=10000000
+export SAVEHIST=10000000
 
 # FZF command history : https://github.com/junegunn/fzf/wiki/examples#command-history
 # fh - repeat history

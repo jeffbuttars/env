@@ -1,11 +1,26 @@
 #!/bin/bash
 
-
-HRATE=24
-ADDRESS="$(cat ~/Documents/Eth/miningaddress)"
-RIG="Ephi"
+HRATE="${ETHMINER_HRATE:-20}"
+ADDRESS="${ETHMINER_WALLET_ADDRESS:-$(cat ~/Documents/Eth/miningaddress)}"
+RIG="${ETHMINER_RIG:-$(hostname)}"
 KNAPID=''
 THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+_SLOWDOWN='--cuda-block-size 8 --cuda-grid-size 256 --cuda-streams 1'
+SLOWARGS=""
+
+if [[ "$1" == "slow" ]]; then
+    HRATE="2"
+    SLOWARGS="$_SLOWDOWN"
+fi
+
+function cleanup {
+    echo "Cleaning up..."
+    echo "killing $KNAPID ..."
+    kill -9 $KNAPID
+}
+
+trap cleanup SIGINT SIGTERM SIGHUP
+
 
 if [[ -f "$THIS_DIR/keepNetAlive" ]]; then
     echo "Starting keep net alive in bg"
@@ -13,9 +28,20 @@ if [[ -f "$THIS_DIR/keepNetAlive" ]]; then
     KNAPID="$?"
 fi
 
+echo "HASH RATE: $HRATE"
+echo "WALLET ADDRESS: $ADDRESS"
+echo "RIG: $RIG"
+
+# --cuda-block-size Set the CUDA block work size. Default is 128
+# --cuda-grid-size Set the CUDA grid size. Default is 8192
+# --cuda-streams Set the number of CUDA streams. Default is 2
+
 echo "Connecting..."
-echo "ethminer -U -F http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
+
+cmd="ethminer $SLOWARGS -U -F http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
+echo "$cmd"
+
 sleep 2
-ethminer -U -F "http://ethereumpool.co/?miner=${HRATE}@0x${ADDRESS}@${RIG}"
+$cmd
 
 kill $KNAPID
