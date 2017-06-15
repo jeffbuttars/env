@@ -9,7 +9,7 @@ _SLOWDOWN='--cuda-block-size 8 --cuda-grid-size 256 --cuda-streams 1'
 SLOWARGS=""
 
 if [[ "$1" == "slow" ]]; then
-    HRATE="2"
+    HRATE="1"
     SLOWARGS="$_SLOWDOWN"
 fi
 
