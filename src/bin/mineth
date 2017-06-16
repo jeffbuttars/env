@@ -21,6 +21,10 @@ function cleanup {
 
 trap cleanup SIGINT SIGTERM SIGHUP
 
+# if [[ -n $GPU_MEMORY_OFFSET ]]; then
+#     nvidia-settings --assign="GPUMemoryTransferRateOffset[3]=$GPU_MEMORY_OFFSET"
+#     nvidia-settings --query=GPUMemoryTransferRateOffset
+# fi
 
 if [[ -f "$THIS_DIR/keepNetAlive" ]]; then
     echo "Starting keep net alive in bg"
