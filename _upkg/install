@@ -117,9 +117,10 @@ ln -nsf  "${THIS_DIR}/.zprezto" "${HOME}/.zprezto"
 # Use package manager for nerd fonts
 # ${THIS_DIR}/install_fonts.sh
 
-sudo cp -f $SRC_DIR/systemd/ephi-reverse-ssh.service /etc/systemd/system/
-sudo systemctl enable ephi-reverse-ssh
-sudo systemctl start ephi-reverse-ssh
-sudo systemctl status ephi-reverse-ssh
+if [[ "$(hostname)" == 'lola' ]]; then
+    sudo cp -f $SRC_DIR/systemd/ephi-reverse-ssh.service /etc/systemd/system/
+    sudo systemctl enable ephi-reverse-ssh
+    sudo systemctl restart ephi-reverse-ssh
+fi
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
