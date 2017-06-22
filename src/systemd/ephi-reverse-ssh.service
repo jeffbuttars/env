@@ -3,11 +3,11 @@ After=network.target
 Description=Create reverse tunnel to ephi
 
 [Service]
-ExecStart=/usr/bin/ssh -v -N -R 8222:localhost:22 -p 8022 jeff@ephi.onedumb.com
+ExecStart=while true; do; /usr/bin/ssh -v -N -R 8222:localhost:22 -p 8022 jeff@ephi.onedumb.com; done
 RestartSec=5
 Restart=always
 User=jeff
 Group=jeff
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
