@@ -20,6 +20,11 @@ Host ephi
     HostName ephi.onedumb.com
 	Port 8022
 	User jeff
+Host lola
+    HostName boise.forstalabs.io
+	Port 51099
+	User jeff
+
 Host linode
 	Port 8022
 	User jeff
