@@ -1,0 +1,54 @@
+Host *
+    ControlMaster auto
+    ControlPath /tmp/ssh_mux_%h_%p_%r
+    ControlPersist 4h
+    GSSAPIAuthentication no
+    ServerAliveInterval 15
+    ServerAliveCountMax 2
+    RekeyLimit default none
+
+Host localhost
+    Port 8022
+
+Host jeffbuttars.com mormoncookietown.com 192.81.128.23 ephi.onedumb.com
+	Port 8022
+	User jeff
+
+Host ephi
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    HostName ephi.onedumb.com
+	Port 8022
+	User jeff
+Host linode
+	Port 8022
+	User jeff
+Host puffsub.com
+	Port 8022
+	User jeff
+Host leaf
+    HostName 10.6.6.11
+	Port 8022
+	User jeff
+
+Host newjes.us
+	User newjesus
+
+Host newjesus
+	HostName velocache.net
+	User newjesus
+
+Host git.newjes.us
+	Port 8022
+
+Host git.newjesus
+	Port 8022
+
+Host github.com
+	ForwardX11 no
+	ForwardX11Trusted no
+
+Host forsta.io 35.167.107.154
+    User ec2-user
+    Port 8022
+    IdentityFile ~/.ssh/faceprod.pem
