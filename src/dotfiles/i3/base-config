@@ -69,6 +69,16 @@ for_window [class="Deadbeef"] floating enable, border pixel 2
 for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
 for_window [class="Pulseeffects"] floating enable, border none
 
+# Float by type
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enabl
+
+no_focus [class="plasmashell"]
+no_focus [window_role="pop-up"]
+no_focus [window_type="notification"]
+
 # Solaraized colors:
 set $sol_base03  #002b36
 set $sol_base02  #073642

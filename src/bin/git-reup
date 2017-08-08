@@ -56,6 +56,9 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
             echo "REUP: Merge back from master..."
             git merge master
         fi
+
+        echo "PUSHing $ORIG_BRANCH changes back to origin"
+        git push
     fi
 fi
 

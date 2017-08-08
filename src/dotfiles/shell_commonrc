@@ -31,8 +31,9 @@ do
     v=$(which $var 2>&1 > /dev/null)
     if [[ "0" == "$?" ]]
     then
-        alias vim="$var"
+        alias v="$var"
         alias vi="$var"
+        alias vim="$var"
         alias svi="sudo -E $var"
         alias vis="$var -O"
         break
