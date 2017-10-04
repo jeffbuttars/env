@@ -5,6 +5,7 @@ i3-msg 'workspace " 4  "'
 
 # pavucontrol &
 
-# qpaeq &
-#kcmshell5 kcm_pulseaudio &
+kcmshell5 kcm_pulseaudio &
 google-chrome-stable --app=https://play.google.com/music/listen?u=0#/now &
+
+pulseeffects &

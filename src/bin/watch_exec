@@ -21,7 +21,7 @@ echo "Running command '$args' on modify"
 while inotifywait -e modify -r ./
 do
     if [[ $CLEAR == 'true' ]]; then
-        printf "\ec"
+        printf '\033c'
     fi
 
     echo "running $args"

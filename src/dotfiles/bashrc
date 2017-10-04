@@ -168,7 +168,7 @@ fi
 
 # Add the following 3 lines into your /home/jeff/.bashrc file
 if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh" ]]; then
-    . "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh"
+    . ["/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh"]
 fi
 
 #vim:set ft=sh:

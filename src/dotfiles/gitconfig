@@ -31,6 +31,9 @@
 [difftool "vimdiff"]
     cmd = vimdiff $REMOTE $LOCAL
 
+[stash]
+    showPatch
+
 [push]
 	default = current
 [pull]
