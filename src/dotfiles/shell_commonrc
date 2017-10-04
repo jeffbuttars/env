@@ -68,6 +68,8 @@ alias gp='git push'
 alias gpl='git pull'
 alias gplt='git pullt'
 alias greup='git reup'
+alias gcm='git cim'
+alias ga='git add'
 alias jobs='jobs -l'
 alias less=$PAGER
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
