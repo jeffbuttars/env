@@ -1,13 +1,14 @@
 #!/bin/bash
 
 while [[ true ]]; do
-    ping -c 3 google.com 2>&1 > /dev/null
-    res="$?"
+    LINK_STATE=$(ip link show wlp3s0 | awk '{print $9}')
 
-    if [[ "$res" != "0" ]]; then
+    if [[ "$LINK_STATE" != "UP" ]]; then
         echo "Network looks down, restarting Network Manager..."
         sudo systemctl restart NetworkManager
+        sleep 3
+        sudo systemctl status NetworkManager
     fi
 
-    sleep 30
+    sleep 5
 done

@@ -1,14 +1,14 @@
 
 
 # Output vars
-set $left_op DP-0
-set $center_op DP-2
+set $left_op HDMI-0
+# set $center_op DP-2
 # set $right_op DP-4
-set $right_op HDMI-0
+set $right_op DP-0
 
 # Workspace vars
 # Doc window
-set $ws1 " 1  "
+set $ws1 " 1  "
 # Slack
 set $ws2 " 2  "
 # Dev Services
@@ -19,15 +19,15 @@ set $ws5 " 5  "
 # Mail
 set $ws6 " 6  "
 # Scratch
-set $ws7 " 7 ? "
+set $ws7 " 7   "
 # Scratch
-set $ws8 " 8 ? "
+set $ws8 " 8   "
 # Main web dev output windows
 set $ws9 " 9  "
 # Scratch
 set $ws10 " 10  "
-set $ws11 " 11 ? "
-set $ws12 " 12 ? "
+set $ws11 " 11   "
+set $ws12 " 12   "
 
 # Workspace layout
 # [ $left_op ] $ws1 $ws2 $ws3 $ws4
@@ -35,36 +35,22 @@ set $ws12 " 12 ? "
 # [ $right_op ] $ws9 $ws10 $ws11 $ws12
 
 bindsym Control+1 focus output $left_op
-bindsym Control+2 focus output $center_op
+bindsym Control+2 focus output $right_op
 bindsym Control+3 focus output $right_op
 
-# Workspace layout [ $left_op ] [ $center_op ] [ $right_op ]
-#                    $ws1
-#                    $ws2
-#                    $ws3
-#                    $ws4
-#                               $ws5
-#                               $ws6
-#                               $ws7
-#                               $ws8
-#                                        $ws9
-#                                        $ws10
-#                                        $ws11
-#                                        $ws12
-
-# Odds on left, evens on right, except 10
+# Workspace layout
 workspace $ws1 output $left_op
 workspace $ws2 output $left_op
 workspace $ws3 output $left_op
 workspace $ws4 output $left_op
-workspace $ws5 output $center_op
-workspace $ws6 output $center_op
-workspace $ws7 output $center_op
-workspace $ws8 output $center_op
-workspace $ws9 output $right_op
-workspace $ws10 output $right_op
-workspace $ws11 output $right_op
-workspace $ws12 output $right_op
+workspace $ws5 output $right_op
+workspace $ws6 output $right_op
+workspace $ws7 output $right_op
+workspace $ws8 output $right_op
+workspace $ws9 output $left_op
+workspace $ws10 output $left_op
+workspace $ws11 output $left_op
+workspace $ws12 output $left_op
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
