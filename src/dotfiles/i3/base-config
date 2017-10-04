@@ -141,11 +141,12 @@ default_orientation horizontal
 
 # start a terminal
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec konsole --profile Light
+# bindsym $mod+Return exec konsole --profile Light
+bindsym $mod+Return exec konsole --profile dark
 bindsym $mod+F11 exec konsole --profile red
-bindsym $mod+F12 exec konsole --profile dark
+bindsym $mod+F12 exec konsole --profile Light
 
-bindsym $mod+Shift+Return exec konsole --profile dark
+bindsym $mod+Shift+Return exec konsole --profile Light
 
 # kill focused window
 bindsym $mod+Control+x kill
