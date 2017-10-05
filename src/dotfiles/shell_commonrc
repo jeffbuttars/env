@@ -58,12 +58,8 @@ alias grep="grep -I \
 if [ -f ~/.upkg/pcm/pcm.sh ]; then
     alias pcm='~/.upkg/pcm/pcm.sh'
 fi
-alias gits='git status'
-alias gs='git status'
-alias gitsp='git status -uno'
+alias gst='git status'
 alias gsp='git status -uno'
-alias gitp='git push'
-alias gitpl='git pull'
 alias gp='git push'
 alias gpl='git pull'
 alias gplt='git pullt'
