@@ -12,7 +12,7 @@ shellexec ()
     sleep 1
 }
 
-i3-msg 'workspace " 3  "'
+i3-msg 'workspace " 3  Services"'
 
 shellexec "echo 'Reseting workspace $WORK_DIR and starting Django dev server'; vcreset; . ./.vc_proj; cd ccsm_api; ./manage.py runserver --traceback --verbosity 3"
 

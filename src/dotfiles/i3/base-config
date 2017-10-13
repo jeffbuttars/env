@@ -98,16 +98,26 @@ set $sol_cyan    #2aa198
 set $sol_green   #859900
 
 # Workspace names
-# set $ws1 " 1  "
-# set $ws2 " 2  "
-# set $ws3 " 3  "
-# set $ws4 " 4  "
-# set $ws5 " 5  "
-# set $ws6 " 6  "
-# set $ws7 " 7 ? "
-# set $ws8 " 8 ? "
-# set $ws9 " 9  "
-# set $ws10 " 10  "
+set $ws1 " 1  Web / Docs"
+# Slack
+set $ws2 " 2  Messaging"
+# Dev Services
+set $ws3 " 3  Services"
+set $ws4 " 4  Music"
+# Main code window
+set $ws5 " 5  Code"
+# Mail
+set $ws6 " 6  Mail"
+# Scratch
+set $ws7 " 7 Misc. "
+# Scratch
+set $ws8 " 8 Misc. "
+# Main web dev output windows
+set $ws9 " 9  Program Output"
+# Scratch
+set $ws10 " 10  Debug Output"
+set $ws11 " 11 Misc. "
+set $ws12 " 12 Misc. "
 
 # Make the focused window very obvious
 # window colors: border background text

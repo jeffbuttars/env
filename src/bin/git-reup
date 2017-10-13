@@ -7,10 +7,19 @@ MERGE_FROM_MASTER=true
 
 if [[ "$1" = "-r" ]]; then
     REBASE_MASTER=true
+    shift
 fi
 
 if [[ "$1" = "-n" ]]; then
     MERGE_FROM_MASTER=false
+    shift
+fi
+
+BRANCHES=''
+if [[ -n $@ ]]; then
+    BRANCHES="$@"
+else
+    BRANCHES=$(git rev-parse --abbrev-ref HEAD)
 fi
 
 ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD)

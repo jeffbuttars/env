@@ -22,6 +22,10 @@ then
    eval $(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)
 fi
 
+if [[ "$HOME/.pythonrc.py" ]]; then
+    export PYTHONSTARTUP="$HOME/.pythonrc.py"
+fi
+
 # Aliases
 vims=('nvim' 'gvim -v' 'vim' 'vi')
 

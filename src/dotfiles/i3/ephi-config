@@ -6,29 +6,6 @@ set $left_op HDMI-0
 # set $right_op DP-4
 set $right_op DP-0
 
-# Workspace vars
-# Doc window
-set $ws1 " 1  "
-# Slack
-set $ws2 " 2  "
-# Dev Services
-set $ws3 " 3  "
-set $ws4 " 4  "
-# Main code window
-set $ws5 " 5  "
-# Mail
-set $ws6 " 6  "
-# Scratch
-set $ws7 " 7   "
-# Scratch
-set $ws8 " 8   "
-# Main web dev output windows
-set $ws9 " 9  "
-# Scratch
-set $ws10 " 10  "
-set $ws11 " 11   "
-set $ws12 " 12   "
-
 # Workspace layout
 # [ $left_op ] $ws1 $ws2 $ws3 $ws4
 # [ $center_op ] $ws5 $ws6 $ws7 $ws8
