@@ -14,6 +14,7 @@ function ctrl_c() {
 
 SSH_USER=jeff
 PUBLIC_HOST=jeffbuttars.com
+PUBLIC_HOST=jeffbuttars.com
 
 REMOTE_HTTPS_PORT_REMOTE=8443
 REMOTE_HTTPS_PORT_LOCAL=1337

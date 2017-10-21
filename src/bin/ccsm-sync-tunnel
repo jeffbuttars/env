@@ -15,7 +15,7 @@
 # }
 
 SSH_USER=jeff
-# PUBLIC_HOST=jeffbuttars.com
+# PUBLIC_HOST=mormoncookietown.com
 PUBLIC_HOST='192.81.128.23'
 
 HTTPS_PORT_REMOTE=8443

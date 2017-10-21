@@ -77,6 +77,13 @@ alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
 
+# Use some of that ripgrep if it's around
+
+v=$(which rg 2>&1 > /dev/null)
+if [[ "0" == "$?" ]]; then
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+fi
+
 # Initialize fasd
 eval "$(fasd --init auto)"
 
