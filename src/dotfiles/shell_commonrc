@@ -6,10 +6,17 @@ export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH:/home/jeff/.gem/ruby/2.
 
 if [[ -f /opt/vagrant ]]
 then
-    PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
+    export PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+if [[ -d  "$HOME/.rvm/bin" ]]; then
+    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+fi
+
+if [[ /opt/android-sdk ]]; then
+    export ANDROID_HOME='/opt/android-sdk'
+    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+fi
 
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]

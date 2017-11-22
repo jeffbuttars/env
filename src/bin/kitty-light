@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export TERM_META='light'
+
+# Light is the default
+kitty

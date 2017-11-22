@@ -13,6 +13,22 @@ then
     fi
 fi
 
+# Powerline config
+# export POWERLEVEL9K_MODE='awesome-fontconfig'
+export POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+export POWERLEVEL9K_SHORTEN_DELIMITER="-"
+export POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
+export POWERLEVEL9K_MODE='nerdfont-complete'
+export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vi_mode)
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs vcs)
+export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# export POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+
+if [[ "$TERM_META" != 'dark' ]]
+then
+    export POWERLEVEL9K_COLOR_SCHEME='light'
+fi
+
 # source autojump befor oh-my
 # if [[ -f /etc/profile.d/autojump.zsh ]]; then
 #     source /etc/profile.d/autojump.zsh
@@ -91,14 +107,14 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
-function zle-line-init zle-keymap-select {
-    VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-    RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-    zle reset-prompt
-}
+# function zle-line-init zle-keymap-select {
+#     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+#     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+#     zle reset-prompt
+# }
 
-zle -N zle-line-init
-zle -N zle-keymap-select
+# zle -N zle-line-init
+# zle -N zle-keymap-select
 
 # By default, there is a 0.4 second delay after you hit the <ESC> key and when
 # the mode change is registered. This results in a very jarring and frustrating

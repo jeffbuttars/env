@@ -68,8 +68,8 @@ if [[ -d "$soldir" ]]; then
     bash ./install.sh
     cd -
 
-	cp -f "$SRC_DIR/xresources" ~/.Xresources
-	xrdb -merge ~/.Xresources
+    cp -f "$SRC_DIR/xresources" ~/.Xresources
+    xrdb -merge ~/.Xresources
 fi
 
 echo "Update i3 config"
@@ -121,6 +121,12 @@ if [[ "$(hostname)" == 'lola' ]]; then
     sudo cp -f $SRC_DIR/systemd/ephi-reverse-ssh.service /etc/systemd/system/
     sudo systemctl enable ephi-reverse-ssh
     sudo systemctl restart ephi-reverse-ssh
+fi
+
+if [[ -f '/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme' ]]; then
+	echo 'Install powerline into Prezto'
+	ln -nsf '/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme'\
+	'~/.zprezto/modules/prompt/functions/prompt_powerlevel9k_setup'
 fi
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."

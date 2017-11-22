@@ -1,0 +1,25 @@
+#!/bin/bash
+
+export TERM_META='dark'
+
+kitty\
+    --override foreground=#FF0000 \
+    --override background=#000000 \
+    --override selection_foreground=#18F018 \
+    --override selection_background=#000000 \
+    --override color0=#000000 \
+    --override color8=#686868 \
+    --override color1=#FA8E08 \
+    --override color9=#FF5454 \
+    --override color2=#18B218 \
+    --override color10=#54FF54 \
+    --override color3=#B26818 \
+    --override color11=#FFFF54 \
+    --override color4=#1E4798 \
+    --override color12=#5454FF \
+    --override color5=#E11EE1 \
+    --override color13=#FF54FF \
+    --override color6=#0086DF \
+    --override color14=#FF0004 \
+    --override color7=#FFFFFF \
+    --override color15=#323232

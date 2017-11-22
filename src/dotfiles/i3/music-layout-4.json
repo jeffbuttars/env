@@ -10,7 +10,7 @@
        "y": 0
     },
     "name": "Google Play Music — MellowPlayer",
-    "percent": 0.7,
+    "percent": 0.55,
     "swallows": [
        {
         "class": "^MellowPlayer$",
@@ -25,7 +25,7 @@
     "border": "normal",
     "floating": "auto_off",
     "layout": "splitv",
-    "percent": 0.3,
+    "percent": 0.45,
     "type": "con",
     "nodes": [
         {

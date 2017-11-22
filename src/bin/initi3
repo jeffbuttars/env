@@ -1,18 +1,18 @@
 #!/bin/sh
 #
-#  DEFAULT KDE STARTUP SCRIPT ( 5.10.2 )
+#  DEFAULT Plasma STARTUP SCRIPT ( 5.11.3 )
 #
 
 # When the X server dies we get a HUP signal from xinit. We must ignore it
 # because we still need to do some cleanup.
 trap 'echo GOT SIGHUP' HUP
 
-# Check if a KDE session already is running and whether it's possible to connect to X
+# Check if a Plasma session already is running and whether it's possible to connect to X
 kcheckrunning
 kcheckrunning_result=$?
 if test $kcheckrunning_result -eq 0 ; then
-	echo "KDE seems to be already running on this display."
-	xmessage -geometry 500x100 "KDE seems to be already running on this display." > /dev/null 2>/dev/null
+	echo "Plasma seems to be already running on this display."
+	xmessage -geometry 500x100 "Plasma seems to be already running on this display." > /dev/null 2>/dev/null
 	exit 1
 elif test $kcheckrunning_result -eq 2 ; then
 	echo "\$DISPLAY is not set or cannot connect to the X server."
@@ -93,11 +93,6 @@ fi
 #Manually disable auto scaling because we are scaling above
 #otherwise apps that manually opt in for high DPI get auto scaled by the developer AND manually scaled by us
 export QT_AUTO_SCREEN_SCALE_FACTOR=0
-
-#Set the QtQuickControls style to our own: for QtQuickControls1
-#it will fall back to Desktop, while it will use our own org.kde.desktop
-#for QtQuickControlsStyle and Kirigami
-export QT_QUICK_CONTROLS_STYLE=org.kde.desktop
 
 # XCursor mouse theme needs to be applied here to work even for kded or ksmserver
 if test -n "$kcminputrc_mouse_cursortheme" -o -n "$kcminputrc_mouse_cursorsize" ; then
