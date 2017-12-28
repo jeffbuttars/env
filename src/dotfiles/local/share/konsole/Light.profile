@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Solarized Light
-Font=MesloLGMDZ Nerd Font,10,-1,0,50,0,0,0,0,0,Regular
+Font=MesloLGMDZ Nerd Font,14,-1,0,50,0,0,0,0,0,Regular
 
 [Cursor Options]
 CursorShape=0

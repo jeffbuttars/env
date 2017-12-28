@@ -3,6 +3,7 @@
 export TERM_META='dark'
 
 kitty\
+    --override font_size='9.0' \
     --override foreground=#FF0000 \
     --override background=#000000 \
     --override selection_foreground=#18F018 \

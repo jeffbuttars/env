@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#  DEFAULT Plasma STARTUP SCRIPT ( 5.11.3 )
+#  DEFAULT Plasma STARTUP SCRIPT ( 5.11.4 )
 #
 
 # When the X server dies we get a HUP signal from xinit. We must ignore it

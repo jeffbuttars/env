@@ -3,7 +3,7 @@ Frames=0
 
 [Appearance]
 BackgroundColorOpacity=95
-Skin=atomic-b
+Skin=default
 SkinInstalledWithKns=true
 TerminalHighlightOnManualActivation=true
 Translucency=true

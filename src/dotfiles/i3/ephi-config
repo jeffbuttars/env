@@ -59,11 +59,11 @@ bindsym $mod+Shift+plus move container to workspace $ws12
 
 for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 
-exec_always --no-startup-id synergys
+# exec_always --no-startup-id synergys
 
 # Go to default spaces
-bindsym $mod+Insert workspace 2, workspace 1
-bindsym $mod+End workspace 4, workspace 1
+bindsym $mod+Insert workspace 3, workspace 5
+bindsym $mod+End workspace 3, workspace 5
 # bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 
 # Mouse bindings
@@ -71,4 +71,16 @@ bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 
 # exec --no-startup-id xscreensaver
-exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
+exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
+
+exec --no-startup-id slack
+
+# Start the music workspace
+exec --no-startup-id ~/bin/music
+
+# Startup a terminal for service output
+exec --no-startup-id 'i3-msg workspace $ws3; konsole --profile red; sleep 1'
+
+# Setup which workspaces we want to start with
+exec --no-startup-id 'i3-msg workspace $ws1'
+exec --no-startup-id 'i3-msg workspace $ws5'

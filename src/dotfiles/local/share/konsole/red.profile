@@ -18,6 +18,7 @@ ShowTerminalSizeHint=false
 AutoCopySelectedText=true
 OpenLinksByDirectClickEnabled=true
 TrimTrailingSpacesInSelectedText=true
+UnderlineFilesEnabled=true
 
 [Scrolling]
 HistoryMode=2

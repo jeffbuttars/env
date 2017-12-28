@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Solarized Dark
-Font=InconsolataForPowerline Nerd Font,10,-1,0,57,0,0,0,0,0,Medium
+Font=MesloLGMDZ Nerd Font,16,-1,0,50,0,0,0,0,0,RegularForPowerline
 
 [Cursor Options]
 CursorShape=0
