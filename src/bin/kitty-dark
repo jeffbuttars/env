@@ -3,6 +3,7 @@
 export TERM_META='dark'
 
 kitty\
+    --single-instance \
     --override foreground=#839496 \
     --override background=#002B36 \
     --override selection_foreground=#93A1A1 \
@@ -22,4 +23,5 @@ kitty\
     --override color6=#2AA198 \
     --override color14=#93A1A1 \
     --override color7=#EEE8D5 \
-    --override color15=#FDF6E3
+    --override color15=#FDF6E3 \
+    $@
