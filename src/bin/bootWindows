@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ENTRY=$(sudo efibootmgr -v | grep -i windows | awk '{print $1}' | cut -c 5-8)
+
+if [[ -z $ENTRY ]]; then
+    echo "Couldn't find a Windows entry"
+    sudo efibootmgr -v
+    exit 1
+fi
+
+echo "Booting $ENTRY ..."
+sudo efibootmgr --bootnext $ENTRY
+
+sudo reboot
