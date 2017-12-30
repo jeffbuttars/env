@@ -13,6 +13,7 @@ UseCustomCursorColor=true
 DefaultEncoding=UTF-8
 
 [General]
+Command=/bin/zsh
 Environment=TERM=xterm-256color,TERM_META=dark
 Icon=utilities-terminal
 Name=Shell

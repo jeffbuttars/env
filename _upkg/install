@@ -104,12 +104,13 @@ sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
 # ./install_in_omz.sh 
 # cd -
 
-pr_info "Installing Prezto..."
 if [[ -d "${THIS_DIR}/.zprezto" ]]; then
+	pr_info "Updating Prezto..."
     cd "${THIS_DIR}/.zprezto"
     git pull && git submodule update --init --recursive
     cd -
 else
+    pr_info "Installing Prezto..."
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${THIS_DIR}/.zprezto"
 fi
 ln -nsf  "${THIS_DIR}/.zprezto" "${HOME}/.zprezto"
@@ -125,6 +126,8 @@ fi
 
 if [[ -f '/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme' ]]; then
 	echo 'Install powerline into Prezto'
+	mkdir -p '~/.zprezto/modules/prompt/functions/prompt_powerlevel9k_setup'
+
 	ln -nsf '/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme'\
 	'~/.zprezto/modules/prompt/functions/prompt_powerlevel9k_setup'
 fi

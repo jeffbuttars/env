@@ -4,6 +4,7 @@ export TERM_META='dark'
 
 kitty\
     --single-instance \
+    --instance-group=dark \
     --override foreground=#839496 \
     --override background=#002B36 \
     --override selection_foreground=#93A1A1 \

@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Solarized Light
-Font=MesloLGMDZ Nerd Font,14,-1,0,50,0,0,0,0,0,Regular
+Font=MesloLGMDZ Nerd Font,12,-1,0,50,0,0,0,0,0,Regular
 
 [Cursor Options]
 CursorShape=0
@@ -13,6 +13,7 @@ UseCustomCursorColor=true
 DefaultEncoding=UTF-8
 
 [General]
+Command=/bin/zsh
 Environment=TERM=xterm-256color,TERM_META=light
 Icon=utilities-terminal
 Name=Light
