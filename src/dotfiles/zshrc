@@ -72,13 +72,13 @@ fi
 
 # (OMZSH) Disable hostname lookups on completion
 # zstyle ':completion:*' hosts off
- zstyle ':completion:*' special-dirs true
- zstyle ':completion:*' menu select
+ # zstyle ':completion:*' special-dirs true
+ # zstyle ':completion:*' menu select
 
- if [[ -f /usr/share/git/completion/git-completion.zsh ]]
- then
-    zstyle ':completion:*:*:git:*' script /usr/share/git/completion/git-completion.zsh
- fi
+ # if [[ -f /usr/share/git/completion/git-completion.zsh ]]
+ # then
+ #    zstyle ':completion:*:*:git:*' script /usr/share/git/completion/git-completion.zsh
+ # fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/

@@ -4,7 +4,7 @@
 [alias]
     co = checkout
     ci = commit
-    cim = commit -m
+    cim = commit --verbose
     cia = commit -a
     st = status
     stu = status -uno
