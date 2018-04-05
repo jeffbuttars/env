@@ -1,8 +1,8 @@
 
 
 # Output vars
-set $left_op DP-0
-set $center_op DP-2
+set $left_op HDMI-0
+set $center_op HDMI-0
 # set $right_op DP-4
 set $right_op HDMI-0
 
@@ -75,11 +75,11 @@ bindsym $mod+Shift+plus move container to workspace $ws12
 
 for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 
-exec_always --no-startup-id synergys
+# exec_always --no-startup-id synergys
 
 # Go to default spaces
-bindsym $mod+Insert workspace 2, workspace 1
-bindsym $mod+End workspace 4, workspace 1
+# bindsym $mod+Insert workspace 2, workspace 1
+# bindsym $mod+End workspace 4, workspace 1
 # bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 
 # Mouse bindings
@@ -88,3 +88,12 @@ bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 
 # exec --no-startup-id xscreensaver
 exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
+
+exec --no-startup-id slack
+
+# Start the music workspace
+exec --no-startup-id ~/bin/music
+
+# Setup which workspaces we want to start with
+exec --no-startup-id 'i3-msg workspace $ws4'
+exec --no-startup-id 'i3-msg workspace $ws5'
