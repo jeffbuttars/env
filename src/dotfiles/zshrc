@@ -31,11 +31,6 @@ then
     export POWERLEVEL9K_COLOR_SCHEME='light'
 fi
 
-# source autojump befor oh-my
-# if [[ -f /etc/profile.d/autojump.zsh ]]; then
-#     source /etc/profile.d/autojump.zsh
-# fi
-
 
 # Path to your oh-my-zsh configuration.
 # ZSH=$HOME/.upkg/oh-my-zsh.git
@@ -52,7 +47,11 @@ fi
 
 # ZSH_THEME='powerline'
 
-# echo "Theme: $ZSH_THEME"
+if [[ -f "/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme"  ]]
+then
+    source  /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+fi
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"

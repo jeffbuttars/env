@@ -50,7 +50,7 @@
     trustExitCode = true
     keepBackup = false
 [core]
-	excludesfile = /home/jeff/.gitignore_global
+	excludesfile = /home/jeffre/.gitignore_global
 	editor = nvim
 
 [oh-my-zsh]
