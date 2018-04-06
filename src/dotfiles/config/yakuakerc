@@ -9,7 +9,7 @@ TerminalHighlightOnManualActivation=true
 Translucency=true
 
 [Desktop Entry]
-DefaultProfile=Shell.profile
+DefaultProfile=Light.profile
 
 [Dialogs]
 FirstRun=false

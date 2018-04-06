@@ -77,7 +77,10 @@ for_window [class="Slack"] move container to workspace $ws2
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enabl
+for_window [window_type="menu"] floating enable
+# for_window [class="Gkrellm"] floating enable
+# for_window [class="gkrellm"] floating enable
+for_window [title="gkrellm"] floating enable, enable sticky
 
 no_focus [class="plasmashell"]
 no_focus [window_role="pop-up"]
@@ -159,17 +162,17 @@ client.urgent $sol_base2 $sol_base3 $sol_red $sol_blue
 default_orientation horizontal
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec konsole --profile Light
-#bindsym $mod+Return exec konsole --profile dark
-bindsym $mod+F11 exec konsole --profile red
-bindsym $mod+F12 exec konsole --profile dark
 bindsym $mod+Shift+Return exec konsole --profile dark
+bindsym $mod+F12 exec konsole --profile red
+#bindsym $mod+Return exec konsole --profile dark
+# bindsym $mod+F12 exec konsole --profile dark
+#bindsym $mod+Return exec i3-sensible-terminal
 
-#bindsym $mod+Return exec ~/bin/kitty-light
-#bindsym $mod+F12 exec ~/bin/kitty-dark
-#bindsym $mod+F11 exec ~/bin/kitty-red
-#bindsym $mod+Shift+Return exec ~/bin/kitty-dark
+# kitty overrides
+# bindsym $mod+Return exec ~/bin/kitty-light
+# bindsym $mod+F12 exec ~/bin/kitty-red
+# bindsym $mod+Shift+Return exec ~/bin/kitty-dark
 
 # kill focused window
 bindsym $mod+Control+x kill
