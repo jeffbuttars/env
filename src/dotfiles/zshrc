@@ -1,4 +1,6 @@
 
+export TERM='xterm-256color'
+
 # If we're in a tty and fbterm-bi is available, use it.
 
 tty | grep 'tty'

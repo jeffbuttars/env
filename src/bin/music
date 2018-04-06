@@ -10,6 +10,9 @@ MellowPlayer &
 sleep 2
 
 pulseeffects &
-sleep 2
 
-kcmshell5 kcm_pulseaudio
+# pulseaudio -k
+# sleep 60
+# pulseeffects &
+
+# kcmshell5 kcm_pulseaudio

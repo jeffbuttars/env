@@ -59,6 +59,7 @@ bindsym $mod+Shift+plus move container to workspace $ws12
 
 for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 
+
 # exec_always --no-startup-id synergys
 
 # Go to default spaces

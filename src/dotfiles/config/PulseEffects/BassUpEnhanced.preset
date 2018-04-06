@@ -1,13 +1,13 @@
 [apps_limiter]
 enabled = true
-input gain = 20.0
-limit = -7.0
+input gain = -12.0
+limit = -1.0
 release time = 1.0
 
 [apps_autovolume]
-enabled = true
+enabled = false
 window = 1.0
-target = -8
+target = -6
 tolerance = 1
 threshold = -50
 
@@ -59,8 +59,8 @@ band9 = 0.0
 band10 = 0.0
 band11 = 0.0
 band12 = 1.0
-band13 = 1.0
-band14 = 2.0
+band13 = 2.0
+band14 = 3.0
 band15 = 0.0
 band16 = 0.0
 band17 = 0.0
@@ -187,6 +187,47 @@ scope = 100.0
 floor = 20.0
 blend = 0.0
 
+[apps_delay]
+enabled = false
+m_l = 0.0
+cm_l = 0.0
+m_r = 0.0
+cm_r = 0.0
+temperature = 20.0
+
+[apps_stereo_enhancer]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+left_invert_phase = false
+left_balance = -1.0
+left_delay = 2.0499999999999998
+left_gain = 0.0
+right_invert_phase = false
+right_balance = -1.0
+right_delay = 2.0499999999999998
+right_gain = 0.0
+middle_invert_phase = false
+middle_source = 2
+side_gain = 0.0
+
+[apps_stereo_spread]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+amount0 = 0.0
+amount1 = 0.0
+amount2 = 0.0
+amount3 = 0.0
+filters = 2
+mono = false
+
+[apps_maximizer]
+enabled = false
+release = 3.1600000000000001
+ceiling = 0.0
+threshold = 0.0
+
 [apps_output_limiter]
 enabled = false
 input gain = 0.0
@@ -215,13 +256,6 @@ threshold = 0.0
 ratio = 1.0
 knee = 3.25
 makeup = 0.0
-
-[mic_reverb]
-enabled = false
-room size = 0.5
-damping = 0.20000000000000001
-width = 1.0
-level = 0.5
 
 [mic_highpass]
 enabled = false
@@ -357,4 +391,20 @@ band26_type = 0
 band27_type = 0
 band28_type = 0
 band29_type = 0
+
+[mic_reverb]
+enabled = false
+room size = 0.5
+damping = 0.20000000000000001
+width = 1.0
+level = 0.5
+
+[mic_pitch]
+enabled = false
+cents = 0.0
+semitones = 0
+octaves = 0
+crispness = 3
+faster = false
+preserve_formant = false
 

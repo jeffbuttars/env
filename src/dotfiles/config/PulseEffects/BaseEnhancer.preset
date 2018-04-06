@@ -1,6 +1,6 @@
 [apps_limiter]
 enabled = false
-input gain = 20.0
+input gain = -9.0
 limit = -11.0
 release time = 1.0
 
@@ -184,8 +184,41 @@ output_gain = 0.0
 amount = 1.0
 harmonics = 8.5
 scope = 100.0
-floor = 20.0
+floor = 10.0
 blend = 0.0
+
+[apps_stereo_enhancer]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+left_invert_phase = false
+left_balance = -1.0
+left_delay = 2.0499999999999998
+left_gain = 0.0
+right_invert_phase = false
+right_balance = -1.0
+right_delay = 2.0499999999999998
+right_gain = 0.0
+middle_invert_phase = false
+middle_source = 2
+side_gain = 0.0
+
+[apps_stereo_spread]
+enabled = false
+input_gain = 0.0
+output_gain = 0.0
+amount0 = 0.0
+amount1 = 0.0
+amount2 = 0.0
+amount3 = 0.0
+filters = 2
+mono = false
+
+[apps_maximizer]
+enabled = false
+release = 3.1600000000000001
+ceiling = 0.0
+threshold = 0.0
 
 [apps_output_limiter]
 enabled = false
