@@ -8,7 +8,7 @@ Font=MesloLGSDZ Nerd Font,9,-1,0,50,0,0,0,0,0,RegularForPowerline
 DefaultEncoding=UTF-8
 
 [General]
-Environment=TERM=xterm-256color,TERM_META=dark
+Environment=TERM=konsole-256color,TERM_META=dark
 Name=red
 Parent=FALLBACK/
 SaveGeometryOnExit=false
