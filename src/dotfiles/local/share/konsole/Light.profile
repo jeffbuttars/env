@@ -14,7 +14,7 @@ DefaultEncoding=UTF-8
 
 [General]
 Command=/bin/zsh
-Environment=TERM=xterm-256color,TERM_META=light
+Environment=TERM=konsole-256color,TERM_META=light
 Icon=utilities-terminal
 Name=Light
 Parent=FALLBACK/

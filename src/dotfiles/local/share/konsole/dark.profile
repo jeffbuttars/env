@@ -7,7 +7,7 @@ Font=MesloLGMDZ Nerd Font,14,-1,0,50,0,0,0,0,0,Regular
 DefaultEncoding=UTF-8
 
 [General]
-Environment=TERM=xterm-256color,TERM_META=dark
+Environment=TERM=konsole-256color,TERM_META=dark
 LocalTabTitleFormat=%w - %d : %n
 Name=dark
 Parent=FALLBACK/

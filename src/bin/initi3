@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-#  DEFAULT Plasma STARTUP SCRIPT ( 5.11.4 )
+#  DEFAULT Plasma STARTUP SCRIPT ( 5.12.4 )
 #
 
 # When the X server dies we get a HUP signal from xinit. We must ignore it
@@ -33,13 +33,14 @@ fi
 #
 # * Then ksmserver is started which takes control of the rest of the startup sequence
 
-# We need to create config folder so we can write startupconfigkeys
 if [  ${XDG_CONFIG_HOME} ]; then
   configDir=$XDG_CONFIG_HOME;
 else
   configDir=${HOME}/.config; #this is the default, http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 fi
+sysConfigDirs=${XDG_CONFIG_DIRS:-/etc/xdg}
 
+# We need to create config folder so we can write startupconfigkeys
 mkdir -p $configDir
 
 #This is basically setting defaults so we can use them with kstartupconfig5
@@ -86,6 +87,10 @@ if test $returncode -ne 0; then
     exit 1
 fi
 [ -r $configDir/startupconfig ] && . $configDir/startupconfig
+
+
+#Do not sync any of this section with the wayland versions as there scale factors are
+#sent properly over wl_output
 
 if [ "$kdeglobals_kscreen_screenscalefactors" ]; then
     export QT_SCREEN_SCALE_FACTORS="$kdeglobals_kscreen_screenscalefactors"
@@ -137,8 +142,7 @@ fi
 
 # Source scripts found in <config locations>/plasma-workspace/env/*.sh
 # (where <config locations> correspond to the system and user's configuration
-# directories, as identified by Qt's qtpaths,  e.g.  $HOME/.config
-# and /etc/xdg/ on Linux)
+# directory.
 #
 # This is where you can define environment variables that will be available to
 # all KDE programs, so this is where you can run agents using e.g. eval `ssh-agent`
@@ -149,11 +153,10 @@ fi
 # For anything else (that doesn't set env vars, or that needs a window manager),
 # better use the Autostart folder.
 
-scriptpath=`qtpaths --locate-dirs GenericConfigLocation plasma-workspace | tr ':' '\n'`
+scriptpath=`echo "$configDir:$sysConfigDirs" | tr ':' '\n'`
 
-# Add /env/ to the directory to locate the scripts to be sourced
 for prefix in `echo $scriptpath`; do
-  for file in "$prefix"/env/*.sh; do
+  for file in "$prefix"/plasma-workspace/env/*.sh; do
     test -r "$file" && . "$file" || true
   done
 done
