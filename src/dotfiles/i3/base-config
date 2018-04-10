@@ -42,7 +42,7 @@ for_window [class="konsole"] border pixel 2
 for_window [class="kitty"] border pixel 2
 # for_window [title="Plasma"] floating enable, border none
 for_window [class="plasmashell"] floating enable, border none
-# for_window [class="plasmashell" title="Desktop"] floating disable, border none
+for_window [class="plasmashell" title="Desktop — Plasma"] kill
 for_window [class="Yakuake"] floating enable
 for_window [title="Yakuake"] floating enable
 for_window [class="Smplayer"] floating enable
