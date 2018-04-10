@@ -1,8 +1,8 @@
 
 
 # Output vars
-set $left_op HDMI-0
-set $center_op HDMI-0
+set $left_op DP-0
+set $center_op DP-2
 # set $right_op DP-4
 set $right_op HDMI-0
 
@@ -33,17 +33,17 @@ bindsym Control+3 focus output $right_op
 
 # Odds on left, evens on right, except 10
 workspace $ws1 output $left_op
-workspace $ws2 output $left_op
+workspace $ws2 output $right_op
 workspace $ws3 output $left_op
-workspace $ws4 output $left_op
+workspace $ws4 output $right_op
 workspace $ws5 output $center_op
 workspace $ws6 output $center_op
 workspace $ws7 output $center_op
 workspace $ws8 output $center_op
 workspace $ws9 output $right_op
 workspace $ws10 output $right_op
-workspace $ws11 output $right_op
-workspace $ws12 output $right_op
+workspace $ws11 output $left_op
+workspace $ws12 output $left_op
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -89,10 +89,10 @@ bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 # exec --no-startup-id xscreensaver
 exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
 
-exec --no-startup-id slack
+exec --no-startup-id 'i3-msg workspace $ws2; slack'
 
 # Start the music workspace
-exec --no-startup-id ~/bin/music
+exec --no-startup-id '~/bin/music; sleep 2'
 
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws4'

@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # i3-msg 'workspace " 4  "; append_layout ~/.i3/timehook-ws-layout-10.json'
-i3-msg 'workspace " 4  Music"; append_layout ~/.i3/music-layout-4.json'
+# i3-msg 'workspace " 4  Music"; append_layout ~/.i3/music-layout-4.json'
+i3-msg 'workspace " 4  Music'
 # i3-msg 'workspace " 4  Music"; split horizontal'
 #i3-msg 'split horizontal'
 # google-chrome-stable --app='https://play.google.com/music/listen?u=0#/now' &
 
 MellowPlayer &
-sleep 2
-
 pulseeffects &
+# kcmshell5 kcm_pulseaudio
+
 
 # pulseaudio -k
 # sleep 60
 # pulseeffects &
 
-# kcmshell5 kcm_pulseaudio

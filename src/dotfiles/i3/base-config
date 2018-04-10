@@ -11,6 +11,12 @@
 
 set $mod Mod1
 
+# Gaps config
+gaps inner 5
+gaps outer 10
+smart_gaps on
+smart_borders on
+
 # font for window titles. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # font xft:Droid Sans Regular 11
@@ -340,6 +346,6 @@ exec spacesetbg
 exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83702
-exec krunner
+# exec krunner
 
 # exec kmix --keepvisibility
