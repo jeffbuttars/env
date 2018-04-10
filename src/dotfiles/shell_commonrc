@@ -103,6 +103,10 @@ z() {
   cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
 }
 
+# NVM
+if [[ -f /usr/share/nvm/init-nvm.sh  ]]; then
+    source /usr/share/nvm/init-nvm.sh
+fi
 
 # Default to a white shell if not set otherwise.
 if [[ -z $TERM_META ]]
