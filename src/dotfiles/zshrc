@@ -1,163 +1,152 @@
 
-# export TERM='xterm-256color'
+source $HOME/.shell.d/index
 
-# If we're in a tty and fbterm-bi is available, use it.
-
-tty | grep 'tty'
-if [[ "$?" == "0" ]]
-then
-    if [[ -x /usr/bin/fbterm ]]
-    then
-        if [[ -x "$HOME/bin/fbterm-bi" ]]
-        then
-            $HOME/bin/fbterm-bi
-        fi
-    fi
-fi
-
-# Powerline config
-# export POWERLEVEL9K_MODE='awesome-fontconfig'
-export POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-export POWERLEVEL9K_SHORTEN_DELIMITER="-"
-export POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
-export POWERLEVEL9K_MODE='nerdfont-complete'
-export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vi_mode)
-export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs vcs)
-export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-# export POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-
-if [[ "$TERM_META" != 'dark' ]]
-then
-    export POWERLEVEL9K_COLOR_SCHEME='light'
-fi
-
-
-# Path to your oh-my-zsh configuration.
-# ZSH=$HOME/.upkg/oh-my-zsh.git
-
-# # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-# ZSH_THEME="gentoo"
-
-# For pure
-# fpath=( "$HOME/.zfunctions" $fpath )
-
-# ZSH_THEME='powerline'
-
-if [[ -f "/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme"  ]]
-then
-    source  /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
-fi
-
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# (OMZSH) COMPLETION_WAITING_DOTS="true"
-
-# (OMZSH) Disable hostname lookups on completion
-# zstyle ':completion:*' hosts off
- # zstyle ':completion:*' special-dirs true
- # zstyle ':completion:*' menu select
-
- # if [[ -f /usr/share/git/completion/git-completion.zsh ]]
- # then
- #    zstyle ':completion:*:*:git:*' script /usr/share/git/completion/git-completion.zsh
- # fi
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# plugins=(git)
-# plugins=()
-
-# source $ZSH/oh-my-zsh.sh
-
-export PURE_PROMPT_SYMBOL='$'
-# (Prezto)
-source "$HOME/.zprezto/init.zsh"
-
-# Use the pure prompt
-# autoload -U promptinit && promptinit
-# prompt pure
-
-
-# Set vi mode
-bindkey -v
-
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-
-# function zle-line-init zle-keymap-select {
-#     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
-#     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
-#     zle reset-prompt
-# }
-
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-
-# By default, there is a 0.4 second delay after you hit the <ESC> key and when
-# the mode change is registered. This results in a very jarring and frustrating
-# transition between modes. Let's reduce this delay to 0.1 seconds.
-export KEYTIMEOUT=1
-
-# Turn off spelling correction
-unsetopt correct
-unsetopt correctall
-
-unsetopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
-setopt APPEND_HISTORY
-export HISTFILE=~/.histfile
-export HISTSIZE=10000000
-export SAVEHIST=10000000
-
-# FZF command history : https://github.com/junegunn/fzf/wiki/examples#command-history
-# fh - repeat history
-# fh() {
-#   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
-# }
-
-# CD whitout typing cd
-AUTO_CD="true"
-
-# Look for $HOME/.zsh_local
-# That's where you put computer specific things that don't go in the repo
-if [[ -f $HOME/.zsh_local ]]; then
-    source $HOME/.zsh_local
-fi
-
-export EDITOR=vim
-export VISUAL=vim
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Source common rc
-source ~/.shell_commonrc
-
-# Add the following 3 lines into your /home/jeff/.zshrc file
-if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-    . "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh"
-fi
-
-# vim:set ft=zsh:
+# # export TERM='xterm-256color'
+# 
+# # Powerline config
+# # export POWERLEVEL9K_MODE='awesome-fontconfig'
+# export POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+# export POWERLEVEL9K_SHORTEN_DELIMITER="-"
+# export POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
+# export POWERLEVEL9K_MODE='nerdfont-complete'
+# export POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir rbenv virtualenv vi_mode)
+# export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator background_jobs vcs)
+# export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# # export POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
+# 
+# if [[ "$TERM_META" != 'dark' ]]
+# then
+#     export POWERLEVEL9K_COLOR_SCHEME='light'
+# fi
+# 
+# 
+# # Path to your oh-my-zsh configuration.
+# # ZSH=$HOME/.upkg/oh-my-zsh.git
+# 
+# # # Set name of the theme to load.
+# # Look in ~/.oh-my-zsh/themes/
+# # Optionally, if you set this to "random", it'll load a random theme each
+# # time that oh-my-zsh is loaded.
+# # ZSH_THEME="robbyrussell"
+# # ZSH_THEME="gentoo"
+# 
+# # For pure
+# # fpath=( "$HOME/.zfunctions" $fpath )
+# 
+# # ZSH_THEME='powerline'
+# 
+# if [[ -f "/usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme"  ]]
+# then
+#     source  /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
+# fi
+# 
+# 
+# # Example aliases
+# # alias zshconfig="mate ~/.zshrc"
+# # alias ohmyzsh="mate ~/.oh-my-zsh"
+# # Set to this to use case-sensitive completion
+# # CASE_SENSITIVE="true"
+# 
+# # Comment this out to disable weekly auto-update checks
+# # DISABLE_AUTO_UPDATE="true"
+# 
+# # Uncomment following line if you want to disable colors in ls
+# # DISABLE_LS_COLORS="true"
+# 
+# # Uncomment following line if you want to disable autosetting terminal title.
+# # DISABLE_AUTO_TITLE="true"
+# 
+# # Uncomment following line if you want red dots to be displayed while waiting for completion
+# # (OMZSH) COMPLETION_WAITING_DOTS="true"
+# 
+# # (OMZSH) Disable hostname lookups on completion
+# # zstyle ':completion:*' hosts off
+#  # zstyle ':completion:*' special-dirs true
+#  # zstyle ':completion:*' menu select
+# 
+#  # if [[ -f /usr/share/git/completion/git-completion.zsh ]]
+#  # then
+#  #    zstyle ':completion:*:*:git:*' script /usr/share/git/completion/git-completion.zsh
+#  # fi
+# 
+# # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# # Example format: plugins=(rails git textmate ruby lighthouse)
+# # plugins=(git)
+# # plugins=()
+# 
+# # source $ZSH/oh-my-zsh.sh
+# 
+# export PURE_PROMPT_SYMBOL='$'
+# 
+# # (Prezto)
+# source "$HOME/.zprezto/init.zsh"
+# 
+# # Use the pure prompt
+# # autoload -U promptinit && promptinit
+# # prompt pure
+# 
+# 
+# # Set vi mode
+# bindkey -v
+# 
+# bindkey '^P' up-history
+# bindkey '^N' down-history
+# bindkey '^?' backward-delete-char
+# bindkey '^h' backward-delete-char
+# bindkey '^w' backward-kill-word
+# bindkey '^r' history-incremental-search-backward
+# 
+# # function zle-line-init zle-keymap-select {
+# #     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]%  %{$reset_color%}"
+# #     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
+# #     zle reset-prompt
+# # }
+# 
+# # zle -N zle-line-init
+# # zle -N zle-keymap-select
+# 
+# # By default, there is a 0.4 second delay after you hit the <ESC> key and when
+# # the mode change is registered. This results in a very jarring and frustrating
+# # transition between modes. Let's reduce this delay to 0.1 seconds.
+# export KEYTIMEOUT=1
+# 
+# # Turn off spelling correction
+# unsetopt correct
+# unsetopt correctall
+# 
+# unsetopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+# setopt APPEND_HISTORY
+# export HISTFILE=~/.histfile
+# export HISTSIZE=10000000
+# export SAVEHIST=10000000
+# 
+# # FZF command history : https://github.com/junegunn/fzf/wiki/examples#command-history
+# # fh - repeat history
+# # fh() {
+# #   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+# # }
+# 
+# # CD whitout typing cd
+# AUTO_CD="true"
+# 
+# # Look for $HOME/.zsh_local
+# # That's where you put computer specific things that don't go in the repo
+# if [[ -f $HOME/.zsh_local ]]; then
+#     source $HOME/.zsh_local
+# fi
+# 
+# export EDITOR=vim
+# export VISUAL=vim
+# 
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# 
+# # Source common rc
+# source ~/.shell_commonrc
+# 
+# # Add the following 3 lines into your /home/jeff/.zshrc file
+# if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+#     . "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh"
+# fi
+# 
+# # vim:set ft=zsh:
