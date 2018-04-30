@@ -23,10 +23,15 @@ mkdir -p $HOME/.nvm
 export NVM_DIR=$HOME/.nvm
 [ -f $NVM_DIR/nvm.sh ] && source $NVM_DIR/nvm.sh
 
-if [[ -f /opt/vagrant ]]
-then
-    export PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
+# NVM
+if [[ -f /usr/share/nvm/init-nvm.sh  ]]; then
+    source /usr/share/nvm/init-nvm.sh
 fi
+
+# if [[ -f /opt/vagrant ]]
+# then
+#     export PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
+# fi
 
 if [[ -d  "$HOME/.rvm/bin" ]]; then
     export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
@@ -119,11 +124,6 @@ z() {
     [ $# -gt 0 ] && fasd_cd -d "$*" && return
   cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
 }
-
-# NVM
-if [[ -f /usr/share/nvm/init-nvm.sh  ]]; then
-    source /usr/share/nvm/init-nvm.sh
-fi
 
 # Default to a white shell if not set otherwise.
 if [[ -z $TERM_META ]]

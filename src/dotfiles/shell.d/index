@@ -1,53 +1,24 @@
-# vim: set ft=sh:
 
 source_dir ()
 {
     local _sources_dir=$1
     if [[ -d "$_sources_dir" ]]; then
         for s in $_sources_dir/* ; do
-            echo "Sourcing: $s"
             source $s
         done
     else
-        echo "Unable to find and source shell config(s) from $_sources_dir"
+        echo "Unable to find and source shell config(s) from $_sources_dir" >&2
     fi
 }
 
-CURRENT_SHELL='bash'
-_SHELL_D_DIR="$HOME/.shell.d"
-echo "tdir $_SHELL_D_DIR"
+local CURRENT_SHELL='bash'
+local _SHELL_D_DIR="$HOME/.shell.d"
 
 if [[ -n $ZSH_NAME && -d "$_SHELL_D_DIR/zsh" ]]; then
     CURRENT_SHELL='zsh'
 fi
 
-echo "current shell: $CURRENT_SHELL"
-
-echo "sourcing dir  $_SHELL_D_DIR/$CURRENT_SHELL"
 source_dir "$_SHELL_D_DIR/$CURRENT_SHELL"
-
-echo "sourcing dir $_SHELL_D_DIR/common"
 source_dir "$_SHELL_D_DIR/common"
 
-# _sources_dir="$_SHELL_D_DIR/$CURRENT_SHELL"
-
-# if [[ -d "$_sources_dir" ]]; then
-#     for s in $_sources_dir/* ; do
-#         echo "Sourcing $_sources_dir/$s"
-#         source $_sources_dir/$s
-#     done
-# else
-#     echo "Unable to find and source shell config(s) from $_sources_dir"
-# fi
-
-
-# _sources_dir="$_SHELL_D_DIR/common"
-# if [[ -d "$_sources_dir" ]]; then
-
-#     for s in $_sources_dir/* ; do
-#         echo "Sourcing common config from $_sources_dir/$s"
-#         source $_sources_dir/$s
-#     done
-# else
-#     echo "Unable to find and source shell config(s) from $_sources_dir"
-# fi
+# vim: set ft=sh:

@@ -10,5 +10,4 @@ fi
 
 # Key bindings
 # ------------
-echo "fzf kb"
 source "$HOME/.fzf/shell/key-bindings.zsh"
