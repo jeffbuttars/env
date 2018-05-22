@@ -77,7 +77,7 @@ exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
 exec --no-startup-id slack
 
 # Start the music workspace
-exec --no-startup-id ~/bin/music
+# exec --no-startup-id ~/bin/music
 
 # Startup a terminal for service output
 exec --no-startup-id 'i3-msg workspace $ws3; konsole --profile red; sleep 1'
