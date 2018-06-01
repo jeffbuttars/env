@@ -1,4 +1,17 @@
 
+# Figure out if this a real tty or psuedo
+export IS_REAL_TTY='false'
+
+case $(tty) in /dev/tty[0-9]*)
+    
+    export IS_REAL_TTY='true';;
+esac
+
+if [[ $IS_REAL_TTY == 'true' ]]
+then
+    export TERM='xterm-256color'
+fi
+
 source_dir ()
 {
     local _sources_dir=$1

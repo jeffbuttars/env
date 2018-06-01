@@ -51,6 +51,8 @@ alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
 
+export PATH=$HOME/bin:$PATH
+
 if [[ -d  "$HOME/.rvm/bin" ]]; then
     export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
