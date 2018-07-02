@@ -3,6 +3,7 @@
 
 [alias]
     co = checkout
+    cob = "!f() { git checkout -b $1 --track origin/$1; }; f"
     ci = commit
     cim = commit --verbose
     cia = commit -a
@@ -46,7 +47,7 @@
     tool = diffconflicts
     defaultToUpstream = true
 [mergetool "diffconflicts"]
-    cmd = diffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
+    cmd = ~/bin/vimdiffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
     trustExitCode = true
     keepBackup = false
 [core]

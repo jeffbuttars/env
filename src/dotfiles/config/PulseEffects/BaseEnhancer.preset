@@ -1,13 +1,28 @@
-[apps_autovolume]
+{
+    "input": {
+            "equalizer",
+            "compressor",
+            "webrtc",
+            "gate",
+            "limiter",
+            "filter",
+            "deesser",
+            "reverb",
+            "pitch"
+    }
+}
+
+"apps_autovolume": {
 enabled = true
 window = 1.0
 target = -12
 tolerance = 1
 threshold = -50
 
-[apps_limiter]
+}
+"apps_limiter": {
 enabled = false
-input_gain = -1.0
+input_gain = 0.0
 limit = -11.0
 lookahead = 10.0
 release = 1.0
@@ -15,14 +30,17 @@ oversampling = 1
 asc = false
 asc_level = 1.0
 
-[mic_autovolume]
+}
+"mic_autovolume": {
+}
 enabled = false
 window = 1.0
 target = -12
 tolerance = 1
 threshold = -50
 
-[mic_limiter]
+"mic_limiter": {
+}
 enabled = false
 input_gain = 0.0
 limit = -11.0
@@ -32,11 +50,13 @@ oversampling = 1
 asc = false
 asc_level = 0.5
 
-[apps_panorama]
+"apps_panorama": {
+}
 enabled = false
 position = 0.0
 
-[apps_compressor]
+"apps_compressor": {
+}
 enabled = false
 detection_type_rms = true
 stereo_link_type_average = true
@@ -48,7 +68,8 @@ ratio = 1.0
 knee = 3.25
 makeup = 0.0
 
-[mic_compressor]
+"mic_compressor": {
+}
 enabled = false
 detection_type_rms = true
 stereo_link_type_average = true
@@ -60,41 +81,48 @@ ratio = 1.0
 knee = 3.25
 makeup = 0.0
 
-[apps_reverb]
+"apps_reverb": {
+}
 enabled = false
 room size = 0.5
 damping = 0.20000000000000001
 width = 1.0
 level = 0.5
 
-[mic_reverb]
+"mic_reverb": {
+}
 enabled = false
 room size = 0.5
 damping = 0.20000000000000001
 width = 1.0
 level = 0.5
 
-[apps_highpass]
+"apps_highpass": {
+}
 enabled = false
 cutoff = 20
 poles = 4
 
-[mic_highpass]
+"mic_highpass": {
+}
 enabled = false
 cutoff = 20
 poles = 4
 
-[apps_lowpass]
+"apps_lowpass": {
+}
 enabled = false
 cutoff = 20000
 poles = 4
 
-[mic_lowpass]
+"mic_lowpass": {
+}
 enabled = false
 cutoff = 20000
 poles = 4
 
-[apps_equalizer]
+"apps_equalizer": {
+}
 enabled = false
 input_gain = 0.0
 output_gain = 0.0
@@ -344,7 +372,8 @@ band27_type = 0
 band28_type = 0
 band29_type = 0
 
-[apps_exciter]
+"apps_exciter": {
+}
 enabled = false
 input_gain = 0.0
 output_gain = 0.0
@@ -354,17 +383,19 @@ scope = 7500.0
 ceiling = 16000.0
 blend = 0.0
 
-[apps_bass_enhancer]
+"apps_bass_enhancer": {
+}
 enabled = true
 input_gain = 0.0
 output_gain = 0.0
-amount = 1.0
+amount = 1.3000000000000003
 harmonics = 8.5
 scope = 100.0
 floor = 10.0
 blend = 0.0
 
-[apps_delay]
+"apps_delay": {
+}
 enabled = false
 m_l = 0.0
 cm_l = 0.0
@@ -372,7 +403,8 @@ m_r = 0.0
 cm_r = 0.0
 temperature = 20.0
 
-[apps_stereo_enhancer]
+"apps_stereo_enhancer": {
+}
 enabled = false
 input_gain = 0.0
 output_gain = 0.0
@@ -388,7 +420,8 @@ middle_invert_phase = false
 middle_source = 2
 side_gain = 0.0
 
-[apps_stereo_spread]
+"apps_stereo_spread": {
+}
 enabled = false
 input_gain = 0.0
 output_gain = 0.0
@@ -399,18 +432,21 @@ amount3 = 0.0
 filters = 2
 mono = false
 
-[apps_crossfeed]
+"apps_crossfeed": {
+}
 enabled = false
 fcut = 700
 feed = 4.5
 
-[apps_maximizer]
+"apps_maximizer": {
+}
 enabled = false
 release = 3.1600000000000001
 ceiling = 0.0
 threshold = 0.0
 
-[apps_output_limiter]
+"apps_output_limiter": {
+}
 enabled = true
 input_gain = 0.0
 limit = 0.0
@@ -420,7 +456,8 @@ oversampling = 1
 asc = false
 asc_level = 0.5
 
-[mic_pitch]
+"mic_pitch": {
+}
 enabled = false
 cents = 0.0
 semitones = 0
@@ -429,7 +466,8 @@ crispness = 3
 faster = false
 preserve_formant = false
 
-[mic_gate]
+"mic_gate": {
+}
 enabled = false
 detection_type_rms = true
 stereo_link_type_average = true
@@ -441,7 +479,8 @@ ratio = 2.0
 knee = 9.0
 makeup = 0.0
 
-[mic_deesser]
+"mic_deesser": {
+}
 enabled = false
 detection_type_rms = true
 mode_type_wide = true
@@ -455,7 +494,8 @@ f2 = 4500.0
 f2_level = 12.0
 f2_q = 1.0
 
-[mic_webrtc]
+"mic_webrtc": {
+}
 enabled = false
 high_pass = true
 extended_filter = true

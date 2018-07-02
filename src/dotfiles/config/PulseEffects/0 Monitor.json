@@ -1,4 +1,24 @@
 {
+    "spectrum": {
+        "show": "true",
+        "n-points": "600",
+        "height": "200",
+        "use-custom-color": "true",
+        "color": [
+            "0.80000000000000004",
+            "0",
+            "0",
+            "1"
+        ]
+    },
+    "pulseaudio": {
+        "use-default-sink": "true",
+        "use-default-source": "true",
+        "buffer-out": "200000",
+        "latency-out": "10000",
+        "buffer-in": "200000",
+        "latency-in": "10000"
+    },
     "input": {
         "plugins_order": [
             "gate",
@@ -315,7 +335,8 @@
             "panorama",
             "crossfeed",
             "delay",
-            "maximizer"
+            "maximizer",
+            "expander"
         ],
         "bass_enhancer": {
             "state": "false",
@@ -615,6 +636,25 @@
             "right-balance": "-1",
             "right-delay": "2.0499999999999998",
             "right-gain": "0"
+        },
+        "expander": {
+            "state": "false",
+            "sidechain": {
+                "mode": "RMS",
+                "lookahead": "0",
+                "listen": "false",
+                "source": "Middle",
+                "reactivity": "10",
+                "preamp": "0"
+            },
+            "mode": "Up",
+            "attack-level": "-12",
+            "attack-time": "20",
+            "release-level": "-100",
+            "release-time": "100",
+            "ratio": "4",
+            "knee": "-6",
+            "makeup": "0"
         }
     }
 }
