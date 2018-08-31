@@ -9,7 +9,6 @@ do
     v=$(which $var 2>&1 > /dev/null)
     if [[ "0" == "$?" ]]
     then
-        alias v="$var"
         alias vi="$var"
         alias vim="$var"
         alias svi="sudo -E $var"
@@ -50,6 +49,27 @@ alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
+
+cmd_exists=$(command -v bat)
+if [[ -n $cmd_exists ]]; then
+    alias cat='bat --theme Monokai\ Extended\ Light'
+else
+    echo "Install 'bat' for a better cat"
+fi
+
+cmd_exists=$(command -v prettyping)
+if [[ -n $cmd_exists ]]; then
+    alias ping='prettyping'
+else
+    echo "Install 'prettyping' for a better ping"
+fi
+
+cmd_exists=$(command -v ncdu)
+if [[ -n $cmd_exists ]]; then
+    alias du='ncdu'
+else
+    echo "Install 'ncdu' for a better du"
+fi
 
 export PATH=$HOME/bin:$PATH
 
