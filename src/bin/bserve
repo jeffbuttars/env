@@ -1,0 +1,38 @@
+#!/bin/bash
+
+BASE_DIR='~/Dev/BST/defense-os'
+cd $BASE_DIR
+WORK_DIR="$BASE_DIR"
+
+shellexec ()
+{
+    tmpfile=$(mktemp)
+    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n. ~/.bashrc\n$1; zsh" > "$tmpfile"
+    konsole --profile red --workdir $WORK_DIR -e "bash --rcfile $tmpfile" &
+    sleep 1
+}
+
+i3-msg 'workspace " 10  Debug Output"'
+
+WORK_DIR="$BASE_DIR/services/api"
+cd $WORK_DIR
+shellexec "echo 'Reseting workspace $WORK_DIR and starting API dev server'; vcreset; . ./.vc_proj; ./serve --log-level debug --reload"
+
+i3-msg 'split vertical'
+
+WORK_DIR="$BASE_DIR/cop"
+cd $WORK_DIR
+shellexec "echo 'Starting COP...'; yarn yrebuild; yarn start"
+
+i3-msg 'focus parent'
+i3-msg 'split horizontal'
+
+WORK_DIR="$BASE_DIR"
+cd $WORK_DIR
+shellexec "echo 'Starting V1 services...'; nvm use bst; node_modules/.bin/nf start -j Procfile.jeff"
+
+i3-msg 'split vertical'
+
+WORK_DIR="$BASE_DIR/../pydar"
+cd $WORK_DIR
+konsole --profile red --workdir $WORK_DIR
