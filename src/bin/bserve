@@ -12,6 +12,8 @@ shellexec ()
     sleep 1
 }
 
+sudo systemctl start couchdb
+
 i3-msg 'workspace " 10  Debug Output"'
 
 WORK_DIR="$BASE_DIR/services/api"
