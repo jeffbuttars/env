@@ -83,12 +83,13 @@ do
         wait ${_pid}
         _pid=''
         echo "job is done"
-        jobs -l
+        #jobs -l
     fi
 
     sleep $SLEEP_TIME
 
     last_cmd=$(run_cmds ${commands[@]})
-    $last_cmd &
+    # $last_cmd &
+    $last_cmd
     _pid=$!
 done

@@ -44,7 +44,7 @@ bindsym $mod+Shift+i scratchpad show
 # Use the xprop command to get window info
 # for_window [class="google-chrome"] border pixel 2
 # fow_window [name="^Android Emulator.*"] width 400 px
-for_window [class="konsole"] border pixel 2
+for_window [class="konsole"] border pixel 4
 for_window [class="kitty"] border pixel 2
 # for_window [title="Plasma"] floating enable, border none
 for_window [class="plasmashell"] floating enable, border none
@@ -68,6 +68,7 @@ for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [id="qpaeq"] floating enable, border 1px
+# for_window [title="YouTube"] floating enable, sticky enable, border pixel 3
 for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
 for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 3
 for_window [title="Plex"] floating enable, sticky enable, border pixel 3
@@ -307,6 +308,7 @@ bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/cserve
 bindsym $mod+F4 exec ~/bin/music
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
+# bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 workspace $ws2, exec slack
