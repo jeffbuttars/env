@@ -52,7 +52,7 @@ alias vif='nvim +Files'
 
 cmd_exists=$(command -v bat)
 if [[ -n $cmd_exists ]]; then
-    alias cat='bat --theme Monokai\ Extended\ Light'
+    alias bat='bat --theme Monokai\ Extended\ Light'
 else
     echo "Install 'bat' for a better cat"
 fi
