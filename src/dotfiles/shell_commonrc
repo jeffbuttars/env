@@ -11,7 +11,7 @@ if [[ ! -d "$NPM_PACKAGES" ]]; then
 fi
 
 # export VC_VENV_INITIAL_DEV_PKGS="neovim flake8 prospector pylint"
-export VC_VENV_INITIAL_DEV_PKGS="neovim flake8 pylint"
+export VC_VENV_INITIAL_DEV_PKGS="neovim flake8 pylint jedi black isort"
 
 # PATH alterations
 export PATH="$HOME/bin:$HOME/.upkg/env.git/src/bin:$PATH:$NPM_PACKAGES/bin:/home/jeffre/.gem/ruby/2.5.0/bin"
