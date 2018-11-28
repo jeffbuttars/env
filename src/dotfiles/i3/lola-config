@@ -3,8 +3,8 @@
 # Output vars
 set $left_op DP-0
 set $center_op DP-2
-# set $right_op DP-4
-set $right_op HDMI-0
+set $right_op DP-4
+#set $right_op HDMI-0
 
 # Workspace vars
 

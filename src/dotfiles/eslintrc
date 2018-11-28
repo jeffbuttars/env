@@ -8,14 +8,14 @@ module.exports = {
 
   'rules': {
     'indent': [2, 2, {'SwitchCase': 1}],
-    'jsx-quotes': 0,
+    'jsx-quotes': ["error", "prefer-single"],
     'react/display-name': 0,
     'react/forbid-prop-types': 0,
     'react/jsx-boolean-value': 1,
     'react/jsx-closing-bracket-location': [1, {selfClosing: 'tag-aligned', nonEmpty: 'tag-aligned'}],
     'react/jsx-curly-spacing': 1,
     'react/jsx-handler-names': 1,
-    'react/jsx-indent-props':  [2, 2],
+    'react/jsx-indent-props': [2, 2],
     'react/jsx-indent': [2, 2],
     'react/jsx-key': 1,
     'react/jsx-max-props-per-line': 0,
@@ -45,6 +45,7 @@ module.exports = {
     'react/sort-comp': 1,
     'arrow-parens': 0,
     'import/order': ['error', {'groups': ['builtin', 'external', 'internal', 'index', 'parent', 'sibling']}],
+    'import/no-webpack-loader-syntax': 0,
     'react/jsx-wrap-multilines': 1
   }
 }

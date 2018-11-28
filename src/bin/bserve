@@ -18,7 +18,7 @@ i3-msg 'workspace " 10  Debug Output"'
 
 WORK_DIR="$BASE_DIR/services/api"
 cd $WORK_DIR
-shellexec "echo 'Reseting workspace $WORK_DIR and starting API dev server'; vcreset; . ./.vc_proj; ./serve --log-level debug --reload"
+shellexec "echo 'Reseting workspace $WORK_DIR and starting API dev server'; vcreset; . ./.vc_proj; vcin -d; ./serve --log-level debug --reload"
 
 i3-msg 'split vertical'
 

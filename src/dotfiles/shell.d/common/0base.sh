@@ -51,11 +51,11 @@ alias open='xdg-open'
 alias vif='nvim +Files'
 
 cmd_exists=$(command -v bat)
-if [[ -n $cmd_exists ]]; then
-    alias cat='bat --theme Monokai\ Extended\ Light'
-else
-    echo "Install 'bat' for a better cat"
-fi
+# if [[ -n $cmd_exists ]]; then
+#     alias cat='bat --theme Monokai\ Extended\ Light'
+# else
+#     echo "Install 'bat' for a better cat"
+# fi
 
 cmd_exists=$(command -v prettyping)
 if [[ -n $cmd_exists ]]; then

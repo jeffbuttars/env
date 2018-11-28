@@ -18,7 +18,8 @@
     dump = cat-file -p
     rvdiff = diff --no-color --full-index --ignore-submodules --no-ext-diff
     serve = !ip a && git daemon --enable=receive-pack --reuseaddr --verbose --base-path=. --export-all ./.git
-    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    #lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    lg = log --color --graph --pretty=format:'%Cgreen(%cr) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --
     sreset = !git co -- . && git status | grep "^#" | tail -n +5 | awk '{print $2}' | xargs rm -vrf
     as = "!f() { git add \"$*\"; git status; }; f"
     pushup = "!gitbranchname() { git symbolic-ref --short HEAD; }; gitpushupstream() { git push --set-upstream origin `gitbranchname`; }; gitpushupstream"

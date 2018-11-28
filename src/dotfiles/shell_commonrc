@@ -135,4 +135,8 @@ export PSQL_EDITOR='vim -c"set ft=sql"'
 export BROWSER=google-chrome
 export EDITOR='vim'
 
+if [[ -f $HOME/.circleci/token ]]; then
+    . $HOME/.circleci/token
+fi
+
 # vim:set ft=sh:
