@@ -77,8 +77,8 @@ for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
 for_window [class="urxvt"] floating enable, border pixel 3
 for_window [class="Deadbeef"] floating enable, border pixel 2
 for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
-for_window [instance="slack"] move container to workspace $ws2
-for_window [class="Slack"] move container to workspace $ws2
+for_window [instance="slack"] move container to workspace $ws9
+for_window [class="Slack"] move container to workspace $ws9
 
 # Float by type
 for_window [window_role="pop-up"] floating enable
@@ -93,11 +93,11 @@ no_focus [class="plasmashell"]
 no_focus [window_role="pop-up"]
 no_focus [window_type="notification"]
 
-for_window [title=".*Audio Volume — System Settings.*"] floating disable, border none, , move container to workspace $ws4
-for_window [class="Pulseeffects"] border pixel 2, move container to workspace $ws4
-for_window [instance="^play\\.google.*$"] floating disable, border none, move container to workspace $ws4
-for_window [title=".*Google Play Music.*"] border pixel 2, move container to workspace $ws4
-for_window [title=".*MellowPlayer*"] border pixel 2, move container to workspace $ws4
+for_window [title=".*Audio Volume — System Settings.*"] floating disable, border none, , move container to workspace $ws11
+for_window [class="Pulseeffects"] border pixel 2, move container to workspace $ws11
+for_window [instance="^play\\.google.*$"] floating disable, border none, move container to workspace $ws11
+for_window [title=".*Google Play Music.*"] border pixel 2, move container to workspace $ws11
+for_window [title=".*MellowPlayer*"] border pixel 2, move container to workspace $ws11
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -119,24 +119,28 @@ set $sol_green   #859900
 
 # Workspace names
 set $ws1 " 1  Web / Docs"
-# Slack
-set $ws2 " 2  Messaging"
+#set $ws2 " 2  Messaging"
+set $ws2 " 2  Web / Docs"
 # Dev Services
 set $ws3 " 3  Services"
-set $ws4 " 4  Music"
+set $ws4 " 4 Misc."
+
+#set $ws4 " 4  Music"
 # Main code window
 set $ws5 " 5  Code"
 # Mail
 set $ws6 " 6  Mail"
 # Scratch
-set $ws7 " 7 Misc. "
+set $ws7 " 7 VMs "
 # Scratch
 set $ws8 " 8 Misc. "
+
 # Main web dev output windows
-set $ws9 " 9  Program Output"
+#set $ws9 " 9  Program Output"
+set $ws9 " 9  Messaging"
 # Scratch
 set $ws10 " 10  Debug Output"
-set $ws11 " 11 Misc. "
+set $ws11 " 11  Music"
 set $ws12 " 12 Misc. "
 
  #Pressing $mod and current workspace number takes you back to the previousle active workspace
@@ -311,7 +315,7 @@ bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
 # bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
-bindsym $mod+F8 workspace $ws2, exec slack
+bindsym $mod+F8 workspace $ws9, exec slack
 bindsym $mod+F9 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+Escape exec krunner
 # bindsym $ctrl+mod+l exec i3lock
