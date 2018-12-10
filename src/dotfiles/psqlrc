@@ -1,0 +1,9 @@
+\set PROMPT1 '%M:%> %n@%/%R%#%x '
+\set PROMPT2 '%M %n@%/%R %# '
+\unset SINGLESTEP
+\timing
+\x auto
+\set HISTSIZE 100000
+\set COMP_KEYWORD_CASE upper
+\pset null '[null]'
+\set VERBOSITY verbose
