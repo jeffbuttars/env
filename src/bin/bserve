@@ -35,6 +35,6 @@ shellexec "echo 'Starting V1 services...'; nvm use bst; node_modules/.bin/nf sta
 
 i3-msg 'split vertical'
 
-WORK_DIR="$BASE_DIR/../pydar"
+WORK_DIR="$BASE_DIR/services/sims/simdar"
 cd $WORK_DIR
 konsole --profile red --workdir $WORK_DIR
