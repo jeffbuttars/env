@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Solarized Light
-Font=Hack,12,-1,0,50,0,0,0,0,0,Regular
+Font=Hack,14,-1,0,50,0,0,0,0,0,Regular
 
 [Cursor Options]
 CursorShape=0
@@ -27,7 +27,8 @@ TrimTrailingSpacesInSelectedText=true
 KeyBindings=default
 
 [Scrolling]
-HistoryMode=2
+HistoryMode=1
+HistorySize=1000000
 ScrollBarPosition=1
 
 [Terminal Features]

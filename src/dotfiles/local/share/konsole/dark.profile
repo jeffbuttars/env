@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=Solarized Dark
-Font=Hack,12,-1,0,50,0,0,0,0,0,Regular
+Font=Hack,14,-1,0,50,0,0,0,0,0,Regular
 
 [Encoding Options]
 DefaultEncoding=UTF-8
@@ -15,5 +15,6 @@ ShowTerminalSizeHint=false
 
 [Scrolling]
 HistoryMode=2
+HistorySize=100000
 ScrollBarPosition=2
 ScrollFullPage=true

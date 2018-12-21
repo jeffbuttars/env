@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=RedOnBlack
-Font=Hack,9,-1,0,50,0,0,0,0,0,Regular
+Font=Hack,12,-1,0,50,0,0,0,0,0,Regular
 
 [Encoding Options]
 DefaultEncoding=UTF-8
@@ -21,7 +21,8 @@ TrimTrailingSpacesInSelectedText=true
 UnderlineFilesEnabled=true
 
 [Scrolling]
-HistoryMode=2
+HistoryMode=1
+HistorySize=100000
 ScrollBarPosition=1
 ScrollFullPage=false
 
