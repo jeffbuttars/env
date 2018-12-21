@@ -46,6 +46,6 @@ export EDITOR=vim
 export VISUAL=vim
 
 # Add the following 3 lines into your /home/jeff/.zshrc file
-if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-    source "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.zsh"
+if [[ -f "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+    source "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh"
 fi
