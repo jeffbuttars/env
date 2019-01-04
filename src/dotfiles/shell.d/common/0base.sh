@@ -49,6 +49,7 @@ alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
+alias gvim='nvim-gtk'
 
 cmd_exists=$(command -v bat)
 # if [[ -n $cmd_exists ]]; then
@@ -64,12 +65,12 @@ else
     echo "Install 'prettyping' for a better ping"
 fi
 
-cmd_exists=$(command -v ncdu)
-if [[ -n $cmd_exists ]]; then
-    alias du='ncdu'
-else
-    echo "Install 'ncdu' for a better du"
-fi
+# cmd_exists=$(command -v ncdu)
+# if [[ -n $cmd_exists ]]; then
+#     alias du='ncdu'
+# else
+#     echo "Install 'ncdu' for a better du"
+# fi
 
 export PATH=$HOME/bin:$PATH
 
