@@ -14,7 +14,7 @@ shellexec ()
 
 sudo systemctl start couchdb
 
-i3-msg 'workspace " 10  Debug Output"'
+i3-msg 'workspace " 10  Dev Services"'
 
 WORK_DIR="$BASE_DIR/services/api"
 cd $WORK_DIR
@@ -31,7 +31,7 @@ i3-msg 'split horizontal'
 
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
-shellexec "echo 'Starting V1 services...'; nvm use bst; node_modules/.bin/nf start -j Procfile.jeff"
+shellexec "echo 'Starting V1 services...'; nvm use bst; nf start -j Procfile.jeff"
 
 i3-msg 'split vertical'
 

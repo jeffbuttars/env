@@ -19,16 +19,10 @@ set $mod Mod1
 
 # font for window titles. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# font xft:Droid Sans Regular 11
 # font xft:Inconsolata Medium 11
-# font xft:Eurostile Bold  10
-# font xft:Ubuntu Bold 11
-# font xft:DejaVu Sans Bold 11
 # font xft:Oxygen-Sans 12
 font pango: MesloLGMDZ Nerd Font Mono 10
-# font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
-# font pango:Meslo LG L DZ, FontAwesome 8
-# font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons 10
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -40,10 +34,8 @@ bindsym $mod+Control+i move scratchpad
 # Show the scratchpad
 bindsym $mod+Shift+i scratchpad show
 
-# Let Yakuake float by defaul
 # Use the xprop command to get window info
-# for_window [class="google-chrome"] border pixel 2
-# fow_window [name="^Android Emulator.*"] width 400 px
+
 for_window [class="konsole"] border pixel 4
 for_window [class="kitty"] border pixel 2
 # for_window [title="Plasma"] floating enable, border none
@@ -57,7 +49,7 @@ for_window [class="Kcalc"] floating enable
 for_window [class="Vlc"] floating enable
 for_window [class="Mplayer"] floating enable
 for_window [class="qjackctl"] floating enable
-# Juniper VPN client, float it
+
 for_window [class="NC"] floating enable
 for_window [class="Cadence.py"] floating enable
 for_window [class="Skype"] floating enable
@@ -67,8 +59,6 @@ for_window [class="Plasma-desktop"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
-# for_window [id="qpaeq"] floating enable, border 1px
-# for_window [title="YouTube"] floating enable, sticky enable, border pixel 3
 for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
 for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 3
 for_window [title="Plex"] floating enable, sticky enable, border pixel 3
@@ -85,8 +75,6 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable
-# for_window [class="Gkrellm"] floating enable
-# for_window [class="gkrellm"] floating enable
 for_window [title="gkrellm"] floating enable, enable sticky
 
 no_focus [class="plasmashell"]
@@ -98,6 +86,23 @@ for_window [class="Pulseeffects"] border pixel 2, move container to workspace $w
 for_window [instance="^play\\.google.*$"] floating disable, border none, move container to workspace $ws11
 for_window [title=".*Google Play Music.*"] border pixel 2, move container to workspace $ws11
 for_window [title=".*MellowPlayer*"] border pixel 2, move container to workspace $ws11
+
+# Workspace names
+set $ws1 " 1  Web / Docs"
+set $ws2 " 2  Web / Docs"
+set $ws3 " 3  Web / Docs"
+set $ws4 " 4  Music"
+
+set $ws5 " 5  Code"
+set $ws6 " 6  Dev"
+set $ws7 " 7  Dev"
+set $ws8 " 8 VMs "
+
+set $ws9 " 9   Debug Output"
+set $ws10 " 10  Dev Services"
+set $ws11 " 11  Messaging"
+set $ws12 " 12  Mail"
+
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -117,31 +122,26 @@ set $sol_blue    #268bd2
 set $sol_cyan    #2aa198
 set $sol_green   #859900
 
-# Workspace names
-set $ws1 " 1  Web / Docs"
-#set $ws2 " 2  Messaging"
-set $ws2 " 2  Web / Docs"
-# Dev Services
-set $ws3 " 3  Services"
-set $ws4 " 4 Misc."
+#client.focused #859900 #859900 #FFFFFF
+#client.urgent $sol_base2 $sol_base3 $sol_red $sol_blue
 
-#set $ws4 " 4  Music"
-# Main code window
-set $ws5 " 5  Code"
-# Mail
-set $ws6 " 6  Mail"
-# Scratch
-set $ws7 " 7 VMs "
-# Scratch
-set $ws8 " 8 Misc. "
+# Hybrid colors
+set $back               #1d1F21
+set $black              #282A2E
+set $grey               #373B41
+set $lightgrey          #707880
+set $white              #C5C8C6
+set $yellow             #F0C674
+set $red                #CC6666
+set $darkred            #A54242
+set $green              #B5BD56
 
-# Main web dev output windows
-#set $ws9 " 9  Program Output"
-set $ws9 " 9  Messaging"
-# Scratch
-set $ws10 " 10  Debug Output"
-set $ws11 " 11  Music"
-set $ws12 " 12 Misc. "
+#class                  border      backgr.     text        split
+client.focused          $green     $green       $black      $red
+client.focused_inactive $grey       $grey       $lightgrey  $grey
+client.unfocused        $grey       $grey       $lightgrey  $grey
+client.urgent           $red        $red        $black      $red
+client.background       $back
 
  #Pressing $mod and current workspace number takes you back to the previousle active workspace
 # workspace_auto_back_and_forth yes
@@ -156,7 +156,6 @@ set $ws12 " 12 Misc. "
 # Red
 # client.focused #dc322f #dc322f #FFFFFF
 # Green
-client.focused #859900 #859900 #FFFFFF
 
 
 # A client which currently has the focus.
@@ -172,7 +171,6 @@ client.focused #859900 #859900 #FFFFFF
 # client.unfocused #073642 #002b36 $sol_base1 $sol_red
 
 #  A client which has its urgency hint activated.
-client.urgent $sol_base2 $sol_base3 $sol_red $sol_blue
 
 default_orientation horizontal
 
@@ -203,18 +201,6 @@ bindsym $mod+j focus down
 
 # Toggle border between default, none and 1px
 bindsym $mod+t border toggle
-
-# alternatively, you can use the cursor keys:
-# bindsym $mod+Left focus left
-# bindsym $mod+Down focus down
-# bindsym $mod+Up focus up
-# bindsym $mod+Right focus right
-
-# move focused window
-# bindsym $mod+Shift+J move left
-# bindsym $mod+Shift+K move down
-# bindsym $mod+Shift+L move up
-# bindsym $mod+Shift+colon move right
 
 bindsym $mod+Shift+H move left
 bindsym $mod+Shift+K move up
@@ -305,6 +291,11 @@ bar {
         position bottom
         tray_output primary
 }
+
+# Lemon bar
+# bar {
+#   i3bar_command ~/.i3/lemonbar/i3_lemonbar.sh
+# }
 
 # My own hotkeys
 bindsym $mod+F1 exec google-chrome-stable
