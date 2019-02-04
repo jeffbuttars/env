@@ -103,6 +103,34 @@ set $ws10 " 10  Dev Services"
 set $ws11 " 11  Messaging"
 set $ws12 " 12  Mail"
 
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+minus workspace $ws11
+bindsym $mod+equal workspace $ws12
+
+# move focused container to workspace
+bindsym $mod+Shift+exclam move container to workspace $ws1
+bindsym $mod+Shift+at move container to workspace $ws2
+bindsym $mod+Shift+numbersign move container to workspace $ws3
+bindsym $mod+Shift+dollar move container to workspace $ws4
+bindsym $mod+Shift+percent move container to workspace $ws5
+bindsym $mod+Shift+asciicircum move container to workspace $ws6
+bindsym $mod+Shift+ampersand move container to workspace $ws7
+bindsym $mod+Shift+asterisk move container to workspace $ws8
+bindsym $mod+Shift+parenleft move container to workspace $ws9
+bindsym $mod+Shift+parenright move container to workspace $ws10
+bindsym $mod+Shift+underscore move container to workspace $ws11
+bindsym $mod+Shift+plus move container to workspace $ws12
+
 
 # Solaraized colors:
 set $sol_base03  #002b36
@@ -343,6 +371,3 @@ exec spacesetbg
 exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83702
-# exec krunner
-
-# exec kmix --keepvisibility

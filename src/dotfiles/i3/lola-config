@@ -45,34 +45,6 @@ workspace $ws10 output $right_op
 workspace $ws11 output $right_op
 workspace $ws12 output $right_op
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym $mod+minus workspace $ws11
-bindsym $mod+equal workspace $ws12
-
-# move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace $ws1
-bindsym $mod+Shift+at move container to workspace $ws2
-bindsym $mod+Shift+numbersign move container to workspace $ws3
-bindsym $mod+Shift+dollar move container to workspace $ws4
-bindsym $mod+Shift+percent move container to workspace $ws5
-bindsym $mod+Shift+asciicircum move container to workspace $ws6
-bindsym $mod+Shift+ampersand move container to workspace $ws7
-bindsym $mod+Shift+asterisk move container to workspace $ws8
-bindsym $mod+Shift+parenleft move container to workspace $ws9
-bindsym $mod+Shift+parenright move container to workspace $ws10
-bindsym $mod+Shift+underscore move container to workspace $ws11
-bindsym $mod+Shift+plus move container to workspace $ws12
-
 for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws12
 for_window [title="^.*Gmail.*Google Chrome.*"] workspace $ws12
 
@@ -84,10 +56,8 @@ bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 
 exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
 
-
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws1'
 exec --no-startup-id 'i3-msg workspace $ws5'
 exec --no-startup-id 'i3-msg workspace $ws9'
-
 exec --no-startup-id 'i3-msg workspace $ws9; slack'

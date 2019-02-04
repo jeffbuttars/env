@@ -6,11 +6,6 @@ set $left_op HDMI-0
 # set $right_op DP-4
 set $right_op DP-0
 
-# Workspace layout
-# [ $left_op ] $ws1 $ws2 $ws3 $ws4
-# [ $center_op ] $ws5 $ws6 $ws7 $ws8
-# [ $right_op ] $ws9 $ws10 $ws11 $ws12
-
 bindsym Control+1 focus output $left_op
 bindsym Control+2 focus output $right_op
 bindsym Control+3 focus output $right_op
@@ -29,34 +24,6 @@ workspace $ws10 output $left_op
 workspace $ws11 output $left_op
 workspace $ws12 output $left_op
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym $mod+minus workspace $ws11
-bindsym $mod+equal workspace $ws12
-
-# move focused container to workspace
-bindsym $mod+Shift+exclam move container to workspace $ws1
-bindsym $mod+Shift+at move container to workspace $ws2
-bindsym $mod+Shift+numbersign move container to workspace $ws3
-bindsym $mod+Shift+dollar move container to workspace $ws4
-bindsym $mod+Shift+percent move container to workspace $ws5
-bindsym $mod+Shift+asciicircum move container to workspace $ws6
-bindsym $mod+Shift+ampersand move container to workspace $ws7
-bindsym $mod+Shift+asterisk move container to workspace $ws8
-bindsym $mod+Shift+parenleft move container to workspace $ws9
-bindsym $mod+Shift+parenright move container to workspace $ws10
-bindsym $mod+Shift+underscore move container to workspace $ws11
-bindsym $mod+Shift+plus move container to workspace $ws12
-
 for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 
 
@@ -65,13 +32,11 @@ for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws6
 # Go to default spaces
 bindsym $mod+Insert workspace 3, workspace 5
 bindsym $mod+End workspace 3, workspace 5
-# bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
 
 # Mouse bindings
 bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 
-# exec --no-startup-id xscreensaver
 exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
 
 exec --no-startup-id slack
@@ -80,7 +45,7 @@ exec --no-startup-id slack
 # exec --no-startup-id ~/bin/music
 
 # Startup a terminal for service output
-exec --no-startup-id 'i3-msg workspace $ws3; konsole --profile red; sleep 1'
+# exec --no-startup-id 'i3-msg workspace $ws3; konsole --profile red; sleep 1'
 
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws1'
