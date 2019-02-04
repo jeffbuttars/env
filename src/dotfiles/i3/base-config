@@ -355,7 +355,7 @@ bindsym $mod+F4 exec ~/bin/music
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
-bindsym $mod+F8 workspace $ws9, exec slack
+bindsym $mod+F8 workspace $wsMessaging, exec slack
 bindsym $mod+F9 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+Escape exec krunner
 # bindsym $ctrl+mod+l exec i3lock

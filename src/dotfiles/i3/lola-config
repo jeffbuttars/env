@@ -55,6 +55,5 @@ exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
 
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws1'
-exec --no-startup-id 'i3-msg workspace $ws5'
-exec --no-startup-id 'i3-msg workspace $ws9'
-exec --no-startup-id 'i3-msg workspace $ws9; slack'
+exec --no-startup-id 'i3-msg workspace $wsCode'
+exec --no-startup-id 'i3-msg workspace $wsMessaging; slack'
