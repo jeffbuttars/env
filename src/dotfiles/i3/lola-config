@@ -45,9 +45,6 @@ workspace $ws10 output $right_op
 workspace $ws11 output $right_op
 workspace $ws12 output $right_op
 
-for_window [title="^.*Mail.*Google Chrome.*"] workspace $ws12
-for_window [title="^.*Gmail.*Google Chrome.*"] workspace $ws12
-
 # exec_always --no-startup-id synergys
 
 # Mouse bindings

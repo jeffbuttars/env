@@ -35,6 +35,23 @@ bindsym $mod+Control+i move scratchpad
 bindsym $mod+Shift+i scratchpad show
 
 # Use the xprop command to get window info
+# for_window [title="^.*Mail.*Google Chrome.*"] workspace $wsMail
+# for_window [title="^.*Gmail.*Google Chrome.*"] workspace $wsMail
+for_window [title="^.*jeff@blacksagetech.com.*"] move container to workspace $wsMail
+for_window [title="^.*jeffbuttars@gmail.com.*"] move container to workspace $wsMail
+for_window [title="^.*jeff@jeffbuttars.com.*"] move container to workspace $wsMail
+
+for_window [title="^.*WhatsApp.*"] move container to workspace $wsMessaging
+for_window [title="^.*Discord.*"] move container to workspace $wsMessaging
+for_window [title="^.*Messages for web.*"] move container to workspace $wsMessaging
+for_window [instance="slack"] move container to workspace $wsMessaging
+for_window [class="Slack"] move container to workspace $wsMessaging
+for_window [title="^Slack.*"] move container to workspace $wsMessaging
+
+for_window [title="^Transmission.*"] move container to workspace $ws3
+for_window [title="^.*PassThePopcorn.*"] move container to workspace $ws3
+
+for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace $wsVM
 
 for_window [class="konsole"] border pixel 4
 for_window [class="kitty"] border pixel 2
@@ -67,8 +84,6 @@ for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
 for_window [class="urxvt"] floating enable, border pixel 3
 for_window [class="Deadbeef"] floating enable, border pixel 2
 for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
-for_window [instance="slack"] move container to workspace $ws9
-for_window [class="Slack"] move container to workspace $ws9
 
 # Float by type
 for_window [window_role="pop-up"] floating enable
@@ -92,16 +107,23 @@ set $ws1 " 1  Web / Docs"
 set $ws2 " 2  Web / Docs"
 set $ws3 " 3  Web / Docs"
 set $ws4 " 4  Music"
+set $wsMusic " 4  Music"
 
 set $ws5 " 5  Code"
+set $wsCode " 5  Code"
 set $ws6 " 6  Dev"
 set $ws7 " 7  Dev"
 set $ws8 " 8 VMs "
+set $wsVM " 8 VMs "
 
 set $ws9 " 9   Debug Output"
+set $wsDebug " 9   Debug Output"
 set $ws10 " 10  Dev Services"
+set $wsServices " 10  Dev Services"
 set $ws11 " 11  Messaging"
+set $wsMessaging " 11  Messaging"
 set $ws12 " 12  Mail"
+set $wsMail " 12  Mail"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
