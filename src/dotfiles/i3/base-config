@@ -387,9 +387,10 @@ bindcode 164 exec --no-startup-id playerctl play-pause
 # bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # bindsym XF86AudioNext exec --no-startup-id playerctl next
 
-exec spacesetbg
+exec_always ~/.fehbg
+exec_always ~/bin/nasa-pod.sh &
 
 # exec_always xmodmap ~/.Xmodmap
 exec_always xrdb -merge ~/.Xresources
 exec yakuake
-exec xflux -z 83702
+exec xflux -z 83703
