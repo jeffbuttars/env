@@ -1,7 +1,7 @@
 #!/bin/bash
 
-BASE_DIR='~/Dev/BST/defense-os'
-cd $BASE_DIR
+BASE_DIR="$HOME/Dev/BST/defense-os"
+cd "$BASE_DIR"
 WORK_DIR="$BASE_DIR"
 
 shellexec ()
@@ -12,9 +12,32 @@ shellexec ()
     sleep 1
 }
 
-sudo systemctl start couchdb
+# pgsql     #  API
+# dbwatch   #  COP
+# couchdb   #  Node
 
 i3-msg 'workspace " 10  Dev Services"'
+
+i3-msg 'focus parent'
+i3-msg 'split vertical'
+
+WORK_DIR="$BASE_DIR/services/pgsql"
+cd $WORK_DIR
+shellexec "./dev-serve"
+
+WORK_DIR="$BASE_DIR/services/dbwatch"
+cd $WORK_DIR
+shellexec "./dev-serve --debug"
+
+docker volume create couchdb
+mkdir -p $HOME/tmp/couchdb
+WORK_DIR="$BASE_DIR/"
+cd $WORK_DIR
+shellexec "docker run --rm --network host --name bst-couchdb -e COUCHDB_USER=bst -e COUCHDB_PASSWORD=bst --mount type=volume,source=couchdb,target=/opt/couchdb/data couchdb:2.2"
+
+
+i3-msg 'focus parent'
+i3-msg 'split horizontal'
 
 WORK_DIR="$BASE_DIR/services/api"
 cd $WORK_DIR
@@ -26,15 +49,13 @@ WORK_DIR="$BASE_DIR/cop"
 cd $WORK_DIR
 shellexec "echo 'Starting COP...'; yarn yrebuild; yarn start"
 
-i3-msg 'focus parent'
-i3-msg 'split horizontal'
 
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
-shellexec "echo 'Starting V1 services...'; nvm use bst; nf start -j Procfile.jeff"
+shellexec "echo 'Starting V1 services...'; . /usr/share/nvm/init-nvm.sh; nvm use bst; npm i; ./node_modules/.bin/nf start -j Procfile.jeff"
 
-i3-msg 'split vertical'
+# i3-msg 'split vertical'
 
-WORK_DIR="$BASE_DIR/services/sims/simdar"
-cd $WORK_DIR
-konsole --profile red --workdir $WORK_DIR
+# WORK_DIR="$BASE_DIR/services/sims/simdar"
+# cd $WORK_DIR
+# konsole --profile red --workdir $WORK_DIR
