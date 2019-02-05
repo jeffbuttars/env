@@ -361,7 +361,7 @@ bindsym $mod+F4 exec ~/bin/music
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
-bindsym $mod+F8 workspace $ws9, exec slack
+bindsym $mod+F8 workspace $wsMessaging, exec slack
 bindsym $mod+F9 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+Escape exec krunner
 # bindsym $ctrl+mod+l exec i3lock
@@ -393,9 +393,10 @@ bindcode 164 exec --no-startup-id playerctl play-pause
 # bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # bindsym XF86AudioNext exec --no-startup-id playerctl next
 
-# exec spacesetbg
+exec_always ~/.fehbg
+exec_always ~/bin/nasa-pod.sh &
 
 # exec_always xmodmap ~/.Xmodmap
 exec_always xrdb -merge ~/.Xresources
 exec yakuake
-exec xflux -z 83702
+exec xflux -z 83703
