@@ -102,11 +102,11 @@ no_focus [class="plasmashell"]
 no_focus [window_role="pop-up"]
 no_focus [window_type="notification"]
 
-for_window [title=".*Audio Volume — System Settings.*"] floating disable, border none, , move container to workspace $ws11
-for_window [class="Pulseeffects"] border pixel 2, move container to workspace $ws11
-for_window [instance="^play\\.google.*$"] floating disable, border none, move container to workspace $ws11
-for_window [title=".*Google Play Music.*"] border pixel 2, move container to workspace $ws11
-for_window [title=".*MellowPlayer*"] border pixel 2, move container to workspace $ws11
+for_window [title=".*Audio Volume — System Settings.*"] floating disable, border none
+for_window [class="Pulseeffects"] border pixel 2, move container to workspace $wsMusic
+for_window [instance="^play\\.google.*$"] floating disable, border none, move container to workspace $wsMusic
+for_window [title=".*Google Play Music.*"] border pixel 2, move container to workspace $wsMusic
+for_window [title=".*MellowPlayer*"] border pixel 2, move container to workspace $wsMusic
 
 # Workspace names
 set $ws1 " 1  Web / Docs"
