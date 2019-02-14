@@ -139,4 +139,8 @@ if [[ -f $HOME/.circleci/token ]]; then
     . $HOME/.circleci/token
 fi
 
+if [[ -f $HOME/Dev/BST/defense-os/scripts/serve-completion.bash ]]; then
+    . $HOME/Dev/BST/defense-os/scripts/serve-completion.bash
+fi
+
 # vim:set ft=sh:
