@@ -187,7 +187,7 @@ set $sol_green   #859900
 
 # https://github.com/unix121/i3wm-themer/blob/master/src/themes/000.json
 client.background #1d1f21
-client.focused #c5c8c6 #1d1f21 #c5c8c6 #81a2be #81a2be
+client.focused #c5c8c6 $sol_blue #c5c8c6 #81a2be #81a2be
 client.unfocused #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.focused_inactive #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
