@@ -79,10 +79,10 @@ for_window [class="Plasma-desktop"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
-for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 3
-for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 3
-for_window [title="Plex"] floating enable, sticky enable, border pixel 3
-for_window [title="Netflix"] floating enable, sticky enable, border pixel 3
+for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 8
+for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 8
+for_window [title="Plex"] floating enable, sticky enable, border pixel 8
+for_window [title="Netflix"] floating enable, sticky enable, border pixel 8
 # for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
 # for_window [class="urxvt"] floating enable, border pixel 3
 # for_window [class="Deadbeef"] floating enable, border pixel 2
@@ -179,7 +179,7 @@ set $sol_cyan    #2aa198
 set $sol_green   #859900
 
 #class                    border        backgr       text        split
-# client.focused          $sol_base03   $sol_base02 $sol_base3   $sol_red
+client.focused          $sol_green   $sol_green $sol_base3   $sol_green
 # client.focused_inactive #073642       #002b36     $sol_base2   $sol_red
 # client.unfocused        #073642       #002b36     $sol_base1   $sol_red
 # client.urgent           $sol_base2    $sol_base3  $sol_red     $sol_blue
@@ -187,7 +187,7 @@ set $sol_green   #859900
 
 # https://github.com/unix121/i3wm-themer/blob/master/src/themes/000.json
 client.background #1d1f21
-client.focused #c5c8c6 $sol_blue #c5c8c6 #81a2be #81a2be
+# client.focused #c5c8c6 $sol_blue #c5c8c6 #81a2be #81a2be
 client.unfocused #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.focused_inactive #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
