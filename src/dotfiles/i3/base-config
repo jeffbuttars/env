@@ -369,3 +369,4 @@ exec yakuake
 exec xflux -z 83703
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always redshift -l 43.61:-116.21

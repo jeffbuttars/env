@@ -220,3 +220,7 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[bar/onescreen]
+inherit = bar/middle
+monitor =
