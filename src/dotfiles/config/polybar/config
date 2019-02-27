@@ -134,6 +134,14 @@ bar-swap-used-fill = ┃
 bar-swap-used-empty = ┃
 bar-swap-used-empty-foreground = #444444
 
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = AC
+;poll-interval = 5
+
+
 [module/wlan]
 type = internal/network
 interface = wlp3s0
@@ -229,4 +237,4 @@ margin-bottom = 0
 [bar/onescreen]
 inherit = bar/middle
 monitor =
-modules-right = cpu memory wlan eth
+modules-right = cpu memory wlan eth battery
