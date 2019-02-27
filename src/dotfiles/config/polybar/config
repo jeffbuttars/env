@@ -1,7 +1,8 @@
 [bar/right]
 width = 100%
 height = 32
-radius = 16
+radius-top = 16
+radius-bottim = 0
 fixed-center = false
 
 monitor = DP-4
@@ -87,6 +88,10 @@ label-urgent = %name%
 label-urgent-background = #BA2922
 label-urgent-padding = 2
 
+label-separator = |
+label-separator-foreground = #1d1f21
+label-separator-padding = 0
+
 [module/cpu]
 type = internal/cpu
 format = <label> <ramp-coreload>
@@ -135,8 +140,8 @@ interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = #1d1f21
-format-connected-background = #81a2be
+format-connected-foreground = #c5c8c6
+format-connected-background = #1d1f21
 format-connected-padding = 2
 label-connected = %ifname% %essid% %local_ip%
 
@@ -224,3 +229,4 @@ margin-bottom = 0
 [bar/onescreen]
 inherit = bar/middle
 monitor =
+modules-right = cpu memory wlan eth
