@@ -49,11 +49,11 @@ card = intel_backlight
 ;   <label> (default)
 ;   <ramp>
 ;   <bar>
-format = <ramp>
+format = <label> <bar>
 
 ; Available tokens:
 ;   %percentage% (default)
-label = %percentage%%
+label = 
 
 ; Only applies if <ramp> is used
 ramp-0 = 🌕
@@ -333,4 +333,4 @@ margin-bottom = 0
 [bar/onescreen]
 inherit = bar/middle
 monitor =
-modules-right = cpu memory wlan eth battery
+modules-right = cpu memory wlan eth backlight battery

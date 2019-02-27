@@ -307,18 +307,18 @@ bindsym $mod+r mode "resize"
 
 #userid Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        #font xft:DejaVu Sans 16
-        # font xft:Oxygen-Sans Bold 10
-        # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
-        # font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons Mono
-        font pango: MesloLGMDZ Nerd Font Mono 12
-        # mode hide
-        modifier Mod1
-        status_command i3status
-        position bottom
-        tray_output primary
-}
+#bar {
+#        #font xft:DejaVu Sans 16
+#        # font xft:Oxygen-Sans Bold 10
+#        # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
+#        # font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons Mono
+#        font pango: MesloLGMDZ Nerd Font Mono 12
+#        # mode hide
+#        modifier Mod1
+#        status_command i3status
+#        position bottom
+#        tray_output primary
+#}
 
 # My own hotkeys
 bindsym $mod+F1 exec google-chrome-stable
