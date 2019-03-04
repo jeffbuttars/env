@@ -1,7 +1,8 @@
 [bar/right]
 width = 100%
 height = 32
-radius = 16
+radius-top = 16
+radius-bottim = 0
 fixed-center = false
 
 monitor = DP-4
@@ -36,6 +37,36 @@ modules-center = wlan eth
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <label> <bar>
+
+; Available tokens:
+;   %percentage% (default)
+label = 
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
 
 [bar/middle]
 inherit = bar/right
@@ -87,6 +118,10 @@ label-urgent = %name%
 label-urgent-background = #BA2922
 label-urgent-padding = 2
 
+label-separator = |
+label-separator-foreground = #1d1f21
+label-separator-padding = 0
+
 [module/cpu]
 type = internal/cpu
 format = <label> <ramp-coreload>
@@ -129,14 +164,88 @@ bar-swap-used-fill = ┃
 bar-swap-used-empty = ┃
 bar-swap-used-empty-foreground = #444444
 
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = AC
+time-format = %H:%M
+
+;poll-interval = 5
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;format-full = <ramp-capacity> <label-full>
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = Charging %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = Discharging %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+label-full = Fully charged
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+
 [module/wlan]
 type = internal/network
 interface = wlp3s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = #1d1f21
-format-connected-background = #81a2be
+format-connected-foreground = #c5c8c6
+format-connected-background = #1d1f21
 format-connected-padding = 2
 label-connected = %ifname% %essid% %local_ip%
 
@@ -220,3 +329,8 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[bar/onescreen]
+inherit = bar/middle
+monitor =
+modules-right = cpu memory wlan eth backlight battery
