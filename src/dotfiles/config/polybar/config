@@ -28,8 +28,8 @@ font-0 = FuraCode Nerd Font Mono:pixelsize=12;1
 font-1 = FuraCode Nerd Font Mono:pixelsize=12;1
 font-2 = FuraCode Nerd Font Mono:pixelsize=12;1
 
-modules-left = date i3
-modules-center = wlan eth
+modules-left = date wlan dev.100 eagle.110 eth i3 menu-apps
+modules-right =  
 
 ; tray-position =
 ;tray-padding =
@@ -37,6 +37,17 @@ modules-center = wlan eth
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/menu-apps]
+type = custom/menu
+expand-left = true
+
+menu-0-0 = Run BST Services
+menu-0-0-exec = ~/bin/bserve &
+
+label-open = Run Things
+label-close = 
+label-separator = |
 
 [module/backlight]
 type = internal/backlight
@@ -264,13 +275,39 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-padding = 2
+format-connected-padding = 1
 format-connected-foreground = #272827
 format-connected-background = #7E807E
 format-connected-prefix = " "
 format-connected-prefix-foreground = #1d1f21
-label-connected = %ifname% %local_ip%
+label-connected = %ifname%: %local_ip%
+format-disconnected =
+label-disconnected = %ifname%
 
+[module/dev.100]
+type = internal/network
+interface = dev.100
+interval = 3.0
+
+format-connected-padding = 1
+format-connected-foreground = #272827
+format-connected-background = #7E807E
+format-connected-prefix = "  "
+format-connected-prefix-foreground = #1d1f21
+label-connected = %ifname%: %local_ip%
+format-disconnected =
+
+[module/eagle.110]
+type = internal/network
+interface = eagle.110
+interval = 3.0
+
+format-connected-padding = 1
+format-connected-foreground = #272827
+format-connected-background = #7E807E
+format-connected-prefix = "  "
+format-connected-prefix-foreground = #1d1f21
+label-connected = %ifname%: %local_ip%
 format-disconnected =
 
 [module/date]
