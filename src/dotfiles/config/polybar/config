@@ -42,12 +42,12 @@ cursor-scroll = ns-resize
 type = custom/menu
 expand-left = true
 
-menu-0-0 = Run BST Services
+menu-0-0 = BST Services
 menu-0-0-exec = ~/bin/bserve &
 
-label-open = Run Things
-label-close = 
-label-separator = |
+label-open = Run
+label-close =  cancel
+label-separator = " | "
 
 [module/backlight]
 type = internal/backlight
