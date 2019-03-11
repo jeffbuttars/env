@@ -97,6 +97,32 @@ modules-left = date i3
 modules-right = cpu memory
 modules-center =
 
+[bar/onescreen]
+inherit = bar/middle
+monitor =
+modules-right = cpu memory wlan eth backlight battery
+
+[bar/ephi-middle]
+inherit = bar/right
+monitor = DP-0
+bottom = false
+
+modules-left = powermenu
+modules-center = i3
+modules-right = date
+
+[bar/ephi-left]
+inherit = bar/onescreen
+monitor = HDMI-0
+bottom = false
+
+modules-left = cpu memory wlan eth
+modules-right = i3 date
+
+font-0 = FuraCode Nerd Font Mono:pixelsize=12;1
+font-1 = FuraCode Nerd Font Mono:pixelsize=12;1
+font-2 = FuraCode Nerd Font Mono:pixelsize=12;1
+
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
@@ -366,8 +392,3 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
-[bar/onescreen]
-inherit = bar/middle
-monitor =
-modules-right = cpu memory wlan eth backlight battery

@@ -14,15 +14,15 @@ bindsym Control+3 focus output $right_op
 workspace $ws1 output $left_op
 workspace $ws2 output $left_op
 workspace $ws3 output $left_op
-workspace $ws4 output $left_op
-workspace $ws5 output $right_op
+workspace $wsMusic output $left_op
+workspace $wsCode output $right_op
 workspace $ws6 output $right_op
 workspace $ws7 output $right_op
-workspace $ws8 output $right_op
-workspace $ws9 output $left_op
-workspace $ws10 output $left_op
-workspace $ws11 output $left_op
-workspace $ws12 output $left_op
+workspace $wsVM output $right_op
+workspace $wsDebug output $left_op
+workspace $wsServices output $left_op
+workspace $wsMessaging output $left_op
+workspace $wsMail output $right_op
 
 # exec_always --no-startup-id synergys
 
