@@ -2,9 +2,9 @@
 Frames=0
 
 [Appearance]
-BackgroundColorOpacity=95
+BackgroundColorOpacity=90
 Skin=default
-SkinInstalledWithKns=true
+SkinInstalledWithKns=false
 TerminalHighlightOnManualActivation=true
 Translucency=true
 
@@ -15,8 +15,8 @@ DefaultProfile=Light.profile
 FirstRun=false
 
 [DownloadDialog Settings]
-Height 2160=643
-Width 3840=1354
+Height 2160=737
+Width 3840=1218
 
 [Favorite Profiles]
 Favorites=Light.profile

@@ -22,7 +22,7 @@ UnderlineFilesEnabled=true
 
 [Scrolling]
 HistoryMode=1
-HistorySize=100000
+HistorySize=1000000
 ScrollBarPosition=1
 ScrollFullPage=false
 

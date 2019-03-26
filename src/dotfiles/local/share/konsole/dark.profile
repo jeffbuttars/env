@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=Solarized Dark
-Font=Hack,14,-1,0,50,0,0,0,0,0,Regular
+Font=FuraCode Nerd Font Mono,14,-1,5,50,0,0,0,0,0,Regular
 
 [Encoding Options]
 DefaultEncoding=UTF-8
@@ -14,7 +14,7 @@ Parent=FALLBACK/
 ShowTerminalSizeHint=false
 
 [Scrolling]
-HistoryMode=2
-HistorySize=100000
+HistoryMode=1
+HistorySize=1000000
 ScrollBarPosition=2
 ScrollFullPage=true
