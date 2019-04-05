@@ -12,16 +12,16 @@
 set $mod Mod1
 
 # Gaps config
-# gaps inner 5
-# gaps outer 5
-# smart_gaps on
-# smart_borders on
+gaps inner 5
+gaps outer 0
+smart_gaps on
+smart_borders on
 
 # font for window titles. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # font xft:Inconsolata Medium 11
 # font xft:Oxygen-Sans 12
-font pango: MesloLGMDZ Nerd Font Mono 10
+font pango: MesloLGMDZ Nerd Font Mono 8
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -76,37 +76,39 @@ for_window [class="Skype"] floating enable
 for_window [title="^Android Emulator.*"] floating enable
 
 for_window [class="Plasma-desktop"] floating enable, border none
+for_window [class="dde-desktop"] floating enable, border none
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
+for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
-for_window [title="YouTube TV"] floating enable, sticky enable, border pixel 8
-for_window [title="YouTube on TV"] floating enable, sticky enable, border pixel 8
-for_window [title="Plex"] floating enable, sticky enable, border pixel 8
-for_window [title="Netflix"] floating enable, sticky enable, border pixel 8
-# for_window [title="Amarok"] floating enable, sticky enable, border pixel 3
+for_window [title="YouTube TV"] floating enable, sticky enable
+for_window [title="YouTube on TV"] floating enable, sticky enable
+for_window [title="Plex"] floating enable, sticky enable
+for_window [title="Netflix"] floating enable, sticky enable
+for_window [title="Amarok"] floating enable
 # for_window [class="urxvt"] floating enable, border pixel 3
-# for_window [class="Deadbeef"] floating enable, border pixel 2
+for_window [class="Deadbeef"] floating enable
 # for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
 
 # Float by type
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
+for_window [window_role="pop-up"] floating enable, border none
+for_window [window_role="bubble"] floating enable, border none
+for_window [window_role="task_dialog"] floating enable, border none
 for_window [window_role="Preferences"] floating enable
 for_window [window_role="About"] floating enable
 for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [title="gkrellm"] floating enable, enable sticky
+for_window [window_type="menu"] floating enable, border none
+for_window [title="gkrellm"] floating enable, enable sticky, border none
 
 no_focus [class="plasmashell"]
 no_focus [window_role="pop-up"]
 no_focus [window_type="notification"]
 
-for_window [title=".*Audio Volume — System Settings.*"] floating disable, border none
-for_window [class="Pulseeffects"] border pixel 2, move container to workspace $wsMusic
-for_window [instance="^play\\.google.*$"] floating disable, border none, move container to workspace $wsMusic
-for_window [title=".*Google Play Music.*"] border pixel 2, move container to workspace $wsMusic
-for_window [title=".*MellowPlayer*"] border pixel 2, move container to workspace $wsMusic
+for_window [title=".*Audio Volume — System Settings.*"] floating disable
+for_window [class="Pulseeffects"] move container to workspace $wsMusic
+for_window [instance="^play\\.google.*$"] floating disable, move container to workspace $wsMusic
+for_window [title=".*Google Play Music.*"] move container to workspace $wsMusic
+for_window [title=".*MellowPlayer*"] move container to workspace $wsMusic
 
 # Workspace names
 set $ws1 " 1  Web / Docs"
@@ -369,4 +371,4 @@ exec yakuake
 exec xflux -z 83703
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always redshift -l 43.61:-116.21
+#exec_always redshift -l 43.61:-116.21
