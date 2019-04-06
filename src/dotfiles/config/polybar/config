@@ -5,7 +5,7 @@ radius-top = 16
 radius-bottim = 0
 fixed-center = false
 
-monitor = DP-4
+monitor = DP-0
 
 background = #1d1f21
 foreground = #c5c8c6
@@ -81,7 +81,7 @@ bar-empty = ─
 
 [bar/middle]
 inherit = bar/right
-monitor = DP-2
+monitor = DP-4
 bottom = false
 
 modules-left = date i3
@@ -90,7 +90,7 @@ modules-center =
 
 [bar/left]
 inherit = bar/right
-monitor = DP-0
+monitor = DP-2
 bottom = false
 
 modules-left = date i3

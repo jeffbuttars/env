@@ -4,34 +4,11 @@ declare -a commands
 
 run_cmds ()
 {
-    echo "Running ${commands[@]}" 1>&2
-    local last_cmd=${commands[${#commands[@]} -1]}
-    # echo "RUN last $last_cmd" 1>&2
-    # echo "RUNers ${#commands[@]}" 1>&2
-
-    if [[ "${#commands}" == "1" ]]; then
-        echo $last_cmd
-        # echo "RUNing $last_cmd" 1>&2
-        # $last_cmd &
-        # local _pid=$!
-        # echo ${_pid}
-        # echo "RAN ${_pid} " 1>&2
-        # return ${_pid}
-    fi
-
-    for (( i=0; i<${#commands[@]}-1; i++ ));
+    for (( i=0; i<${#commands[@]}; i++ ));
     do
-        echo "Running ${commands[$i]} " 1>&2
+        echo "Running '${commands[$i]}' " 1>&2
         ${commands[$i]}
     done
-
-    echo $last_cmd
-
-    # echo "Running last ${last_cmd} " 1>&2
-    # $last_cmd &
-    # local _pid=$!
-    # echo "Ran to back ${_pid} " 1>&2
-    # echo ${_pid}
 }
 
 CLEAR='false'
@@ -43,8 +20,6 @@ fi
 
 SLEEP_TIME=3
 
-# args=$@
-
 if [[ -z $@ ]]; then
     echo "no commands to run!!!!"
     exit 1
@@ -52,23 +27,9 @@ fi
 
 commands=( "$@" )
 
-# echo "AARGS $args"
-# echo "WC $WATCH_CMDS"
-
-# declare -a commands
-# if [[ -n $args ]]; then
-
-# elif [[ -n $WATCH_CMDS ]]; then
-#     commands=$WATCH_CMDS
-# else
-#     echo "no commands to run!!!!"
-#     exit 1
-# fi
-
 # echo "Running commands '${commands[@]}' on modify"
-last_cmd=$(run_cmds ${commands[@]})
-$last_cmd &
-_pid=$!
+run_cmds ${commands[@]}
+sleep $SLEEP_TIME
 
 while inotifywait -e modify -r ./
 do
@@ -76,20 +37,6 @@ do
         printf '\033c'
     fi
 
-    if [[ -n ${_pid} ]]; then
-        echo "killing ${_pid}"
-        kill ${_pid}
-        echo "waiting on ${_pid} ..."
-        wait ${_pid}
-        _pid=''
-        echo "job is done"
-        #jobs -l
-    fi
-
     sleep $SLEEP_TIME
-
-    last_cmd=$(run_cmds ${commands[@]})
-    # $last_cmd &
-    $last_cmd
-    _pid=$!
+    run_cmds ${commands[@]}
 done

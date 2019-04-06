@@ -10,7 +10,12 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 echo "Launching polybar for $HNAME"
 
-if [[ "$HNAME" == "lola" ]]; then
+if [[ "$HNAME" == "rose" ]]; then
+    # Launch bar1 and bar2
+    polybar --reload right &
+    polybar --reload middle &
+    polybar --reload left &
+elif [[ "$HNAME" == "lola" ]]; then
     # Launch bar1 and bar2
     polybar --reload right &
     polybar --reload middle &
