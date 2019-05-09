@@ -84,6 +84,7 @@ alias grep="grep -I \
     --exclude-dir='.hg'\
     --exclude-dir='.svn'\
     --exclude-dir='.cvs'\
+    --exclude-dir='node_modules'\
     --exclude='*\.pyo'\
     --exclude='*\.pyc'\
     --exclude='*~'\
