@@ -84,6 +84,7 @@ alias grep="grep -I \
     --exclude-dir='.hg'\
     --exclude-dir='.svn'\
     --exclude-dir='.cvs'\
+    --exclude-dir='node_modules'\
     --exclude='*\.pyo'\
     --exclude='*\.pyc'\
     --exclude='*~'\
@@ -141,6 +142,10 @@ fi
 
 if [[ -f $HOME/Dev/BST/defense-os/scripts/serve-completion.bash ]]; then
     . $HOME/Dev/BST/defense-os/scripts/serve-completion.bash
+fi
+
+if [[ -f $HOME/.Xmodmap ]]; then
+    xmodmap $HOME/.Xmodmap
 fi
 
 # vim:set ft=sh:
