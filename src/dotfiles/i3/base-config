@@ -57,6 +57,7 @@ for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace
 # for_window [class="kitty"] border pixel 2
 for_window [title="Plasma"] floating enable, border none
 for_window [class="plasmashell"] floating enable, border none
+for_window [class="Totem"] floating enable
 
 # Kill the plasma wallpaper
 for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
