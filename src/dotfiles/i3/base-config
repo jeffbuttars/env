@@ -33,6 +33,7 @@ floating_minimum_size 50 x 50
 bindsym $mod+Control+i move scratchpad
 # Show the scratchpad
 bindsym $mod+Shift+i scratchpad show
+bindsym $mod+Tab scratchpad show
 
 # Use the xprop command to get window info
 # for_window [title="^.*Mail.*Google Chrome.*"] workspace $wsMail
