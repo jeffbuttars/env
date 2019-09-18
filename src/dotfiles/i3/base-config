@@ -182,6 +182,9 @@ set $sol_blue    #268bd2
 set $sol_cyan    #2aa198
 set $sol_green   #859900
 
+hide_edge_borders smart
+# workspace_auto_back_and_forth yes
+
 #class                    border        backgr       text        split
 client.focused          $sol_green   $sol_green $sol_base3   $sol_green
 # client.focused_inactive #073642       #002b36     $sol_base2   $sol_red
@@ -211,7 +214,8 @@ client.placeholder #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 # client.focused #dc322f #dc322f #FFFFFF
 # Green
 
-default_orientation horizontal
+default_orientation auto
+popup_during_fullscreen smart
 
 # start a terminal
 bindsym $mod+Return exec konsole --profile Light

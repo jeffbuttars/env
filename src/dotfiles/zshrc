@@ -1,8 +1,20 @@
 
+export USE_STARSHIP=$(command -v starship)
 
-source $HOME/.shell.d/index
+if [[ -n $USE_STARSHIP ]]
+then
+    eval "$(starship init zsh)"
 
-
-# # vim:set ft=zsh:
+    source $HOME/.shell.d/common/0base.sh
+    source $HOME/.shell.d/common/fzf.sh
+    source $HOME/.shell.d/common/node.sh
+    source $HOME/.shell.d/common/python.sh
+    source $HOME/.shell.d/zsh/90-zshrc.zsh
+    source $HOME/.shell.d/zsh/99-fzf.zsh
+else
+    source $HOME/.shell.d/index
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# # vim:set ft=zsh:

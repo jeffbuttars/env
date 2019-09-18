@@ -10,7 +10,7 @@
     st = status
     stu = status -uno
     br = branch
-    brl = branch --list --sort=-committerdate
+    brl = branch --list --color --sort=-refname --sort=-committerdate
     brg = "!f() { git branch --list --sort=-committerdate | grep -i $@; }; f"
     stl = stash list
     stp = stash pop
