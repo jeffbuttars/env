@@ -78,11 +78,11 @@ cd $WORK_DIR
 
 serve='api'
 if [[ $CLEAN ]]; then
-    clean_str='make realclean-api;'
+    clean_str='make realclean-api realclean-api_v3;'
 else
     serve="-n $serve"
 fi
-shellexec "echo 'Cleaning and starting API dev server'; $clean_str ./scripts/serve $serve"
+shellexec "echo 'Cleaning and starting API V2/V3 dev servers'; $clean_str ./scripts/serve $serve"
 
 sleep 1
 
