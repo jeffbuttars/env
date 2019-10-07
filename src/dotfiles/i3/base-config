@@ -334,7 +334,7 @@ bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
 bindsym $mod+F4 exec ~/bin/music
 # bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
-bindsym $mod+F5 exec chromium --app='https://youtube.com/tv'
+bindsym $mod+F5 exec chromium --app='https://youtube.com'
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
