@@ -76,7 +76,7 @@ i3-msg 'split horizontal'
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
 
-serve='api'
+serve='api api_v3'
 if [[ $CLEAN ]]; then
     clean_str='make realclean-api realclean-api_v3;'
 else
@@ -95,7 +95,6 @@ if [[ $CLEAN ]]; then
 fi
 shellexec "echo 'Starting COP...'; . $HOME/.nvm/nvm.sh; nvm use system; $clean_str yarn start"
 
-serve='api'
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
 if [[ $CLEAN ]]; then
