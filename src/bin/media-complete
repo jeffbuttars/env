@@ -1,0 +1,285 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import logging
+import os
+import uuid
+from pprint import pformat as pf
+from urllib.parse import urlparse
+from pathlib import Path
+
+import requests
+
+"""
+On Torrent Completion
+Transmission can be set to invoke a script when downloads complete. The environment variables supported are:
+
+ * TR_APP_VERSION
+ * TR_TIME_LOCALTIME
+ * TR_TORRENT_DIR
+ * TR_TORRENT_HASH
+ * TR_TORRENT_ID
+ * TR_TORRENT_NAME
+
+Available fields:
+
+ key                         | type                        | source
+   ----------------------------+-----------------------------+---------
+   activityDate                | number                      | tr_stat
+   addedDate                   | number                      | tr_stat
+   bandwidthPriority           | number                      | tr_priority_t
+   comment                     | string                      | tr_info
+   corruptEver                 | number                      | tr_stat
+   creator                     | string                      | tr_info
+   dateCreated                 | number                      | tr_info
+   desiredAvailable            | number                      | tr_stat
+   doneDate                    | number                      | tr_stat
+   downloadDir                 | string                      | tr_torrent
+   downloadedEver              | number                      | tr_stat
+   downloadLimit               | number                      | tr_torrent
+   downloadLimited             | boolean                     | tr_torrent
+   error                       | number                      | tr_stat
+   errorString                 | string                      | tr_stat
+   eta                         | number                      | tr_stat
+   etaIdle                     | number                      | tr_stat
+   files                       | array (see below)           | n/a
+   fileStats                   | array (see below)           | n/a
+   hashString                  | string                      | tr_info
+   haveUnchecked               | number                      | tr_stat
+   haveValid                   | number                      | tr_stat
+   honorsSessionLimits         | boolean                     | tr_torrent
+   id                          | number                      | tr_torrent
+   isFinished                  | boolean                     | tr_stat
+   isPrivate                   | boolean                     | tr_torrent
+   isStalled                   | boolean                     | tr_stat
+   labels                      | array (see below)           | tr_torrent
+   leftUntilDone               | number                      | tr_stat
+   magnetLink                  | string                      | n/a
+   manualAnnounceTime          | number                      | tr_stat
+   maxConnectedPeers           | number                      | tr_torrent
+   metadataPercentComplete     | double                      | tr_stat
+   name                        | string                      | tr_info
+   peer-limit                  | number                      | tr_torrent
+   peers                       | array (see below)           | n/a
+   peersConnected              | number                      | tr_stat
+   peersFrom                   | object (see below)          | n/a
+   peersGettingFromUs          | number                      | tr_stat
+   peersSendingToUs            | number                      | tr_stat
+   percentDone                 | double                      | tr_stat
+   pieces                      | string (see below)          | tr_torrent
+   pieceCount                  | number                      | tr_info
+   pieceSize                   | number                      | tr_info
+   priorities                  | array (see below)           | n/a
+   queuePosition               | number                      | tr_stat
+   rateDownload (B/s)          | number                      | tr_stat
+   rateUpload (B/s)            | number                      | tr_stat
+   recheckProgress             | double                      | tr_stat
+   secondsDownloading          | number                      | tr_stat
+   secondsSeeding              | number                      | tr_stat
+   seedIdleLimit               | number                      | tr_torrent
+   seedIdleMode                | number                      | tr_inactvelimit
+   seedRatioLimit              | double                      | tr_torrent
+   seedRatioMode               | number                      | tr_ratiolimit
+   sizeWhenDone                | number                      | tr_stat
+   startDate                   | number                      | tr_stat
+   status                      | number                      | tr_stat
+   trackers                    | array (see below)           | n/a
+   trackerStats                | array (see below)           | n/a
+   totalSize                   | number                      | tr_info
+   torrentFile                 | string                      | tr_info
+   uploadedEver                | number                      | tr_stat
+   uploadLimit                 | number                      | tr_torrent
+   uploadLimited               | boolean                     | tr_torrent
+   uploadRatio                 | double                      | tr_stat
+   wanted                      | array (see below)           | n/a
+   webseeds                    | array (see below)           | n/a
+   webseedsSendingToUs         | number                      | tr_stat
+"""
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format=(
+        "%(levelname)s: %(asctime)s %(processName)s:%(process)d"
+        " %(filename)s:%(lineno)s %(funcName)s"
+        " -- %(message)s"
+    ),
+)
+logger = logging.getLogger(__name__)
+
+
+ALL_FIELDS = [
+    "activityDate",
+    "addedDate",
+    "bandwidthPriority",
+    "comment",
+    "corruptEver",
+    "creator",
+    "dateCreated",
+    "desiredAvailable",
+    "doneDate",
+    "downloadDir",
+    "downloadedEver",
+    "downloadLimit",
+    "downloadLimited",
+    "error",
+    "errorString",
+    "eta",
+    "etaIdle",
+    "files",
+    "fileStats",
+    "hashString",
+    "haveUnchecked",
+    "haveValid",
+    "honorsSessionLimits",
+    "id",
+    "isFinished",
+    "isPrivate",
+    "isStalled",
+    "labels",
+    "leftUntilDone",
+    "magnetLink",
+    "manualAnnounceTime",
+    "maxConnectedPeers",
+    "metadataPercentComplete",
+    "name",
+    "peer-limit",
+    "peers",
+    "peersConnected",
+    "peersFrom",
+    "peersGettingFromUs",
+    "peersSendingToUs",
+    "percentDone",
+    "pieces",
+    "pieceCount",
+    "pieceSize",
+    "priorities",
+    "queuePosition",
+    "rateDownload",
+    "rateUpload",
+    "recheckProgress",
+    "secondsDownloading",
+    "secondsSeeding",
+    "seedIdleLimit",
+    "seedIdleMode",
+    "seedRatioLimit",
+    "seedRatioMode",
+    "sizeWhenDone",
+    "startDate",
+    "status",
+    "trackers",
+    "trackerStats",
+    "totalSize",
+    "torrentFile",
+    "uploadedEver",
+    "uploadLimit",
+    "uploadLimited",
+    "uploadRatio",
+    "wanted",
+    "webseeds",
+    "webseedsSendingToUs",
+]
+
+
+HOST_DIR_MAP = {"landof.tv": "/home/xdrive/media/TV"}
+
+
+def by_id(obj):
+    torrents = obj.get("arguments", {}).get("torrents", [])
+
+    if torrents:
+        resp = {}
+        for torrent in torrents:
+            resp[torrent["id"]] = torrent
+
+        return resp
+
+    return obj
+
+
+def query_tr(payload: dict, session_id: str = "") -> dict:
+    torrent_url = os.environ.get("TR_URL", "http://localhost:9091/transmission/rpc")
+
+    logger.debug("query_tr payload: %s", payload)
+
+    resp = requests.post(
+        torrent_url, headers={"X-Transmission-Session-Id": session_id}, json=payload
+    )
+
+    logger.info("RESP: %s", resp)
+
+    if resp.status_code == 409:
+        logger.info("Resending with updated session id ...")
+        return query_tr(payload, session_id=resp.headers["X-Transmission-Session-Id"])
+
+    if resp.status_code == 200:
+        rj = resp.json()
+        #  logger.info("RAW RESP JSON: %s", pf(res))
+        return by_id(rj)
+
+    return {}
+
+
+def main():
+    app_version = os.environ.get("TR_APP_VERSION")
+    time_local = os.environ.get("TR_TIME_LOCALTIME")
+    torrent_dir = os.environ.get("TR_TORRENT_DIR")
+    torrent_hash = os.environ.get("TR_TORRENT_HASH")
+    torrent_id = int(os.environ.get("TR_TORRENT_ID"))
+    torrent_name = os.environ.get("TR_TORRENT_NAME")
+
+    logger.info("app_version: %s", app_version)
+    logger.info("time_local: %s", time_local)
+    logger.info("torrent_dir: %s", torrent_dir)
+    logger.info("torrent_hash: %s", torrent_hash)
+    logger.info("torrent_id: %s", torrent_id)
+    logger.info("torrent_name: %s", torrent_name)
+
+    if torrent_id:
+        # Get that torrent!
+        tag = str(uuid.uuid4())
+
+        req_payload = {
+            "method": "torrent-get",
+            "arguments": {"ids": [torrent_id], "fields": ALL_FIELDS},
+            "tag": tag,
+        }
+
+        res = query_tr(req_payload)
+        logger.info("RESP JSON: %s", pf(res))
+
+        torrent = res.get(torrent_id, {})
+        logger.info("RESP TORRENT: %s", torrent)
+
+        trackers = torrent["trackers"]
+        logger.info("RESP TORRENT TRACKERS: %s", trackers)
+
+        tracker = trackers[0]
+        logger.info("RESP TORRENT TRACKER: %s", tracker)
+
+        announce = tracker["announce"]
+        logger.info("RESP TORRENT TRACKER ANNOUNCE: %s", announce)
+
+        p = urlparse(announce)
+        logger.info("RESP TORRENT TRACKER ANNOUNCE: %s", p.netloc)
+
+        if p.netloc in HOST_DIR_MAP:
+            logger.debug("UPDATE TO DIR %s", HOST_DIR_MAP[p.netloc])
+            dest = Path(HOST_DIR_MAP[p.netloc])
+
+            if dest.exists():
+                req_payload = {
+                    "method": "torrent-set-location",
+                    "arguments": {
+                        "move": True,
+                        "location": HOST_DIR_MAP[p.netloc],
+                        "ids": [torrent_id],
+                        "tag": tag,
+                    },
+                }
+
+                res = query_tr(req_payload)
+                logger.info("MV Quwery RESP JSON: %s", pf(res))
+
+
+if __name__ == "__main__":
+    main()
