@@ -104,7 +104,7 @@ modules-right = cpu memory wlan eth backlight battery menu-apps
 
 [bar/ephi-middle]
 inherit = bar/right
-monitor = DP-0
+monitor = DP-1
 bottom = false
 
 modules-left = powermenu menu-apps
@@ -113,7 +113,7 @@ modules-right = date
 
 [bar/ephi-left]
 inherit = bar/onescreen
-monitor = HDMI-0
+monitor = HDMI-1
 bottom = false
 
 modules-left = cpu memory wlan eth

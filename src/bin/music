@@ -8,8 +8,8 @@ pulse_h=$(echo "$w_height / 4" | bc)
 i3-msg 'focus parent'
 i3-msg 'split vertical'
 
-MellowPlayer &
-pulseeffects &
+exec google-chrome-stable 'https://play.google.com/music/listen#/home' &
+#pulseeffects &
 
 sleep 1
 i3-msg "[class=\"^Pulseeffects\"] resize set height $pulse_h px"
