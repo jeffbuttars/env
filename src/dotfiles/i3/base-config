@@ -83,17 +83,16 @@ for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
-for_window [title="YouTube TV"] floating enable, sticky enable, border normal
-for_window [title="YouTube on TV"] floating enable, sticky enable, border normal
 for_window [title="Plex"] floating enable, sticky enable, border normal
 for_window [title="Netflix"] floating enable, sticky enable, border normal
 for_window [title="Amarok"] floating enable
 # for_window [class="urxvt"] floating enable, border pixel 3
 for_window [class="Deadbeef"] floating enable
 # for_window [class="^.*URxvt.*$"] floating enable, border pixel 3
+for_window [class="customfloaty"] floating enable, enable sticky, border pixel 10
 
 # Float by type
-for_window [window_role="pop-up"] floating enable, border none
+for_window [window_role="pop-up"] floating enable, border pixel 3
 for_window [window_role="bubble"] floating enable, border none
 for_window [window_role="task_dialog"] floating enable, border none
 for_window [window_role="Preferences"] floating enable
@@ -111,6 +110,7 @@ for_window [class="Pulseeffects"] move container to workspace $wsMusic
 for_window [instance="^play\\.google.*$"] floating disable, move container to workspace $wsMusic
 for_window [title=".*Google Play Music.*"] move container to workspace $wsMusic
 for_window [title=".*MellowPlayer*"] move container to workspace $wsMusic
+
 
 # Workspace names
 set $ws1 " 1  Web / Docs"
@@ -333,7 +333,6 @@ bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
 bindsym $mod+F4 exec ~/bin/music
-# bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com/tv'
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
