@@ -20,6 +20,22 @@ shellexec ()
     sleep 0.5
 }
 
+clean_services_str ()
+{
+    if [[ -z $@ ]]; then
+        echo "echo 'No services provided to clean_services_str()!'"
+        return
+    fi
+
+    clean_str='make '
+
+    for service in $1; do
+        clean_str="$clean_str realclean-${service}"
+    done
+
+    echo "$clean_str;"
+}
+
 # pgsql     #  API
 # dbwatch   #  COP
 # couchdb   #  Node
@@ -36,25 +52,25 @@ i3-msg 'split vertical'
 # WORK_DIR="$BASE_DIR"
 # cd $WORK_DIR
 
-konsole --profile red --workdir $WORK_DIR -e "make images-base"
-
 clean_str=''
+if [[ $CLEAN ]]; then
+    clean_str='sudo -E'
+    clean_str=$(clean_services_str 'pgsql dbwatch api api_v3 pipeline hal')
+fi
+
+konsole --profile red --workdir $WORK_DIR -e "${clean_str}; make images-base"
+
 serve='couchdb pgsql dbwatch'
-if [[ $CLEAN ]]; then
-    clean_str='make realclean-dbwatch;'
-else
+if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
 shellexec "$clean_str ./scripts/serve $serve"
 
-clean_str=''
-serve='pipeline'
-if [[ $CLEAN ]]; then
-    clean_str='make realclean-pipeline;'
-else
+serve='pipeline hal'
+if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
-shellexec "$clean_str ./scripts/serve $serve"
+shellexec "./scripts/serve $serve"
 
 # Echosim
 WORK_DIR="$BASE_DIR/services/sims/echosim"
@@ -77,12 +93,10 @@ WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
 
 serve='api api_v3'
-if [[ $CLEAN ]]; then
-    clean_str='make realclean-api realclean-api_v3;'
-else
+if [l -z $CLEAN ]]; then
     serve="-n $serve"
 fi
-shellexec "echo 'Cleaning and starting API V2/V3 dev servers'; $clean_str ./scripts/serve $serve"
+shellexec "./scripts/serve $serve"
 
 sleep 1
 
