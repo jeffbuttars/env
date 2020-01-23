@@ -1,4 +1,6 @@
 {
+  "python.pythonPath": "python3",
+  "python.jediEnabled": true,
   "suggest.enablePreview": true,
   "suggest.echodocSupport": true,
   "suggest.snippetIndicator": "►"
