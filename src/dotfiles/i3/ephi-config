@@ -4,7 +4,7 @@
 set $left_op HDMI-1
 # set $center_op DP-2
 # set $right_op DP-4
-set $right_op DP1
+set $right_op DP-1
 
 bindsym Control+1 focus output $left_op
 bindsym Control+2 focus output $right_op
