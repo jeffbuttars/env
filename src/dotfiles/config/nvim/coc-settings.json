@@ -3,5 +3,6 @@
   "python.jediEnabled": true,
   "suggest.enablePreview": true,
   "suggest.echodocSupport": true,
-  "suggest.snippetIndicator": "►"
+  "suggest.snippetIndicator": "►",
+  "suggest.floatEnable": true
 }
