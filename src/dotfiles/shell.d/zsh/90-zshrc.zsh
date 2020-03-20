@@ -50,6 +50,6 @@ if [[ -f "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]
     source "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh"
 fi
 
-# autoload -Uz promptinit
-# promptinit
-# prompt powerlevel10k
+if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+    source "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
+fi
