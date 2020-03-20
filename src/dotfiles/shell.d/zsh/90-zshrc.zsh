@@ -49,3 +49,7 @@ export VISUAL=vim
 if [[ -f "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
     source "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh"
 fi
+
+# autoload -Uz promptinit
+# promptinit
+# prompt powerlevel10k
