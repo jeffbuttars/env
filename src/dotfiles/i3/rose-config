@@ -51,7 +51,8 @@ workspace $ws12 output $right_op
 bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
 bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
 
-exec --no-startup-id picom --experimental-backends -b --config ~/.config/picom-rose.conf
+exec_always killall -9 picom
+exec_always --no-startup-id picom --experimental-backends -b --config ~/.config/picom-rose.conf
 
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws1'
