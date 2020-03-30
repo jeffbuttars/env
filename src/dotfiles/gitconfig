@@ -7,7 +7,7 @@
     ci = commit
     cim = commit --verbose
     cia = commit -a
-    st = status
+    st = status -sb
     stu = status -uno
     br = branch
     brl = branch --list --color --sort=-refname --sort=-committerdate
