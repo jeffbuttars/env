@@ -84,6 +84,7 @@ for_window [class="krunner"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 for_window [title="Plex"] floating enable, sticky enable, border normal
+for_window [title="^.*YouTube$"] floating enable, sticky enable, border normal
 for_window [title="Netflix"] floating enable, sticky enable, border normal
 for_window [title="Amarok"] floating enable
 # for_window [class="urxvt"] floating enable, border pixel 3
@@ -92,7 +93,8 @@ for_window [class="Deadbeef"] floating enable
 for_window [class="customfloaty"] floating enable, enable sticky, border pixel 10
 
 # Float by type
-for_window [window_role="pop-up"] floating enable, border pixel 3
+#for_window [window_role="pop-up"] floating enable, border pixel 3
+for_window [window_role="pop-up" title=".*(?!)YouTube$"] floating enable, border pixel 3
 for_window [window_role="bubble"] floating enable, border none
 for_window [window_role="task_dialog"] floating enable, border none
 for_window [window_role="Preferences"] floating enable
@@ -334,7 +336,8 @@ bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
 bindsym $mod+F4 exec ~/bin/music
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
-bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
+#bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
+bindsym $mod+F6 exec plexmediaplayer
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+F9 workspace $wsMessaging, exec slack
