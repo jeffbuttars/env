@@ -1,4 +1,9 @@
 
+autoload -Uz compinit
+compinit
+setopt COMPLETE_ALIASES
+zstyle ':completion::complete:*' gain-privileges 1
+
 # Set vi mode
 bindkey -v
 
