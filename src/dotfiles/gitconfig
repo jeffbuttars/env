@@ -3,14 +3,16 @@
 
 [alias]
     co = checkout
+    sw = switch
     cob = "!f() { git checkout -b $1 --track origin/$1; }; f"
     ci = commit
     cim = commit --verbose
     cia = commit -a
     st = status -sb
-    stu = status -uno
+    stu = status -uno -sb
     br = branch
     brl = branch --list --color --sort=-refname --sort=-committerdate
+    lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s\\033[0m:  %s\\n\", substr($2, 1, length($2)-1), $1)}'
     brg = "!f() { git branch --list --sort=-committerdate | grep -i $@; }; f"
     stl = stash list
     stp = stash pop

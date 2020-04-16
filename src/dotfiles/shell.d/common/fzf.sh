@@ -42,17 +42,34 @@ cmd_exists=$(command -v rg)
 if [[ -n $cmd_exists ]]; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
     export FZF_DEFAULT_OPTS="--bind 'ctrl-o:execute(vim {})+abort' $FZF_DEFAULT_OPTS"
+else
+    echo "install rg(ripgrep)"
 fi
 
 # Initialize fasd
-eval "$(fasd --init auto)"
+cmd_exists=$(command -v fasd)
+if [[ -n $cmd_exists ]]; then
+    # eval "$(fasd --init auto)"
 
-# like normal z when used with arguments but displays an fzf prompt when used without.
-unalias z 2> /dev/null
-z() {
-    [ $# -gt 0 ] && fasd_cd -d "$*" && return
-  cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
-}
+
+    fasd_cache="$HOME/.fasd-init-zsh"
+    if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+        fasd --init auto >| "$fasd_cache"
+    fi
+
+    source "$fasd_cache"
+    unset fasd_cache
+
+    # like normal z when used with arguments but displays an fzf prompt when used without.
+    unalias z 2> /dev/null
+    z() {
+        [ $# -gt 0 ] && fasd_cd -d "$*" && return
+    cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
+    }
+else
+    echo "install fasd"
+fi
+
 
 # cmd_exists=$(command -v bat)
 # if [[ -n $cmd_exists ]]; then
@@ -60,23 +77,23 @@ z() {
 # fi
 
 #v - open files in ~/.viminfo
-v() {
-  local files
-  files=$(vim --headless +oldfiles +q 2>&1 | awk '{print $2}' |
-          while read line; do
-            echo "${line#$PWD/}" | dos2unix
-          done | fzf-tmux -d -m -q "$*" -1)
-  if [[ -n $files ]]; then
-    vim $files
-  fi
-}
+# v() {
+#   local files
+#   files=$(vim --headless +oldfiles +q 2>&1 | awk '{print $2}' |
+#           while read line; do
+#             echo "${line#$PWD/}" | dos2unix
+#           done | fzf-tmux -d -m -q "$*" -1)
+#   if [[ -n $files ]]; then
+#     vim $files
+#   fi
+# }
 
-vo() {
-  local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
-  key=$(head -1 <<< "$out")
-  file=$(head -2 <<< "$out" | tail -1)
-  if [ -n "$file" ]; then
-    vim "$file"
-  fi
-}
+# vo() {
+#   local out file key
+#   IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+#   key=$(head -1 <<< "$out")
+#   file=$(head -2 <<< "$out" | tail -1)
+#   if [ -n "$file" ]; then
+#     vim "$file"
+#   fi
+# }

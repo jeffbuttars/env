@@ -106,6 +106,7 @@ for_window [title="gkrellm"] floating enable, enable sticky, border none
 no_focus [class="plasmashell"]
 no_focus [window_role="pop-up"]
 no_focus [window_type="notification"]
+no_focus [class="plasmashell" window_type="notification"]
 
 for_window [title=".*Audio Volume — System Settings.*"] floating disable
 for_window [class="Pulseeffects"] move container to workspace $wsMusic

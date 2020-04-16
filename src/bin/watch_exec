@@ -31,7 +31,9 @@ commands=( "$@" )
 run_cmds ${commands[@]}
 sleep $SLEEP_TIME
 
-while inotifywait -e modify -r ./
+echo "watching $PWD/*"
+
+while inotifywait -e modify -r $PWD/*
 do
     if [[ $CLEAR == 'true' ]]; then
         printf '\033c'
