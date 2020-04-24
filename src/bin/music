@@ -8,7 +8,7 @@ pulse_h=$(echo "$w_height / 4" | bc)
 i3-msg 'focus parent'
 i3-msg 'split vertical'
 
-exec google-chrome-stable 'https://play.google.com/music/listen#/home' &
+exec google-chrome-stable --app='https://play.google.com/music/listen#/home' &
 #pulseeffects &
 
 sleep 1
