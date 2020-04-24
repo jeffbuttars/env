@@ -1,13 +1,13 @@
 umask 0027
 
 # Aliases
-vims=('nvim' 'gvim -v' 'vim' 'vi')
+vims=('nvim' 'vim')
 
 # Select which vim to use in order of preference. First found wins.
 for var in $vims
 do
-    v=$(which $var 2>&1 > /dev/null)
-    if [[ "0" == "$?" ]]
+    v=$(command -v $var)
+    if [[ -n $v ]]
     then
         alias vi="$var"
         alias vim="$var"
@@ -36,22 +36,22 @@ if [ -f ~/.upkg/pcm/pcm.sh ]; then
     alias pcm='~/.upkg/pcm/pcm.sh'
 fi
 alias gst='git status -sb'
-alias gsp='git status -uno'
+alias gsp='git status -uno -sb'
 alias gp='git push'
 alias gpl='git pull'
 alias gplt='git pullt'
-alias greup='git reup'
-alias gcm='git cim'
-alias ga='git add'
+# alias greup='git reup'
+# alias gcm='git cim'
+# alias ga='git add'
 alias jobs='jobs -l'
 alias less=$PAGER
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
-alias gvim='nvim-gtk'
+# alias gvim='nvim-gtk'
 
-cmd_exists=$(command -v bat)
+# cmd_exists=$(command -v bat)
 # if [[ -n $cmd_exists ]]; then
 #     alias cat='bat --theme Monokai\ Extended\ Light'
 # else
@@ -74,14 +74,14 @@ fi
 
 export PATH=$HOME/bin:$PATH
 
-if [[ -d  "$HOME/.rvm/bin" ]]; then
-    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-fi
+# if [[ -d  "$HOME/.rvm/bin" ]]; then
+#     export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# fi
 
-if [[ /opt/android-sdk ]]; then
-    export ANDROID_HOME='/opt/android-sdk'
-    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-fi
+# if [[ /opt/android-sdk ]]; then
+#     export ANDROID_HOME='/opt/android-sdk'
+#     export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+# fi
 
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]

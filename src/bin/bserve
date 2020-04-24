@@ -72,16 +72,10 @@ if [[ -z $CLEAN ]]; then
 fi
 shellexec "./scripts/serve $serve"
 
-# Echosim
-WORK_DIR="$BASE_DIR/services/sims/echosim"
-cd $WORK_DIR
-
-if [[ -d dc ]]; then
-    WORK_DIR="$BASE_DIR"
-    cd $WORK_DIR
-    shellexec "./scripts/serve sims/echosim"
-elif [[ -f echosim.py ]]; then
-    shellexec "sudo ./echosim.py --dir tracks"
+# Echoguard
+if [[ -d "$BASE_DIR/services/sims/echoguard/dc" ]]; then
+    cd $BASE_DIR
+    shellexec "./scripts/serve sims/echoguard"
 fi
 
 sleep 1

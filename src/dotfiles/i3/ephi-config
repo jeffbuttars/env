@@ -30,10 +30,12 @@ bindsym $mod+Insert workspace 3, workspace 5
 bindsym $mod+End workspace 3, workspace 5
 
 # Mouse bindings
-bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
-bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
-
-exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
+# bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
+# bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
+bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
+bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
+exec_always --no-startup-id picom --experimental-backends
+# exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
 
 exec --no-startup-id slack
 

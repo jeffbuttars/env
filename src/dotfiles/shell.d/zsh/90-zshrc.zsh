@@ -38,8 +38,8 @@ export HISTFILE=~/.histfile
 export HISTSIZE=10000000
 export SAVEHIST=10000000
 
-# CD whitout typing cd
-AUTO_CD="true"
+# # CD whitout typing cd
+# AUTO_CD="true"
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
@@ -50,11 +50,11 @@ fi
 export EDITOR=vim
 export VISUAL=vim
 
-# Add the following 3 lines into your /home/jeff/.zshrc file
-if [[ -f "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-    source "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh"
-fi
+# # Add the following 3 lines into your /home/jeff/.zshrc file
+# if [[ -f "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+#     source "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh"
+# fi
 
-if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-    source "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
-fi
+# if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+#     source "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
+# fi
