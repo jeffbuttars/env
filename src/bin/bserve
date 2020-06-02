@@ -2,6 +2,8 @@
 
 CLEAN='true'
 
+SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal'
+
 if [[ $1 ]]; then
     if [[ "$1" == '-n' ]]; then
         CLEAN=''
@@ -52,19 +54,30 @@ i3-msg 'split vertical'
 # WORK_DIR="$BASE_DIR"
 # cd $WORK_DIR
 
-clean_str=''
 if [[ $CLEAN ]]; then
-    clean_str='sudo -E'
-    clean_str=$(clean_services_str 'pgsql dbwatch api api_v3 pipeline hal')
+    clean_str="sudo -E $(clean_services_str $SERVICE_LIST)"
+
+    tmpfile=$(mktemp)
+    echo -e "$clean_str;\n" > "$tmpfile"
+    konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 fi
 
-konsole --profile red --workdir $WORK_DIR -e "${clean_str}; make images-base"
+
+tmpfile=$(mktemp)
+echo -e "make images-base;\n" > "$tmpfile"
+konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 
 serve='couchdb pgsql dbwatch'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
 shellexec "$clean_str ./scripts/serve $serve"
+
+serve='esink'
+if [[ -z $CLEAN ]]; then
+    serve="-n $serve "
+fi
+shellexec "./scripts/serve $serve"
 
 serve='pipeline hal'
 if [[ -z $CLEAN ]]; then
@@ -101,7 +114,7 @@ cd $WORK_DIR
 if [[ $CLEAN ]]; then
     clean_str='yarn yrebuild;'
 fi
-shellexec "echo 'Starting COP...'; . $HOME/.nvm/nvm.sh; nvm use system; $clean_str yarn start"
+shellexec "echo 'Starting COP...'; . $HOME/.config/nvm/nvm.sh; nvm use system; $clean_str yarn start"
 
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
@@ -109,5 +122,5 @@ if [[ $CLEAN ]]; then
     clean_str='rm -fr services/node/node_modules; cd services/node; npm i; cd -; cd services/go; make clean; make; cd -;'
 fi
 shellexec "echo 'Starting V1 services...'; \
-    . $HOME/.nvm/nvm.sh; nvm use bst; $clean_str \
+    . $HOME/.config/nvm/nvm.sh; nvm use bst; $clean_str \
     ./node_modules/.bin/nf start -j Procfile.jeff"
