@@ -1,4 +1,6 @@
 
+fpath+=~/.zfunc
+
 export USE_STARSHIP=$(command -v starship)
 
 if [[ -n $USE_STARSHIP ]]

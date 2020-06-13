@@ -1,0 +1,39 @@
+#!/bin/bash
+
+BG_COLOR="666666"
+SCREEN_OFF_TIMEOUT=30  # seconds
+
+TMP_IMAGE="/tmp/screen_pic_saver.png"
+
+scrot --overwrite $TMP_IMAGE
+mogrify -blur 15,5 $TMP_IMAGE
+
+i3lock --color="$BG_COLOR" --image=$TMP_IMAGE
+# i3lock --color="$BG_COLOR" --image=$TMP_IMAGE && sleep $SCREEN_OFF_TIMEOUT && xset dpms force off
+
+# killall plasmashell; plasmashell
+# i3-msg restart | jq
+
+exit 0
+
+
+INACTIVITY_TIMEOUT=60  # minutes
+
+CMD_I3LOCK=$(command -v i3lock)
+CMD_XSET=$(command -v xset)
+CMD_SCROT=$(command -v scrot)
+CMD_XAUTOLOCK=$(command -v xautolock)
+
+BASE_COMMAND="i3lock -c $BG_COLOR"
+
+LOCK_COMMAND="$BASE_COMMAND"
+
+# && sleep 30 && xset dpms force off"
+
+
+# run_lock()
+# {
+    
+# }
+
+# xautolock -detectsleep -time $INACTIVITY_TIMEOUT -locker ~/bin/fuzzy_screen_lock

@@ -49,12 +49,9 @@ fi
 
 export EDITOR=vim
 export VISUAL=vim
+export POETRY_VIRTUALENVS_IN_PROJECT=true
+export POETRY_VIRTUALENVS_CREATE=true
 
-# # Add the following 3 lines into your /home/jeff/.zshrc file
-# if [[ -f "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-#     source "/usr/lib/python3.7/site-packages/virtualcandy/lib/virtualcandy.zsh"
-# fi
-
-# if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-#     source "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
-# fi
+if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+    . "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
+fi
