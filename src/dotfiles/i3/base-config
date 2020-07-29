@@ -112,6 +112,7 @@ for_window [title=".*Audio Volume — System Settings.*"] floating disable
 for_window [class="Pulseeffects"] move container to workspace $wsMusic
 # for_window [instance="^play\\.google.*$"] floating disable, move container to workspace $wsMusic
 for_window [title=".*Google Play Music.*"] floating disable, move container to workspace $wsMusic
+for_window [title="^YouTube Music.*"] floating disable, move container to workspace $wsMusic
 for_window [title=".*MellowPlayer*"] move container to workspace $wsMusic
 
 
@@ -335,7 +336,9 @@ bindsym $mod+r mode "resize"
 bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
-bindsym $mod+F4 exec ~/bin/music
+# bindsym $mod+F4 exec ~/bin/music
+bindsym $mod+F4 exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
+
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
 #bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
 bindsym $mod+F6 exec plexmediaplayer
@@ -343,7 +346,8 @@ bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+F9 workspace $wsMessaging, exec slack
 bindsym $mod+Escape exec krunner
-# bindsym $ctrl+mod+l exec i3lock
+bindsym $mod+ctrl+l exec ~/bin/fuzzy_screen_lock
+
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
@@ -381,4 +385,6 @@ exec yakuake
 exec xflux -z 83703
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+exec_always xautolock -time 60 -locker ~/bin/fuzzy_screen_lock
 #exec_always redshift -l 43.61:-116.21
