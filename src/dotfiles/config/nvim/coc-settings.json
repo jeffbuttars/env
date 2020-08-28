@@ -1,6 +1,3 @@
 {
-  "python.pythonPath": "python3",
-  "suggest.enablePreview": true,
-  "suggest.echodocSupport": true,
-  "suggest.snippetIndicator": "►",
+  "coc.source.jedi.priority": 0
 }
