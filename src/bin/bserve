@@ -74,6 +74,8 @@ if [[ -z $CLEAN ]]; then
 fi
 shellexec "$clean_str ./scripts/serve $serve"
 
+sleep 30
+
 serve='esink'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "

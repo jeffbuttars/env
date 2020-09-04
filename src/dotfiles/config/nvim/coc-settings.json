@@ -1,1 +1,6 @@
-/home/jeff/.upkg/nvim/_upkg/../nvim/coc-settings.json
+{
+  "coc.source.jedi.priority": 0,
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length 99"],
+  "python.workspaceSymbols.exclusionPatterns": ["**/site-packages/**", "**/.git/**"]
+}
