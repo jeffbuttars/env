@@ -1,6 +1,1 @@
-{
-  "python.pythonPath": "python3",
-  "suggest.enablePreview": true,
-  "suggest.echodocSupport": true,
-  "suggest.snippetIndicator": "►",
-}
+/home/jeff/.upkg/nvim/_upkg/../nvim/coc-settings.json

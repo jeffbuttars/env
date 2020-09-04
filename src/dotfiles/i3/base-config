@@ -57,15 +57,19 @@ for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace
 # for_window [class="konsole"] border pixel 4
 # for_window [class="kitty"] border pixel 2
 for_window [title="Plasma"] floating enable, border none
-for_window [class="plasmashell"] floating enable, border none
-for_window [class="Totem"] floating enable
 
+# Plasma stuff
 # Kill the plasma wallpaper
-for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
+# for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [title="Plasma-desktop"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="plasmashell"] floating enable, border none
+# no_focus [class="plasmashell"]
+no_focus [class="plasmashell" window_type="notification"]
 
 for_window [class="Yakuake"] floating enable
 for_window [title="Yakuake"] floating enable
-for_window [class="Smplayer"] floating enable
 for_window [class="Kmix"] floating enable
 for_window [class="Kcalc"] floating enable
 for_window [class="vlc"] floating enable
@@ -77,9 +81,7 @@ for_window [class="Cadence.py"] floating enable
 for_window [class="Skype"] floating enable
 for_window [title="^Android Emulator.*"] floating enable
 
-for_window [class="Plasma-desktop"] floating enable, border none
 for_window [class="dde-desktop"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
@@ -103,10 +105,8 @@ for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable, border none
 for_window [title="gkrellm"] floating enable, enable sticky, border none
 
-no_focus [class="plasmashell"]
 no_focus [window_role="pop-up"]
 no_focus [window_type="notification"]
-no_focus [class="plasmashell" window_type="notification"]
 
 for_window [title=".*Audio Volume — System Settings.*"] floating disable
 for_window [class="Pulseeffects"] move container to workspace $wsMusic
@@ -345,7 +345,8 @@ bindsym $mod+F6 exec plexmediaplayer
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+F9 workspace $wsMessaging, exec slack
-bindsym $mod+Escape exec krunner
+# bindsym $mod+Escape exec krunner
+bindsym $mod+Escape exec ulauncher
 bindsym $mod+ctrl+l exec ~/bin/fuzzy_screen_lock
 
 # Jump to urgent window

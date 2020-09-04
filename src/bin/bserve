@@ -86,11 +86,12 @@ if [[ -z $CLEAN ]]; then
 fi
 shellexec "./scripts/serve $serve"
 
-# Echoguard
-if [[ -d "$BASE_DIR/services/sims/echoguard/dc" ]]; then
-    cd $BASE_DIR
-    shellexec "./scripts/serve sims/echoguard"
+# Sims: Echoguard, RFAgent
+serve='sims/echoguard sims/rfagent'
+if [[ -z $CLEAN ]]; then
+    serve="-n $serve "
 fi
+shellexec "./scripts/serve $serve"
 
 sleep 1
 # Start the rest on the right side

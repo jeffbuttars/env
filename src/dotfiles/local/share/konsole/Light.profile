@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Solarized Light
-Font=MesloLGM Nerd Font Mono,10,-1,5,50,0,0,0,0,0,Regular
+Font=FiraCode NF,14,-1,5,53,0,0,0,0,0,Retina
 
 [Cursor Options]
 CursorShape=0
