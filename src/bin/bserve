@@ -74,6 +74,8 @@ if [[ -z $CLEAN ]]; then
 fi
 shellexec "$clean_str ./scripts/serve $serve"
 
+sleep 30
+
 serve='esink'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
@@ -89,7 +91,7 @@ shellexec "./scripts/serve $serve"
 # Echoguard
 if [[ -d "$BASE_DIR/services/sims/echoguard/dc" ]]; then
     cd $BASE_DIR
-    shellexec "./scripts/serve sims/echoguard"
+    shellexec "./scripts/serve sims/echoguard sims/rfagent"
 fi
 
 sleep 1
