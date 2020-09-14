@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Solarized Light
+ColorScheme=Adapta
 Font=FiraCode Nerd Font Mono,12,-1,5,53,0,0,0,0,0,Retina
 
 [Cursor Options]

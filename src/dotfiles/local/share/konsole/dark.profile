@@ -1,6 +1,6 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=Solarized Dark
+ColorScheme=AdaptaNokto
 Font=MesloLGMDZ Nerd Font Mono,12,-1,5,50,0,0,0,0,0,RegularForPowerline
 
 [Encoding Options]
