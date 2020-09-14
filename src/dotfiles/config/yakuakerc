@@ -1,8 +1,8 @@
 [Animation]
 Frames=0
+UseWMAssist=false
 
 [Appearance]
-BackgroundColorOpacity=90
 Skin=default
 SkinInstalledWithKns=false
 TerminalHighlightOnManualActivation=true
@@ -49,5 +49,7 @@ view-full-screen=Ctrl+Shift+F11
 
 [Window]
 DynamicTabTitles=true
+Height=46
+KeepOpen=true
 ToggleToFocus=true
 Width=95

@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=AdaptaNokto
-Font=MesloLGMDZ Nerd Font Mono,12,-1,5,50,0,0,0,0,0,RegularForPowerline
+Font=FiraCode NF,12,-1,5,53,0,0,0,0,0,Retina
 
 [Encoding Options]
 DefaultEncoding=UTF-8

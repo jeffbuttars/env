@@ -90,6 +90,7 @@ Color=88,110,117
 
 [General]
 Blur=true
+ColorRandomization=false
 Description=Solarized Light
 Opacity=0.9
 Wallpaper=

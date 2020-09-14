@@ -100,6 +100,31 @@ then
     export TERM_META=light
 fi
 
-export PSQL_EDITOR='vim -c"set ft=sql"'
+export PSQL_EDITOR='nvim -c"set ft=sql"'
 export BROWSER=google-chrome
-export EDITOR='vim'
+export EDITOR='nvim'
+
+
+# https://github.com/metakirby5/codi.vim
+# Codi
+# Usage: codi [filetype] [filename]
+codi() {
+  local syntax="${1:-python}"
+  shift
+  nvim -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=NONE |\
+    hi NonText ctermfg=0 |\
+    Codi $syntax" "$@"
+}
+
+if [[ -x /usr/bin/lsd ]]; then
+    alias ls='lsd'
+    alias ll='ls -l'
+    # alias l='ls -l'
+    alias la='ls -a'
+    alias lla='ls -la'
+    alias lt='ls --tree'
+fi
