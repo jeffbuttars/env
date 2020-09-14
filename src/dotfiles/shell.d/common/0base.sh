@@ -119,3 +119,12 @@ codi() {
     hi NonText ctermfg=0 |\
     Codi $syntax" "$@"
 }
+
+if [[ -x /usr/bin/lsd ]]; then
+    alias ls='lsd'
+    alias ll='ls -l'
+    # alias l='ls -l'
+    alias la='ls -a'
+    alias lla='ls -la'
+    alias lt='ls --tree'
+fi

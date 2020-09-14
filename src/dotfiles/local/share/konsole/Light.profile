@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Solarized Light
+ColorScheme=Adapta
 Font=FiraCode NF,14,-1,5,53,0,0,0,0,0,Retina
 
 [Cursor Options]

@@ -345,8 +345,8 @@ bindsym $mod+F6 exec plexmediaplayer
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+F9 workspace $wsMessaging, exec slack
-# bindsym $mod+Escape exec krunner
-bindsym $mod+Escape exec ulauncher
+bindsym $mod+Escape exec krunner
+# bindsym $mod+Escape exec ulauncher
 bindsym $mod+ctrl+l exec ~/bin/fuzzy_screen_lock
 
 # Jump to urgent window
