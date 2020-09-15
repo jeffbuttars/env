@@ -337,7 +337,8 @@ bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
 # bindsym $mod+F4 exec ~/bin/music
-bindsym $mod+F4 exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
+# bindsym $mod+F4 exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
+bindsym $mod+F4 exec google-chrome-stable --app='https://music.youtube.com/?source=pwa'
 
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
 #bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'

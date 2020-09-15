@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Adapta
-Font=FiraCode Nerd Font Mono,12,-1,5,53,0,0,0,0,0,Retina
+Font=FiraCode NF,14,-1,5,53,0,0,0,0,0,Retina
 
 [Cursor Options]
 CursorShape=0
@@ -14,7 +14,7 @@ DefaultEncoding=UTF-8
 
 [General]
 Command=/bin/zsh
-Environment=TERM=konsole-256color,TERM_META=light
+Environment=TERM=konsole-256color,TERM_META=dark
 Icon=utilities-terminal
 Name=Light
 Parent=FALLBACK/
