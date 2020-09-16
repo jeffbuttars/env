@@ -1,7 +1,7 @@
 [Appearance]
 BoldIntense=true
-ColorScheme=AdaptaNokto
-Font=FiraCode NF,14,-1,5,53,0,0,0,0,0,Retina
+ColorScheme=Gruvbox
+Font=FiraCode Nerd Font Mono,14,-1,5,53,0,0,0,0,0,Retina
 
 [Encoding Options]
 DefaultEncoding=UTF-8
