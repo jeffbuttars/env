@@ -19,6 +19,8 @@ shellexec ()
 {
     tmpfile=$(mktemp)
     echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
+
+    i3-msg 'workspace " 10  Dev Services"'
     konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
     sleep 0.5
 }
@@ -60,12 +62,14 @@ if [[ $CLEAN ]]; then
 
     tmpfile=$(mktemp)
     echo -e "$clean_str;\n" > "$tmpfile"
+    i3-msg 'workspace " 10  Dev Services"'
     konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 fi
 
 
 tmpfile=$(mktemp)
 echo -e "make images-base;\n" > "$tmpfile"
+i3-msg 'workspace " 10  Dev Services"'
 konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 
 serve='couchdb pgsql dbwatch'
@@ -127,4 +131,4 @@ if [[ $CLEAN ]]; then
 fi
 shellexec "echo 'Starting V1 services...'; \
     . $HOME/.config/nvm/nvm.sh; nvm use bst; $clean_str \
-    ./node_modules/.bin/nf start -j Procfile.jeff"
+    sleep 30; ./node_modules/.bin/nf start -j Procfile.jeff"
