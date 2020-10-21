@@ -68,11 +68,12 @@ fi
 
 
 tmpfile=$(mktemp)
-echo -e "make images-base;\n" > "$tmpfile"
+echo -e "make -j2 images-base;\n" > "$tmpfile"
 i3-msg 'workspace " 10  Dev Services"'
 konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 
-serve='couchdb pgsql dbwatch'
+# serve='couchdb pgsql dbwatch'
+serve='-s pgsql dbwatch'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
@@ -80,20 +81,14 @@ shellexec "$clean_str ./scripts/serve $serve"
 
 sleep 30
 
-serve='esink'
-if [[ -z $CLEAN ]]; then
-    serve="-n $serve "
-fi
-shellexec "./scripts/serve $serve"
-
-serve='pipeline hal'
+serve='-s pipeline hal'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
 shellexec "./scripts/serve $serve"
 
 # Sims: Echoguard, RFAgent
-serve='sims/echoguard sims/rfagent'
+serve='-s sims/echoguard sims/rfagent'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
@@ -107,8 +102,8 @@ i3-msg 'split horizontal'
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
 
-serve='api api_v3'
-if [l -z $CLEAN ]]; then
+serve='-s api api_v3'
+if [[ -z $CLEAN ]]; then
     serve="-n $serve"
 fi
 shellexec "./scripts/serve $serve"
@@ -117,6 +112,12 @@ sleep 1
 
 i3-msg 'split vertical'
 
+serve='-s esink'
+if [[ -z $CLEAN ]]; then
+    serve="-n $serve "
+fi
+shellexec "./scripts/serve $serve"
+
 WORK_DIR="$BASE_DIR/cop"
 cd $WORK_DIR
 if [[ $CLEAN ]]; then
@@ -124,11 +125,11 @@ if [[ $CLEAN ]]; then
 fi
 shellexec "echo 'Starting COP...'; . $HOME/.config/nvm/nvm.sh; nvm use system; $clean_str yarn start"
 
-WORK_DIR="$BASE_DIR"
-cd $WORK_DIR
-if [[ $CLEAN ]]; then
-    clean_str='rm -fr services/node/node_modules; cd services/node; npm i; cd -; cd services/go; make clean; make; cd -;'
-fi
-shellexec "echo 'Starting V1 services...'; \
-    . $HOME/.config/nvm/nvm.sh; nvm use bst; $clean_str \
-    sleep 30; ./node_modules/.bin/nf start -j Procfile.jeff"
+# WORK_DIR="$BASE_DIR"
+# cd $WORK_DIR
+# if [[ $CLEAN ]]; then
+#     clean_str='rm -fr services/node/node_modules; cd services/node; npm i; cd -; cd services/go; make clean; make; cd -;'
+# fi
+# shellexec "echo 'Starting V1 services...'; \
+#     . $HOME/.config/nvm/nvm.sh; nvm use bst; $clean_str \
+#     sleep 30; ./node_modules/.bin/nf start -j Procfile.jeff"
