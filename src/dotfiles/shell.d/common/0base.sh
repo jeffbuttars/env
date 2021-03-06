@@ -1,21 +1,27 @@
 umask 0027
 
 # Aliases
-vims=('nvim' 'vim')
+vims=('nvim' 'vim', 'vi')
 
 # Select which vim to use in order of preference. First found wins.
-for var in $vims
-do
-    v=$(command -v $var)
-    if [[ -n $v ]]
-    then
-        alias vi="$var"
-        alias vim="$var"
-        alias svi="sudo -E $var"
-        alias vis="$var -O"
-        break
-    fi
-done
+
+start_vim()
+{
+    for var in $vims
+    do
+        v=$(command -v $var)
+        if [[ -n $v ]]
+        then
+            $v $@
+            return $?
+        fi
+    done
+}
+
+alias vi=start_vim
+alias vim=start_vim
+alias svi="sudo -E vim"
+alias vis='start_vim -O'
 
 # default grep options
 # Ignore VCS directories
@@ -74,15 +80,6 @@ fi
 
 export PATH=$HOME/bin:$PATH
 
-# if [[ -d  "$HOME/.rvm/bin" ]]; then
-#     export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-# fi
-
-# if [[ /opt/android-sdk ]]; then
-#     export ANDROID_HOME='/opt/android-sdk'
-#     export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-# fi
-
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]
 then
@@ -103,28 +100,40 @@ fi
 export PSQL_EDITOR='nvim -c"set ft=sql"'
 export BROWSER=google-chrome
 export EDITOR='nvim'
+export VISUAL=vim
 
 
 # https://github.com/metakirby5/codi.vim
 # Codi
 # Usage: codi [filetype] [filename]
-codi() {
-  local syntax="${1:-python}"
-  shift
-  nvim -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=NONE |\
-    hi NonText ctermfg=0 |\
-    Codi $syntax" "$@"
-}
+# codi() {
+#   local syntax="${1:-python}"
+#   shift
+#   nvim -c \
+#     "let g:startify_disable_at_vimenter = 1 |\
+#     set bt=nofile ls=0 noru nonu nornu |\
+#     hi ColorColumn ctermbg=NONE |\
+#     hi VertSplit ctermbg=NONE |\
+#     hi NonText ctermfg=0 |\
+#     Codi $syntax" "$@"
+# }
 
 if [[ -x /usr/bin/lsd ]]; then
-    alias ls='lsd'
-    alias ll='ls -l'
-    # alias l='ls -l'
-    alias la='ls -a'
-    alias lla='ls -la'
-    alias lt='ls --tree'
+    if [[ "$TERM_META" == "light" ]]
+    then
+        alias ls='lsd --color=never'
+    else
+        alias ls='lsd'
+    fi
+fi
+
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+
+if [[ -x /usr/bin/fzf ]]; then
+    gch () {
+        git checkout "$(git branch --list --sort=-refname --sort=-committerdate --color | fzf --ansi | tr -d '[:space:]')"
+    }
 fi
