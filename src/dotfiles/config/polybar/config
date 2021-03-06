@@ -11,12 +11,12 @@ background = #1d1f21
 foreground = #c5c8c6
 
 line-size = 3
-line-color =
+; line-color =
 
 bottom = false
 
 ; border-size = 0
-border-color =
+; border-color =
 
 padding-left = 0
 padding-right = 2
@@ -29,7 +29,7 @@ font-1 = FuraCode Nerd Font Mono:pixelsize=12;1
 font-2 = FuraCode Nerd Font Mono:pixelsize=12;1
 
 modules-left = date menu-apps i3
-modules-right = dev.100 eagle.110 eth wlan
+modules-right = dev_100 eagle_110 eth wlan
 
 tray-position = right
 tray-padding = 1
@@ -179,7 +179,7 @@ type = internal/memory
 ; format = RAM <bar-used> SWAP <bar-swap-used> <label>
 format = RAM <bar-used> SWAP <bar-swap-used>
 
-/* label = %gb_used% / %gb_total% Swap %percentage_swap_used%% %gb_swap_used% / %gb_swap_total% */
+; label = %gb_used% / %gb_total% Swap %percentage_swap_used%% %gb_swap_used% / %gb_swap_total%
 
 bar-used-indicator =
 bar-used-width = 25
@@ -310,7 +310,7 @@ label-connected = %ifname%: %local_ip%
 format-disconnected =
 label-disconnected = %ifname%
 
-[module/dev.100]
+[module/dev_100]
 type = internal/network
 interface = dev.100
 interval = 3.0
@@ -323,7 +323,7 @@ format-connected-prefix-foreground = #1d1f21
 label-connected = %ifname%: %local_ip%
 format-disconnected =
 
-[module/eagle.110]
+[module/eagle_110]
 type = internal/network
 interface = eagle.110
 interval = 3.0
