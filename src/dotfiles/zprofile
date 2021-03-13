@@ -72,3 +72,5 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+export PATH="$HOME/.poetry/bin:$PATH"

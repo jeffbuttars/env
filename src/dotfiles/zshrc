@@ -110,5 +110,25 @@ else
     echo "install 'starship' for a pretty prompt"
 fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
+# Automatically activate/deactivate Poetry virtual environments
+function activate_deactivate_poetry_venv()
+{
+    if [[ -f ./pyproject.toml ]]
+    then
+        # local venv_path=$(poetry env info --path)
+        # echo "Activating Python virtualenv $venv_path"
+        # source "${venv_path}/bin/activate"
+        source "$(poetry env info --path)/bin/activate"
+    elif [[ $VIRTUAL_ENV ]]
+    then
+        # echo "Deactivating Python virtualenv $VIRTUAL_ENV"
+        deactivate
+    fi
+} #activate_deactivate_poetry_venv
+
+if [[ $(command -v poetry) ]]
+then
+    chpwd_functions=(${chpwd_functions[@]} "activate_deactivate_poetry_venv")
+fi
+
 export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6

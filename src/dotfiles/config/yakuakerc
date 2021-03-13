@@ -9,7 +9,7 @@ TerminalHighlightOnManualActivation=true
 Translucency=true
 
 [Desktop Entry]
-DefaultProfile=Light.profile
+DefaultProfile=dark.profile
 
 [Dialogs]
 FirstRun=false
@@ -19,7 +19,7 @@ Height 2160=737
 Width 3840=1218
 
 [Favorite Profiles]
-Favorites=dark.profile,red.profile,Light.profile
+Favorites=Light.profile,dark.profile,red.profile
 
 [Shortcuts]
 close-active-terminal=Ctrl+Shift+R
