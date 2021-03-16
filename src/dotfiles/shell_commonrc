@@ -108,6 +108,7 @@ alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
+alias icat='kitty +kitten icat'
 
 # Use some of that ripgrep if it's around
 
@@ -147,5 +148,9 @@ fi
 if [[ -f $HOME/.Xmodmap ]]; then
     xmodmap $HOME/.Xmodmap
 fi
+
+export SIMS_GRABBER_HOST_IP_ADDRESS='10.6.6.6'
+
+
 
 # vim:set ft=sh:

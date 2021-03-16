@@ -34,9 +34,8 @@ bindsym $mod+End workspace 3, workspace 5
 # bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
 bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
-exec_always --no-startup-id picom --experimental-backends
-# exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
 
+exec_always --no-startup-id picom -b --config ~/.config/picom-ephi.conf
 exec --no-startup-id slack
 
 # Start the music workspace

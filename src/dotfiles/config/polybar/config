@@ -11,12 +11,12 @@ background = #1d1f21
 foreground = #c5c8c6
 
 line-size = 3
-line-color =
+; line-color =
 
 bottom = false
 
 ; border-size = 0
-border-color =
+; border-color =
 
 padding-left = 0
 padding-right = 2
@@ -29,7 +29,7 @@ font-1 = FuraCode Nerd Font Mono:pixelsize=12;1
 font-2 = FuraCode Nerd Font Mono:pixelsize=12;1
 
 modules-left = date menu-apps i3
-modules-right = dev.100 eagle.110 eth wlan
+modules-right = dev_100 eagle_110 eth wlan
 
 tray-position = right
 tray-padding = 1

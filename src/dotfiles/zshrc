@@ -1,22 +1,134 @@
 
+# Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
 
-export USE_STARSHIP=$(command -v starship)
+autoload -Uz compinit
+compinit
+setopt COMPLETE_ALIASES
+zstyle ':completion::complete:*' gain-privileges 1
 
-if [[ -n $USE_STARSHIP ]]
-then
-    eval "$(starship init zsh)"
+# Set vi mode
+bindkey -v
 
-    source $HOME/.shell.d/common/0base.sh
-    source $HOME/.shell.d/common/fzf.sh
-    source $HOME/.shell.d/common/node.sh
-    source $HOME/.shell.d/common/python.sh
-    source $HOME/.shell.d/zsh/90-zshrc.zsh
-    source $HOME/.shell.d/zsh/99-fzf.zsh
-else
-    source $HOME/.shell.d/index
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+
+# zle -N zle-line-init
+# zle -N zle-keymap-select
+
+# By default, there is a 0.4 second delay after you hit the <ESC> key and when
+# the mode change is registered. This results in a very jarring and frustrating
+# transition between modes. Let's reduce this delay to 0.1 seconds.
+export KEYTIMEOUT=0.1
+
+# Turn off spelling correction
+unsetopt correct
+unsetopt correctall
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+# setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+# setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+
+
+# # CD whitout typing cd
+# AUTO_CD="true"
+
+# Look for $HOME/.zsh_local
+# That's where you put computer specific things that don't go in the repo
+if [[ -f $HOME/.zsh_local ]]; then
+    source $HOME/.zsh_local
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
+#     . "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
+# fi
 
-# # vim:set ft=zsh:
+if [[ -f "$HOME/.shell.d/common/0base.sh" ]]
+then
+    source "$HOME/.shell.d/common/0base.sh"
+fi
+
+if [[ -f "$HOME/.shell.d/common/fzf.sh" ]]
+then
+    source "$HOME/.shell.d/common/fzf.sh"
+fi
+
+if [[ -f "$HOME/.shell.d/common/fzf.sh" ]]
+then
+    source "$HOME/.shell.d/common/fzf.sh"
+fi
+
+if [[ -f "$HOME/.shell.d/common/nvm.sh" ]]
+then
+    source "$HOME/.shell.d/common/nvm.sh"
+fi
+
+if [[ -f "$HOME/.shell.d/common/python.sh" ]]
+then
+    source "$HOME/.shell.d/common/python.sh"
+fi
+
+if [[ -f "$HOME/.shell.d/common/99-fzf_fasd.zsh" ]]
+then
+    source "$HOME/.shell.d/common/99-fzf_fasd.zsh"
+fi
+
+if [[ -f "$HOME/.shell.d/zsh/99-fzf_fasd.zsh" ]]
+then
+    source "$HOME/.shell.d/zsh/99-fzf_fasd.zsh"
+fi
+
+if [[ -f /usr/bin/starship ]]
+then
+    starshipt_cache="$HOME/.starship-init-zsh"
+    eval "$(starship init zsh)"
+
+    if [ /usr/bin/starship -nt "$starshipt_cache" -o ! -s "$starshipt_cache" ]; then
+        starship init zsh >| "$starshipt_cache"
+    fi
+
+    source "$starshipt_cache"
+    unset starshipt_cache
+else
+    echo "install 'starship' for a pretty prompt"
+fi
+
+# Automatically activate/deactivate Poetry virtual environments
+function activate_deactivate_poetry_venv()
+{
+    if [[ -f ./pyproject.toml ]]
+    then
+        # local venv_path=$(poetry env info --path)
+        # echo "Activating Python virtualenv $venv_path"
+        # source "${venv_path}/bin/activate"
+        source "$(poetry env info --path)/bin/activate"
+    elif [[ $VIRTUAL_ENV ]]
+    then
+        # echo "Deactivating Python virtualenv $VIRTUAL_ENV"
+        deactivate
+    fi
+} #activate_deactivate_poetry_venv
+
+if [[ $(command -v poetry) ]]
+then
+    chpwd_functions=(${chpwd_functions[@]} "activate_deactivate_poetry_venv")
+fi
+
+export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
