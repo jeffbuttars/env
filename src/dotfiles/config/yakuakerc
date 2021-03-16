@@ -19,7 +19,7 @@ Height 2160=737
 Width 3840=1218
 
 [Favorite Profiles]
-Favorites=dark.profile,red.profile,Light.profile
+Favorites=Light.profile,red.profile,dark.profile
 
 [Shortcuts]
 close-active-terminal=Ctrl+Shift+R
@@ -49,7 +49,7 @@ view-full-screen=Ctrl+Shift+F11
 
 [Window]
 DynamicTabTitles=true
-Height=46
+Height=47
 KeepOpen=true
 ToggleToFocus=true
 Width=95

@@ -1,7 +1,8 @@
 [Appearance]
 BoldIntense=true
 ColorScheme=Gruvbox
-Font=FiraCode Nerd Font Mono,14,-1,5,53,0,0,0,0,0,Retina
+Font=FiraCode Nerd Font,12,-1,5,53,0,0,0,0,0,Retina
+UseFontLineChararacters=true
 
 [Encoding Options]
 DefaultEncoding=UTF-8

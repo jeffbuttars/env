@@ -3,6 +3,7 @@ AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=papercolor-light
 Font=FiraCode Nerd Font Mono,14,-1,5,53,0,0,0,0,0,Retina
+UseFontLineChararacters=true
 
 [Cursor Options]
 CursorShape=0
