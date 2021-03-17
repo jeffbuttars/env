@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=kitty light
+GenericName=Terminal emulator
+Comment=A fast, feature full, GPU based terminal emulator, light theme
+TryExec=$HOME/bin/kitty-light
+Exec=$HOME/bin/kitty-light
+Icon=kitty
+Categories=System;TerminalEmulator;

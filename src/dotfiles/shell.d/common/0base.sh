@@ -57,6 +57,11 @@ alias open='xdg-open'
 alias vif='nvim +Files'
 # alias gvim='nvim-gtk'
 
+if [[ "$TERM" == "xterm-kitty" ]]; then
+    alias kcat='kitty +kitten icat'
+    alias kdiff="kitty +kitten diff"
+fi
+
 # cmd_exists=$(command -v bat)
 # if [[ -n $cmd_exists ]]; then
 #     alias cat='bat --theme Monokai\ Extended\ Light'

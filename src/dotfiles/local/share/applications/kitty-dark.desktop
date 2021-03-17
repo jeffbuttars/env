@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=kitty dark
+GenericName=Terminal emulator
+Comment=A fast, feature full, GPU based terminal emulator, dark theme
+TryExec=$HOME/bin/kitty-dark
+Exec=$HOME/bin/kitty-dark
+Icon=kitty
+Categories=System;TerminalEmulator;

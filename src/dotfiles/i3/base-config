@@ -67,6 +67,8 @@ for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace
 # for_window [class="konsole"] border pixel 4
 # for_window [class="kitty"] border pixel 2
 for_window [title="Plasma"] floating enable, border none
+for_window [title="QjackCtl"] floating enable
+
 
 # Plasma stuff
 # Kill the plasma wallpaper
@@ -236,7 +238,7 @@ popup_during_fullscreen smart
 bindsym $mod+Return exec konsole --profile Light
 bindsym $mod+Shift+Return exec konsole --profile dark
 bindsym $mod+F12 exec konsole --profile red
-bindsym $mod+ctrl+t exec --no-startup-id kitty
+bindsym $mod+ctrl+t exec --no-startup-id kitty-dark
 #bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
