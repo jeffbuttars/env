@@ -198,11 +198,12 @@ set $sol_violet  #6c71c4
 set $sol_blue    #268bd2
 set $sol_cyan    #2aa198
 set $sol_green   #859900
+set $sol_black   #000000
 
 hide_edge_borders smart
 # workspace_auto_back_and_forth yes
 
-#class                    border        backgr       text        split
+#class                    border        backgr       text        split          child border
 client.focused          $sol_green   $sol_green $sol_base3   $sol_green
 # client.focused_inactive #073642       #002b36     $sol_base2   $sol_red
 # client.unfocused        #073642       #002b36     $sol_base1   $sol_red
@@ -211,11 +212,13 @@ client.focused          $sol_green   $sol_green $sol_base3   $sol_green
 
 # https://github.com/unix121/i3wm-themer/blob/master/src/themes/000.json
 client.background #1d1f21
-# client.focused #c5c8c6 $sol_blue #c5c8c6 #81a2be #81a2be
-client.unfocused #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
-client.focused_inactive #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+# client.unfocused #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+# client.focused_inactive #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.placeholder #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+
+client.unfocused $sol_black $sol_black #c5c8c6 #5f819d $sol_black
+client.focused_inactive $sol_black $sol_black #c5c8c6 #5f819d $sol_black
 
  #Pressing $mod and current workspace number takes you back to the previousle active workspace
 # workspace_auto_back_and_forth yes
