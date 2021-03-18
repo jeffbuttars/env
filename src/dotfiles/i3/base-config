@@ -217,8 +217,8 @@ client.background #1d1f21
 client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.placeholder #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 
-client.unfocused $sol_black $sol_black #c5c8c6 #5f819d $sol_black
-client.focused_inactive $sol_black $sol_black #c5c8c6 #5f819d $sol_black
+client.unfocused $sol_black $sol_base02 #c5c8c6 #5f819d $sol_black
+client.focused_inactive $sol_black $sol_base02 #c5c8c6 #5f819d $sol_black
 
  #Pressing $mod and current workspace number takes you back to the previousle active workspace
 # workspace_auto_back_and_forth yes
