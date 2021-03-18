@@ -238,7 +238,7 @@ popup_during_fullscreen smart
 bindsym $mod+Return exec konsole --profile Light
 bindsym $mod+Shift+Return exec konsole --profile dark
 bindsym $mod+F12 exec konsole --profile red
-bindsym $mod+ctrl+t exec --no-startup-id kitty-dark
+bindsym $mod+ctrl+t exec --no-startup-id ~/bin/kitty-dark
 #bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
