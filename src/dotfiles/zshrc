@@ -24,6 +24,7 @@ bindkey '^r' history-incremental-search-backward
 # the mode change is registered. This results in a very jarring and frustrating
 # transition between modes. Let's reduce this delay to 0.1 seconds.
 export KEYTIMEOUT=0.1
+export VIRTUAL_ENV_PREV=""
 
 # Turn off spelling correction
 unsetopt correct
@@ -113,15 +114,29 @@ fi
 # Automatically activate/deactivate Poetry virtual environments
 function activate_deactivate_poetry_venv()
 {
-    if [[ -f ./pyproject.toml ]]
+    if [[ -f "$PWD/pyproject.toml" ]]
     then
         # local venv_path=$(poetry env info --path)
         # echo "Activating Python virtualenv $venv_path"
         # source "${venv_path}/bin/activate"
-        source "$(poetry env info --path)/bin/activate"
+        if [[ $VIRTUAL_ENV ]]
+        then
+
+            # echo "Already in VENV, $VIRTUAL_ENV"
+            if [[ "$VIRTUAL_ENV" != "$PWD/.venv" ]]
+            then
+                echo -en "Deactivating ~/${VIRTUAL_ENV#$HOME/}, "
+                deactivate
+            fi
+        fi
+
+        local venv=$(poetry env info --path)
+        echo "Activating ~/${venv#$HOME/}"
+        source "${venv}/bin/activate"
     elif [[ $VIRTUAL_ENV ]]
     then
         # echo "Deactivating Python virtualenv $VIRTUAL_ENV"
+        echo "Deactivating $VIRTUAL_ENV"
         deactivate
     fi
 } #activate_deactivate_poetry_venv
@@ -130,5 +145,8 @@ if [[ $(command -v poetry) ]]
 then
     chpwd_functions=(${chpwd_functions[@]} "activate_deactivate_poetry_venv")
 fi
+
+# Run on startup
+activate_deactivate_poetry_venv
 
 export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
