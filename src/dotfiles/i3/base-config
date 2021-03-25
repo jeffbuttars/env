@@ -397,7 +397,7 @@ bindsym $mod+Pause mode "$mode_system"
 # bindcode 163 exec --no-startup-id playerctl next
 
 # Media player controls
-bindsym XF86AudioPlay exec "playerctl --player spotify,youtube play-pause"
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
