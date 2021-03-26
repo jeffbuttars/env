@@ -129,14 +129,14 @@ else
 
         echo "Setting image as wallpaper"
         #gconftool-2 -t string -s /desktop/gnome/background/picture_filename $PICTURES_DIR/${TODAY}_apod.jpg
-        feh --bg-fill $PICTURES_DIR/${TODAY}_apod.jpg
+        feh --bg-max $PICTURES_DIR/${TODAY}_apod.jpg
 
         save_description
 
     # If the picture is the same
     else
         echo "Picture is the same, finishing up"
-        feh --bg-fill $PICTURES_DIR/${TODAY}_apod.jpg
+        feh --bg-max $PICTURES_DIR/${TODAY}_apod.jpg
     fi
 fi
 
