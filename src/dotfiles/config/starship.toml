@@ -124,11 +124,16 @@ $character"""
 [character]                            # The name of the module we are configuring is "character"
 format = "$symbol "
 # success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 
-error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
+# error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
+error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
 vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
 # vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
 
@@ -147,6 +152,8 @@ symbol = "M"
 
 [time]
 disabled = false
-style = "green"
-format = '[🕙$time]($style) '
+style = "bold fg:black bg:green"
+# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# format = '[🕙$time]($style)[](fg:green) '
+format = '[](fg:green)[$time]($style)[](fg:green) '
 # format = "[$time]($style) "
