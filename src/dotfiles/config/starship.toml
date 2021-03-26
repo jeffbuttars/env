@@ -157,3 +157,6 @@ style = "bold fg:black bg:green"
 # format = '[🕙$time]($style)[](fg:green) '
 format = '[](fg:green)[$time]($style)[](fg:green) '
 # format = "[$time]($style) "
+
+[lua]
+symbol = " "
