@@ -123,16 +123,13 @@ export VISUAL=vim
 #     Codi $syntax" "$@"
 # }
 
-if [[ -x /usr/bin/lsd ]]; then
-    if [[ "$TERM_META" == "light" ]]
-    then
-        alias ls='lsd --color=never'
-    else
-        alias ls='lsd'
-    fi
+alias ll='ls -l'
+
+if [[ -x /usr/bin/exa ]]; then
+    alias ls='exa'
+    alias ll='ls -l --header'
 fi
 
-alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'

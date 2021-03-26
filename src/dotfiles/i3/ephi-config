@@ -3,7 +3,7 @@
 # Output vars
 set $left_op HDMI-0
 # set $center_op DP-2
-set $right_op DP-4
+set $right_op DP-0
 
 bindsym Control+1 focus output $left_op
 bindsym Control+2 focus output $right_op
