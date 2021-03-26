@@ -22,9 +22,8 @@ smart_gaps on
 # Only enable outer gaps when there is exactly one container
 smart_gaps inverse_outer
 
-# for_window [class=".*"] border pixel 2
-# for_window [class=".*"] border none
 new_window 1pixel
+for_window [class=".*"] border 1pixel
 border_radius 5
 ### END Gaps config
 
@@ -399,11 +398,11 @@ bindsym $mod+Pause mode "$mode_system"
 # bindcode 163 exec --no-startup-id playerctl next
 
 # Media player controls
-# bindsym XF86AudioPlay exec playerctl play-pause
-# bindsym XF86AudioPause exec playerctl play-pause
-# bindsym XF86AudioStop exec playerctl stop
-# bindsym XF86AudioNext exec playerctl next
-# bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 exec_always ~/.fehbg
 exec_always ~/bin/nasa-pod.sh &
