@@ -52,6 +52,8 @@ bindsym $mod+Tab scratchpad show
 for_window [title="^.*jeff@blacksagetech.com.*"] move container to workspace $wsMail
 for_window [title="^.*jeffbuttars@gmail.com.*"] move container to workspace $wsMail
 for_window [title="^.*jeff@jeffbuttars.com.*"] move container to workspace $wsMail
+for_window [title="^.*jeff@ammo.enterprises.*"] move container to workspace $wsMail
+for_window [title="^Mail.*@blacksagetech.*"] move container to workspace $wsMail
 
 for_window [title="^.*WhatsApp.*"] move container to workspace $wsMessaging
 for_window [title="^.*Discord.*"] move container to workspace $wsMessaging
@@ -127,7 +129,8 @@ for_window [class="Pulseeffects"] move container to workspace $wsMusic
 for_window [title=".*Google Play Music.*"] floating disable, move container to workspace $wsMusic
 for_window [title="^YouTube Music.*"] floating disable, move container to workspace $wsMusic
 for_window [title=".*MellowPlayer*"] move container to workspace $wsMusic
-for_window [title="^Spotify*"] move container to workspace $wsMusic, border pixel 2
+for_window [title="^Spotify Premium$"] move container to workspace $wsMusic, border pixel 2
+for_window [title="^Spotify$"] move container to workspace $wsMusic, border pixel 2
 
 
 # Workspace names
