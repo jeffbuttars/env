@@ -24,7 +24,7 @@ smart_gaps inverse_outer
 
 new_window 1pixel
 for_window [class=".*"] border 1pixel
-border_radius 5
+border_radius 10
 ### END Gaps config
 
 # font for window titles. ISO 10646 = Unicode
