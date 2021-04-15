@@ -60,7 +60,7 @@
 # $shell\
 # $character"""
 
-# format = "$all"
+format = "$all"
 # Which is equivalent to
 # format = """
 # $username\
