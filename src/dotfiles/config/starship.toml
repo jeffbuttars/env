@@ -1,7 +1,7 @@
 # https://starship.rs/config/#prompt
 
 # Inserts a blank line between shell prompts
-add_newline = true
+# add_newline = true
 
 # format = """
 # $time\
@@ -135,7 +135,6 @@ success_symbol = "[](green)"     # The "success_symbol" segment is being set 
 # error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
 error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
 vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
-# vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
 
 
 [python]
