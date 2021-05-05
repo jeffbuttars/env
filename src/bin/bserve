@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
+export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
 
 CLEAN='true'
 SERVICE_LIST='couchdb pgsql dbwatch esink api api_v3 pipeline hal \
@@ -91,10 +91,17 @@ shellexec "./scripts/serve $serve"
 # serve='-s sims/echoguard sims/rfagent'
 # serve='-s sims/dynetics sims/s3reveal sims/grabber'
 serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs'
+
+if [[ -f ./scripts/create_sim_grabber_links ]]; then
+    ./scripts/create_sim_grabber_links
+    serve="${serve} sims/grabber-2 sims/grabber-3"
+fi
+
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
 shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"
+# shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./run_echoguards"
 
 sleep 1
 # Start the rest on the right side
