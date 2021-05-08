@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
+export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
 
 CLEAN='true'
 SERVICE_LIST='couchdb pgsql dbwatch esink api api_v3 pipeline hal \
@@ -102,6 +102,7 @@ if [[ -z $CLEAN ]]; then
 fi
 
 shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"
+# shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./run_echoguards"
 
 sleep 1
 # Start the rest on the right side
