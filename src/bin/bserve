@@ -1,6 +1,12 @@
 #!/bin/bash
 
+if [[ "$HOME/.bst.sh" ]]; then
+    source "$HOME/.bst.sh"
+fi
+
 export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
+
+echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
 
 CLEAN='true'
 SERVICE_LIST='couchdb pgsql dbwatch esink api api_v3 pipeline hal \
