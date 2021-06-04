@@ -20,9 +20,11 @@ Environment=TERM=konsole-256color,TERM_META=dark
 LocalTabTitleFormat=%w - %d : %n
 Name=dark
 Parent=FALLBACK/
-ShowTerminalSizeHint=false
+ShowTerminalSizeHint=true
 TerminalCenter=true
+TerminalColumns=100
 TerminalMargin=1
+TerminalRows=64
 
 [Interaction Options]
 TrimLeadingSpacesInSelectedText=true
@@ -35,5 +37,7 @@ ScrollBarPosition=2
 ScrollFullPage=true
 
 [Terminal Features]
+BellMode=3
 BlinkingCursorEnabled=true
+VerticalLine=true
 VerticalLineAtChar=99
