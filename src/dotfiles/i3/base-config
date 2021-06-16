@@ -243,9 +243,9 @@ default_orientation auto
 popup_during_fullscreen smart
 
 # start a terminal
-bindsym $mod+Return exec konsole --profile Light
-bindsym $mod+Shift+Return exec konsole --profile dark
-bindsym $mod+F12 exec konsole --profile red
+bindsym $mod+Return exec konsole --hide-menubar --profile Light
+bindsym $mod+Shift+Return exec konsole --hide-menubar --profile dark
+bindsym $mod+F12 exec konsole --hide-menubar --profile red
 bindsym $mod+ctrl+t exec --no-startup-id ~/bin/kitty-dark
 #bindsym $mod+Return exec i3-sensible-terminal
 

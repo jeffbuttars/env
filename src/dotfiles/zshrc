@@ -96,7 +96,8 @@ then
     source "$HOME/.shell.d/zsh/99-fzf_fasd.zsh"
 fi
 
-if [[ -f /usr/bin/starship ]]
+STARSHIP_CMD=$(command -v starship)
+if [[ $STARSHIP_CMD ]]
 then
     starshipt_cache="$HOME/.starship-init-zsh"
     eval "$(starship init zsh)"
@@ -145,6 +146,8 @@ if [[ $(command -v poetry) ]]
 then
     chpwd_functions=(${chpwd_functions[@]} "activate_deactivate_poetry_venv")
 fi
+
+export PATH="$HOME/.poetry/bin:$PATH"
 
 # Run on startup
 activate_deactivate_poetry_venv

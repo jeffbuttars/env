@@ -4,12 +4,12 @@ if [[ "$HOME/.bst.sh" ]]; then
     source "$HOME/.bst.sh"
 fi
 
-export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
+export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.78}
 
 echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
 
 CLEAN='true'
-SERVICE_LIST='couchdb pgsql dbwatch esink api api_v3 pipeline hal \
+SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
     sim-grabber sim-dynetics sim-rfagent'
 
 if [[ $1 ]]; then
@@ -28,7 +28,8 @@ shellexec ()
     echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
 
     i3-msg 'workspace " 10  Dev Services"'
-    konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
+    # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
+    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
     sleep 0.5
 }
 
@@ -53,15 +54,11 @@ clean_services_str ()
 
 i3-msg 'workspace " 10  Dev Services"'
 
+# Murder any running windows on the workspace
+i3-msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, kill'
+
 i3-msg 'focus parent'
 i3-msg 'split vertical'
-
-# WORK_DIR="$BASE_DIR"
-# cd $WORK_DIR
-# shellexec "./scripts/serve couchdb"
-
-# WORK_DIR="$BASE_DIR"
-# cd $WORK_DIR
 
 if [[ $CLEAN ]]; then
     clean_str="sudo -E $(clean_services_str $SERVICE_LIST)"
@@ -69,17 +66,17 @@ if [[ $CLEAN ]]; then
     tmpfile=$(mktemp)
     echo -e "$clean_str;\n" > "$tmpfile"
     i3-msg 'workspace " 10  Dev Services"'
-    konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
+    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 fi
 
 
 tmpfile=$(mktemp)
 echo -e "make -j2 images-base;\n" > "$tmpfile"
 i3-msg 'workspace " 10  Dev Services"'
-konsole --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
+konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 
 # serve='-s pgsql dbwatch'
-serve='-s couchdb pgsql dbwatch'
+serve='-s pgsql dbwatch'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi

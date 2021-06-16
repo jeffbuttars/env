@@ -2,13 +2,14 @@
 BoldIntense=true
 ColorScheme=Solarized Dark
 DimmValue=35
-Font=FiraCode Nerd Font Mono,12,-1,5,53,0,0,0,0,0,Retina
+Font=FiraCode Nerd Font Mono,16,-1,5,53,0,0,0,0,0,Retina
 LineSpacing=0
 UseFontLineChararacters=true
 
 [Cursor Options]
 CursorShape=1
-UseCustomCursorColor=true
+CustomCursorColor=255,255,255
+UseCustomCursorColor=false
 
 [Encoding Options]
 DefaultEncoding=UTF-8

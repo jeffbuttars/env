@@ -15,6 +15,11 @@ if [[ "$HNAME" == "rose" ]]; then
     polybar --reload right &
     polybar --reload middle &
     polybar --reload left &
+elif [[ "$HNAME" == "dvj-bst-dev-0011-buttars" ]]; then
+    # Launch bar1 and bar2
+    polybar --reload right &
+    polybar --reload middle &
+    polybar --reload left &
 elif [[ "$HNAME" == "lola" ]]; then
     # Launch bar1 and bar2
     polybar --reload right &
