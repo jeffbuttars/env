@@ -1,12 +1,14 @@
 #!/bin/bash
 
 if [[ "$HOME/.bst.sh" ]]; then
-    source "$HOME/.bst.sh"
+    . "$HOME/.bst.sh"
 fi
 
-export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.78}
-
+export BST_DEV_HOST_IP_ADDRESS=${BST_DEV_HOST_IP_ADDRESS:-192.168.200.76}
+export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
+echo "BST_DEV_HOST_IP_ADDRESS == $BST_DEV_HOST_IP_ADDRESS"
 echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
+
 
 CLEAN='true'
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
@@ -71,7 +73,7 @@ fi
 
 
 tmpfile=$(mktemp)
-echo -e "make -j2 images-base;\n" > "$tmpfile"
+echo -e "make -j3 images-base;\n" > "$tmpfile"
 i3-msg 'workspace " 10  Dev Services"'
 konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 
@@ -93,7 +95,7 @@ shellexec "./scripts/serve $serve"
 # Sims: Echoguard, RFAgent, s3reveal
 # serve='-s sims/echoguard sims/rfagent'
 # serve='-s sims/dynetics sims/s3reveal sims/grabber'
-serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs'
+serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/echoguard'
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
     ./scripts/create_sim_grabber_links
@@ -105,7 +107,6 @@ if [[ -z $CLEAN ]]; then
 fi
 
 shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"
-# shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./run_echoguards"
 
 sleep 1
 # Start the rest on the right side
