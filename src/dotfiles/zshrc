@@ -154,3 +154,18 @@ activate_deactivate_poetry_venv
 
 export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
 export NeovideMultiGrid=true
+
+SOURCABLES=(\
+    ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+)
+
+for sourceable in $SOURCABLES ; do
+    if [[ -f "$sourceable" ]]
+    then
+        source "$sourceable"
+    fi
+done
+
+bindkey '^\t' autosuggest-accept
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
