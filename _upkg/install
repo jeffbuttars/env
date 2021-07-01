@@ -89,4 +89,24 @@ sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
 #     sudo systemctl restart ephi-reverse-ssh
 # fi
 
+if [[ -d ${HOME}/.local/share/zsh-syntax-highlighting ]]; then
+    cd ${HOME}/.local/share/zsh-syntax-highlighting
+    git pull
+    cd -
+else
+    mkdir -p ${HOME}/.local/share
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+        ${HOME}/.local/share/zsh-syntax-highlighting
+fi
+
+if [[ -d ${HOME}/.local/share/zsh-autosuggestions ]]; then
+    cd ${HOME}/.local/share/zsh-autosuggestions
+    git pull
+    cd -
+else
+    mkdir -p ${HOME}/.local/share
+    git clone https://github.com/zsh-users/zsh-autosuggestions \
+        ${HOME}/.local/share/zsh-autosuggestions
+fi
+
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
