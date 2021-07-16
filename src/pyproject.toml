@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "jeff.buttars"
+version = "0.1.0"
+description = ""
+authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+python-lsp-server = {extras = ["all"], version = "*"}
+pynvim = "^0.4.3"
+black = "^21.5b2"
+mypy = "^0.812"
+immutables = "^0.15"
+pyls-flake8 = "^0.4.0"
+mypy-ls = "^0.5.1"
+pyls-isort = "^0.2.2"
+python-lsp-black = "^1.0.0"
+pyls-memestra = "^0.0.15"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
