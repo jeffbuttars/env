@@ -12,7 +12,7 @@ echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
 
 CLEAN='true'
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
-    sim-grabber sim-dynetics sim-rfagent'
+    sim-grabber sim-dynetics sim-rfagent sim-cot'
 
 if [[ $1 ]]; then
     if [[ "$1" == '-n' ]]; then
@@ -57,7 +57,7 @@ clean_services_str ()
 i3-msg 'workspace " 10  Dev Services"'
 
 # Murder any running windows on the workspace
-i3-msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, kill'
+i3-msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, [tiling class="(?i)konsole" workspace=" 10  Dev Services"] kill'
 
 i3-msg 'focus parent'
 i3-msg 'split vertical'
