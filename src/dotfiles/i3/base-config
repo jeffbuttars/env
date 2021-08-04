@@ -358,6 +358,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+F1 exec google-chrome-stable
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
+bindsym $mod+shift+F3 exec ~/bin/bserve -n
 # bindsym $mod+F4 exec ~/bin/music
 # bindsym $mod+F4 exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
 bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa'
