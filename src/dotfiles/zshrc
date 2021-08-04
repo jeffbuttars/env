@@ -124,6 +124,7 @@ function activate_deactivate_poetry_venv()
         then
 
             # echo "Already in VENV, $VIRTUAL_ENV"
+            # Deactivate the current VENV so we can activate the VENV in CWD
             if [[ "$VIRTUAL_ENV" != "$PWD/.venv" ]]
             then
                 echo -en "Deactivating ~/${VIRTUAL_ENV#$HOME/}, "
@@ -136,9 +137,17 @@ function activate_deactivate_poetry_venv()
         source "${venv}/bin/activate"
     elif [[ $VIRTUAL_ENV ]]
     then
+        # If the VENV that is currently active is from a parent dir,
+        # leave it active. Otherwise, deactivate it.
         # echo "Deactivating Python virtualenv $VIRTUAL_ENV"
-        echo "Deactivating $VIRTUAL_ENV"
-        deactivate
+        local vdir=$(readlink -f $(dirname $VIRTUAL_ENV))
+        RE_MATCH_PCRE=true
+
+        if [[ ! "${PWD}" =~ "^${vdir}.*" ]]
+        then
+            echo "Deactivating $vdir"
+            deactivate
+        fi
     fi
 } #activate_deactivate_poetry_venv
 
@@ -147,7 +156,7 @@ then
     chpwd_functions=(${chpwd_functions[@]} "activate_deactivate_poetry_venv")
 fi
 
-export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH:/usr/local/bin"
 
 # Run on startup
 activate_deactivate_poetry_venv
