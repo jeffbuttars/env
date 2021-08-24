@@ -1,4 +1,9 @@
 
+if [[ -d /usr/local/nvim/bin ]]
+then
+    PATH="/usr/local/nvim/bin:${PATH}"
+fi
+
 # Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
 
