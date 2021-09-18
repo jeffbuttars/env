@@ -3,7 +3,8 @@ function pyproject_find_nearest()
 {
     local cur="$PWD"
     while [[ $cur != "/" ]]; do
-        if [[ -f "$cur/pyproject.toml" ]]
+        # echo $cur
+        if [[ -f "$cur/pyproject.toml" && -d "$cur/.venv" ]]
         then
             echo "$cur"
             return 0
@@ -18,44 +19,69 @@ function pyproject_find_nearest()
 # Automatically activate/deactivate Poetry virtual environments
 function pyproject_activate_deactivate_poetry_venv()
 {
+    # Can we find venv in our current or parent path?
+    # -> NO: Are we in an active venv?
+    #    -> YES: deactivate it
+    #    -> NO: do nothing!
+    #
+    # -> YES: Are we already in a VENV?
+    #    -> YES: Is it the same as the neareset project found?
+    #       -> YES: Do nothing
+    #       -> NO: Deactivate the current venv, and activate the found project
+    #    -> NO: Activate the found project venv
+    #
+    #
+    #
+    #
+    #
+
     proj_dir=$(pyproject_find_nearest)
-    echo "NEAREST: $proj_dir"
+    # echo "NEAREST: $proj_dir"
 
-    if [[ -n "$proj_dir" ]]
+    # No project found in our current or parent dirs,
+    # if we're in an active venv, deactivate it.
+    if [[ -z "$proj_dir" ]]
     then
-        # local venv="$proj_dir/$VIRTUAL_ENV"
-        # local venv_path=$(poetry env info --path)
-        # echo "Activating Python virtualenv $venv_path"
-        # source "${venv_path}/bin/activate"
-        if [[ "$VIRTUAL_ENV" ]]
+        if [[ $VIRTUAL_ENV ]]
         then
-
-            # echo "Already in VENV, $VIRTUAL_ENV"
-            # Deactivate the current VENV so we can activate the VENV in CWD
-            if [[ "$VIRTUAL_ENV" != "$PWD/.venv" ]]
-            then
-                echo -en "Deactivating ~/${VIRTUAL_ENV#$HOME/}, "
-                deactivate
-            fi
-        fi
-
-        local venv=$(poetry env info --path)
-        echo "Activating ~/${venv#$HOME/}"
-        source "${venv}/bin/activate"
-    elif [[ $VIRTUAL_ENV ]]
-    then
-        # If the VENV that is currently active is from a parent dir,
-        # leave it active. Otherwise, deactivate it.
-        # echo "Deactivating Python virtualenv $VIRTUAL_ENV"
-        local vdir=$(readlink -f $(dirname $VIRTUAL_ENV))
-        RE_MATCH_PCRE=true
-
-        if [[ ! "${PWD}" =~ "^${vdir}.*" ]]
-        then
-            echo "Deactivating $vdir"
             deactivate
         fi
+
+        echo "Deactivating venv"
+        return 0
     fi
+
+    proj_venv_dir="${proj_dir}/.venv"
+    # echo "Found $proj_venv_dir"
+
+    if [[ -z "$VIRTUAL_ENV" ]]
+    then
+        # We found a project, but we're not in an active venv,
+        # so activate the found project and we're done.
+        echo "Activating ~/${proj_dir/#$HOME/}"
+        source "${proj_venv_dir}/bin/activate"
+
+        return 0
+    fi
+
+    # We have a found project and we're in an active venv
+    # If the active venv and the project are the same, do nothing!
+    if [[ "$VIRTUAL_ENV" == "$proj_venv_dir" ]]
+    then
+        # echo "Already active in $proj_dir"
+        return 0
+    fi
+
+    # The active venv and found project don't match
+    # so deactivate the current venv and activate the found project
+    # echo "poetry VENV, $proj_venv_dir"
+    # echo "Already in VENV: $VIRTUAL_ENV"
+    echo "venv: ~/${VIRTUAL_ENV#$HOME/} -> ~${proj_dir/#$HOME/}"
+    deactivate
+
+    # echo "Activating $proj_venv_dir"
+    source "${proj_venv_dir}/bin/activate"
+
 } #activate_deactivate_poetry_venv
 
 if [[ $(command -v poetry) ]]
