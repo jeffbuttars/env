@@ -1,4 +1,11 @@
 
+if [[ -d /usr/local/nvim/bin ]]
+then
+    PATH="/usr/local/nvim/bin:${PATH}"
+fi
+
+export TERM_META=dark
+
 # Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
 
@@ -94,7 +101,6 @@ fi
 
 # source_if_exists $HOME/.shell.d/zsh/python.zsh
 
-export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
 export NeovideMultiGrid=true
 
 SOURCABLES=(\
