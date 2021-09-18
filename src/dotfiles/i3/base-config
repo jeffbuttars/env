@@ -12,7 +12,7 @@
 set $mod Mod1
 
 ### Gaps config
-gaps inner 5
+gaps inner 2
 gaps outer 3
 smart_borders on
 
@@ -22,8 +22,8 @@ smart_gaps on
 # Only enable outer gaps when there is exactly one container
 smart_gaps inverse_outer
 
-new_window pixel 4
-for_window [class=".*"] border pixel 2
+new_window pixel 3
+for_window [class=".*"] border pixel 3
 # border_radius 8
 ### END Gaps config
 
@@ -69,24 +69,29 @@ for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace
 
 # for_window [class="konsole"] border pixel 4
 # for_window [class="kitty"] border pixel 2
-for_window [title="Plasma"] floating enable, border none
 for_window [title="QjackCtl"] floating enable, border pixel 2
 for_window [title="^Audacity.*"] floating enable, border pixel 2
 
 
+# https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma#I3_configuration
 # Plasma stuff
 # Kill the plasma wallpaper
 # for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
-for_window [title="Plasma-desktop"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="plasmashell"] floating enable, border none
+for_window [title="Plasma"] floating enable, border none
+for_window [title="Plasma-desktop"] floating enable, border none
+for_window [class="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="(?i)*nextcloud"] floating disable
 # no_focus [class="plasmashell"]
+for_window [class="plasmashell" window_type="notification"] floating enable, border none
 no_focus [class="plasmashell" window_type="notification"]
 
 for_window [class="Yakuake"] floating enable, border pixel 2
 for_window [title="Yakuake"] floating enable, border pixel 2
-for_window [class="Kmix"] floating enable, border pixel 2
+for_window [class="Kmix"] floating enable, border none
 for_window [class="Kcalc"] floating enable, border pixel 2
 for_window [class="vlc"] floating enable, border pixel 2
 for_window [class="Mplayer"] floating enable, border pixel 2
@@ -98,7 +103,6 @@ for_window [class="Skype"] floating enable
 for_window [title="^Android Emulator.*"] floating enable
 
 for_window [class="dde-desktop"] floating enable, border none
-for_window [class="krunner"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [title="Plex"] floating enable, sticky enable, border normal
@@ -243,8 +247,8 @@ default_orientation auto
 popup_during_fullscreen smart
 
 # start a terminal
-bindsym $mod+Return exec konsole --hide-menubar --profile Light
-bindsym $mod+Shift+Return exec konsole --hide-menubar --profile dark
+bindsym $mod+Return exec konsole --hide-menubar --profile dark
+bindsym $mod+Shift+Return exec konsole --hide-menubar --profile Light
 bindsym $mod+F12 exec konsole --hide-menubar --profile red
 bindsym $mod+ctrl+t exec --no-startup-id ~/bin/kitty-dark
 #bindsym $mod+Return exec i3-sensible-terminal
@@ -403,11 +407,16 @@ bindsym $mod+Pause mode "$mode_system"
 # bindcode 163 exec --no-startup-id playerctl next
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioPause exec playerctl play-pause
-bindsym XF86AudioStop exec playerctl stop
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
+# bindsym XF86AudioPlay exec playerctl play-pause
+# bindsym XF86AudioPause exec playerctl play-pause
+# bindsym XF86AudioStop exec playerctl stop
+# bindsym XF86AudioNext exec playerctl next
+# bindsym XF86AudioPrev exec playerctl previous
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
+bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
+bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 
 exec_always ~/.fehbg
 exec_always ~/bin/nasa-pod.sh &
