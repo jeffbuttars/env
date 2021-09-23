@@ -44,7 +44,10 @@ function pyproject_activate_deactivate_poetry_venv()
     then
         if [[ $VIRTUAL_ENV ]]
         then
-            deactivate
+            if [[ $(command -v deactivate) ]]
+            then
+                deactivate
+            fi
         fi
 
         echo "Deactivating venv"
@@ -77,7 +80,11 @@ function pyproject_activate_deactivate_poetry_venv()
     # echo "poetry VENV, $proj_venv_dir"
     # echo "Already in VENV: $VIRTUAL_ENV"
     echo "venv: ~/${VIRTUAL_ENV#$HOME/} -> ~${proj_dir/#$HOME/}"
-    deactivate
+
+    if [[ $(command -v deactivate) ]]
+    then
+        deactivate
+    fi
 
     # echo "Activating $proj_venv_dir"
     source "${proj_venv_dir}/bin/activate"

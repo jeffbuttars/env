@@ -99,7 +99,7 @@ else
     echo "install 'starship' for a pretty prompt"
 fi
 
-# source_if_exists $HOME/.shell.d/zsh/python.zsh
+source_if_exists $HOME/.shell.d/zsh/python.zsh
 
 export NeovideMultiGrid=true
 
