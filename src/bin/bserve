@@ -12,13 +12,72 @@ echo "BST_DEV_HOST_IP_ADDRESS == $BST_DEV_HOST_IP_ADDRESS"
 
 CLEAN='true'
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
-    sim-grabber sim-dynetics sim-rfagent sim-cot'
+    sim-grabber sim-grabber-2 sim-grabber-2 \
+    sim-echoguard-31 sim-echoguard-32 sim-echoguard-33 sim-echoguard-34 \
+    sim-dynetics sim-rfagent sim-cot sim-helws'
+# SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
+#     sim-grabber sim-dynetics sim-rfagent sim-cot sim-helws'
 
 if [[ $1 ]]; then
     if [[ "$1" == '-n' ]]; then
         CLEAN=''
     fi
 fi
+
+__ScriptVersion="v666"
+
+#===  FUNCTION  ================================================================
+#         NAME:  bserve
+#  DESCRIPTION:  manage BST services for development
+#===============================================================================
+function usage ()
+{
+    echo "Usage :  $0 [options] [--]
+
+    Options:
+    -h|help       Display this message
+    -v|version    Display script version"
+    -n|no-install Skip the install stage of container startup
+
+}    # ----------  end of function usage  ----------
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+INSTALL_STEP='true'
+REMOTE_HOST=''
+REMOTE_HOST_DIR='$HOME/Dev/BST/defenseos'
+
+while getopts ":hvnr:" opt
+do
+  case $opt in
+
+    h|help     )  usage; exit 0   ;;
+
+    v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+
+    n|noinstall  )  INSTALL_STEP=''   ;;
+
+    r|remote  )  REMOTE_HOST="$OPTARG"   ;;
+
+    d|remotedir  )  REMOTE_HOST_DIR="$OPTARG"   ;;
+
+    * )  echo -e "\n  Option does not exist : $OPTARG\n"
+          usage; exit 1   ;;
+
+  esac    # --- end of case ---
+done
+shift $(($OPTIND-1))
+
+if [[ $REMOTE_HOST ]]; then
+    echo "Using REMOTE_HOST: $REMOTE_HOST, REMOTE_HOST_DIR: $REMOTE_HOST_DIR"
+    # echo "ssh $REMOTE_HOST '$REMOTE_HOST_DIR; echo \$PWD; ls -l'"
+    # ssh $REMOTE_HOST "cd $REMOTE_HOST_DIR; echo \$PWD; ls -l"
+    ssh $REMOTE_HOST "cd $REMOTE_HOST_DIR; echo \$PWD"
+    # exit 0
+fi
+
 
 BASE_DIR="$HOME/Dev/BST/defenseos"
 cd "$BASE_DIR"
@@ -27,12 +86,39 @@ WORK_DIR="$BASE_DIR"
 shellexec ()
 {
     tmpfile=$(mktemp)
-    echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
+
+    if [[ $REMOTE_HOST ]]; then
+        # "ssh $REMOTE_HOST 'cd $HOME/Dev/BST/defenseos; $1'"
+        echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n\
+            ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1'\nzsh -i" > "$tmpfile"
+    else
+        echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
+    fi
+
+    echo "shellexec: $(cat $tmpfile)"
 
     i3-msg 'workspace " 10  Dev Services"'
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
     sleep 0.5
+}
+
+shellexec_blocking ()
+{
+    tmpfile=$(mktemp)
+
+    if [[ $REMOTE_HOST ]]; then
+        # "ssh $REMOTE_HOST 'cd $HOME/Dev/BST/defenseos; $1'"
+        echo -e "ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1';\n" > "$tmpfile"
+    else
+        echo -e "$1;\n" > "$tmpfile"
+    fi
+
+    echo "shellexec_blocking: $(cat $tmpfile)"
+
+    i3-msg 'workspace " 10  Dev Services"'
+    # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
+    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 }
 
 clean_services_str ()
@@ -64,20 +150,11 @@ i3-msg 'split vertical'
 
 if [[ $CLEAN ]]; then
     clean_str="sudo -E $(clean_services_str $SERVICE_LIST)"
-
-    tmpfile=$(mktemp)
-    echo -e "$clean_str;\n" > "$tmpfile"
-    i3-msg 'workspace " 10  Dev Services"'
-    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
+    shellexec_blocking "$clean_str"
 fi
 
+shellexec_blocking "make -j3 images-base;"
 
-tmpfile=$(mktemp)
-echo -e "make -j3 images-base;\n" > "$tmpfile"
-i3-msg 'workspace " 10  Dev Services"'
-konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
-
-# serve='-s pgsql dbwatch'
 serve='-s pgsql dbwatch'
 if [[ -z $CLEAN ]]; then
     serve="-n $serve "
@@ -106,12 +183,12 @@ if [[ -d ./services/sims/helws/dc ]]; then
 fi
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
-    ./scripts/create_sim_grabber_links
-    serve="${serve} sims/grabber-2 sims/grabber-3"
+    shellexec_blocking './scripts/create_sim_grabber_links'
+    # serve_sims="${serve_sims} sims/grabber-2 sims/grabber-3"
 fi
 
 if [[ -z $CLEAN ]]; then
-    serve="-n $serve "
+    serve_sims="-n $serve_sims "
 fi
 
 # shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"
@@ -147,13 +224,5 @@ if [[ $CLEAN ]]; then
     # clean_str='yarn yrebuild;'
     clean_str='yarn install;'
 fi
-shellexec "echo 'Starting COP...'; . $HOME/.nvm/nvm.sh; nvm use bst; $clean_str yarn start"
 
-# WORK_DIR="$BASE_DIR"
-# cd $WORK_DIR
-# if [[ $CLEAN ]]; then
-#     clean_str='rm -fr services/node/node_modules; cd services/node; npm i; cd -; cd services/go; make clean; make; cd -;'
-# fi
-# shellexec "echo 'Starting V1 services...'; \
-#     . $HOME/.config/nvm/nvm.sh; nvm use bst; $clean_str \
-#     sleep 30; ./node_modules/.bin/nf start -j Procfile.jeff"
+shellexec "echo 'Starting COP...'; . \$HOME/.nvm/nvm.sh; nvm use bst; $clean_str yarn start"
