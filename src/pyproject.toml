@@ -8,7 +8,6 @@ authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
 python = "^3.9"
 python-lsp-server = {extras = ["all"], version = "*"}
 pynvim = ">=0.4.3"
-black = ">=21.5b2"
 mypy = ">=0.812"
 watchgod = ">=0.6"
 mkdocs = ">=1.1.2"
@@ -23,7 +22,6 @@ cytoolz = ">=0.11.0"
 pyls-flake8 = ">=0.4.0"
 mypy-ls = ">=0.5.1"
 pyls-isort = ">=0.2.2"
-python-lsp-black = ">=1.0.0"
 pyls-memestra = ">=0.0.15"
 data-science-types = ">=0.2.19"
 isort = ">=5.9.3"
@@ -53,9 +51,6 @@ linelength = 99
 [tool.pycodestyle]
 max-line-length = 99
 
-[tool.black]
-linelength = 99
-
 [tool.isort]
 multi_line_output = 3
 include_trailing_comma = true
@@ -63,9 +58,6 @@ force_grid_wrap = 0
 use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 99
-
-[tool.pycodestyle]
-max-line-length = 99
 
 [tool.flake8]
 max-line-length = 99
