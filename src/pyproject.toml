@@ -17,9 +17,12 @@ pyls-isort = ">=0.2.2"
 python-lsp-black = ">=1.0.0"
 pyls-memestra = ">=0.0.15"
 data-science-types = ">=0.2.19"
-isort = "^5.9.3"
+isort = ">=5.9.3"
 
 [tool.poetry.dev-dependencies]
+
+[tool.black]
+linelength = 99
 
 [tool.isort]
 multi_line_output = 3
@@ -28,6 +31,9 @@ force_grid_wrap = 0
 use_parentheses = true
 ensure_newline_before_comments = true
 line_length = 99
+
+[tool.pycodestyle]
+max-line-length = 99
 
 [tool.flake8]
 max-line-length = 99
@@ -38,6 +44,10 @@ disable = "C0330, C0326"
 
 [tool.pylint.format]
 max-line-length = "99"
+
+[tool.mypy]
+python_version = 3.9
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
