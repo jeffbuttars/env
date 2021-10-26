@@ -17,11 +17,12 @@ pyls-isort = ">=0.2.2"
 python-lsp-black = ">=1.0.0"
 pyls-memestra = ">=0.0.15"
 data-science-types = ">=0.2.19"
+isort = "^5.9.3"
 
 [tool.poetry.dev-dependencies]
 
 [tool.isort]
-multi-line-output = 3
+multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
 use_parentheses = true
