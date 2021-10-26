@@ -10,16 +10,46 @@ python-lsp-server = {extras = ["all"], version = "*"}
 pynvim = ">=0.4.3"
 black = ">=21.5b2"
 mypy = ">=0.812"
+watchgod = ">=0.6"
+mkdocs = ">=1.1.2"
+mkpdfs-mkdocs = ">=1.0.1"
+mkdocs-material = ">=6.1.0"
+mkdocs-with-pdf = ">=0.8.0"
+mkdocs-pdf-export-plugin = ">=0.5.8"
+yoyo-migrations = ">=7.2.1"
 immutables = ">=0.15"
+cachetools = ">=4.2.1"
+cytoolz = ">=0.11.0"
 pyls-flake8 = ">=0.4.0"
 mypy-ls = ">=0.5.1"
 pyls-isort = ">=0.2.2"
 python-lsp-black = ">=1.0.0"
 pyls-memestra = ">=0.0.15"
-data-science-types = ">=0.2.19"
-isort = "^5.9.3"
+types-orjson = ">=0.1.1"
+jedi = ">=0.18.0"
+geographiclib = "^1.52"
+pyproj = ">=3.2.1"
+qrcode = {extras = ["all"], version = ">=7.3.1"}
 
 [tool.poetry.dev-dependencies]
+pynvim = "*"
+flake8 = "*"
+flake8-bugbear = "*"
+pyfakefs = "*"
+bandit = "*"
+data-science-types = "*"
+isort = "*"
+black = "*"
+mypy = "*"
+python-lsp-server = {extras = ["all"], version = "*"}
+pyls-isort = ">=0.2.0"
+pyls-black = ">=0.4.6"
+
+[tool.black]
+linelength = 99
+
+[tool.pycodestyle]
+max-line-length = 99
 
 [tool.isort]
 multi_line_output = 3
@@ -38,6 +68,10 @@ disable = "C0330, C0326"
 
 [tool.pylint.format]
 max-line-length = "99"
+
+[tool.mypy]
+python_version = 3.9
+ignore_missing_imports = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
