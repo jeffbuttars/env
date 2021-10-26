@@ -79,7 +79,7 @@ function pyproject_activate_deactivate_poetry_venv()
     # so deactivate the current venv and activate the found project
     # echo "poetry VENV, $proj_venv_dir"
     # echo "Already in VENV: $VIRTUAL_ENV"
-    echo "venv: ~/${VIRTUAL_ENV#$HOME/} -> ~${proj_dir/#$HOME/}"
+    echo "venv: ~/$(dirname ${VIRTUAL_ENV#$HOME/}) -> ~${proj_dir/#$HOME/}"
 
     if [[ $(command -v deactivate) ]]
     then
