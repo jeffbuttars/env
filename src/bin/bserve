@@ -5,9 +5,9 @@ if [[ "$HOME/.bst.sh" ]]; then
 fi
 
 export BST_DEV_HOST_IP_ADDRESS=${BST_DEV_HOST_IP_ADDRESS:-192.168.200.76}
-export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
+# export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
 echo "BST_DEV_HOST_IP_ADDRESS == $BST_DEV_HOST_IP_ADDRESS"
-echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
+# echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
 
 
 CLEAN='true'
@@ -95,7 +95,15 @@ shellexec "./scripts/serve $serve"
 # Sims: Echoguard, RFAgent, s3reveal
 # serve='-s sims/echoguard sims/rfagent'
 # serve='-s sims/dynetics sims/s3reveal sims/grabber'
-serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/echoguard'
+# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/echoguard'
+# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/echoguard'
+# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/helws \
+serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs \
+    sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34'
+
+if [[ -d ./services/sims/helws/dc ]]; then
+    serve="${serve} sims/helws"
+fi
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
     ./scripts/create_sim_grabber_links
@@ -106,7 +114,8 @@ if [[ -z $CLEAN ]]; then
     serve="-n $serve "
 fi
 
-shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"
+# shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"
+shellexec "./scripts/serve $serve"
 
 sleep 1
 # Start the rest on the right side
