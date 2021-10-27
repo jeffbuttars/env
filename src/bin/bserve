@@ -83,6 +83,13 @@ BASE_DIR="$HOME/Dev/BST/defenseos"
 cd "$BASE_DIR"
 WORK_DIR="$BASE_DIR"
 
+i3msg ()
+{
+    if [[ -f "/tmp/i3-ipc.sock" ]]; then
+        i3-msg $@
+    fi
+}
+
 shellexec ()
 {
     tmpfile=$(mktemp)
@@ -97,7 +104,7 @@ shellexec ()
 
     echo "shellexec: $(cat $tmpfile)"
 
-    i3-msg 'workspace " 10  Dev Services"'
+    i3msg 'workspace " 10  Dev Services"'
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
     sleep 0.5
@@ -140,13 +147,13 @@ clean_services_str ()
 # pgsql     #  API
 # dbwatch   #  COP
 
-i3-msg 'workspace " 10  Dev Services"'
+i3msg 'workspace " 10  Dev Services"'
 
 # Murder any running windows on the workspace
-i3-msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, [tiling class="(?i)konsole" workspace=" 10  Dev Services"] kill'
+i3msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, [tiling class="(?i)konsole" workspace=" 10  Dev Services"] kill'
 
-i3-msg 'focus parent'
-i3-msg 'split vertical'
+i3msg 'focus parent'
+i3msg 'split vertical'
 
 if [[ $CLEAN ]]; then
     clean_str="sudo -E $(clean_services_str $SERVICE_LIST)"
@@ -196,8 +203,8 @@ shellexec "./scripts/serve $serve"
 
 sleep 1
 # Start the rest on the right side
-i3-msg 'focus parent'
-i3-msg 'split horizontal'
+i3msg 'focus parent'
+i3msg 'split horizontal'
 
 WORK_DIR="$BASE_DIR"
 cd $WORK_DIR
@@ -210,7 +217,7 @@ shellexec "./scripts/serve $serve"
 
 sleep 1
 
-i3-msg 'split vertical'
+i3msg 'split vertical'
 
 serve='-s esink'
 if [[ -z $CLEAN ]]; then
