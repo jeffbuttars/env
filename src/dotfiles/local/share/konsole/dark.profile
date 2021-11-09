@@ -2,7 +2,7 @@
 BoldIntense=true
 ColorScheme=Solarized Dark
 DimmValue=35
-Font=FiraCode Nerd Font Mono,16,-1,5,53,0,0,0,0,0,Retina
+Font=FiraCode Nerd Font Mono,14,-1,5,50,0,0,0,0,0
 LineSpacing=0
 UseFontLineChararacters=true
 
@@ -40,5 +40,5 @@ ScrollFullPage=true
 [Terminal Features]
 BellMode=3
 BlinkingCursorEnabled=true
-VerticalLine=true
+VerticalLine=false
 VerticalLineAtChar=99

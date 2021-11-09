@@ -8,11 +8,14 @@ TMP_IMAGE="/tmp/screen_pic_saver.png"
 scrot --overwrite $TMP_IMAGE
 mogrify -blur 15,5 $TMP_IMAGE
 
-i3lock --color="$BG_COLOR" --image=$TMP_IMAGE
+i3lock -n --color="$BG_COLOR" --image=$TMP_IMAGE
 # i3lock --color="$BG_COLOR" --image=$TMP_IMAGE && sleep $SCREEN_OFF_TIMEOUT && xset dpms force off
 
-# killall plasmashell; plasmashell
-# i3-msg restart | jq
+# killall plasmashell; plasmashell &
+# i3-msg restart
+if [[ -f $HOME/bin/post_screen_lock.sh ]]; then
+    $HOME/bin/post_screen_lock.sh
+fi
 
 exit 0
 

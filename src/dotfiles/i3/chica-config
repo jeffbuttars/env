@@ -1,0 +1,38 @@
+
+# Output vars
+# set $left_op eDP1
+set $right_op eDP1
+
+### monitor layout ###
+
+# Focus by monitor
+# bindsym Control+1 focus output $left_op
+# bindsym Control+2 focus output $center_op
+# bindsym Control+3 focus output $right_op
+
+#
+#
+# Mouse bindings
+# bindsym --whole-window $mod+button4 exec compton-trans -c -- +10
+# bindsym --whole-window $mod+button5 exec compton-trans -c -- -10
+
+### 3 monitor layout ###
+# Odds on left, evens on right, except 10
+# workspace $ws1 output $left_op
+# workspace $ws2 output $left_op
+# workspace $ws3 output $left_op
+# workspace $ws4 output $left_op
+# workspace $ws5 output $left_op
+# workspace $ws6 output $left_op
+# workspace $ws7 output $right_op
+# workspace $ws8 output $right_op
+# workspace $ws9 output $right_op
+# workspace $ws10 output $right_op
+# workspace $ws11 output $right_op
+# workspace $ws12 output $right_op
+
+# bindsym $ctrl+mod+l exec --no-startup-id xscreensaver-command -lock
+
+exec_always --no-startup picom
+# exec --no-startup-id xscreensaver
+#exec --no-startup-id compton -b --config ~/.config/compton-leaf.conf

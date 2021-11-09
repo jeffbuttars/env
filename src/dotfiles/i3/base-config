@@ -9,7 +9,11 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# Alt
 set $mod Mod1
+
+# "Windows" key
+# set $mod Mod4
 
 ### Gaps config
 gaps inner 2
@@ -71,6 +75,7 @@ for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace
 # for_window [class="kitty"] border pixel 2
 for_window [title="QjackCtl"] floating enable, border pixel 2
 for_window [title="^Audacity.*"] floating enable, border pixel 2
+for_window [title="^Zoom.*"] floating enable, border pixel 2
 
 
 # https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma#I3_configuration
@@ -372,7 +377,7 @@ bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
 bindsym $mod+F6 exec plexmediaplayer
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
-bindsym $mod+F9 workspace $wsMessaging, exec slack
+bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop
 bindsym $mod+Escape exec krunner
 bindsym $mod+ctrl+Escape exec rofi -show combi
 # bindsym $mod+Escape exec ulauncher
