@@ -36,6 +36,7 @@ pyls-isort = ">=0.2.0"
 python-lsp-black = ">=1.0.0"
 pylsp-mypy = ">=0.5.2"
 pylsp-rope = ">=0.1.6"
+pyright = "^0.0.12"
 
 [tool.black]
 linelength = 99
