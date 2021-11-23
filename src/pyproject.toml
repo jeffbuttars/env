@@ -21,6 +21,7 @@ types-orjson = ">=0.1.1"
 geographiclib = "^1.52"
 pyproj = ">=3.2.1"
 qrcode = {extras = ["all"], version = ">=7.3.1"}
+Cython = "^0.29.24"
 
 [tool.poetry.dev-dependencies]
 jedi = ">=0.18.0"
@@ -28,15 +29,16 @@ pyls-flake8 = ">=0.4.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 pynvim = "*"
 flake8 = "*"
-data-science-types = "*"
+grip = ">=4.5.2"
 isort = "*"
-black = "*"
+jedi = ">=0.18.0"
+Markdown = ">=3.3.4"
 mypy = "*"
 pyls-isort = ">=0.2.0"
 python-lsp-black = ">=1.0.0"
 pylsp-mypy = ">=0.5.2"
 pylsp-rope = ">=0.1.6"
-pyright = "^0.0.12"
+pyright = ">=0.0.12"
 
 [tool.black]
 linelength = 99
