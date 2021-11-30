@@ -85,7 +85,8 @@ WORK_DIR="$BASE_DIR"
 
 i3msg ()
 {
-    if [[ -f "/tmp/i3-ipc.sock" ]]; then
+    socketpath=$(i3 --get-socketpath)
+    if [[ "$?" == "0" ]] && [[ $socketpath ]]; then
         i3-msg $@
     fi
 }
