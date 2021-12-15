@@ -24,7 +24,6 @@ qrcode = {extras = ["all"], version = ">=7.3.1"}
 Cython = "^0.29.24"
 
 [tool.poetry.dev-dependencies]
-jedi = ">=0.18.0"
 pyls-flake8 = ">=0.4.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 pynvim = "*"
