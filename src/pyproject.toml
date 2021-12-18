@@ -25,7 +25,6 @@ Cython = "^0.29.24"
 Markdown = "^3.3.6"
 
 [tool.poetry.dev-dependencies]
-jedi = ">=0.18.0"
 pyls-flake8 = ">=0.4.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 pynvim = "*"
