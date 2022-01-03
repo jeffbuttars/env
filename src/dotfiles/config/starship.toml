@@ -143,7 +143,7 @@ style = "green"
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
 
 [memory_usage]
-disabled = false
+disabled = true
 threshold = 50
 format = "$symbol [R ${ram}( | S ${swap})]($style) "
 symbol = "M"
@@ -159,3 +159,13 @@ format = '[](fg:green)[$time]($style)[](fg:green) '
 
 [lua]
 symbol = " "
+
+[hostname]
+ssh_only = true
+format =  "@ [$hostname](bold red)\n"
+trim_at = "."
+disabled = false
+
+[username]
+format = "[$user]($style) "
+disabled = false

@@ -2,7 +2,8 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=RedOnBlack
-Font=FiraCode NF,8,-1,5,53,0,0,0,0,0,Retina
+Font=FiraCode Nerd Font Mono,8,-1,5,50,0,0,0,0,0
+UseFontLineChararacters=true
 
 [Encoding Options]
 DefaultEncoding=UTF-8

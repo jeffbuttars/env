@@ -70,8 +70,12 @@ sleep $SLEEP_TIME
 
 echo "watching $WATCH_DIR"
 
-while inotifywait -e modify -r $WATCH_DIR
+while true
 do
+    echo ""
+    inotifywait -q -e modify -r $WATCH_DIR
+    echo ""
+
     if [[ $CLEAR_TERM == 'true' ]]; then
         printf '\033c'
     fi

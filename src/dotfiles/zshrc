@@ -1,4 +1,11 @@
 
+if [[ -d /usr/local/nvim/bin ]]
+then
+    PATH="/usr/local/nvim/bin:${PATH}"
+fi
+
+export TERM_META=dark
+
 # Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
 
@@ -51,52 +58,33 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # # CD whitout typing cd
 # AUTO_CD="true"
 
+function source_if_exists()
+{
+    if [[ -f "$1" ]]
+    then
+        # echo "Sourcing $1"
+        source "$1"
+    fi
+}
+
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
-if [[ -f $HOME/.zsh_local ]]; then
-    source $HOME/.zsh_local
-fi
+source_if_exists "$HOME/.zsh_local"
 
 # if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
 #     . "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
 # fi
 
-if [[ -f "$HOME/.shell.d/common/0base.sh" ]]
-then
-    source "$HOME/.shell.d/common/0base.sh"
-fi
+source_if_exists "$HOME/.shell.d/common/0base.sh"
+source_if_exists "$HOME/.shell.d/common/fzf.sh"
+source_if_exists "$HOME/.shell.d/common/fzf.sh"
+source_if_exists "$HOME/.shell.d/common/nvm.sh"
+source_if_exists "$HOME/.shell.d/common/python.sh"
+source_if_exists "$HOME/.shell.d/common/99-fzf_fasd.zsh"
+source_if_exists "$HOME/.shell.d/zsh/99-fzf_fasd.zsh"
 
-if [[ -f "$HOME/.shell.d/common/fzf.sh" ]]
-then
-    source "$HOME/.shell.d/common/fzf.sh"
-fi
-
-if [[ -f "$HOME/.shell.d/common/fzf.sh" ]]
-then
-    source "$HOME/.shell.d/common/fzf.sh"
-fi
-
-if [[ -f "$HOME/.shell.d/common/nvm.sh" ]]
-then
-    source "$HOME/.shell.d/common/nvm.sh"
-fi
-
-if [[ -f "$HOME/.shell.d/common/python.sh" ]]
-then
-    source "$HOME/.shell.d/common/python.sh"
-fi
-
-if [[ -f "$HOME/.shell.d/common/99-fzf_fasd.zsh" ]]
-then
-    source "$HOME/.shell.d/common/99-fzf_fasd.zsh"
-fi
-
-if [[ -f "$HOME/.shell.d/zsh/99-fzf_fasd.zsh" ]]
-then
-    source "$HOME/.shell.d/zsh/99-fzf_fasd.zsh"
-fi
-
-if [[ -f /usr/bin/starship ]]
+STARSHIP_CMD=$(command -v starship)
+if [[ $STARSHIP_CMD ]]
 then
     starshipt_cache="$HOME/.starship-init-zsh"
     eval "$(starship init zsh)"
@@ -111,45 +99,20 @@ else
     echo "install 'starship' for a pretty prompt"
 fi
 
-# Automatically activate/deactivate Poetry virtual environments
-function activate_deactivate_poetry_venv()
-{
-    if [[ -f "$PWD/pyproject.toml" ]]
-    then
-        # local venv_path=$(poetry env info --path)
-        # echo "Activating Python virtualenv $venv_path"
-        # source "${venv_path}/bin/activate"
-        if [[ $VIRTUAL_ENV ]]
-        then
+source_if_exists $HOME/.shell.d/zsh/python.zsh
 
-            # echo "Already in VENV, $VIRTUAL_ENV"
-            if [[ "$VIRTUAL_ENV" != "$PWD/.venv" ]]
-            then
-                echo -en "Deactivating ~/${VIRTUAL_ENV#$HOME/}, "
-                deactivate
-            fi
-        fi
-
-        local venv=$(poetry env info --path)
-        echo "Activating ~/${venv#$HOME/}"
-        source "${venv}/bin/activate"
-    elif [[ $VIRTUAL_ENV ]]
-    then
-        # echo "Deactivating Python virtualenv $VIRTUAL_ENV"
-        echo "Deactivating $VIRTUAL_ENV"
-        deactivate
-    fi
-} #activate_deactivate_poetry_venv
-
-if [[ $(command -v poetry) ]]
-then
-    chpwd_functions=(${chpwd_functions[@]} "activate_deactivate_poetry_venv")
-fi
-
-# Run on startup
-activate_deactivate_poetry_venv
-
-export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
 export NeovideMultiGrid=true
+
+SOURCABLES=(\
+    ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
+    ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
+)
+
+for sourceable in $SOURCABLES ; do
+    source_if_exists "$sourceable"
+done
+
+bindkey '^ ' autosuggest-accept
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

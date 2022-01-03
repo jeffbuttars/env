@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "jeff.buttars"
+version = "0.1.0"
+description = ""
+authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+watchgod = ">=0.6"
+mkdocs = ">=1.1.2"
+mkpdfs-mkdocs = ">=1.0.1"
+mkdocs-material = ">=6.1.0"
+mkdocs-with-pdf = ">=0.8.0"
+mkdocs-pdf-export-plugin = ">=0.5.8"
+yoyo-migrations = ">=7.2.1"
+immutables = ">=0.15"
+cachetools = ">=4.2.1"
+cytoolz = ">=0.11.0"
+data-science-types = ">=0.2.19"
+types-orjson = ">=0.1.1"
+geographiclib = "^1.52"
+pyproj = ">=3.2.1"
+qrcode = {extras = ["all"], version = ">=7.3.1"}
+Cython = "^0.29.24"
+Markdown = "^3.3.6"
+
+[tool.poetry.dev-dependencies]
+pyls-flake8 = ">=0.4.0"
+python-lsp-server = {extras = ["all"], version = "*"}
+pynvim = "*"
+flake8 = "*"
+grip = ">=4.5.2"
+isort = "*"
+Markdown = ">=3.3.4"
+mypy = "*"
+pyls-isort = ">=0.2.0"
+python-lsp-black = ">=1.0.0"
+pylsp-mypy = ">=0.5.2"
+pylsp-rope = ">=0.1.6"
+pyright = ">=0.0.12"
+mypy-ls = "^0.5.1"
+data-science-types = "^0.2.23"
+
+[tool.black]
+linelength = 99
+
+[tool.pycodestyle]
+max-line-length = 99
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 99
+
+[tool.flake8]
+max-line-length = 99
+extend-ignore = "E203, W503"
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326"
+
+[tool.pylint.format]
+max-line-length = "99"
+
+[tool.mypy]
+python_version = 3.9
+ignore_missing_imports = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
