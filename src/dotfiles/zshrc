@@ -151,3 +151,5 @@ activate_deactivate_poetry_venv
 
 export SIMS_GRABBER_HOST_IP_ADDRESS=10.6.6.6
 export NeovideMultiGrid=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
