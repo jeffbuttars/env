@@ -3,6 +3,9 @@ return {
   font = wezterm.font("FiraCode Nerd Font Mono"),
   font_size=14.0,
 
+  use_fancy_tab_bar = true,
+  hide_tab_bar_if_only_one_tab = true,
+
   window_background_opacity = 1.0,
   color_scheme = "Solarized Dark - Patched",
 
@@ -15,5 +18,7 @@ return {
   keys = {
       {key="LeftArrow", mods="SHIFT", action=wezterm.action{ActivateTabRelative=-1}},
       {key="RightArrow", mods="SHIFT", action=wezterm.action{ActivateTabRelative=1}},
-  }
+  },
+
+  exit_behavior = "Close",
 }
