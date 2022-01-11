@@ -4,8 +4,6 @@ then
     PATH="/usr/local/nvim/bin:${PATH}"
 fi
 
-export TERM_META=dark
-
 # Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
 

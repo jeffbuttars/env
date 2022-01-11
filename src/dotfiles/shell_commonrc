@@ -145,7 +145,7 @@ if [[ -f $HOME/Dev/BST/defense-os/scripts/serve-completion.bash ]]; then
     . $HOME/Dev/BST/defense-os/scripts/serve-completion.bash
 fi
 
-if [[ -f $HOME/.Xmodmap ]]; then
+if [[ -f $HOME/.Xmodmap ]] && [[ $DISPLAY ]]; then
     xmodmap $HOME/.Xmodmap
 fi
 
