@@ -78,6 +78,8 @@ echo "Update i3 config"
 # Install the Myi3 desktop file...
 sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/myi3.desktop /usr/share/xsessions/myi3.desktop
 sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
+sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/mySway.desktop /usr/share/xsessions/mySway.desktop
+sudo install --verbose -D --mode=755 ${BIN_DIR}/init_sway /usr/local/bin/init_sway
 
 
 # Use package manager for nerd fonts
@@ -107,6 +109,18 @@ else
     mkdir -p ${HOME}/.local/share
     git clone https://github.com/zsh-users/zsh-autosuggestions \
         ${HOME}/.local/share/zsh-autosuggestions
+fi
+
+
+if [[ -d ${HOME}/.local/share/polybar-themes ]]; then
+    cd ${HOME}/.local/share/polybar-themes
+    git pull
+    cd -
+else
+    mkdir -p ${HOME}/.local/share
+    git clone https://github.com/adi1090x/polybar-themes
+    git clone https://github.com/zsh-users/zsh-autosuggestions \
+        ${HOME}/.local/share/polybar-themes
 fi
 
 pr_pass "Run the command 'chsh -s /bin/zsh' to change the default shell to zsh."
