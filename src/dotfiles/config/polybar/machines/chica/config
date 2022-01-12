@@ -1,0 +1,24 @@
+[bar/chica-left]
+inherit = bar/left
+monitor = DP-4
+bottom = false
+
+modules-left =
+modules-center = i3
+modules-right = cpu memory
+
+[bar/chica-middle]
+inherit = bar/middle
+monitor = DP-1-3
+bottom = false
+
+modules-left = ""
+modules-center = i3
+modules-right = ""
+
+[bar/chica-right]
+inherit = bar/right
+monitor = eDP-1
+modules-left = date
+modules-center = i3
+modules-right = cpu memory backlight battery

@@ -118,8 +118,7 @@ if [[ -d ${HOME}/.local/share/polybar-themes ]]; then
     cd -
 else
     mkdir -p ${HOME}/.local/share
-    git clone https://github.com/adi1090x/polybar-themes
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
+    git clone https://github.com/adi1090x/polybar-themes \
         ${HOME}/.local/share/polybar-themes
 fi
 

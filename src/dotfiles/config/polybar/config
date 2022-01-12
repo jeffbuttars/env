@@ -1,4 +1,5 @@
 [bar/right]
+enable-ipc = true
 width = 100%
 height = 32
 radius-top = 16
@@ -102,26 +103,6 @@ inherit = bar/middle
 monitor =
 modules-right = cpu memory wlan eth backlight battery menu-apps
 
-[bar/ephi-middle]
-inherit = bar/right
-monitor = DP-4
-bottom = false
-
-modules-left = powermenu menu-apps
-modules-center = i3
-modules-right = date
-
-[bar/ephi-left]
-inherit = bar/onescreen
-monitor = HDMI-0
-bottom = false
-
-modules-left = cpu memory wlan eth
-modules-right = i3 date
-
-font-0 = FuraCode Nerd Font Mono:pixelsize=12;1
-font-1 = FuraCode Nerd Font Mono:pixelsize=12;1
-font-2 = FuraCode Nerd Font Mono:pixelsize=12;1
 
 [module/i3]
 type = internal/i3
@@ -204,11 +185,11 @@ bar-swap-used-empty-foreground = #444444
 [module/battery]
 type = internal/battery
 full-at = 99
-battery = BAT0
-adapter = AC
+battery = BAT1
+adapter = ACAD
 time-format = %H:%M
 
-;poll-interval = 5
+poll-interval = 0
 
 ; Available tags:
 ;   <label-charging> (default)
@@ -335,21 +316,6 @@ format-connected-prefix = "  "
 format-connected-prefix-foreground = #1d1f21
 label-connected = %ifname%: %local_ip%
 format-disconnected =
-
-[module/date]
-type = internal/date
-interval = 5
-
-date = " %Y-%m-%d"
-
-time = %H:%M
-
-format-prefix = 
-format-foreground = #81a2be
-format-background = #1d1f21
-format-padding = 2
-
-label = %date% %time%
 
 [module/powermenu]
 type = custom/menu
