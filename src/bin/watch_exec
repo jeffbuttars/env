@@ -69,17 +69,18 @@ run_cmds ${commands[@]}
 sleep $SLEEP_TIME
 
 echo "watching $WATCH_DIR"
+$(inotifywait -e modify -r $WATCH_DIR)
 
-while true
+while [[ true ]]
 do
-    echo ""
-    inotifywait -q -e modify -r $WATCH_DIR
-    echo ""
+    echo "Change detected, running command"
+    # if [[ $CLEAR_TERM == 'true' ]]; then
+    #     printf '\033c'
+    # fi
 
-    if [[ $CLEAR_TERM == 'true' ]]; then
-        printf '\033c'
-    fi
-
-    sleep $SLEEP_TIME
     run_cmds ${commands[@]}
+    sleep $SLEEP_TIME
+    $(inotifywait -e modify -r $WATCH_DIR)
 done
+
+echo "Done $?"
