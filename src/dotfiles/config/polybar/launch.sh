@@ -7,6 +7,9 @@ DIR="$HOME/.config/polybar"
 # Terminate already running bar instances
 killall -q polybar
 
+export POLYBAR_WLAN=wlp170s0
+export POLYBAR_LAN=enp0s13f0u3u1
+
 polybar --reload main -c "$DIR"/base/config.ini &
 exit 0
 
