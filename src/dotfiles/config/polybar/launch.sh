@@ -2,9 +2,13 @@
 
 HNAME=$(hostname)
 CONNECTED_SCREENS=$(xrandr | grep ' connected ' | awk '{print $1}')
+DIR="$HOME/.config/polybar"
 
 # Terminate already running bar instances
 killall -q polybar
+
+polybar --reload main -c "$DIR"/base/config.ini &
+exit 0
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
@@ -31,7 +35,7 @@ elif [[ "$HNAME" == "ephi" ]]; then
     polybar --reload ephi-middle &
 elif [[ "$HNAME" == "chica" ]]; then
     left_display="DP-4"
-    middle_display="DP-1-3"
+    middle_display="DP-3-3"
     right_display="eDP-1"
 
     left_screen=""

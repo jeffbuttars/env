@@ -316,7 +316,7 @@ bindsym $mod+shift+A focus child
 # reload the configuration file
 bindsym $mod+Shift+C exec ~/.i3/genconfig.sh; reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R exec ~/.i3/genconfig.sh; restart
+bindsym $mod+Shift+R exec ~/.i3/genconfig.sh; restart; $HOME/.config/polybar/launch.sh
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
 
@@ -433,5 +433,5 @@ exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83703
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always xautolock -time 60 -locker ~/bin/fuzzy_screen_lock
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
