@@ -54,8 +54,8 @@ if [[ "$HNAME" == "DVJ-BST-Dev-0020-ButtarsLT" ]]; then
     # BST Laptop
     export POLYBAR_WLAN=wlp0s20f3
     export POLYBAR_LAN=enp0s31f6
-    export POLYBAR_BATTERY=BAT1
-    export POLYBAR_AC_ADAPTER=ACAD
+    export POLYBAR_BATTERY=BAT0
+    export POLYBAR_AC_ADAPTER=AC
 elif [[ "$HNAME" == "dvj-bst-dev-0011-buttars" ]]; then
     # BST Workstation
     export POLYBAR_WLAN=
