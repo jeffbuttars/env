@@ -46,12 +46,16 @@ export POLYBAR_WLAN=
 export POLYBAR_LAN=
 export PRIMARY_MONITOR=
 export SECONDARY_MONITOR=
+export POLYBAR_BATTERY=BAT1
+export POLYBAR_AC_ADAPTER=ACAD
 
 
 if [[ "$HNAME" == "DVJ-BST-Dev-0020-ButtarsLT" ]]; then
     # BST Laptop
     export POLYBAR_WLAN=wlp0s20f3
     export POLYBAR_LAN=enp0s31f6
+    export POLYBAR_BATTERY=BAT1
+    export POLYBAR_AC_ADAPTER=ACAD
 elif [[ "$HNAME" == "dvj-bst-dev-0011-buttars" ]]; then
     # BST Workstation
     export POLYBAR_WLAN=
