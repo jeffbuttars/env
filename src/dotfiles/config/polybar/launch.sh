@@ -66,13 +66,13 @@ fi
 
 export PRIMARY_MONITOR="$PRIMARY_DISPLAY"
 echo "PRIMARY_MONITOR=$PRIMARY_DISPLAY"
-polybar --reload primary -c "$DIR"/base/config.ini &
+polybar --reload primary -c "${DIR}/config.ini" &
 
 if [[ $SECONDARY_DISPLAYS ]]; then
     for sec_mon in $SECONDARY_DISPLAYS ; do
         export SECONDARY_MONITOR="$sec_mon"
         echo "SECONDARY_MONITOR=$SECONDARY_MONITOR"
-        polybar --reload secondary -c "$DIR"/base/config.ini &
+        polybar --reload secondary -c "${DIR}/config.ini" &
     done
 fi
 
