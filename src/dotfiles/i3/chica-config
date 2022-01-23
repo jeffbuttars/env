@@ -27,13 +27,13 @@ workspace $ws4 output $right_op
 workspace $ws5 output $center_op
 workspace $ws6 output $center_op
 workspace $ws7 output $center_op
+workspace $ws12 output $center_op
 
 workspace $ws8 output $right_op
 workspace $ws9 output $right_op
 
 workspace $ws10 output $left_op
 workspace $ws11 output $left_op
-workspace $ws12 output $left_op
 
 # Mouse bindings
 bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
@@ -44,3 +44,4 @@ exec --no-startup-id transmission-qt --remote 10.6.6.6
 
 exec --no-startup-id 'i3-msg workspace $ws1'
 exec --no-startup-id 'i3-msg workspace $ws5'
+exec --no-startup-id nm-applet
