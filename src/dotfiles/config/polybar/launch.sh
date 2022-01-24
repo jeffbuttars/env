@@ -48,6 +48,8 @@ export PRIMARY_MONITOR=
 export SECONDARY_MONITOR=
 export POLYBAR_BATTERY=BAT1
 export POLYBAR_AC_ADAPTER=ACAD
+export POLYBAR_HWMO_TEMP_INPUT='/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input'
+
 
 
 if [[ "$HNAME" == "DVJ-BST-Dev-0020-ButtarsLT" ]]; then
@@ -60,6 +62,7 @@ elif [[ "$HNAME" == "dvj-bst-dev-0011-buttars" ]]; then
     # BST Workstation
     export POLYBAR_WLAN=
     export POLYBAR_LAN=eno2
+    export POLYBAR_HWMO_TEMP_INPUT='/sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input'
 elif [[ "$HNAME" == "ephi" ]]; then
     export POLYBAR_WLAN=wlp3s0
     export POLYBAR_LAN=enp0s31f6
