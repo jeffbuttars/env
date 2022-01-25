@@ -24,6 +24,11 @@ NUM_SCREENS=${#CS[@]}
 PRIMARY_DISPLAY=""
 SECONDARY_DISPLAYS=""
 
+export PRIMARY_BAR=primary
+export SECONDARY_BAR=secondary
+export LEFT_BAR=secondary
+export RIGHT_BAR=secondary
+
 if [[ $NUM_SCREENS -ge 1 ]]; then
     echo "Multiple displays: ${CS[@]}"
 
@@ -54,10 +59,13 @@ export POLYBAR_HWMO_TEMP_INPUT='/sys/devices/platform/coretemp.0/hwmon/hwmon4/te
 
 if [[ "$HNAME" == "DVJ-BST-Dev-0020-ButtarsLT" ]]; then
     # BST Laptop
+
+    export PRIMARY_BAR='primary-skinny'
     export POLYBAR_WLAN=wlp0s20f3
     export POLYBAR_LAN=enp0s31f6
     export POLYBAR_BATTERY=BAT0
     export POLYBAR_AC_ADAPTER=AC
+    export POLYBAR_HWMO_TEMP_INPUT='/sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input'
 elif [[ "$HNAME" == "dvj-bst-dev-0011-buttars" ]]; then
     # BST Workstation
     export POLYBAR_WLAN=
@@ -69,17 +77,18 @@ elif [[ "$HNAME" == "ephi" ]]; then
 elif [[ "$HNAME" == "chica" ]]; then
     export POLYBAR_WLAN=wlp170s0
     export POLYBAR_LAN=enp0s13f0u3u1
+    export POLYBAR_HWMO_TEMP_INPUT='/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input'
 fi
 
 export PRIMARY_MONITOR="$PRIMARY_DISPLAY"
 echo "PRIMARY_MONITOR=$PRIMARY_DISPLAY"
-polybar --reload primary -c "${DIR}/config.ini" &
+polybar --reload ${PRIMARY_BAR} -c "${DIR}/config.ini" &
 
 if [[ $SECONDARY_DISPLAYS ]]; then
     for sec_mon in $SECONDARY_DISPLAYS ; do
         export SECONDARY_MONITOR="$sec_mon"
         echo "SECONDARY_MONITOR=$SECONDARY_MONITOR"
-        polybar --reload secondary -c "${DIR}/config.ini" &
+        polybar --reload ${SECONDARY_BAR} -c "${DIR}/config.ini" &
     done
 fi
 
