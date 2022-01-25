@@ -28,11 +28,6 @@
     pullt = "!gitbranchname() { git symbolic-ref --short HEAD; }; gitpulltrack() { git branch --set-upstream-to=origin/`gitbranchname` `gitbranchname`; }; gitpulltrack; git pull"
     edit = "!nvim $(git ls-files -m)"
 
-[pager]
-    diff = vimpager
-    show = diff-so-fancy | less --tabs=1,5 -RFX
-    defaultToUpstream = true
-
 [diff]
     tool = vimdiff
 

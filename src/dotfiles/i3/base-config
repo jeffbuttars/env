@@ -94,6 +94,9 @@ for_window [class="(?i)*nextcloud"] floating disable
 for_window [class="plasmashell" window_type="notification"] floating enable, border none
 no_focus [class="plasmashell" window_type="notification"]
 
+for_window [class="plasmawindowed"] floating enable, move position mouse, resize set 640 680
+
+
 for_window [class="Yakuake"] floating enable, border pixel 2
 for_window [title="Yakuake"] floating enable, border pixel 2
 for_window [class="Kmix"] floating enable, border none

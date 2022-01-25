@@ -7,6 +7,7 @@ ctrl_c ()
     echo "Good night. . ."
     sleep 3
     xset dpms force off
+    loginctl lock-session
     exit 0
 }
 
