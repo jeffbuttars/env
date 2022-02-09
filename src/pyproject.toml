@@ -23,6 +23,7 @@ pyproj = ">=3.2.1"
 qrcode = {extras = ["all"], version = ">=7.3.1"}
 Cython = "^0.29.24"
 Markdown = "^3.3.6"
+ssort = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 pyls-flake8 = ">=0.4.0"
