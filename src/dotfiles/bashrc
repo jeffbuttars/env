@@ -178,3 +178,4 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export SIMS_GRABBER_HOST_IP_ADDRESS='10.6.6.6'
+. "$HOME/.cargo/env"

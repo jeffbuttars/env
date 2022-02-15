@@ -39,6 +39,7 @@ workspace $ws11 output $left_op
 bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
 bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
 
+exec_always --no-startup killall -9 picom
 exec_always --no-startup picom
 exec --no-startup-id transmission-qt --remote 10.6.6.6
 

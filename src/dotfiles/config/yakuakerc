@@ -1,6 +1,5 @@
 [Animation]
 Frames=0
-UseWMAssist=false
 
 [Appearance]
 Skin=default
@@ -9,7 +8,7 @@ TerminalHighlightOnManualActivation=true
 Translucency=true
 
 [Desktop Entry]
-DefaultProfile=dark.profile
+DefaultProfile=Solarized.profile
 
 [Dialogs]
 FirstRun=false
@@ -50,6 +49,6 @@ view-full-screen=Ctrl+Shift+F11
 [Window]
 DynamicTabTitles=true
 Height=47
-KeepOpen=true
+ShowSystrayIcon=false
 ToggleToFocus=true
 Width=95
