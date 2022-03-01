@@ -83,7 +83,11 @@ fi
 #     echo "Install 'ncdu' for a better du"
 # fi
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin/nvim/bin:$PATH
+
+if [[ -d "${HOME}/.local/bin" ]]; then
+    export PATH="${HOME}/.local/bin:$PATH"
+fi
 
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]

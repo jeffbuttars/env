@@ -4,6 +4,8 @@ if [[ "$HOME/.bst.sh" ]]; then
     . "$HOME/.bst.sh"
 fi
 
+I3_DEV_WKSPACE=' 10  '
+
 export BST_DEV_HOST_IP_ADDRESS=${BST_DEV_HOST_IP_ADDRESS:-192.168.200.76}
 # export SIMS_GRABBER_HOST_IP_ADDRESS=${SIMS_GRABBER_HOST_IP_ADDRESS:-192.168.200.76}
 echo "BST_DEV_HOST_IP_ADDRESS == $BST_DEV_HOST_IP_ADDRESS"
@@ -105,7 +107,7 @@ shellexec ()
 
     echo "shellexec: $(cat $tmpfile)"
 
-    i3msg 'workspace " 10  Dev Services"'
+    i3msg "workspace \"$I3_DEV_WKSPACE\""
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
     sleep 0.5
@@ -124,7 +126,7 @@ shellexec_blocking ()
 
     echo "shellexec_blocking: $(cat $tmpfile)"
 
-    i3-msg 'workspace " 10  Dev Services"'
+    i3-msg "workspace \"$I3_DEV_WKSPACE\""
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 }
@@ -148,10 +150,11 @@ clean_services_str ()
 # pgsql     #  API
 # dbwatch   #  COP
 
-i3msg 'workspace " 10  Dev Services"'
+i3msg "workspace \"$I3_DEV_WKSPACE\""
 
 # Murder any running windows on the workspace
-i3msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, [tiling class="(?i)konsole" workspace=" 10  Dev Services"] kill'
+i3msg "workspace \"$I3_DEV_WKSPACE\" focus parent, focus parent, focus parent, [tiling
+class=\"(?i)konsole\" workspace=\"$I3_DEV_WKSPACE\"] kill"
 
 i3msg 'focus parent'
 i3msg 'split vertical'

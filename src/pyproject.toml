@@ -5,7 +5,7 @@ description = ""
 authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 watchgod = ">=0.6"
 mkdocs = ">=1.1.2"
 mkpdfs-mkdocs = ">=1.0.1"
@@ -23,6 +23,8 @@ pyproj = ">=3.2.1"
 qrcode = {extras = ["all"], version = ">=7.3.1"}
 Cython = "^0.29.24"
 Markdown = "^3.3.6"
+httpx = "^0.22.0"
+update = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 pyls-flake8 = ">=0.4.0"
@@ -66,7 +68,7 @@ disable = "C0330, C0326"
 max-line-length = "99"
 
 [tool.mypy]
-python_version = 3.9
+python_version = 3.10
 ignore_missing_imports = true
 
 [build-system]

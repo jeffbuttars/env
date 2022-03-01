@@ -41,3 +41,6 @@ if [[ -z $NVM_DIR  ]]; then
     # MANPATH
     export MANPATH="$(manpath):$NPM_PACKAGES/share/man"
 fi
+
+# Use the default env
+nvm use default
