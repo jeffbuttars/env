@@ -14,7 +14,7 @@ CLEAN='true'
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
     sim-grabber sim-grabber-2 sim-grabber-2 \
     sim-echoguard-31 sim-echoguard-32 sim-echoguard-33 sim-echoguard-34 \
-    sim-dynetics sim-rfagent sim-cot sim-helws'
+    sim-dynetics sim-rfagent sim-cot sim-helws sim-simbus'
 # SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
 #     sim-grabber sim-dynetics sim-rfagent sim-cot sim-helws'
 
@@ -105,7 +105,7 @@ shellexec ()
 
     echo "shellexec: $(cat $tmpfile)"
 
-    i3msg 'workspace " 10  Dev Services"'
+    i3msg 'workspace " 10  "'
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
     sleep 0.5
@@ -124,7 +124,7 @@ shellexec_blocking ()
 
     echo "shellexec_blocking: $(cat $tmpfile)"
 
-    i3-msg 'workspace " 10  Dev Services"'
+    i3-msg 'workspace " 10  "'
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 }
@@ -148,10 +148,10 @@ clean_services_str ()
 # pgsql     #  API
 # dbwatch   #  COP
 
-i3msg 'workspace " 10  Dev Services"'
+i3msg 'workspace " 10  "'
 
 # Murder any running windows on the workspace
-i3msg 'workspace " 10  Dev Services" focus parent, focus parent, focus parent, [tiling class="(?i)konsole" workspace=" 10  Dev Services"] kill'
+i3msg 'workspace " 10  " focus parent, focus parent, focus parent, [tiling class="(?i)konsole" workspace=" 10  "] kill'
 
 i3msg 'focus parent'
 i3msg 'split vertical'
@@ -185,6 +185,7 @@ shellexec "./scripts/serve $serve"
 # serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/helws \
 serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs \
     sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34'
+    # sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/simbus'
 
 if [[ -d ./services/sims/helws/dc ]]; then
     serve="${serve} sims/helws"
@@ -192,11 +193,11 @@ fi
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
     shellexec_blocking './scripts/create_sim_grabber_links'
-    # serve_sims="${serve_sims} sims/grabber-2 sims/grabber-3"
+    serve="${serve} sims/grabber-2 sims/grabber-3"
 fi
 
 if [[ -z $CLEAN ]]; then
-    serve_sims="-n $serve_sims "
+    serve="-n $serve "
 fi
 
 # shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"

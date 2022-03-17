@@ -12,6 +12,8 @@
     stu = status -uno -sb
     br = branch
     brl = branch --list --color --sort=-refname --sort=-committerdate
+    ; brz = !git branch -a -vv --color=always | grep -v '/HEAD\s' | fzf --height 40% --ansi --multi --tac | sed 's/^..//' | awk '{print $1}' | sed "s#^remotes/[^/]*/##"
+    brz = !git checkout $(git branch -a -vv | fzf --height 40% --ansi --multi --tac)
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s\\033[0m:  %s\\n\", substr($2, 1, length($2)-1), $1)}'
     brg = "!f() { git branch --list --sort=-committerdate | grep -i $@; }; f"
     stl = stash list
@@ -22,6 +24,9 @@
     serve = !ip a && git daemon --enable=receive-pack --reuseaddr --verbose --base-path=. --export-all ./.git
     #lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
     lg = log --color --graph --pretty=format:'%Cgreen(%cr) %Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --
+    lgz = !git log --date=short --format='%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)' --graph | fzf --height 40% --ansi --no-sort --reverse --multi
+    ; lgz = !git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph | fzf --height 40% --ansi --no-sort --reverse --multi | grep -o '[a-f0-9]\{7,\}'
+
     sreset = !git co -- . && git status | grep "^#" | tail -n +5 | awk '{print $2}' | xargs rm -vrf
     as = "!f() { git add \"$*\"; git status; }; f"
     pushup = "!gitbranchname() { git symbolic-ref --short HEAD; }; gitpushupstream() { git push --set-upstream origin `gitbranchname`; }; gitpushupstream"
