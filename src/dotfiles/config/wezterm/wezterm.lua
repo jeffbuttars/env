@@ -2,12 +2,15 @@ local wezterm = require 'wezterm';
 local TERM_META = os.getenv("TERM_META")
 local HOME = os.getenv("HOME")
 
-local c_scheme = "Builtin Solarized Light"
-local background_image = HOME .. "/Pictures/Wallpaper/spikegungs.jpg"
+-- local c_scheme = "Builtin Solarized Light"
+local c_scheme = "dayfox"
+-- local c_scheme = "dawnfox"
+-- local background_image = HOME .. "/Pictures/Wallpaper/spikegungs.jpg"
 
 if (TERM_META == "dark")
 then
-    c_scheme = "Solarized Dark - Patched"
+    -- c_scheme = "Solarized Dark - Patched"
+    c_scheme = "nordfox"
 end
 
 return {

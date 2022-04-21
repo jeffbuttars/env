@@ -13,6 +13,7 @@ echo "BST_DEV_HOST_IP_ADDRESS == $BST_DEV_HOST_IP_ADDRESS"
 
 
 CLEAN='true'
+RUN_ON_REMOTE_HOST=''
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
     sim-grabber sim-grabber-2 sim-grabber-2 \
     sim-echoguard-31 sim-echoguard-32 sim-echoguard-33 sim-echoguard-34 \
@@ -20,11 +21,13 @@ SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
 # SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
 #     sim-grabber sim-dynetics sim-rfagent sim-cot sim-helws'
 
-if [[ $1 ]]; then
-    if [[ "$1" == '-n' ]]; then
-        CLEAN=''
-    fi
-fi
+getopt
+
+# if [[ $1 ]]; then
+#     if [[ "$1" == '-n' ]]; then
+#         CLEAN=''
+#     fi
+# fi
 
 __ScriptVersion="v666"
 
@@ -59,7 +62,7 @@ do
 
     v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
 
-    n|noinstall  )  INSTALL_STEP=''   ;;
+    n|noinstall  )  INSTALL_STEP=''; CLEAN=''   ;;
 
     r|remote  )  REMOTE_HOST="$OPTARG"   ;;
 
