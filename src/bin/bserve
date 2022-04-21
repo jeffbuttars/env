@@ -189,6 +189,7 @@ shellexec "./scripts/serve $serve"
 # serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/helws \
 serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs \
     sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34'
+    # sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/simbus'
 
 if [[ -d ./services/sims/helws/dc ]]; then
     serve="${serve} sims/helws"
@@ -196,11 +197,11 @@ fi
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
     shellexec_blocking './scripts/create_sim_grabber_links'
-    # serve_sims="${serve_sims} sims/grabber-2 sims/grabber-3"
+    serve="${serve} sims/grabber-2 sims/grabber-3"
 fi
 
 if [[ -z $CLEAN ]]; then
-    serve_sims="-n $serve_sims "
+    serve="-n $serve "
 fi
 
 # shellexec "export SIMS_GRABBER_HOST_IP_ADDRESS='$SIMS_GRABBER_HOST_IP_ADDRESS'; ./scripts/serve $serve"

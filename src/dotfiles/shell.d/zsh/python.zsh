@@ -1,4 +1,14 @@
 
+function source_local_venv()
+{
+    if [[ -f ".env" ]]
+    then
+        source ".env"
+    fi
+
+    source $1
+}
+
 function pyproject_find_nearest()
 {
     local cur="$PWD"
@@ -62,7 +72,8 @@ function pyproject_activate_deactivate_poetry_venv()
         # We found a project, but we're not in an active venv,
         # so activate the found project and we're done.
         echo "Activating ~/${proj_dir/#$HOME/}"
-        source "${proj_venv_dir}/bin/activate"
+        # source "${proj_venv_dir}/bin/activate"
+        source_local_venv "${proj_venv_dir}/bin/activate"
 
         return 0
     fi
@@ -87,7 +98,8 @@ function pyproject_activate_deactivate_poetry_venv()
     fi
 
     # echo "Activating $proj_venv_dir"
-    source "${proj_venv_dir}/bin/activate"
+    # source "${proj_venv_dir}/bin/activate"
+    source_local_venv "${proj_venv_dir}/bin/activate"
 
 } #activate_deactivate_poetry_venv
 
