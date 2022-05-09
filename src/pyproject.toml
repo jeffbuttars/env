@@ -26,6 +26,7 @@ Markdown = "^3.3.6"
 httpx = "^0.22.0"
 update = "^0.0.1"
 ssort = "^0.10.0"
+Rtree = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 pyls-flake8 = ">=0.4.0"
