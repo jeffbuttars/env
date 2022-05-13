@@ -23,6 +23,7 @@ workspace $ws2 output $left_op
 #workspace $ws3 output $left_op
 workspace $ws3 output $right_op
 workspace $ws4 output $right_op
+workspace $ws11 output $right_op
 
 workspace $ws5 output $center_op
 workspace $ws6 output $center_op
@@ -33,7 +34,6 @@ workspace $ws8 output $right_op
 workspace $ws9 output $right_op
 
 workspace $ws10 output $left_op
-workspace $ws11 output $left_op
 
 # Mouse bindings
 bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
