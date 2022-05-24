@@ -141,10 +141,6 @@ export PSQL_EDITOR='vim -c"set ft=sql"'
 export BROWSER=google-chrome
 export EDITOR='vim'
 
-if [[ -f $HOME/.circleci/token ]]; then
-    . $HOME/.circleci/token
-fi
-
 if [[ -f $HOME/Dev/BST/defense-os/scripts/serve-completion.bash ]]; then
     . $HOME/Dev/BST/defense-os/scripts/serve-completion.bash
 fi
