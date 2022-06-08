@@ -13,7 +13,8 @@
 set $mod Mod1
 
 # "Windows" key
-# set $mod Mod4
+#set $mod Mod4
+# set $mod Super_L
 
 ### Gaps config
 gaps inner 2
@@ -282,6 +283,7 @@ bindsym $mod+ctrl+t exec --no-startup-id ~/bin/kitty-dark
 
 # kill focused window
 bindsym $mod+Control+x kill
+# bindsym $mod+Mod4+x kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run

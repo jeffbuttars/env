@@ -1,0 +1,12 @@
+[Unit]
+Description=Adds downloaded torrent files to remote transmission service
+After=network.target
+
+[Service]
+WorkingDirectory=%h/Downloads
+Environment="TR_REMOTE_HOST=10.6.6.6"
+Type=oneshot
+ExecStart=find %h/Downloads/torrent -iname '*.torrent' -exec transmission-remote ${TR_REMOTE_HOST} -a {} \;
+
+[Install]
+WantedBy=multi-user.target
