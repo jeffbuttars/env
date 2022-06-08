@@ -2,7 +2,7 @@
 AntiAliasFonts=true
 BoldIntense=true
 ColorScheme=Solarized Light
-Font=Fira Code,12,-1,5,53,0,0,0,0,0,Retina
+Font=FiraCode Nerd Font Mono,12,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [Cursor Options]
