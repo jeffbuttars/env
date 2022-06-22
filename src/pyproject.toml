@@ -23,7 +23,7 @@ pyproj = ">=3.2.1"
 qrcode = {extras = ["all"], version = ">=7.3.1"}
 Cython = "^0.29.24"
 Markdown = "^3.3.6"
-httpx = "^0.22.0"
+httpx = "^0.23.0"
 update = "^0.0.1"
 Rtree = "^1.0.0"
 pydantic = {extras = ["email", "dotenv"], version = "^1.9.1"}
