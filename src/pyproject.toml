@@ -26,10 +26,10 @@ Markdown = "^3.3.6"
 httpx = "^0.22.0"
 update = "^0.0.1"
 Rtree = "^1.0.0"
+pydantic = {extras = ["email", "dotenv"], version = "^1.9.1"}
 
 [tool.poetry.dev-dependencies]
 data-science-types = "^0.2.23"
-ssort = ">=0.10.0"
 black = "*"
 flake8 = "*"
 grip = ">=4.5.2"
@@ -54,7 +54,7 @@ linelength = 99
 max-line-length = 99
 
 [tool.isort]
-profile = black
+profile = "black"
 multi_line_output = 3
 include_trailing_comma = true
 force_grid_wrap = 0
