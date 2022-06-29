@@ -44,6 +44,18 @@ for df in $(ls -1 "$BIN_DIR/") ; do
     safe_link "$BIN_DIR/$df" "$dest"
 done
 
+if [[ -f "$SRC_DIR/pyproject.toml"  ]]; then
+    pr_info "Installing pyproject.toml"
+    dest="$HOME/pyproject.toml"
+    safe_link "$SRC_DIR/pyproject.toml" "$dest"
+fi
+
+if [[ -f "$SRC_DIR/poetry.lock"  ]]; then
+    pr_info "Installing poetry.lock"
+    dest="$HOME/poetry.lock"
+    safe_link "$SRC_DIR/poetry.lock" "$dest"
+fi
+
 # Setup vimpager if it's installed
 vimpagerdir="$PKGS_PKG_DIR/vimpager" 
 if [[ -d $vimpagerdir ]]; then
