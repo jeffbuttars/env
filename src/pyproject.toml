@@ -5,30 +5,31 @@ description = ""
 authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<3.11"
-watchgod = ">=0.6"
-mkdocs = ">=1.1.2"
-mkpdfs-mkdocs = ">=1.0.1"
-mkdocs-material = ">=6.1.0"
-mkdocs-with-pdf = ">=0.8.0"
-mkdocs-pdf-export-plugin = ">=0.5.8"
-yoyo-migrations = ">=7.2.1"
-immutables = ">=0.15"
 cachetools = ">=4.2.1"
+Cython = ">=0.29.24"
 cytoolz = ">=0.11.0"
 geographiclib = ">=1.52"
-pyproj = ">=3.2.1"
-qrcode = {extras = ["all"], version = ">=7.3.1"}
-# typesystem = "^0.4.1"
-typesystem = "<0.3"
 httpx = ">=0.22.0"
+immutables = ">=0.15"
+mkdocs = ">=1.1.2"
+mkdocs-material = ">=6.1.0"
+mkdocs-pdf-export-plugin = ">=0.5.8"
+mkdocs-with-pdf = ">=0.8.0"
+mkpdfs-mkdocs = ">=1.0.1"
+pydantic = {extras = ["email", "dotenv"], version = ">=1.9.1"}
+pyproj = ">=3.2.1"
+python = ">=3.8,<3.11"
+qrcode = {extras = ["all"], version = ">=7.3.1"}
 ssort = ">=0.10.1"
-pydantic = ">=1.9.0"
+typesystem = ">0.3"
+watchgod = ">=0.6"
+yoyo-migrations = ">=7.2.1"
 
 [tool.poetry.dev-dependencies]
 bandit = "*"
 black = "*"
 data-science-types = "*"
+devtools = "^0.8.0"
 flake8 = "*"
 flake8-bugbear = "*"
 grip = ">=4.5.2"
@@ -42,13 +43,12 @@ pyls-black = ">=0.4.6"
 pyls-flake8 = ">=0.4.0"
 pyls-isort = ">=0.2.2"
 pyls-memestra = ">=0.0.15"
+pylsp-rope = "^0.1.9"
 pynvim = "*"
 python-lsp-black = ">=1.0.0"
 python-lsp-server = {extras = ["all"], version = "*"}
-types-orjson = ">=0.1.1"
 rope = "^1.2.0"
-pylsp-rope = "^0.1.9"
-devtools = "^0.8.0"
+types-orjson = ">=0.1.1"
 
 [tool.black]
 linelength = 99

@@ -8,7 +8,7 @@ TerminalHighlightOnManualActivation=true
 Translucency=true
 
 [Desktop Entry]
-DefaultProfile=Solarized.profile
+DefaultProfile=
 
 [Dialogs]
 FirstRun=false
@@ -18,7 +18,7 @@ Height 2160=737
 Width 3840=1218
 
 [Favorite Profiles]
-Favorites=dark.profile,Light.profile,red.profile
+Favorites=dark.profile,red.profile,Light.profile
 
 [Shortcuts]
 close-active-terminal=Ctrl+Shift+R
