@@ -29,14 +29,14 @@ Rtree = "^1.0.0"
 pydantic = {extras = ["email", "dotenv"], version = "^1.9.1"}
 
 [tool.poetry.dev-dependencies]
-data-science-types = "^0.2.23"
+data-science-types = ">=0.2.23"
 black = "*"
 flake8 = "*"
 grip = ">=4.5.2"
 isort = "*"
 Markdown = ">=3.3.4"
 mypy = "*"
-mypy-ls = "^0.5.1"
+mypy-ls = ">=0.5.1"
 pyls-flake8 = ">=0.4.0"
 pyls-isort = ">=0.2.0"
 pylsp-mypy = ">=0.5.2"
