@@ -13,17 +13,21 @@ HAS_BATCAT=$(command -v batcat)
 HAS_LESS=$(command -v less)
 HAS_FZF=$(command -v fzf)
 
-# Determine which editor to use
-# Order of precidence is: neovide, neovim, vim, vi
-
-if [[ -n $HAS_NEOVIDE ]]; then
-    EDITOR_CMD='neovide'
-elif [[ -n $HAS_NEOVIM ]]; then
-    EDITOR_CMD='nvim'
-elif [[ -n $HAS_VIM ]]; then
-    EDITOR_CMD='vim'
+if [[ $1 ]]; then
+    # Use the command specified
+    EDITOR_CMD="$1"
 else
-    EDITOR_CMD='vi'
+    # Determine which editor to use
+    # Order of precidence is: neovide, neovim, vim, vi
+    if [[ -n $HAS_NEOVIDE ]]; then
+        EDITOR_CMD='neovide'
+    elif [[ -n $HAS_NEOVIM ]]; then
+        EDITOR_CMD='nvim'
+    elif [[ -n $HAS_VIM ]]; then
+        EDITOR_CMD='vim'
+    else
+        EDITOR_CMD='vi'
+    fi
 fi
 
 if [[ -z $HAS_FZF ]]; then
