@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# fzf --preview 'bat --color "always" {}'
+# neovide $(fzf --preview 'bat --color "always" {}')
+# neovide $(fzf --preview)
+# neovide $(fzf --preview 'less {}')
+
+HAS_NEOVIDE=$(command -v neovide)
+HAS_NEOVIM=$(command -v nvim)
+HAS_VIM=$(command -v vim)
+HAS_BAT=$(command -v bat)
+HAS_LESS=$(command -v less)
+HAS_FZF=$(command -v fzf)
+
+# Determine which editor to use
+# Order of precidence is: neovide, neovim, vim, vi
+
+if [[ -n $HAS_NEOVIDE ]]; then
+    EDITOR_CMD=neovide
+elif [[ -n $HAS_NEOVIM ]]; then
+    EDITOR_CMD=nvim
+elif [[ -n $HAS_VIM ]]; then
+    EDITOR_CMD=vim
+else
+    EDITOR_CMD=vi
+fi
+
+if [[ -z $HAS_FZF ]]; then
+   # No fzf, so just open the editor!
+   $EDITOR_CMD "$@"
+   exit
+fi
+
+# We have fzf. If can't show a preview with less or bat, use the simple form
+FZF_ARGS=""
+
+# If we have less, previw with less
+if [[ -n $HAS_LESS ]]; then
+    FZF_ARGS="--preview 'less {}'"
+fi
+
+# If we have bat, previw with bat
+if [[ -n $HAS_BAT ]]; then
+    FZF_ARGS="--preview 'bat --color \"always\" {}'"
+fi
+
+$EDITOR_CMD "$(fzf "$FZF_ARGS")"
