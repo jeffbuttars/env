@@ -9,6 +9,7 @@ HAS_NEOVIDE=$(command -v neovide)
 HAS_NEOVIM=$(command -v nvim)
 HAS_VIM=$(command -v vim)
 HAS_BAT=$(command -v bat)
+HAS_BATCAT=$(command -v batcat)
 HAS_LESS=$(command -v less)
 HAS_FZF=$(command -v fzf)
 
@@ -16,13 +17,13 @@ HAS_FZF=$(command -v fzf)
 # Order of precidence is: neovide, neovim, vim, vi
 
 if [[ -n $HAS_NEOVIDE ]]; then
-    EDITOR_CMD=neovide
+    EDITOR_CMD='neovide'
 elif [[ -n $HAS_NEOVIM ]]; then
-    EDITOR_CMD=nvim
+    EDITOR_CMD='nvim'
 elif [[ -n $HAS_VIM ]]; then
-    EDITOR_CMD=vim
+    EDITOR_CMD='vim'
 else
-    EDITOR_CMD=vi
+    EDITOR_CMD='vi'
 fi
 
 if [[ -z $HAS_FZF ]]; then
@@ -36,12 +37,25 @@ FZF_ARGS=""
 
 # If we have less, previw with less
 if [[ -n $HAS_LESS ]]; then
-    FZF_ARGS="--preview 'less {}'"
+    FZF_ARGS=--preview='less {}'
+fi
+
+BAT_THEME=""
+if [[ "$TERM_META" ==  "light" ]]; then
+    BAT_THEME="--theme \"GitHub\""
 fi
 
 # If we have bat, previw with bat
 if [[ -n $HAS_BAT ]]; then
-    FZF_ARGS="--preview 'bat --color \"always\" {}'"
+    FZF_ARGS=--preview="bat --color \"always\" $BAT_THEME {}"
+elif [[ -n $HAS_BATCAT ]]; then
+    FZF_ARGS=--preview="batcat --color \"always\" $BAT_THEME {}"
 fi
 
-$EDITOR_CMD "$(fzf "$FZF_ARGS")"
+FNAME=$(fzf "${FZF_ARGS}")
+
+if [[ $FNAME ]]; then
+    $EDITOR_CMD "$FNAME"
+else
+    echo "No filename selected, not starting $EDITOR_CMD"
+fi
