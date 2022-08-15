@@ -17,7 +17,7 @@ RUN_ON_REMOTE_HOST=''
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
     sim-grabber sim-grabber-2 sim-grabber-2 \
     sim-echoguard-31 sim-echoguard-32 sim-echoguard-33 sim-echoguard-34 \
-    sim-dynetics sim-rfagent sim-cot sim-helws sim-simbus '
+    sim-dynetics sim-rfagent sim-cot sim-helws sim-mydefence sim-simbus '
 # SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
 #     sim-grabber sim-dynetics sim-rfagent sim-cot sim-helws'
 
@@ -186,21 +186,21 @@ shellexec "./scripts/serve $serve"
 # Sims: Echoguard, RFAgent, s3reveal
 # serve='-s sims/echoguard sims/rfagent'
 # serve='-s sims/dynetics sims/s3reveal sims/grabber'
-# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/echoguard'
-# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/echoguard'
-# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/helws \
-# serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/agt \
-serve='-s sims/dynetics sims/grabber sims/rfagent sims/cot sims/lobs sims/agt \
-    sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34'
-    # sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/simbus'
-
-if [[ -d ./services/sims/helws/dc ]]; then
-    serve="${serve} sims/helws"
-fi
+serve='-s sims/dynetics '
+    serve+='sims/grabber '
+    # serve+='sims/s3reveal '
+    serve+='sims/rfagent '
+    serve+='sims/cot '
+    serve+='sims/lobs '
+    # serve+='sims/agt '
+    serve+='sims/mydefence '
+    serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
+    # serve+="sims/helws "
+    # serve+='sims/simbus '
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
     shellexec_blocking './scripts/create_sim_grabber_links'
-    serve="${serve} sims/grabber-2 sims/grabber-3"
+    serve+="sims/grabber-2 sims/grabber-3 "
 fi
 
 if [[ -z $CLEAN ]]; then
