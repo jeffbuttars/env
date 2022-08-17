@@ -23,7 +23,7 @@ Check point
 ${COMMIT_SOURCE}
 
 Effected files:
-$(git diff --name-status -r)
+$(git diff --staged --name-only)
 
 ref-branch: ${BRANCH_NAME}
 ${REF_SHA1}
