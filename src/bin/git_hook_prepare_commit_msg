@@ -9,9 +9,12 @@ if [[ "$3" ]]; then
 fi
 
 if [[ "$2" ]]; then
-    COMMIT_SOURCE=$'Commit source:\n'
+    COMMIT_SOURCE=$'\nCommit source:\n'
     COMMIT_SOURCE+="${2}"
 fi
+
+EFFECTED_FILES=$'Effected files:\n'
+EFFECTED_FILES+=$(git diff --staged --name-only)
 
 BRANCH_NAME=$(git branch --show-current)
 
@@ -19,11 +22,8 @@ cat << EOF > "$TEMP"
 fix: wip
 
 Check point
-
 ${COMMIT_SOURCE}
-
-Effected files:
-$(git diff --staged --name-only)
+${EFFECTED_FILES}
 
 ref-branch: ${BRANCH_NAME}
 ${REF_SHA1}
