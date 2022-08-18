@@ -85,7 +85,9 @@ fi
 
 
 BASE_DIR="$HOME/Dev/BST/defenseos"
-cd "$BASE_DIR"
+# BASE_DIR="$HOME/Dev/BST/beamtrail"
+
+cd "$BASE_DIR" || exit 1
 WORK_DIR="$BASE_DIR"
 
 i3msg ()
@@ -186,17 +188,28 @@ shellexec "./scripts/serve $serve"
 # Sims: Echoguard, RFAgent, s3reveal
 # serve='-s sims/echoguard sims/rfagent'
 # serve='-s sims/dynetics sims/s3reveal sims/grabber'
-serve='-s sims/dynetics '
-    serve+='sims/grabber '
-    # serve+='sims/s3reveal '
-    serve+='sims/rfagent '
-    serve+='sims/cot '
-    serve+='sims/lobs '
-    # serve+='sims/agt '
-    serve+='sims/mydefence '
-    serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
-    # serve+="sims/helws "
-    # serve+='sims/simbus '
+sim_serve='sims/dynetics '
+    sim_serve+='sims/grabber '
+    # sim_serve+='sims/s3reveal '
+    sim_serve+='sims/rfagent '
+    sim_serve+='sims/cot '
+    sim_serve+='sims/lobs '
+    sim_serve+='sims/agt '
+    sim_serve+='sims/mydefence '
+    sim_serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
+    sim_serve+="sims/helws "
+    # sim_serve+='sims/simbus '
+
+serve='-s '
+for sim_dir in ${sim_serve} ; do
+    echo "Checking SIM: ${sim_serve}..."
+    if [[ -d "${BASE_DIR}/services/${sim_dir}" ]]; then
+        serve+="${sim_dir} "
+        echo "Adding to ${sim_dir} to run list"
+    else
+        echo "Ignoring ${sim_dir}, not present"
+    fi
+done
 
 if [[ -f ./scripts/create_sim_grabber_links ]]; then
     shellexec_blocking './scripts/create_sim_grabber_links'
