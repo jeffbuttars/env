@@ -46,6 +46,10 @@ if [[ /opt/android-sdk ]]; then
     export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 fi
 
+if [[ -d  "$HOME/.cargo/bin" ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH" # Add cargo bin
+fi
+
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]
 then
