@@ -24,6 +24,7 @@ ssort = ">=0.10.1"
 typesystem = ">0.3"
 watchgod = ">=0.6"
 yoyo-migrations = ">=7.2.1"
+types-cachetools = "^5.2.1"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
