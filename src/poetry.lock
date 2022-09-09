@@ -200,7 +200,7 @@ python-versions = "~=3.7"
 
 [[package]]
 name = "certifi"
-version = "2022.6.15"
+version = "2022.6.15.1"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
@@ -216,14 +216,6 @@ python-versions = "*"
 
 [package.dependencies]
 pycparser = "*"
-
-[[package]]
-name = "chardet"
-version = "5.0.0"
-description = "Universal encoding detector for Python 3"
-category = "main"
-optional = false
-python-versions = ">=3.6"
 
 [[package]]
 name = "charset-normalizer"
@@ -877,7 +869,7 @@ i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "jsonschema"
-version = "4.15.0"
+version = "4.16.0"
 description = "An implementation of JSON Schema validation for Python"
 category = "dev"
 optional = false
@@ -1197,7 +1189,7 @@ pylsp-mypy = "*"
 
 [[package]]
 name = "nbclient"
-version = "0.6.7"
+version = "0.6.8"
 description = "A client library for executing notebooks. Formerly nbconvert's ExecutePreprocessor."
 category = "dev"
 optional = false
@@ -1328,6 +1320,14 @@ description = "Python Build Reasonableness"
 category = "dev"
 optional = false
 python-versions = ">=2.6"
+
+[[package]]
+name = "pep440"
+version = "0.1.1"
+description = "A simple package with utils to check whether versions number match PEP 440."
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "pep517"
@@ -2417,24 +2417,23 @@ pyodbc = ["pyodbc"]
 
 [[package]]
 name = "zest.releaser"
-version = "6.22.2"
+version = "7.0.0"
 description = "Software releasing made easy and repeatable"
 category = "main"
 optional = false
 python-versions = "*"
 
 [package.dependencies]
-chardet = {version = "*", optional = true, markers = "extra == \"recommended\""}
 check-manifest = {version = "*", optional = true, markers = "extra == \"recommended\""}
 colorama = "*"
+pep440 = {version = "*", optional = true, markers = "extra == \"recommended\""}
 pyroma = {version = "*", optional = true, markers = "extra == \"recommended\""}
 readme-renderer = {version = "*", optional = true, markers = "extra == \"recommended\""}
 requests = "*"
-six = "*"
 twine = ">=1.6.0"
 
 [package.extras]
-recommended = ["chardet", "check-manifest", "pyroma", "readme-renderer", "wheel"]
+recommended = ["check-manifest", "pep440", "pyroma", "readme-renderer", "wheel"]
 test = ["z3c.testsetup (>=0.8.4)", "zope.testing", "zope.testrunner", "wheel"]
 
 [[package]]
@@ -2573,10 +2572,6 @@ build = []
 cachetools = []
 certifi = []
 cffi = []
-chardet = [
-    {file = "chardet-5.0.0-py3-none-any.whl", hash = "sha256:d3e64f022d254183001eccc5db4040520c0f23b1a3f33d6413e099eb7f126557"},
-    {file = "chardet-5.0.0.tar.gz", hash = "sha256:0368df2bfd78b5fc20572bb4e9bb7fb53e2c094f60ae9993339e8671d0afb8aa"},
-]
 charset-normalizer = []
 check-manifest = [
     {file = "check-manifest-0.48.tar.gz", hash = "sha256:3b575f1dade7beb3078ef4bf33a94519834457c7281dbc726b15c5466b55c657"},
@@ -2882,6 +2877,7 @@ path-and-address = [
 ]
 pathspec = []
 pbr = []
+pep440 = []
 pep517 = []
 pillow = []
 pkginfo = []
@@ -3001,14 +2997,12 @@ python-dateutil = [
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
 python-dotenv = []
-python-jsonrpc-server = [
-    {file = "python-jsonrpc-server-0.4.0.tar.gz", hash = "sha256:62c543e541f101ec5b57dc654efc212d2c2e3ea47ff6f54b2e7dcb36ecf20595"},
-    {file = "python_jsonrpc_server-0.4.0-py3-none-any.whl", hash = "sha256:e5a908ff182e620aac07db5f57887eeb0afe33993008f57dc1b85b594cea250c"},
+python-jsonrpc-server = []
+python-language-server = []
+python-lsp-black = [
+    {file = "python-lsp-black-1.2.1.tar.gz", hash = "sha256:d7eaeab2a377e96a82cc26afe2f8f2e1cf7c6eaefdcdeab026343e2e559dcce9"},
+    {file = "python_lsp_black-1.2.1-py3-none-any.whl", hash = "sha256:9793e69122f7ab51dffa980f026e456b4be62a3400df5c89b6ecf9278b74913a"},
 ]
-python-language-server = [
-    {file = "python-language-server-0.26.1.tar.gz", hash = "sha256:1a746a4031938df03ee546fa4760895b6a6e420a07d58161b064945add6449ef"},
-]
-python-lsp-black = []
 python-lsp-jsonrpc = [
     {file = "python-lsp-jsonrpc-1.0.0.tar.gz", hash = "sha256:7bec170733db628d3506ea3a5288ff76aa33c70215ed223abdb0d95e957660bd"},
     {file = "python_lsp_jsonrpc-1.0.0-py3-none-any.whl", hash = "sha256:079b143be64b0a378bdb21dff5e28a8c1393fe7e8a654ef068322d754e545fc7"},
@@ -3262,10 +3256,7 @@ yoyo-migrations = [
     {file = "yoyo-migrations-7.3.2.tar.gz", hash = "sha256:44840828e1a0169f541e702d5aedca8185ada68087e7bad4850a6fc5d71e77a4"},
     {file = "yoyo_migrations-7.3.2-py3-none-any.whl", hash = "sha256:a6e6bc990732d4951c4e2a5b2815d60fe47a445f1c0d1b3433b9ef5f36bca8df"},
 ]
-"zest.releaser" = [
-    {file = "zest.releaser-6.22.2-py2.py3-none-any.whl", hash = "sha256:fe3814a78dc68712de46f78c8e2dbe65639b79c86a5ff29eab4d0b8696f69926"},
-    {file = "zest.releaser-6.22.2.tar.gz", hash = "sha256:c9185cccaf621426b7b9b62eb628e473ddd00007a1c31b99e845c8526d56200e"},
-]
+"zest.releaser" = []
 zipp = []
 zopfli = [
     {file = "zopfli-0.2.1-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:2f61ecd57bc47684c44a60e8cecb8e67f633cf238f30cc255627e172119ad72d"},
