@@ -15,6 +15,13 @@ HAS_FZF=$(command -v fzf)
 HAS_FD=$(command -v fd)
 HAS_FDFIND=$(command -v fdfind)
 
+
+# Allow the cargo version of neovide to have precidence
+if [ -f "${HOME}/.cargo/bin/neovide" ]; then
+    HAS_NEOVIDE
+fi
+
+
 if [[ $1 ]]; then
     # Use the command specified
     EDITOR_CMD="$1"
