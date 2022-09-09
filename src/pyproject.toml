@@ -24,6 +24,7 @@ ssort = ">=0.10.1"
 typesystem = ">0.3"
 watchgod = ">=0.6"
 yoyo-migrations = ">=7.2.1"
+websockets = "^10.3"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
@@ -49,6 +50,7 @@ python-lsp-black = ">=1.0.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 rope = "^1.2.0"
 types-orjson = ">=0.1.1"
+ruff = "^0.0.29"
 
 [tool.black]
 linelength = 99

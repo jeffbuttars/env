@@ -10,8 +10,12 @@ local c_scheme = "dayfox"
 if (TERM_META == "dark")
 then
     -- c_scheme = "Solarized Dark - Patched"
-    c_scheme = "nordfox"
+    -- c_scheme = "nordfox"
+    c_scheme = "terafox"
 end
+
+
+-- os.setenv("TERM_META_COLOR_SCHEME", c_scheme)
 
 return {
   font = wezterm.font("FiraCode Nerd Font Mono"),
@@ -24,6 +28,10 @@ return {
 
   window_background_opacity = 1.0,
   color_scheme = c_scheme,
+
+  set_environmental_variables = {
+      TERM_META_COLOR_SCHEME = c_schema,
+  },
 
   -- window_background_image = background_image,
   -- window_background_image_hsb = {
