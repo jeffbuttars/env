@@ -50,9 +50,13 @@ python-lsp-black = ">=1.0.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 rope = "^1.2.0"
 types-orjson = ">=0.1.1"
+ruff = "^0.0.29"
 
 [tool.black]
 linelength = 99
+
+[tool.ruff]
+line-length = 99
 
 [tool.pycodestyle]
 max-line-length = 99
