@@ -1442,11 +1442,7 @@ version = "0.1.2"
 description = "A simple package with utils to check whether versions number match PEP 440."
 category = "main"
 optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-test = ["pytest", "pytest-cov", "pytest-console-scripts"]
-lint = ["mypy", "check-manifest"]
+python-versions = "*"
 
 [[package]]
 name = "pep517"
@@ -3313,13 +3309,8 @@ python-dateutil = [
     {file = "python_dateutil-2.8.2-py2.py3-none-any.whl", hash = "sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9"},
 ]
 python-dotenv = []
-python-jsonrpc-server = [
-    {file = "python-jsonrpc-server-0.4.0.tar.gz", hash = "sha256:62c543e541f101ec5b57dc654efc212d2c2e3ea47ff6f54b2e7dcb36ecf20595"},
-    {file = "python_jsonrpc_server-0.4.0-py3-none-any.whl", hash = "sha256:e5a908ff182e620aac07db5f57887eeb0afe33993008f57dc1b85b594cea250c"},
-]
-python-language-server = [
-    {file = "python-language-server-0.26.1.tar.gz", hash = "sha256:1a746a4031938df03ee546fa4760895b6a6e420a07d58161b064945add6449ef"},
-]
+python-jsonrpc-server = []
+python-language-server = []
 python-lsp-black = [
     {file = "python-lsp-black-1.2.1.tar.gz", hash = "sha256:d7eaeab2a377e96a82cc26afe2f8f2e1cf7c6eaefdcdeab026343e2e559dcce9"},
     {file = "python_lsp_black-1.2.1-py3-none-any.whl", hash = "sha256:9793e69122f7ab51dffa980f026e456b4be62a3400df5c89b6ecf9278b74913a"},
