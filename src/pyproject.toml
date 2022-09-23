@@ -26,6 +26,7 @@ watchgod = ">=0.6"
 yoyo-migrations = ">=7.2.1"
 websockets = "^10.3"
 types-cachetools = "^5.2.1"
+orjson = "^3.8.0"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
