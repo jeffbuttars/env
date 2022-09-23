@@ -59,6 +59,7 @@ python-lsp-server = {extras = ["all"], version = "*"}
 rope = ">=1.2.0"
 types-orjson = ">=0.1.1"
 ruff = ">=0.0.29"
+python-lsp-autoimport = "^0.0.1"
 
 [tool.black]
 line-length = 99
