@@ -2,8 +2,8 @@ local wezterm = require 'wezterm';
 local TERM_META = os.getenv("TERM_META")
 local HOME = os.getenv("HOME")
 
--- local c_scheme = "Builtin Solarized Light"
-local c_scheme = "dayfox"
+local c_scheme = "Builtin Solarized Light"
+-- local c_scheme = "dayfox"
 -- local c_scheme = "dawnfox"
 -- local background_image = HOME .. "/Pictures/Wallpaper/spikegungs.jpg"
 
@@ -14,6 +14,7 @@ then
     c_scheme = "terafox"
 end
 
+c_scheme = "terafox"
 
 -- os.setenv("TERM_META_COLOR_SCHEME", c_scheme)
 
