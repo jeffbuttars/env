@@ -23,13 +23,10 @@ mkpdfs-mkdocs = ">=1.0.1"
 orjson = ">=3.8.0"
 pydantic = {extras = ["email", "dotenv"], version = ">=1.9.1"}
 pyproj = ">=3.2.1"
-pytest-html = ">=3.1.1"
 python = ">=3.8,<3.11"
 qrcode = {extras = ["all"], version = ">=7.3.1"}
 randomname = ">=0.1.5"
-ruff = ">=0.0.37"
 ssort = ">=0.10.1"
-types-cachetools = ">=5.2.1"
 types-cachetools = ">=5.2.1"
 typesystem = ">0.3"
 watchgod = ">=0.6"
@@ -55,12 +52,13 @@ pyls-flake8 = ">=0.4.0"
 pyls-isort = ">=0.2.2"
 pyls-memestra = ">=0.0.15"
 pylsp-rope = ">=0.1.9"
+pytest-html = ">=3.1.1"
 pynvim = "*"
 python-lsp-black = ">=1.0.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 rope = ">=1.2.0"
 types-orjson = ">=0.1.1"
-ruff = "^0.0.29"
+ruff = ">=0.0.37"
 pyright = "^1.1.273"
 
 [tool.black]
