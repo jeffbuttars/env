@@ -2,16 +2,21 @@ local wezterm = require 'wezterm';
 local TERM_META = os.getenv("TERM_META")
 local HOME = os.getenv("HOME")
 
--- local c_scheme = "Builtin Solarized Light"
-local c_scheme = "dayfox"
+local c_scheme = "Builtin Solarized Light"
+-- local c_scheme = "dayfox"
 -- local c_scheme = "dawnfox"
 -- local background_image = HOME .. "/Pictures/Wallpaper/spikegungs.jpg"
 
 if (TERM_META == "dark")
 then
     -- c_scheme = "Solarized Dark - Patched"
-    c_scheme = "nordfox"
+    -- c_scheme = "nordfox"
+    c_scheme = "terafox"
 end
+
+c_scheme = "terafox"
+
+-- os.setenv("TERM_META_COLOR_SCHEME", c_scheme)
 
 return {
   font = wezterm.font("FiraCode Nerd Font Mono"),
@@ -24,6 +29,10 @@ return {
 
   window_background_opacity = 1.0,
   color_scheme = c_scheme,
+
+  set_environmental_variables = {
+      TERM_META_COLOR_SCHEME = c_schema,
+  },
 
   -- window_background_image = background_image,
   -- window_background_image_hsb = {

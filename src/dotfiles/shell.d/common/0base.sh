@@ -93,6 +93,10 @@ if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
 
+if [[ -f "$HOME/.cargo/bin" ]]; then
+    export PATH="${HOME}/.cargo/bin:$PATH"
+fi
+
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]
 then
