@@ -25,6 +25,7 @@ typesystem = ">0.3"
 watchgod = ">=0.6"
 yoyo-migrations = ">=7.2.1"
 types-cachetools = "^5.2.1"
+inotify = "^0.2.10"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
@@ -51,6 +52,7 @@ python-lsp-server = {extras = ["all"], version = "*"}
 rope = "^1.2.0"
 types-orjson = ">=0.1.1"
 ruff = "^0.0.29"
+pyright = "^1.1.273"
 
 [tool.black]
 linelength = 99
