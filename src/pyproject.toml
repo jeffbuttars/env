@@ -59,7 +59,8 @@ python-lsp-server = {extras = ["all"], version = "*"}
 rope = ">=1.2.0"
 types-orjson = ">=0.1.1"
 ruff = ">=0.0.29"
-python-lsp-autoimport = "^0.0.1"
+python-lsp-autoimport = ">=0.0.1"
+pylsp-mypy = ">=0.6.2"
 
 [tool.black]
 line-length = 99
@@ -91,6 +92,10 @@ max-line-length = "99"
 [tool.mypy]
 python_version = 3.10
 ignore_missing_imports = true
+
+[tool.pylsp-mypy]
+enabled = true
+live_mode = true
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
