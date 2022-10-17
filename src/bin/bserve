@@ -197,7 +197,8 @@ sim_serve='sims/dynetics '
     sim_serve+='sims/agt '
     sim_serve+='sims/mydefence '
     sim_serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
-    sim_serve+="sims/helws "
+    sim_serve+='sims/helws '
+    # sim_serve+='sims/trd_orion '
     # sim_serve+='sims/simbus '
 
 serve='-s '
