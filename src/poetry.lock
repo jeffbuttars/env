@@ -301,7 +301,7 @@ bokeh = ["selenium", "bokeh"]
 
 [[package]]
 name = "coverage"
-version = "6.4.4"
+version = "6.5.0"
 description = "Code coverage measurement for Python"
 category = "main"
 optional = false
@@ -2414,6 +2414,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-ujson"
+version = "5.5.0"
+description = "Typing stubs for ujson"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "typesystem"
 version = "0.4.1"
 description = "A type system library for Python"
@@ -2633,7 +2641,7 @@ test = ["pytest"]
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "3a7275bd999089712481c2aacb052c184201e28b35d61b4c82b45824b2357f0d"
+content-hash = "93f6a348310cc92137520d7f2a5cd25a472001091ed87236c24ca5e481a0f3ac"
 
 [metadata.files]
 anyio = [
@@ -3378,6 +3386,7 @@ types-orjson = [
     {file = "types-orjson-3.6.2.tar.gz", hash = "sha256:cf9afcc79a86325c7aff251790338109ed6f6b1bab09d2d4262dd18c85a3c638"},
     {file = "types_orjson-3.6.2-py3-none-any.whl", hash = "sha256:22ee9a79236b6b0bfb35a0684eded62ad930a88a56797fa3c449b026cf7dbfe4"},
 ]
+types-ujson = []
 typesystem = [
     {file = "typesystem-0.4.1-py3-none-any.whl", hash = "sha256:26b2368d00fc981fbe7aef85ea1f44f90132e10a33b2f0ea3f3b5774774fee8d"},
     {file = "typesystem-0.4.1.tar.gz", hash = "sha256:cc3f03d101fadbb60356993ce600fdfbf4bbce90ce5cb444766962be33f53ce1"},

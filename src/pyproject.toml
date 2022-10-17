@@ -58,6 +58,7 @@ python-lsp-server = {extras = ["all"], version = "*"}
 rope = ">=1.2.0"
 types-orjson = ">=0.1.1"
 ruff = ">=0.0.29"
+types-ujson = "^5.5.0"
 
 [tool.black]
 line-length = 99
