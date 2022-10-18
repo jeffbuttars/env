@@ -18,7 +18,7 @@ HAS_FDFIND=$(command -v fdfind)
 
 # Allow the cargo version of neovide to have precidence
 if [ -f "${HOME}/.cargo/bin/neovide" ]; then
-    HAS_NEOVIDE
+    HAS_NEOVIDE="${HOME}/.cargo/bin/neovide"
 fi
 
 
