@@ -84,11 +84,19 @@ for_window [title="^Zoom.*"] floating enable, border pixel 2
 # Kill the plasma wallpaper
 # for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
-for_window [class="plasmashell"] floating enable, border none
+for_window [class="plasmashell" window_type="notification"] floating enable, border none
+no_focus [class="plasmashell" window_type="notification"]
 for_window [title="Plasma"] floating enable, border none
 for_window [title="Plasma-desktop"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
 for_window [class="win7"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
+for_window [class="Yakuake"] floating enable, border pixel 2
+for_window [title="Yakuake"] floating enable, border pixel 2
+for_window [class="Kmix"] floating enable, border none
+for_window [class="kruler"] floating enable; border none
+for_window [class="klipper"] floating enable; border none
+for_window [class="Kcalc"] floating enable, border pixel 2
 for_window [class="Plasmoidviewer"] floating enable, border none
 for_window [class="(?i)*nextcloud"] floating disable
 # no_focus [class="plasmashell"]
@@ -98,10 +106,6 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [class="plasmawindowed"] floating enable, move position mouse, resize set 640 680
 
 
-for_window [class="Yakuake"] floating enable, border pixel 2
-for_window [title="Yakuake"] floating enable, border pixel 2
-for_window [class="Kmix"] floating enable, border none
-for_window [class="Kcalc"] floating enable, border pixel 2
 for_window [class="vlc"] floating enable, border pixel 2
 for_window [class="Mplayer"] floating enable, border pixel 2
 for_window [class="qjackctl"] floating enable, border pixel 2
@@ -136,6 +140,15 @@ for_window [title="gkrellm"] floating enable, enable sticky, border none
 
 no_focus [window_role="pop-up"]
 no_focus [window_type="notification"]
+# >>> Avoid tiling for non-Plasma stuff <<<
+for_window [window_role="pop-up"] floating enable, border pixel 2
+for_window [window_role="bubble"] floating enable, border pixel 2
+for_window [window_role="task_dialog"] floating enable, border pixel 2
+for_window [window_role="Preferences"] floating enable, border pixel 2
+for_window [window_role="About"] floating enable, border pixel 2
+for_window [window_type="dialog"] floating enable, border pixel 2
+for_window [window_type="menu"] floating enable, border pixel 2
+for_window [instance="__scratchpad"] floating enable, border pixel 2
 
 for_window [title=".*Audio Volume — System Settings.*"] floating disable
 for_window [class="Pulseeffects"] move container to workspace $wsMusic
@@ -459,3 +472,5 @@ exec xflux -z 83703
 
 exec_always xautolock -time 60 -locker ~/bin/fuzzy_screen_lock
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+exec --no-startup-id wmctrl -c Plasma
