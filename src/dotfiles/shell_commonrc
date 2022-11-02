@@ -155,5 +155,8 @@ fi
 
 export NEOVIDE_MULTIGRID=true
 
+if [[ "chica" == "$(hostname)" ]]; then
+    export POLYBAR_HWMO_TEMP_INPUT='/sys/devices/virtual/thermal/thermal_zone2/temp'
+fi
 
 # vim:set ft=sh:
