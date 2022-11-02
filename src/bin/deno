@@ -1,7 +1,19 @@
 #!/bin/bash
 
-if [ -f /usr/bin/deno ]; then
+# curl -fsSL https://deno.land/x/install/install.sh | sh
+
+if [ -f "${HOME}/.deno/bin/deno" ]; then
+    "${HOME}/.deno/bin/deno" "$@"
+    exit
+elif [ -f /usr/local/bin/deno ]; then
+    /usr/local/bin/deno "$@"
+    exit
+elif [ -f /usr/bin/deno ]; then
     /usr/bin/deno "$@"
-else
-    docker run -it denoland/deno:latest "$@"
+    exit
 fi
+
+echo "You need to Install deno:"
+echo 'curl -fsSL https://deno.land/x/install/install.sh | sh'
+
+exit 1
