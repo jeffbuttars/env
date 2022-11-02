@@ -1,0 +1,83 @@
+#!/bin/bash
+
+if [[ "$HOME/.bst.sh" ]]; then
+    . "$HOME/.bst.sh"
+fi
+
+I3_DEV_WKSPACE=' 10  '
+
+BASE_DIR="$HOME/Dev/BST"
+mkdir -p "${BASE_DIR}"
+
+cd "$BASE_DIR" || exit 1
+WORK_DIR="$BASE_DIR"
+
+i3msg ()
+{
+    socketpath=$(i3 --get-socketpath)
+    if [[ "$?" == "0" ]] && [[ $socketpath ]]; then
+        i3-msg $@
+    fi
+}
+
+shellexec ()
+{
+    tmpfile=$(mktemp)
+
+    if [[ $REMOTE_HOST ]]; then
+        # "ssh $REMOTE_HOST 'cd $HOME/Dev/BST/defenseos; $1'"
+        echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n\
+            ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1'\nzsh -i" > "$tmpfile"
+    else
+        echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
+    fi
+
+    echo "shellexec: $(cat $tmpfile)"
+
+    i3msg "workspace \"$I3_DEV_WKSPACE\""
+    # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
+    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
+    sleep 0.5
+}
+
+shellexec_blocking ()
+{
+    tmpfile=$(mktemp)
+
+    if [[ $REMOTE_HOST ]]; then
+        # "ssh $REMOTE_HOST 'cd $HOME/Dev/BST/defenseos; $1'"
+        echo -e "ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1';\n" > "$tmpfile"
+    else
+        echo -e "$1;\n" > "$tmpfile"
+    fi
+
+    echo "shellexec_blocking: $(cat $tmpfile)"
+
+    i3-msg "workspace \"$I3_DEV_WKSPACE\""
+    # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
+    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
+}
+
+i3msg "workspace \"$I3_DEV_WKSPACE\""
+
+# Murder any running windows on the workspace
+i3msg "workspace \"$I3_DEV_WKSPACE\" focus parent, focus parent, focus parent, [tiling
+class=\"(?i)konsole\" workspace=\"$I3_DEV_WKSPACE\"] kill"
+
+i3msg 'focus parent'
+i3msg 'split vertical'
+
+shellexec "ssh bst-lt-dev"
+shellexec "ssh bst-lt-dev"
+shellexec "ssh bst-lt-dev"
+
+# Start the rest on the right side
+i3msg 'focus parent'
+i3msg 'split horizontal'
+
+shellexec "ssh bst-lt-dev"
+
+i3msg 'split vertical'
+
+shellexec "ssh bst-lt-dev"
+shellexec "ssh bst-lt-dev-cop"

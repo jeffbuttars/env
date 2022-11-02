@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [[ "chica" == $(hostname) ]]; then
+    if [[ -x "$HOME/bin/blt_serve" ]]; then
+        "$HOME/bin/blt_serve"
+        exit
+    fi
+fi
+
 if [[ "$HOME/.bst.sh" ]]; then
     . "$HOME/.bst.sh"
 fi
