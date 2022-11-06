@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$HOME/.bst.sh" ]]; then
+if [[ -f "$HOME/.bst.sh" ]]; then
     . "$HOME/.bst.sh"
 fi
 
@@ -58,6 +58,12 @@ shellexec_blocking ()
     konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
 }
 
+do_cmd()
+{
+    xdotool type --window "$(xdotool getactivewindow)" "$@"
+    xdotool key --window "$(xdotool getactivewindow)" "Return"
+}
+
 i3msg "workspace \"$I3_DEV_WKSPACE\""
 
 # Murder any running windows on the workspace
@@ -68,16 +74,26 @@ i3msg 'focus parent'
 i3msg 'split vertical'
 
 shellexec "ssh bst-lt-dev"
+do_cmd "./scripts/serve pgsql dbwatch"
+
 shellexec "ssh bst-lt-dev"
+do_cmd "./scripts/serve hal pipeline"
+
 shellexec "ssh bst-lt-dev"
+do_cmd "./scripts/serve sims/dynetics sims/grabber sims/rfagent sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/grabber-2 sims/grabber-3 sims/cot"
+
 
 # Start the rest on the right side
 i3msg 'focus parent'
 i3msg 'split horizontal'
 
 shellexec "ssh bst-lt-dev"
+do_cmd "./scripts/serve api api_v3"
 
 i3msg 'split vertical'
 
 shellexec "ssh bst-lt-dev"
+do_cmd "./scripts/serve esink"
+
 shellexec "ssh bst-lt-dev-cop"
+do_cmd "nvm use bst; yarn yrebuild; yarn start"

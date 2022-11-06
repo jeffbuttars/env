@@ -1,9 +1,1 @@
-[Unit]
-Description=Watch for downloaded torrent files
-
-[Path]
-PathChanged=%h/Downloads/torrent
-Unit=torrents-for-transmission.service
-
-[Install]
-WantedBy=multi-user.target
+/home/jeff/.config/systemd/user/torrents-for-transmission.path
