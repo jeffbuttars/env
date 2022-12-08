@@ -32,6 +32,7 @@ typesystem = ">0.3"
 watchgod = ">=0.6"
 websockets = ">=10.3"
 yoyo-migrations = ">=7.2.1"
+pycmarkgfm = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
