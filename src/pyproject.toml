@@ -32,6 +32,7 @@ typesystem = ">0.3"
 watchgod = ">=0.6"
 websockets = ">=10.3"
 yoyo-migrations = ">=7.2.1"
+pip-licenses = "^4.0.1"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
@@ -97,6 +98,9 @@ ignore_missing_imports = true
 [tool.pylsp-mypy]
 enabled = true
 live_mode = true
+
+[tool.pyright]
+pythonVersion = 3.10
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
