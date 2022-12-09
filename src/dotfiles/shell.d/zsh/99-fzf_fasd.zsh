@@ -39,8 +39,11 @@ if [[ -n $fasd_cmd_exists ]]; then
     }
 
     # ---------
-    if [[ ! "$PATH" == *${HOME}/.fzf/bin* ]]; then
-      export PATH="$PATH:${HOME}/.fzf/bin"
+    if [[ -d "${HOME}/.fzf" ]]
+    then
+        if [[ ! "$PATH" == *${HOME}/.fzf/bin* ]]; then
+            export PATH="${HOME}/.fzf/bin:$PATH"
+        fi
     fi
 
     # Auto-completion
