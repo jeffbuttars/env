@@ -67,3 +67,5 @@
 	fontdiff = -family \"FantasqueSansMono Nerd Font Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 [cola]
 	spellcheck = false
+[init]
+	defaultBranch = main

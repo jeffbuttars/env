@@ -73,27 +73,33 @@ class=\"(?i)konsole\" workspace=\"$I3_DEV_WKSPACE\"] kill"
 i3msg 'focus parent'
 i3msg 'split vertical'
 
-shellexec "ssh bst-lt-dev"
-do_cmd "./scripts/serve pgsql dbwatch"
+shellexec_blocking "make -j3 images-base;"
 
 shellexec "ssh bst-lt-dev"
-do_cmd "./scripts/serve hal pipeline"
+do_cmd "./scripts/serve -s pgsql dbwatch"
+sleep 2
 
 shellexec "ssh bst-lt-dev"
-do_cmd "./scripts/serve sims/dynetics sims/grabber sims/rfagent sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/grabber-2 sims/grabber-3 sims/cot"
+do_cmd "./scripts/serve -s hal pipeline"
+sleep 2
 
+shellexec "ssh bst-lt-dev"
+do_cmd "./scripts/serve -s sims/dynetics sims/grabber sims/rfagent sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/grabber-2 sims/grabber-3 sims/cot sims/trd_orion"
+sleep 2
 
 # Start the rest on the right side
 i3msg 'focus parent'
 i3msg 'split horizontal'
 
 shellexec "ssh bst-lt-dev"
-do_cmd "./scripts/serve api api_v3"
+do_cmd "./scripts/serve -s api api_v3"
+sleep 2
 
 i3msg 'split vertical'
 
 shellexec "ssh bst-lt-dev"
-do_cmd "./scripts/serve esink"
+do_cmd "./scripts/serve -s esink"
+sleep 2
 
 shellexec "ssh bst-lt-dev-cop"
 do_cmd "nvm use bst; yarn yrebuild; yarn start"
