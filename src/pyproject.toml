@@ -33,6 +33,9 @@ websockets = ">=10.3"
 yoyo-migrations = ">=7.2.1"
 pip-licenses = "^4.0.1"
 pycmarkgfm = "^1.2.0"
+jedi-language-server = "^0.40.0"
+codespell = "^2.2.2"
+nodeenv = "^1.7.0"
 
 [tool.poetry.dev-dependencies]
 data-science-types = ">=0.2.23"
