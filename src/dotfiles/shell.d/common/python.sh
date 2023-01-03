@@ -1,8 +1,11 @@
+#!/usr/bin/env bash
+# https://github.com/pypa/pip/issues/7883
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 export VC_VENV_INITIAL_DEV_PKGS="pynvim isort black flake8 \
     mypy bandit data-science-types python-language-server pyls-flake8 pyls-black"
 
-if [[ "$HOME/.pythonrc.py" ]]; then
+if [[ -f "$HOME/.pythonrc.py" ]]; then
     export PYTHONSTARTUP="$HOME/.pythonrc.py"
 fi
 
