@@ -97,6 +97,10 @@ if [[ -f "$HOME/.cargo/bin" ]]; then
     export PATH="${HOME}/.cargo/bin:$PATH"
 fi
 
+if [[ -d "${HOME}/.luarocks/bin" ]]; then
+    export PATH="${HOME}/.luarocks/bin:${PATH}"
+fi
+
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]
 then
