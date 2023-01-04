@@ -1,9 +1,8 @@
-
-# Figure out if this a real tty or psuedo
+#!/usr/bin/env bash
+# Figure out if this a real tty or pseudo
 export IS_REAL_TTY='false'
 
 case $(tty) in /dev/tty[0-9]*)
-    
     export IS_REAL_TTY='true';;
 esac
 
@@ -16,7 +15,7 @@ source_dir ()
 {
     local _sources_dir=$1
     if [[ -d "$_sources_dir" ]]; then
-        for s in $_sources_dir/* ; do
+        for s in "$_sources_dir/"* ; do
             source $s
         done
     else
@@ -24,14 +23,12 @@ source_dir ()
     fi
 }
 
-local CURRENT_SHELL='bash'
-local _SHELL_D_DIR="$HOME/.shell.d"
+_CURRENT_SHELL='bash'
+_SHELL_D_DIR="$HOME/.shell.d"
 
 if [[ -n $ZSH_NAME && -d "$_SHELL_D_DIR/zsh" ]]; then
-    CURRENT_SHELL='zsh'
+    _CURRENT_SHELL='zsh'
 fi
 
-source_dir "$_SHELL_D_DIR/$CURRENT_SHELL"
+source_dir "$_SHELL_D_DIR/$_CURRENT_SHELL"
 source_dir "$_SHELL_D_DIR/common"
-
-# vim: set ft=sh:
