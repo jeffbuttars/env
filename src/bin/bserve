@@ -24,7 +24,7 @@ RUN_ON_REMOTE_HOST=''
 SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
     sim-grabber sim-grabber-2 sim-grabber-2 \
     sim-echoguard-31 sim-echoguard-32 sim-echoguard-33 sim-echoguard-34 \
-    sim-dynetics sim-rfagent sim-cot sim-helws sim-mydefence sim-simbus '
+    sim-dynetics sim-rfagent sim-cot sim-helws sim-mydefence sim-simbus sims-trd_orion'
 # SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
 #     sim-grabber sim-dynetics sim-rfagent sim-cot sim-helws'
 
@@ -205,13 +205,13 @@ sim_serve='sims/dynetics '
     sim_serve+='sims/mydefence '
     sim_serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
     sim_serve+="sims/helws "
-    # sim_serve+="sims/trd_orion "
+    sim_serve+="sims/trd_orion "
     # sim_serve+='sims/simbus '
 
 serve='-s '
 for sim_dir in ${sim_serve} ; do
     echo "Checking SIM: ${sim_serve}..."
-    if [[ -d "${BASE_DIR}/services/${sim_dir}" ]]; then
+    if [[ -d "${BASE_DIR}/services/${sim_dir}/dc" ]]; then
         serve+="${sim_dir} "
         echo "Adding to ${sim_dir} to run list"
     else
