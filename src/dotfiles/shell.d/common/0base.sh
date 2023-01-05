@@ -83,6 +83,7 @@ fi
 #     echo "Install 'ncdu' for a better du"
 # fi
 
+# PATH setup
 export PATH=$HOME/bin:/usr/local/bin/nvim/bin:$PATH
 
 if [[ -d "${HOME}/.local/bin" ]]; then
@@ -99,6 +100,10 @@ fi
 
 if [[ -d "${HOME}/.luarocks/bin" ]]; then
     export PATH="${HOME}/.luarocks/bin:${PATH}"
+fi
+
+if [[ -d  "$HOME/.rvm/bin" ]]; then
+    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 fi
 
 # SSH Keychain

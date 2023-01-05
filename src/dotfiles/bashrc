@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # .my_bashrc
 
 # Source global definitions
@@ -13,7 +14,7 @@ fi
 
 # don't put duplicate lines in the history. See bash(1) for more options
 #export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
+# ... and ignore same successive entries.
 export HISTCONTROL=ignoredups
 # Keep a long hister
 export HISTSIZE=10000000
@@ -162,14 +163,18 @@ if [[ "$OSTYPE" != "Darwin" ]]; then
 fi
 
 # Source common rc
-. ~/.shell_commonrc
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# Add the following 3 lines into your /home/jeff/.bashrc file
-if [[ -f "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh" ]]; then
-    . "/usr/lib/python3.6/site-packages/virtualcandy/lib/virtualcandy.sh"
+if [[ -f "${HOME}/.shell_commonrc" ]]; then
+    # shellcheck source=.shell_commonrc
+    . "${HOME}/.shell_commonrc"
 fi
+
+if [[ -f "${HOME}/.shell.d/index" ]]; then
+    # shellcheck source=.shell.d/index
+    . "${HOME}/.shell.d/index"
+fi
+
+# shellcheck source=.fzf.bash
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 #vim:set ft=sh:
 

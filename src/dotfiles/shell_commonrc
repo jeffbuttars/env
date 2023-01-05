@@ -1,4 +1,4 @@
-
+#!/usr/bin/env bash
 umask 0027
 
 # Localize the global nodejs installs
@@ -20,9 +20,11 @@ if [[ -d "${HOME}/.local/bin" ]]; then
     export PATH="${HOME}/.local/bin:$PATH"
 fi
 
-mkdir -p $HOME/.nvm
+mkdir -p "$HOME/.nvm"
 export NVM_DIR=$HOME/.nvm
-[ -f $NVM_DIR/nvm.sh ] && source $NVM_DIR/nvm.sh
+
+# shellcheck source=.nvm/nvm.sh
+[ -f "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 # NVM
 if [[ -f /usr/share/nvm/init-nvm.sh  ]]; then
@@ -33,10 +35,6 @@ fi
 # then
 #     export PATH="$PATH:/opt/vagrant/bin" # Add Vagrant to PATH for scripting
 # fi
-
-if [[ -d  "$HOME/.rvm/bin" ]]; then
-    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-fi
 
 if [[ /opt/android-sdk ]]; then
     export ANDROID_HOME='/opt/android-sdk'
