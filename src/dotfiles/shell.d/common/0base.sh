@@ -93,8 +93,8 @@ if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
 fi
 
-if [[ -f "$HOME/.cargo/bin" ]]; then
-    export PATH="${HOME}/.cargo/bin:$PATH"
+if [[ -d  "$HOME/.cargo/bin" ]]; then
+    export PATH="$HOME/.cargo/bin:$PATH" # Add cargo bin
 fi
 
 if [[ -d "${HOME}/.luarocks/bin" ]]; then

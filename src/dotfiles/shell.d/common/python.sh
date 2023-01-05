@@ -17,9 +17,13 @@ fi
 export POETRY_VIRTUALENVS_CREATE=true
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
-# https://python-poetry.org/docs/#installation
-# curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+# https://python-poetry.org/docs/
 install_poetry()
 {
-    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+    curl -sSL https://install.python-poetry.org | python3 -
+}
+
+uninstall_poetry()
+{
+    curl -sSL https://install.python-poetry.org | python3 - --uninstall
 }
