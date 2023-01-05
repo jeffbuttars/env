@@ -28,6 +28,10 @@ ${EFFECTED_FILES}
 ref-branch: ${BRANCH_NAME}
 ${REF_SHA1}
 
+#
+# ------------------------ >8 ------------------------
+# Do not modify or remove the line above.
+# Everything below it will be ignored.
 # README below for info about the commit format
 # <type>[optional scope]: <description>
 #
