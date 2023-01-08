@@ -14,8 +14,3 @@ fi
 if [ -d $HOME/.zsh/comp ]; then
     export FPATH="$HOME/.zsh/comp:$FPATH"
 fi
-
-if [[ -d "$HOME/.cargo/env" ]]
-then
-    . "$HOME/.cargo/env"
-fi
