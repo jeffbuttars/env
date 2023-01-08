@@ -194,4 +194,4 @@ _poetry_8e1ba9efc2710136_complete()
 }
 
 _poetry_8e1ba9efc2710136_complete "$@"
-compdef _poetry_8e1ba9efc2710136_complete "$HOME/.local/share/pypoetry/venv/bin/poetry"
+compdef _poetry_8e1ba9efc2710136_complete /home/jeff/.upkg/env/src/dotfiles/local/share/pypoetry/venv/bin/poetry
