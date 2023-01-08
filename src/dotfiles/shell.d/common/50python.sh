@@ -3,7 +3,7 @@
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
 export VC_VENV_INITIAL_DEV_PKGS="pynvim isort black flake8 \
-    mypy bandit data-science-types python-language-server pyls-flake8 pyls-black"
+    mypy bandit data-science-types jedi jedi-language-server"
 
 if [[ -f "$HOME/.pythonrc.py" ]]; then
     export PYTHONSTARTUP="$HOME/.pythonrc.py"
@@ -27,3 +27,7 @@ uninstall_poetry()
 {
     curl -sSL https://install.python-poetry.org | python3 - --uninstall
 }
+
+if [[ "$HOME/.pythonrc.py" ]]; then
+    export PYTHONSTARTUP="$HOME/.pythonrc.py"
+fi

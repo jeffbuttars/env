@@ -27,9 +27,7 @@ export VISUAL=vim
 # Neovide
 export NeovideMultiGrid=true
 
-
 source_if_exists "${HOME}/.cargo/env"
-
 
 # https://github.com/metakirby5/codi.vim
 # Codi
@@ -45,9 +43,3 @@ source_if_exists "${HOME}/.cargo/env"
 #     hi NonText ctermfg=0 |\
 #     Codi $syntax" "$@"
 # }
-
-if [[ -x /usr/bin/fzf ]]; then
-    gch () {
-        git checkout "$(git branch --list --sort=-refname --sort=-committerdate --color | fzf --ansi | tr -d '[:space:]')"
-    }
-fi

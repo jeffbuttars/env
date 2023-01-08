@@ -49,12 +49,12 @@ alias gsp='git status -uno -sb'
 alias gp='git push'
 alias gpl='git pull'
 alias gplt='git pullt'
-# alias greup='git reup'
-# alias gcm='git cim'
-# alias ga='git add'
+alias greup='git reup'
+alias gcm='git cim'
+alias ga='git add'
 
 alias jobs='jobs -l'
-alias less=${PAGER}
+alias less="${PAGER}"
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
@@ -63,14 +63,8 @@ alias vif='nvim +Files'
 if [[ "$TERM" == "xterm-kitty" ]]; then
     alias kcat='kitty +kitten icat'
     alias kdiff="kitty +kitten diff"
+    alias icat='kitty +kitten icat'
 fi
-
-# cmd_exists=$(command -v bat)
-# if [[ -n $cmd_exists ]]; then
-#     alias cat='bat --theme Monokai\ Extended\ Light'
-# else
-#     echo "Install 'bat' for a better cat"
-# fi
 
 cmd_exists=$(command -v prettyping)
 if [[ -n $cmd_exists ]]; then
@@ -87,12 +81,18 @@ fi
 # fi
 
 alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
 
 if [[ -x /usr/bin/exa ]]; then
     alias ls='exa'
     alias ll='ls -l --header'
 fi
 
-alias la='ls -a'
-alias lla='ls -la'
-alias lt='ls --tree'
+# Fancy checkout branch picker with fzf
+if [[ -x /usr/bin/fzf ]]; then
+    gch () {
+        git checkout "$(git branch --list --sort=-refname --sort=-committerdate --color | fzf --ansi | tr -d '[:space:]')"
+    }
+fi
