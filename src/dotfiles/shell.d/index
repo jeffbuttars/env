@@ -11,11 +11,21 @@ then
     export TERM='xterm-256color'
 fi
 
+source_if_exists()
+{
+    if [[ -f "$1" ]]
+    then
+        # echo "Sourcing $1"
+        source "$1"
+    fi
+}
+
 source_dir ()
 {
     local _sources_dir=$1
     if [[ -d "$_sources_dir" ]]; then
         for s in "$_sources_dir/"* ; do
+            # echo "Sourcing $s"
             source $s
         done
     else
@@ -23,12 +33,49 @@ source_dir ()
     fi
 }
 
+update_path_if_exists()
+{
+    local path_segment="$1"
+    local append=""
+
+    # echo "update_path_if_exists: $path_segment"
+
+    # If the segment is already in the path, complain and don't add it.
+    if [[ ":$PATH:" == *":$path_segment:"* ]]; then
+        # echo "Path segment: '${path_segment}' is already in PATH, not adding segment"
+        return
+    fi
+
+    if [[ "$2" ]]; then
+        append="true"
+    fi
+
+    if [[ -d "${path_segment}" ]]; then
+        if [[ $append ]]; then
+            # echo "Appending path segment: $path_segment"
+            export PATH="${path_segment}:${PATH}"
+        else
+            # echo "Prepending path segment: $path_segment"
+            export PATH="${PATH}:${path_segment}"
+        fi
+    # else
+        # echo "Ignoring path segment: $path_segment"
+    fi
+
+    # echo ""
+}
+
 _CURRENT_SHELL='bash'
 _SHELL_D_DIR="$HOME/.shell.d"
+
 
 if [[ -n $ZSH_NAME && -d "$_SHELL_D_DIR/zsh" ]]; then
     _CURRENT_SHELL='zsh'
 fi
 
-source_dir "$_SHELL_D_DIR/$_CURRENT_SHELL"
+# Source common configs, then shell specific stuff
 source_dir "$_SHELL_D_DIR/common"
+
+if [[ -d "$_SHELL_D_DIR/$_CURRENT_SHELL" ]]; then
+    source_dir "$_SHELL_D_DIR/$_CURRENT_SHELL"
+fi

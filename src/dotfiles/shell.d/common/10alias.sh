@@ -1,7 +1,7 @@
-umask 0027
+#!/usr/bin/env bash
 
 # Aliases
-vims=('nvim' 'vim', 'vi')
+vims=('nvim' 'vim' 'vi')
 
 # Select which vim to use in order of preference. First found wins.
 
@@ -25,7 +25,7 @@ alias vis='start_vim -O'
 
 # default grep options
 # Ignore VCS directories
-# Ignore tags files 
+# Ignore tags files
 # Ignore binary files
 alias grep="grep -I \
     --exclude-dir='.git'\
@@ -38,9 +38,12 @@ alias grep="grep -I \
     --exclude=TAGS\
     --exclude=tags"
 
+# Enable PCM if it's around
 if [ -f ~/.upkg/pcm/pcm.sh ]; then
     alias pcm='~/.upkg/pcm/pcm.sh'
 fi
+
+# Git aliases
 alias gst='git status -sb'
 alias gsp='git status -uno -sb'
 alias gp='git push'
@@ -49,13 +52,13 @@ alias gplt='git pullt'
 # alias greup='git reup'
 # alias gcm='git cim'
 # alias ga='git add'
+
 alias jobs='jobs -l'
-alias less=$PAGER
+alias less=${PAGER}
 alias ll="ls  --group-directories-first --color=auto -l -t -h "
 alias ls="ls -h --color=auto --group-directories-first"
 alias open='xdg-open'
 alias vif='nvim +Files'
-# alias gvim='nvim-gtk'
 
 if [[ "$TERM" == "xterm-kitty" ]]; then
     alias kcat='kitty +kitten icat'
@@ -73,7 +76,7 @@ cmd_exists=$(command -v prettyping)
 if [[ -n $cmd_exists ]]; then
     alias ping='prettyping'
 else
-    echo "Install 'prettyping' for a better ping"
+    echo "Install 'prettyping' for a, pretry, ping"
 fi
 
 # cmd_exists=$(command -v ncdu)
@@ -82,67 +85,6 @@ fi
 # else
 #     echo "Install 'ncdu' for a better du"
 # fi
-
-# PATH setup
-export PATH=$HOME/bin:/usr/local/bin/nvim/bin:$PATH
-
-if [[ -d "${HOME}/.local/bin" ]]; then
-    export PATH="${HOME}/.local/bin:$PATH"
-fi
-
-if [[ -f "$HOME/.cargo/env" ]]; then
-    . "$HOME/.cargo/env"
-fi
-
-if [[ -d  "$HOME/.cargo/bin" ]]; then
-    export PATH="$HOME/.cargo/bin:$PATH" # Add cargo bin
-fi
-
-if [[ -d "${HOME}/.luarocks/bin" ]]; then
-    export PATH="${HOME}/.luarocks/bin:${PATH}"
-fi
-
-if [[ -d  "$HOME/.rvm/bin" ]]; then
-    export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-fi
-
-# SSH Keychain
-if [[ -x /usr/bin/ksshaskpass ]]
-then
-    export SSH_ASKPASS=/usr/bin/ksshaskpass
-fi
-
-if [[ -x /usr/bin/keychain ]]
-then
-   eval $(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)
-fi
-
-# Default to a light shell if not set otherwise.
-if [[ -z $TERM_META ]]
-then
-    export TERM_META=light
-fi
-
-export PSQL_EDITOR='nvim -c"set ft=sql"'
-export BROWSER=google-chrome
-export EDITOR='nvim'
-export VISUAL=vim
-
-
-# https://github.com/metakirby5/codi.vim
-# Codi
-# Usage: codi [filetype] [filename]
-# codi() {
-#   local syntax="${1:-python}"
-#   shift
-#   nvim -c \
-#     "let g:startify_disable_at_vimenter = 1 |\
-#     set bt=nofile ls=0 noru nonu nornu |\
-#     hi ColorColumn ctermbg=NONE |\
-#     hi VertSplit ctermbg=NONE |\
-#     hi NonText ctermfg=0 |\
-#     Codi $syntax" "$@"
-# }
 
 alias ll='ls -l'
 
@@ -154,9 +96,3 @@ fi
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
-
-if [[ -x /usr/bin/fzf ]]; then
-    gch () {
-        git checkout "$(git branch --list --sort=-refname --sort=-committerdate --color | fzf --ansi | tr -d '[:space:]')"
-    }
-fi

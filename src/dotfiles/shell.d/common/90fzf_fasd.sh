@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # _gen_fzf_default_opts() {
 #   local base03="234"
@@ -42,5 +43,5 @@ if [[ -n $cmd_exists ]]; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
     export FZF_DEFAULT_OPTS="--bind 'ctrl-o:execute(vim {})+abort' $FZF_DEFAULT_OPTS"
 else
-    echo "install rg(ripgrep)"
+    echo "install rg(ripgrep) for added fzf goodness"
 fi

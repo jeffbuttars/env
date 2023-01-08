@@ -48,7 +48,7 @@ shopt -s checkwinsize
             END="\033[0m"
 
 if [ -z $TERM_META ]; then
-export TERM_META='dark'
+    export TERM_META='light'
 fi
 
 TC_HOSTNAME=$LIGHTGREEN
@@ -186,4 +186,8 @@ export SIMS_GRABBER_HOST_IP_ADDRESS='10.6.6.6'
 
 if [[ -f "$HOME/.cargo/env" ]]; then
     . "$HOME/.cargo/env"
+fi
+
+if [[ $(command -v starship) ]]; then
+    eval "$(starship init bash)"
 fi

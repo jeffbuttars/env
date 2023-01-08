@@ -1,7 +1,8 @@
+#!/usr/bin/env bash
+
 ########################################
 # NODE_PATH/NPM_PACKAGES Does not play with NVM
 ########################################
-
 
 # NVM
 # echo "nvm not installed?"
