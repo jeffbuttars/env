@@ -66,8 +66,6 @@ watchgod = ">=0.6"
 websockets = ">=10.3"
 yoyo-migrations = ">=7.2.1"
 
-[tool.poetry.group.dev.dependencies]
-
 [tool.black]
 line-length = 99
 
@@ -96,7 +94,7 @@ ensure_newline_before_comments = true
 max-line-length = "99"
 
 [tool.mypy]
-python_version = 3.10
+python_version = "3.10"
 ignore_missing_imports = true
 
 [tool.pylsp-mypy]
@@ -104,7 +102,7 @@ enabled = true
 live_mode = true
 
 [tool.pyright]
-pythonVersion = 3.10
+pythonVersion = "3.10"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
