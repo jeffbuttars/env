@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [[ "chica" == $(hostname) ]]; then
     if [[ -x "$HOME/bin/blt_serve" ]]; then
@@ -7,8 +7,8 @@ if [[ "chica" == $(hostname) ]]; then
     fi
 fi
 
-if [[ "$HOME/.bst.sh" ]]; then
-    . "$HOME/.bst.sh"
+if [[ -f "$HOME/.bst.sh" ]]; then
+    source "$HOME/.bst.sh"
 fi
 
 I3_DEV_WKSPACE=' 10  '
@@ -18,13 +18,11 @@ export BST_DEV_HOST_IP_ADDRESS=${BST_DEV_HOST_IP_ADDRESS:-192.168.200.76}
 echo "BST_DEV_HOST_IP_ADDRESS == $BST_DEV_HOST_IP_ADDRESS"
 # echo "SIMS_GRABBER_HOST_IP_ADDRESS == $SIMS_GRABBER_HOST_IP_ADDRESS"
 
-
 CLEAN='true'
-RUN_ON_REMOTE_HOST=''
-SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
+SERVICE_LIST=pgsql dbwatch esink api api_v3 pipeline hal \
     sim-grabber sim-grabber-2 sim-grabber-2 \
     sim-echoguard-31 sim-echoguard-32 sim-echoguard-33 sim-echoguard-34 \
-    sim-dynetics sim-rfagent sim-cot sim-helws sim-mydefence sim-simbus sims-trd_orion'
+    sim-dynetics sim-rfagent sim-cot sim-helws sim-mydefence sim-simbus sims-trd_orion
 # SERVICE_LIST='pgsql dbwatch esink api api_v3 pipeline hal \
 #     sim-grabber sim-dynetics sim-rfagent sim-cot sim-helws'
 
@@ -42,16 +40,15 @@ __ScriptVersion="v666"
 #         NAME:  bserve
 #  DESCRIPTION:  manage BST services for development
 #===============================================================================
-function usage ()
-{
+function usage() {
     echo "Usage :  $0 [options] [--]
 
     Options:
     -h|help       Display this message
-    -v|version    Display script version"
-    -n|no-install Skip the install stage of container startup
+    -v|version    Display script version
+    -n | no-install Skip the install stage of container startup"
 
-}    # ----------  end of function usage  ----------
+} # ----------  end of function usage  ----------
 
 #-----------------------------------------------------------------------
 #  Handle command line arguments
@@ -61,35 +58,45 @@ INSTALL_STEP='true'
 REMOTE_HOST=''
 REMOTE_HOST_DIR='$HOME/Dev/BST/defenseos'
 
-while getopts ":hvnr:" opt
-do
-  case $opt in
+while getopts ":hvnr:" opt; do
+    case $opt in
 
-    h|help     )  usage; exit 0   ;;
+    h | help)
+        usage
+        exit 0
+        ;;
 
-    v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+    v | version)
+        echo "$0 -- Version $__ScriptVersion"
+        exit 0
+        ;;
 
-    n|noinstall  )  INSTALL_STEP=''; CLEAN=''   ;;
+    n | noinstall)
+        INSTALL_STEP=''
+        CLEAN=''
+        ;;
 
-    r|remote  )  REMOTE_HOST="$OPTARG"   ;;
+    r | remote) REMOTE_HOST="$OPTARG" ;;
 
-    d|remotedir  )  REMOTE_HOST_DIR="$OPTARG"   ;;
+    d | remotedir) REMOTE_HOST_DIR="$OPTARG" ;;
 
-    * )  echo -e "\n  Option does not exist : $OPTARG\n"
-          usage; exit 1   ;;
+    *)
+        echo -e "\n  Option does not exist : $OPTARG\n"
+        usage
+        exit 1
+        ;;
 
-  esac    # --- end of case ---
+    esac # --- end of case ---
 done
-shift $(($OPTIND-1))
+shift $((OPTIND - 1))
 
 if [[ $REMOTE_HOST ]]; then
     echo "Using REMOTE_HOST: $REMOTE_HOST, REMOTE_HOST_DIR: $REMOTE_HOST_DIR"
     # echo "ssh $REMOTE_HOST '$REMOTE_HOST_DIR; echo \$PWD; ls -l'"
     # ssh $REMOTE_HOST "cd $REMOTE_HOST_DIR; echo \$PWD; ls -l"
-    ssh $REMOTE_HOST "cd $REMOTE_HOST_DIR; echo \$PWD"
+    ssh "$REMOTE_HOST" "cd $REMOTE_HOST_DIR; echo \$PWD"
     # exit 0
 fi
-
 
 BASE_DIR="$HOME/Dev/BST/defenseos"
 # BASE_DIR="$HOME/Dev/BST/beamtrail"
@@ -97,55 +104,51 @@ BASE_DIR="$HOME/Dev/BST/defenseos"
 cd "$BASE_DIR" || exit 1
 WORK_DIR="$BASE_DIR"
 
-i3msg ()
-{
+i3msg() {
     socketpath=$(i3 --get-socketpath)
     if [[ "$?" == "0" ]] && [[ $socketpath ]]; then
-        i3-msg $@
+        i3-msg "$@"
     fi
 }
 
-shellexec ()
-{
+shellexec() {
     tmpfile=$(mktemp)
 
     if [[ $REMOTE_HOST ]]; then
         # "ssh $REMOTE_HOST 'cd $HOME/Dev/BST/defenseos; $1'"
         echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n\
-            ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1'\nzsh -i" > "$tmpfile"
+            ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1'\nzsh -i" >"$tmpfile"
     else
-        echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
+        echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" >"$tmpfile"
     fi
 
-    echo "shellexec: $(cat $tmpfile)"
+    echo "shellexec: $(cat "$tmpfile")"
 
     i3msg "workspace \"$I3_DEV_WKSPACE\""
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
-    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
+    konsole --hide-menubar --profile red --workdir "$WORK_DIR" -e "zsh $tmpfile" &
     sleep 0.5
 }
 
-shellexec_blocking ()
-{
+shellexec_blocking() {
     tmpfile=$(mktemp)
 
     if [[ $REMOTE_HOST ]]; then
         # "ssh $REMOTE_HOST 'cd $HOME/Dev/BST/defenseos; $1'"
-        echo -e "ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1';\n" > "$tmpfile"
+        echo -e "ssh $REMOTE_HOST 'cd $REMOTE_HOST_DIR; $1';\n" >"$tmpfile"
     else
-        echo -e "$1;\n" > "$tmpfile"
+        echo -e "$1;\n" >"$tmpfile"
     fi
 
-    echo "shellexec_blocking: $(cat $tmpfile)"
+    echo "shellexec_blocking: $(cat "$tmpfile")"
 
     i3-msg "workspace \"$I3_DEV_WKSPACE\""
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
-    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
+    konsole --hide-menubar --profile red --workdir "$WORK_DIR" -e "zsh $tmpfile"
 }
 
-clean_services_str ()
-{
-    if [[ -z $@ ]]; then
+clean_services_str() {
+    if [[ -z $* ]]; then
         echo "echo 'No services provided to clean_services_str()!'"
         return
     fi
@@ -172,7 +175,7 @@ i3msg 'focus parent'
 i3msg 'split vertical'
 
 if [[ $CLEAN ]]; then
-    clean_str="sudo -E $(clean_services_str $SERVICE_LIST)"
+    clean_str="sudo -E $(clean_services_str "$SERVICE_LIST")"
     shellexec_blocking "$clean_str"
 fi
 
@@ -196,20 +199,20 @@ shellexec "./scripts/serve $serve"
 # serve='-s sims/echoguard sims/rfagent'
 # serve='-s sims/dynetics sims/s3reveal sims/grabber'
 sim_serve='sims/dynetics '
-    sim_serve+='sims/grabber '
-    # sim_serve+='sims/s3reveal '
-    sim_serve+='sims/rfagent '
-    sim_serve+='sims/cot '
-    sim_serve+='sims/lobs '
-    sim_serve+='sims/agt '
-    sim_serve+='sims/mydefence '
-    sim_serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
-    sim_serve+="sims/helws "
-    sim_serve+="sims/trd_orion "
-    # sim_serve+='sims/simbus '
+sim_serve+='sims/grabber '
+# sim_serve+='sims/s3reveal '
+sim_serve+='sims/rfagent '
+sim_serve+='sims/cot '
+sim_serve+='sims/lobs '
+sim_serve+='sims/agt '
+sim_serve+='sims/mydefence '
+sim_serve+='sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 '
+sim_serve+="sims/helws "
+sim_serve+="sims/trd_orion "
+# sim_serve+='sims/simbus '
 
 serve='-s '
-for sim_dir in ${sim_serve} ; do
+for sim_dir in ${sim_serve}; do
     echo "Checking SIM: ${sim_serve}..."
     if [[ -d "${BASE_DIR}/services/${sim_dir}/dc" ]]; then
         serve+="${sim_dir} "
@@ -237,7 +240,7 @@ i3msg 'focus parent'
 i3msg 'split horizontal'
 
 WORK_DIR="$BASE_DIR"
-cd $WORK_DIR
+cd "$WORK_DIR"
 
 serve='-s api api_v3'
 if [[ -z $CLEAN ]]; then
@@ -256,7 +259,8 @@ fi
 shellexec "./scripts/serve $serve"
 
 WORK_DIR="$BASE_DIR/cop"
-cd $WORK_DIR
+cd "$WORK_DIR" || echo "Unabled to change to working dir: $WORK_DIR" && exit 1
+
 if [[ $CLEAN ]]; then
     # clean_str='yarn yrebuild;'
     clean_str='yarn install;'

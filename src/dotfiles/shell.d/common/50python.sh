@@ -1,15 +1,45 @@
+#!/usr/bin/env bash
+# https://github.com/pypa/pip/issues/7883
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
-function source_local_venv()
+export VC_VENV_INITIAL_DEV_PKGS="pynvim isort black flake8 \
+    mypy bandit data-science-types jedi jedi-language-server"
+
+if [[ -f "$HOME/.pythonrc.py" ]]; then
+    export PYTHONSTARTUP="$HOME/.pythonrc.py"
+fi
+
+if [[ "$HOME/.pythonrc.py" ]]; then
+    export PYTHONSTARTUP="$HOME/.pythonrc.py"
+fi
+
+# POETRY
+export POETRY_VIRTUALENVS_CREATE=true
+export POETRY_VIRTUALENVS_IN_PROJECT=true
+
+# https://python-poetry.org/docs/
+install_poetry()
 {
-    if [[ -f ".env" ]]
-    then
+    curl -sSL https://install.python-poetry.org | python3 -
+}
+
+uninstall_poetry()
+{
+    curl -sSL https://install.python-poetry.org | python3 - --uninstall
+}
+
+#
+# Setup some some functions to make switching between virtual envs fast, easy and automatic
+function pyvenv_source_local_venv()
+{
+    if [[ -f ".env" ]]; then
         source ".env"
     fi
 
-    source $1
+    source "$1"
 }
 
-function pyproject_find_nearest()
+function pyvenv_pyproject_find_nearest()
 {
     local cur="$PWD"
     while [[ $cur != "/" ]]; do
@@ -20,14 +50,14 @@ function pyproject_find_nearest()
             return 0
         fi
 
-        cur=$(dirname $cur)
+        cur=$(dirname "$cur")
     done
 
     echo ""
 }
 
 # Automatically activate/deactivate Poetry virtual environments
-function pyproject_activate_deactivate_poetry_venv()
+function pyvenv_pyproject_activate_deactivate_poetry_venv()
 {
     # Can we find venv in our current or parent path?
     # -> NO: Are we in an active venv?
@@ -45,7 +75,7 @@ function pyproject_activate_deactivate_poetry_venv()
     #
     #
 
-    proj_dir=$(pyproject_find_nearest)
+    proj_dir=$(pyvenv_pyproject_find_nearest)
     # echo "NEAREST: $proj_dir"
 
     # No project found in our current or parent dirs,
@@ -73,7 +103,7 @@ function pyproject_activate_deactivate_poetry_venv()
         # so activate the found project and we're done.
         echo "Activating ~/${proj_dir/#$HOME/}"
         # source "${proj_venv_dir}/bin/activate"
-        source_local_venv "${proj_venv_dir}/bin/activate"
+        pyvenv_source_local_venv "${proj_venv_dir}/bin/activate"
 
         return 0
     fi
@@ -90,7 +120,7 @@ function pyproject_activate_deactivate_poetry_venv()
     # so deactivate the current venv and activate the found project
     # echo "poetry VENV, $proj_venv_dir"
     # echo "Already in VENV: $VIRTUAL_ENV"
-    echo "venv: ~/$(dirname ${VIRTUAL_ENV#$HOME/}) -> ~${proj_dir/#$HOME/}"
+    echo "venv: ~/$(dirname "${VIRTUAL_ENV#$HOME/}") -> ~${proj_dir/#$HOME/}"
 
     if [[ $(command -v deactivate) ]]
     then
@@ -99,16 +129,6 @@ function pyproject_activate_deactivate_poetry_venv()
 
     # echo "Activating $proj_venv_dir"
     # source "${proj_venv_dir}/bin/activate"
-    source_local_venv "${proj_venv_dir}/bin/activate"
+    pyvenv_source_local_venv "${proj_venv_dir}/bin/activate"
 
-} #activate_deactivate_poetry_venv
-
-if [[ $(command -v poetry) ]]
-then
-    chpwd_functions=(${chpwd_functions[@]} "pyproject_activate_deactivate_poetry_venv")
-fi
-
-export PATH="$HOME/.poetry/bin:$PATH:/usr/local/bin"
-
-# Run on startup
-pyproject_activate_deactivate_poetry_venv
+} #pyvenv_activate_deactivate_poetry_venv

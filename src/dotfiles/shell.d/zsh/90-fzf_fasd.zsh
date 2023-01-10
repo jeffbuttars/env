@@ -59,8 +59,8 @@ if [[ -n $fasd_cmd_exists ]]; then
         source "$HOME/.fzf/shell/key-bindings.zsh"
     fi
 else
-    echo "install fasd"
+    echo "Install fasd to enable it's goodness"
 fi
 
-# load up some fzf
+# load up some fzf if it's here
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
