@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # _gen_fzf_default_opts() {
 #   local base03="234"
@@ -16,9 +17,9 @@
 #   local blue="33"
 #   local cyan="37"
 #   local green="64"
-# 
+#
 #   # Comment and uncomment below for the light theme.
-# 
+#
 #   # Solarized Dark color scheme for fzf
 #   if [[ "$TERM_META" != 'light' ]]; then
 #     export FZF_DEFAULT_OPTS="
@@ -42,5 +43,19 @@ if [[ -n $cmd_exists ]]; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
     export FZF_DEFAULT_OPTS="--bind 'ctrl-o:execute(vim {})+abort' $FZF_DEFAULT_OPTS"
 else
-    echo "install rg(ripgrep)"
+    echo "install rg(ripgrep) for added fzf goodness"
 fi
+
+if [[ $(command -v fasd) ]]; then
+    # Initialize fasd
+    eval "$(fasd --init auto)"
+else
+    echo "Install fasd!!!"
+fi
+
+    # like normal z when used with arguments but displays an fzf prompt when used without.
+unalias z 2> /dev/null
+z() {
+    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+    cd "$(fasd_cd -d 2>&1 | fzf-tmux +s --tac --query "$*" | sed 's/^[0-9,.]* *//')"
+}

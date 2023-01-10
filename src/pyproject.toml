@@ -5,26 +5,14 @@ description = ""
 authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
 
 [tool.poetry.dependencies]
-assertpy = ">=1.1"
-bandit = "*"
-black = "*"
 cachetools = ">=4.2.1"
-codespell = ">=2.2.2"
 Cython = ">=0.29.24"
 cytoolz = ">=0.11.0"
-data-science-types = ">=0.2.23"
-devtools = ">=0.8.0"
-flake8 = "*"
-flake8-bugbear = "*"
 geographiclib = ">=1.52"
-grip = ">=4.5.2"
 gunicorn = ">=20.1.0"
 httpx = ">=0.22.0"
 immutables = ">=0.15"
 inotify = ">=0.2.10"
-isort = "*"
-jedi = ">=0.18.0"
-jedi-language-server = ">=0.40.0"
 Markdown = ">=3.3.4"
 matplotlib = ">=3.5.3"
 mkdocs = ">=1.1.2"
@@ -32,14 +20,36 @@ mkdocs-material = ">=6.1.0"
 mkdocs-pdf-export-plugin = ">=0.5.8"
 mkdocs-with-pdf = ">=0.8.0"
 mkpdfs-mkdocs = ">=1.0.1"
-mypy = "*"
-mypy-ls = ">=0.5.1"
 nodeenv = ">=1.7.0"
 orjson = ">=3.8.0"
 pip-licenses = ">=4.0.1"
 pycmarkgfm = ">=1.2.0"
 pydantic = {extras = ["email", "dotenv"], version = ">=1.9.1"}
 pyfakefs = "*"
+pyproj = ">=3.2.1"
+python = ">=3.10,<3.12"
+qrcode = {extras = ["all"], version = ">=7.3.1"}
+randomname = ">=0.1.5"
+typesystem = ">0.3"
+watchgod = ">=0.6"
+websockets = ">=10.3"
+yoyo-migrations = ">=7.2.1"
+
+[tool.poetry.group.dev.dependencies]
+assertpy = ">=1.1"
+bandit = "*"
+black = "*"
+codespell = ">=2.2.2"
+data-science-types = ">=0.2.23"
+devtools = ">=0.8.0"
+flake8 = "*"
+flake8-bugbear = "*"
+grip = ">=4.5.2"
+isort = "*"
+jedi = ">=0.18.0"
+jedi-language-server = ">=0.40.0"
+mypy = "*"
+mypy-ls = ">=0.5.1"
 pyls-black = ">=0.4.6"
 pyls-flake8 = ">=0.4.0"
 pyls-isort = ">=0.2.2"
@@ -47,26 +57,16 @@ pyls-memestra = ">=0.0.15"
 pylsp-mypy = ">=0.6.2"
 pylsp-rope = ">=0.1.9"
 pynvim = "*"
-pyproj = ">=3.2.1"
 pytest-html = ">=3.1.1"
-python = ">=3.10,<3.12"
 python-lsp-autoimport = ">=0.0.1"
 python-lsp-black = ">=1.0.0"
 python-lsp-server = {extras = ["all"], version = "*"}
-qrcode = {extras = ["all"], version = ">=7.3.1"}
-randomname = ">=0.1.5"
 rope = ">=1.2.0"
 ruff = ">=0.0.37"
 ssort = ">=0.10.1"
 types-cachetools = ">=5.2.1"
 types-orjson = ">=0.1.1"
 types-ujson = ">=5.5.0"
-typesystem = ">0.3"
-watchgod = ">=0.6"
-websockets = ">=10.3"
-yoyo-migrations = ">=7.2.1"
-
-[tool.poetry.group.dev.dependencies]
 
 [tool.black]
 line-length = 99
@@ -96,7 +96,7 @@ ensure_newline_before_comments = true
 max-line-length = "99"
 
 [tool.mypy]
-python_version = 3.10
+python_version = "3.10"
 ignore_missing_imports = true
 
 [tool.pylsp-mypy]
@@ -104,7 +104,7 @@ enabled = true
 live_mode = true
 
 [tool.pyright]
-pythonVersion = 3.10
+pythonVersion = "3.10"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

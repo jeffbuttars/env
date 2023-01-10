@@ -1,4 +1,6 @@
+#!/bin/zsh
 
+# Setup some some functions to make switching between virtual envs fast, easy and automatic
 function source_local_venv()
 {
     if [[ -f ".env" ]]
@@ -107,8 +109,6 @@ if [[ $(command -v poetry) ]]
 then
     chpwd_functions=(${chpwd_functions[@]} "pyproject_activate_deactivate_poetry_venv")
 fi
-
-export PATH="$HOME/.poetry/bin:$PATH:/usr/local/bin"
 
 # Run on startup
 pyproject_activate_deactivate_poetry_venv

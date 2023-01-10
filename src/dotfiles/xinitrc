@@ -1,3 +1,7 @@
 # export LIBGL_DRI3_DISABLE=1
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 xset r rate 600 25
+
+if [[ -f $HOME/.Xmodmap ]] && [[ $DISPLAY ]]; then
+    xmodmap $HOME/.Xmodmap
+fi

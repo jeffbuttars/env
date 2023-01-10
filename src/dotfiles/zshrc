@@ -1,8 +1,13 @@
+#!/bin/zsh
 
-if [[ -d /usr/local/nvim/bin ]]
-then
-    PATH="/usr/local/nvim/bin:${PATH}"
-fi
+function source_if_exists()
+{
+    if [[ -f "$1" ]]
+    then
+        # echo "Sourcing $1"
+        source "$1"
+    fi
+}
 
 # Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
@@ -52,65 +57,18 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 # setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
-
-# # CD whitout typing cd
+# # CD without typing cd
 # AUTO_CD="true"
 
-function source_if_exists()
-{
-    if [[ -f "$1" ]]
-    then
-        # echo "Sourcing $1"
-        source "$1"
-    fi
-}
+source_if_exists "${HOME}/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" 
+source_if_exists "${HOME}/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+bindkey '^ ' autosuggest-accept
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555'
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
 source_if_exists "$HOME/.zsh_local"
 
-# if [[ -f "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh" ]]; then
-#     . "/usr/lib/python3.8/site-packages/virtualcandy/lib/virtualcandy.zsh"
-# fi
-
-source_if_exists "$HOME/.shell.d/common/0base.sh"
-source_if_exists "$HOME/.shell.d/common/fzf.sh"
-source_if_exists "$HOME/.shell.d/common/fzf.sh"
-source_if_exists "$HOME/.shell.d/common/nvm.sh"
-source_if_exists "$HOME/.shell.d/common/python.sh"
-source_if_exists "$HOME/.shell.d/common/99-fzf_fasd.zsh"
-source_if_exists "$HOME/.shell.d/zsh/99-fzf_fasd.zsh"
-
-STARSHIP_CMD=$(command -v starship)
-if [[ $STARSHIP_CMD ]]
-then
-    starshipt_cache="$HOME/.starship-init-zsh"
-    eval "$(starship init zsh)"
-
-    if [ /usr/bin/starship -nt "$starshipt_cache" -o ! -s "$starshipt_cache" ]; then
-        starship init zsh >| "$starshipt_cache"
-    fi
-
-    source "$starshipt_cache"
-    unset starshipt_cache
-else
-    echo "install 'starship' for a pretty prompt"
-fi
-
-source_if_exists $HOME/.shell.d/zsh/python.zsh
-
-export NeovideMultiGrid=true
-
-SOURCABLES=(\
-    ~/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh \
-    ~/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
-)
-
-for sourceable in $SOURCABLES ; do
-    source_if_exists "$sourceable"
-done
-
-bindkey '^ ' autosuggest-accept
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Source the rest of our config
+source_if_exists "$HOME/.shell.d/index"
