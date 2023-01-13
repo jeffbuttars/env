@@ -140,6 +140,8 @@ vicmd_symbol = "[](green)"     # The format string used before the text input
 [python]
 symbol = " "
 style = "green"
+version_format = "${major}.${minor}"
+# format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
 
 [memory_usage]
