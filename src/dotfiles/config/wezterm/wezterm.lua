@@ -14,8 +14,6 @@ then
     c_scheme = "terafox"
 end
 
-c_scheme = "terafox"
-
 -- os.setenv("TERM_META_COLOR_SCHEME", c_scheme)
 
 return {
