@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+
+mkscript_file() {
+    cat >"${1}" <<EOF
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+main() {
+    echo "Hello World"
+}
+
+main "\$@"
+EOF
+
+}
+
+main() {
+    local script_file="${1}"
+
+    [ -z "${script_file}" ] && {
+        echo "Please supply a script name to create"
+        return 1
+    }
+
+    [ -f "${script_file}" ] && {
+        echo "File '$script_file' already exists, aborting"
+        return 1
+    }
+
+    mkdir -p "$(dirname "${script_file}")"
+
+    mkscript_file "$script_file"
+    chmod +x "$script_file"
+}
+
+main "$@"

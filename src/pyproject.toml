@@ -67,6 +67,10 @@ ssort = ">=0.10.1"
 types-cachetools = ">=5.2.1"
 types-orjson = ">=0.1.1"
 types-ujson = ">=5.5.0"
+typesystem = ">0.3"
+watchgod = ">=0.6"
+websockets = ">=10.3"
+yoyo-migrations = ">=7.2.1"
 
 [tool.black]
 line-length = 99

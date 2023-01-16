@@ -27,8 +27,8 @@ end
 -- local dimmer = { brightness = 0.1 }
 
 return {
-    font = wezterm.font("FiraCode Nerd Font Mono"),
-    font_size=16.0,
+  font = wezterm.font("FiraCode Nerd Font Mono"),
+  font_size=18.0,
 
     use_fancy_tab_bar = true,
     hide_tab_bar_if_only_one_tab = true,
