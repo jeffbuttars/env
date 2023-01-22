@@ -78,4 +78,5 @@ return {
     },
 
     exit_behavior = "Close",
+    term = "wezterm",
 }
