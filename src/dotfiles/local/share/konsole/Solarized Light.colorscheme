@@ -89,8 +89,11 @@ Color=101,123,131
 Color=88,110,117
 
 [General]
-Blur=true
+Anchor=0.5,0.5
+Blur=false
 ColorRandomization=false
 Description=Solarized Light
-Opacity=0.9
+FillStyle=Tile
+Opacity=1
 Wallpaper=
+WallpaperOpacity=1

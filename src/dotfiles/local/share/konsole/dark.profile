@@ -1,13 +1,14 @@
 [Appearance]
+AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Solarized Dark
+ColorScheme=Sweet-Mars
 DimmValue=35
-Font=FiraCode Nerd Font Mono,12,-1,5,50,0,0,0,0,0
+Font=FiraCode Nerd Font Mono,14,-1,5,50,0,0,0,0,0
 LineSpacing=0
 UseFontLineChararacters=true
 
 [Cursor Options]
-CursorShape=0
+CursorShape=1
 CustomCursorColor=255,255,255
 UseCustomCursorColor=false
 
@@ -16,11 +17,14 @@ DefaultEncoding=UTF-8
 
 [General]
 Command=/bin/zsh
-DimWhenInactive=false
+DimWhenInactive=true
 Environment=TERM=konsole-256color,TERM_META=dark
+InvertSelectionColors=true
 LocalTabTitleFormat=%w - %d : %n
 Name=dark
 Parent=FALLBACK/
+SemanticInputClick=false
+SemanticUpDown=false
 ShowTerminalSizeHint=true
 TerminalCenter=true
 TerminalColumns=100
