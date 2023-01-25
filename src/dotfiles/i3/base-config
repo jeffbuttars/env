@@ -297,8 +297,9 @@ popup_during_fullscreen smart
 # start a terminal
 bindsym $mod+Return exec konsole --hide-menubar --profile Light
 bindsym $mod+Shift+Return exec konsole --hide-menubar --profile dark
+
 bindsym $mod+F12 exec konsole --hide-menubar --profile red
-bindsym $mod+ctrl+t exec --no-startup-id ~/bin/kitty-dark
+bindsym $mod+ctrl+t exec --no-startup-id wezterm
 #bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -361,6 +362,7 @@ bindsym $mod+shift+A focus child
 bindsym $mod+Shift+C exec ~/.i3/genconfig.sh; reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+R exec ~/.i3/genconfig.sh; restart; $HOME/.config/polybar/launch.sh
+# bindsym $mod+Shift+R exec ~/.i3/genconfig.sh; restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
 
@@ -395,16 +397,17 @@ bindsym $mod+r mode "resize"
 #userid Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 # bar {
-#         #font xft:DejaVu Sans 16
-#         # font xft:Oxygen-Sans Bold 10
-#         # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
-#         # font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons Mono
-#         font pango: MesloLGMDZ Nerd Font Mono 12
-#         # mode hide
-#         modifier Mod1
-#         status_command i3status
-#         position bottom
-#         tray_output primary
+#     font xft:FiraCode Nerd Font Mono 12
+# #         #font xft:DejaVu Sans 16
+# #         # font xft:Oxygen-Sans Bold 10
+# #         # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
+# #         # font pango: Meslo LG S DZ Regular for Powerline Nerd Font Plus Font Awesome Plus Octicons Mono
+# #         font pango: MesloLGMDZ Nerd Font Mono 12
+# #         # mode hide
+# #         modifier Mod1
+#     status_command i3status
+#     position top
+#     tray_output primary
 # }
 
 # My own hotkeys
@@ -417,8 +420,8 @@ bindsym $mod+shift+F3 exec ~/bin/bserve -n
 bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa'
 
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
-#bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
-bindsym $mod+F6 exec plexmediaplayer
+bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
+# bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
 bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop

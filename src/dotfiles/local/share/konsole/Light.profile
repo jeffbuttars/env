@@ -1,8 +1,8 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Solarized Light
-Font=FiraCode Nerd Font Mono,18,-1,5,50,0,0,0,0,0
+ColorScheme=rose-pine-dawn
+Font=FiraCode Nerd Font Mono,14,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
 
 [Cursor Options]
