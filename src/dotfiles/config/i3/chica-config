@@ -1,0 +1,53 @@
+
+# Output vars
+# set $left_op DP-3
+
+# 2K
+set $left_op DP-4
+# 4K
+set $center_op DP-3-3
+# 13" Laptop
+set $right_op eDP-1
+
+### monitor layout ###
+
+# Focus by monitor
+bindsym Control+1 focus output $left_op
+bindsym Control+2 focus output $center_op
+bindsym Control+3 focus output $right_op
+
+### 3 monitor layout ###
+# Odds on left, evens on right, except 10
+# Personal browser stuff
+workspace $ws1 output $left_op
+
+# Day job browser stuff
+workspace $ws2 output $left_op
+# workspace $ws2 output $right_op
+
+#workspace $ws3 output $left_op
+workspace $ws3 output $right_op
+workspace $ws4 output $right_op
+workspace $ws11 output $right_op
+
+workspace $ws5 output $center_op
+workspace $ws6 output $center_op
+workspace $ws7 output $center_op
+workspace $ws12 output $center_op
+
+workspace $ws8 output $right_op
+workspace $ws9 output $right_op
+
+workspace $ws10 output $left_op
+
+# Mouse bindings
+bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
+bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
+
+exec_always --no-startup killall -9 picom
+exec_always --no-startup picom
+exec --no-startup-id transmission-qt --remote 10.6.6.6
+
+exec --no-startup-id 'i3-msg workspace $ws1'
+exec --no-startup-id 'i3-msg workspace $ws5'
+exec --no-startup-id nm-applet

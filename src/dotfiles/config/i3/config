@@ -1,4 +1,9 @@
 
+#################
+# Include /home/jeff/.i3/chica-config
+#################
+
+
 # Output vars
 # set $left_op DP-3
 
@@ -18,8 +23,13 @@ bindsym Control+3 focus output $right_op
 
 ### 3 monitor layout ###
 # Odds on left, evens on right, except 10
+# Personal browser stuff
 workspace $ws1 output $left_op
-workspace $ws2 output $left_op
+
+# workspace $ws2 output $left_op
+# Day job browser stuff
+workspace $ws2 output $right_op
+
 #workspace $ws3 output $left_op
 workspace $ws3 output $right_op
 workspace $ws4 output $right_op
