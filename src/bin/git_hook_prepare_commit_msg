@@ -19,9 +19,8 @@ EFFECTED_FILES+=$(git diff --staged --name-only)
 BRANCH_NAME=$(git branch --show-current)
 
 cat << EOF > "$TEMP"
-fix: wip
+fix:
 
-Check point
 ${COMMIT_SOURCE}
 ${EFFECTED_FILES}
 
