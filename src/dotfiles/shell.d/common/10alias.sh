@@ -43,6 +43,21 @@ if [ -f ~/.upkg/pcm/pcm.sh ]; then
     alias pcm='~/.upkg/pcm/pcm.sh'
 fi
 
+fit_add() {
+    # Use fzf to multiple select file to add to the Git index
+    local flist=""
+
+    # git add "$(git status -s | fzf --multi --with-nth=2| xargs echo -en)"
+    flist=$(git status -s | fzf --multi | awk '{print $2}')
+
+    while IFS= read -r line; do
+        git add --verbose "$line"
+    done <<< "$flist"
+
+    echo ""
+    git status --short
+}
+
 # Git aliases
 alias gst='git status -sb'
 alias gsp='git status -uno -sb'
@@ -52,6 +67,8 @@ alias gplt='git pullt'
 alias greup='git reup'
 alias gcm='git cim'
 alias ga='git add'
+
+alias ga=fit_add
 
 alias jobs='jobs -l'
 alias less="${PAGER}"

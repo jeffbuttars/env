@@ -485,4 +485,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id wmctrl -c Plasma
 
-include `hostname`-config
+include ~/.config/i3/`hostname`-config
