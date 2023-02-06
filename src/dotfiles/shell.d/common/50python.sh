@@ -82,15 +82,15 @@ function pyvenv_pyproject_activate_deactivate_poetry_venv()
     # if we're in an active venv, deactivate it.
     if [[ -z "$proj_dir" ]]
     then
-        if [[ $VIRTUAL_ENV ]]
+        if [[ -n $VIRTUAL_ENV ]]
         then
-            if [[ $(command -v deactivate) ]]
+            if [[ -n $(command -v deactivate) ]]
             then
+                echo "Deactivating venv $VIRTUAL_ENV"
                 deactivate
             fi
         fi
 
-        echo "Deactivating venv"
         return 0
     fi
 
