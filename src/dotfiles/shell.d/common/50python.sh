@@ -2,6 +2,10 @@
 # https://github.com/pypa/pip/issues/7883
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 
+# This works around an issue with poetry unabled to detect python runtime on the system
+# https://github.com/pypa/pipenv/issues/5075
+export SETUPTOOLS_USE_DISTUTILS=stdlib
+
 export VC_VENV_INITIAL_DEV_PKGS="pynvim isort black flake8 \
     mypy bandit data-science-types jedi jedi-language-server"
 
@@ -9,7 +13,7 @@ if [[ -f "$HOME/.pythonrc.py" ]]; then
     export PYTHONSTARTUP="$HOME/.pythonrc.py"
 fi
 
-if [[ "$HOME/.pythonrc.py" ]]; then
+if [[ -f "$HOME/.pythonrc.py" ]]; then
     export PYTHONSTARTUP="$HOME/.pythonrc.py"
 fi
 
@@ -33,9 +37,11 @@ uninstall_poetry()
 function pyvenv_source_local_venv()
 {
     if [[ -f ".env" ]]; then
+        # shellcheck source=/dev/null
         source ".env"
     fi
 
+    # shellcheck source=/dev/null
     source "$1"
 }
 
