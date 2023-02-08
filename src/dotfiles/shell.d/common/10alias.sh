@@ -50,12 +50,16 @@ fit_add() {
     # git add "$(git status -s | fzf --multi --with-nth=2| xargs echo -en)"
     flist=$(git status -s | fzf --multi | awk '{print $2}')
 
+    if [[ -z $flist ]]; then
+        return
+    fi
+
     while IFS= read -r line; do
         git add --verbose "$line"
     done <<< "$flist"
 
     echo ""
-    git status --short
+    git status -uno -sb
 }
 
 # Git aliases
