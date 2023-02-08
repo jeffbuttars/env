@@ -72,3 +72,5 @@ source_if_exists "$HOME/.zsh_local"
 
 # Source the rest of our config
 source_if_exists "$HOME/.shell.d/index"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

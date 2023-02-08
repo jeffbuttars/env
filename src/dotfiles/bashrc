@@ -159,3 +159,5 @@ if [[ -f "${HOME}/.shell.d/index" ]]; then
     # shellcheck source=.shell.d/index
     . "${HOME}/.shell.d/index"
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
