@@ -47,7 +47,7 @@ bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
 bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
 
 exec_always --no-startup killall -9 picom
-exec_always --no-startup picom
+exec_always --no-startup picom -b
 exec --no-startup-id transmission-qt --remote 10.6.6.6
 
 exec --no-startup-id 'i3-msg workspace $ws1'
