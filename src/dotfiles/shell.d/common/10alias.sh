@@ -55,7 +55,8 @@ fit_add() {
     fi
 
     while IFS= read -r line; do
-        git add --verbose "$line"
+        git add "$line"
+        echo "git add '$line'"
     done <<< "$flist"
 
     echo ""
@@ -105,6 +106,7 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls --tree'
+# alias docker-compose='docker compose'
 
 if [[ -x /usr/bin/exa ]]; then
     alias ls='exa'
