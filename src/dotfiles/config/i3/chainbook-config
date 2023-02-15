@@ -36,7 +36,7 @@ bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 
 # exec --no-startup-id xscreensaver
-exec --no-startup-id compton -b --config ~/.config/compton-ephi.conf
+exec --no-startup-id picom -b
 
 exec --no-startup-id ~/bin/music
 
