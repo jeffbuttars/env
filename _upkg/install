@@ -84,9 +84,6 @@ if [[ -d "$soldir" ]]; then
     xrdb -merge ~/.Xresources
 fi
 
-echo "Update i3 config"
-~/.i3/genconfig.sh
-
 # Install the Myi3 desktop file...
 sudo install --verbose -D --mode=644 ${CUSTOM_DIR}/myi3.desktop /usr/share/xsessions/myi3.desktop
 sudo install --verbose -D --mode=755 ${BIN_DIR}/initi3 /usr/local/bin/initi3
