@@ -51,7 +51,8 @@ workspace $ws12 output $right_op
 bindsym --whole-window $mod+button4 exec compton-trans -c -- +5
 bindsym --whole-window $mod+button5 exec compton-trans -c -- -5
 
-exec --no-startup-id compton -b --config ~/.config/compton-lola.conf
+exec_always --no-startup killall -9 picom
+exec_always --no-startup picom -b
 
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws1'

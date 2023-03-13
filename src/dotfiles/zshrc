@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Enable profiling
+# zmodload zsh/zprof
+
 function source_if_exists()
 {
     if [[ -f "$1" ]]
@@ -12,8 +15,13 @@ function source_if_exists()
 # Load the more ZSH Specific seettings first
 fpath+=~/.zfunc
 
+# Only compinit some times
 autoload -Uz compinit
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
+
 setopt COMPLETE_ALIASES
 zstyle ':completion::complete:*' gain-privileges 1
 
@@ -74,3 +82,6 @@ source_if_exists "$HOME/.zsh_local"
 source_if_exists "$HOME/.shell.d/index"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# print out profiling info
+# zprof

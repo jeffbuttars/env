@@ -6,7 +6,7 @@ PKGS="apt-transport-https ca-certificates gnupg lsb-release \
 	black flake8 python3-pynvim software-properties-common fasd \
     nmap arp-scan netcat socat kde-full yakuake xautolock prettyping \
     fzf tmux ripgrep silversearcher-ag polybar picom neovim yarn keychain google-chrome-stable \
-    docker-ce docker-ce-cli containerd.io python3.9 nginx xsel jq dbeaver-ce bashtop"
+    docker-ce docker-ce-cli docker-compose-plugin containerd.io python3.9 nginx xsel jq dbeaver-ce bashtop"
 
 sudo add-apt-repository -y ppa:kgilmer/speed-ricer
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
@@ -50,9 +50,9 @@ sudo systemctl start nginx
 # sudo apt-get update
 # sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-echo "Installing docker-compose"
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod 755 /usr/local/bin/docker-compose
+# echo "Installing docker-compose"
+# sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# sudo chmod 755 /usr/local/bin/docker-compose
 
 echo "Installing Poetry..."
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -

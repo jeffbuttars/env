@@ -411,19 +411,19 @@ bindsym $mod+r mode "resize"
 # }
 
 # My own hotkeys
-bindsym $mod+F1 exec google-chrome-stable
+bindsym $mod+F1 exec google-chrome-stable --profile-directory=Default
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/bserve
 bindsym $mod+shift+F3 exec ~/bin/bserve -n
 # bindsym $mod+F4 exec ~/bin/music
 # bindsym $mod+F4 exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
-bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa'
+bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default
 
-bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com'
-bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#'
+bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com' --profile-directory=Default
+bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
 # bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
-bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse'
-bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/'
+bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
+bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/' --profile-directory=Default
 bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop
 bindsym $mod+Escape exec krunner
 bindsym $mod+ctrl+Escape exec rofi -show combi

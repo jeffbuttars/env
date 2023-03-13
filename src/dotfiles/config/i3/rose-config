@@ -52,7 +52,8 @@ workspace $ws12 output $right_op
 # Picom, need a good GPU for it work well
 # bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
 # bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
-# exec_always --no-startup-id picom --experimental-backends -b --config ~/.config/picom-rose.conf
+exec_always --no-startup killall -9 picom
+exec_always --no-startup picom -b
 
 # Setup which workspaces we want to start with
 exec --no-startup-id 'i3-msg workspace $ws1'
