@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 export KDEWM='i3'
 
@@ -9,3 +9,7 @@ export KDEWM='i3'
 
 # Stop the ssh-agent
 [ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
+
+if [[ $(command -v load_nvm) ]]; then
+    load_nvm
+fi
