@@ -26,9 +26,11 @@
 # Set this to 'yes' to save a description (to ~/description.txt) from APOD page
 GET_DESCRIPTION="yes"
 # Set this to the directory you want pictures saved
-PICTURES_DIR=~/Pictures
+PICTURES_DIR=~/Pictures/apod
 # Set this to the directory you want description saved
 DESCRIPTION_DIR=/tmp
+
+mkdir -p "$PICTURES_DIR"
 
 # ********************************
 # *** FUNCTIONS
