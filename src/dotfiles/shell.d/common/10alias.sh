@@ -108,6 +108,8 @@ alias lla='ls -la'
 alias lt='ls --tree'
 # alias docker-compose='docker compose'
 
+alias docker-compose='docker compose'
+
 if [[ -x /usr/bin/exa ]]; then
     alias ls='exa'
     alias ll='ls -l --header'
