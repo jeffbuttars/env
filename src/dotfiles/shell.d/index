@@ -53,10 +53,10 @@ update_path_if_exists()
     if [[ -d "${path_segment}" ]]; then
         if [[ $append ]]; then
             # echo "Appending path segment: $path_segment"
-            export PATH="${path_segment}:${PATH}"
+            export PATH="${PATH}:${path_segment}"
         else
             # echo "Prepending path segment: $path_segment"
-            export PATH="${PATH}:${path_segment}"
+            export PATH="${path_segment}:${PATH}"
         fi
     # else
         # echo "Ignoring path segment: $path_segment"
