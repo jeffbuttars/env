@@ -7,9 +7,18 @@ vims=('nvim' 'vim' 'vi')
 
 start_vim()
 {
+    # load nvm if it's not already
+    # We need nvim for some plugins
+    if [[ ! $NVM_DIR ]]; then
+        if [[ $(command -v load_nvm) ]]; then
+            echo "Loading nvm ..."
+            load_nvm
+        fi
+    fi
+
     for var in $vims
     do
-        v=$(command -v $var)
+        v=$(command -v "$var")
         if [[ -n $v ]]
         then
             $v $@

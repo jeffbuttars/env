@@ -60,8 +60,8 @@
 
 [oh-my-zsh]
 	hide-status = 1
-[url "git@github.com:"]
-	insteadOf = https://github.com/
+; [url "git@github.com:"]
+; 	insteadOf = https://github.com/
 [gui]
 	fontui = -family \"FantasqueSansMono Nerd Font Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family \"FantasqueSansMono Nerd Font Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
