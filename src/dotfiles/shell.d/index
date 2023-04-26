@@ -79,3 +79,7 @@ source_dir "$_SHELL_D_DIR/common"
 if [[ -d "$_SHELL_D_DIR/$_CURRENT_SHELL" ]]; then
     source_dir "$_SHELL_D_DIR/$_CURRENT_SHELL"
 fi
+
+# Look for a local sourcable file that is not a part of the repo
+# These are settings used a per instance basis and not put in source control
+source_if_exists "$HOME/.shell_local.sh"
