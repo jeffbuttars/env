@@ -17,7 +17,7 @@ set $mod Mod1
 # set $mod Super_L
 
 ### Gaps config
-gaps inner 2
+gaps inner 3
 gaps outer 3
 smart_borders on
 
@@ -27,9 +27,10 @@ smart_gaps on
 # Only enable outer gaps when there is exactly one container
 smart_gaps inverse_outer
 
-new_window pixel 3
-for_window [class=".*"] border pixel 3
-# border_radius 8
+# new_window pixel 3
+# for_window [class=".*"] border pixel 3
+default_border normal 3
+# border_radius 5
 ### END Gaps config
 
 # font for window titles. ISO 10646 = Unicode
@@ -74,14 +75,14 @@ for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace
 
 # for_window [class="konsole"] border pixel 4
 # for_window [class="kitty"] border pixel 2
-for_window [title="QjackCtl"] floating enable, border pixel 2
+for_window [title="QjackCtl"] floating enable, border pixel 3
 for_window [title="^Audacity.*"] floating enable, border pixel 2
-for_window [title="^Zoom.*"] floating enable, border pixel 2
+for_window [title="^Zoom.*"] floating enable, border pixel 3
 
 # For Neovim peek plugin
 # do not focus preview window on open
 no_focus [title="^Peek preview.*$"]
-for_window [title="^Peek preview.*$"] floating enable, border pixel 2
+for_window [title="^Peek preview.*$"] floating enable, border pixel 3
 
 
 # https://userbase.kde.org/Tutorials/Using_Other_Window_Managers_with_Plasma#I3_configuration
@@ -89,6 +90,7 @@ for_window [title="^Peek preview.*$"] floating enable, border pixel 2
 # Kill the plasma wallpaper
 # for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
+for_window [class="plasmashell" title="^Desktop @ QRect.*$"] kill; floating enable; border none
 for_window [class="plasmashell" window_type="notification"] floating enable, border none
 no_focus [class="plasmashell" window_type="notification"]
 for_window [title="Plasma"] floating enable, border none
@@ -111,9 +113,9 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [class="plasmawindowed"] floating enable, move position mouse, resize set 640 680
 
 
-for_window [class="vlc"] floating enable, border pixel 2
-for_window [class="Mplayer"] floating enable, border pixel 2
-for_window [class="qjackctl"] floating enable, border pixel 2
+for_window [class="vlc"] floating enable, border pixel 3
+for_window [class="Mplayer"] floating enable, border pixel 3
+for_window [class="qjackctl"] floating enable, border pixel 3
 
 for_window [class="NC"] floating enable
 for_window [class="Cadence.py"] floating enable
@@ -124,11 +126,11 @@ for_window [class="dde-desktop"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [title="Plex"] floating enable, sticky enable, border normal
-for_window [title="Plex"] floating enable, sticky enable, border pixel 2
+for_window [title="Plex"] floating enable, sticky enable, border pixel 3
 # for_window [title="^.*YouTube$"] floating enable, sticky enable, border normal
-for_window [title="^.*YouTube$"] floating enable, sticky enable, border pixel 2
+for_window [title="^.*YouTube$"] floating enable, sticky enable, border pixel 3
 # for_window [title="Netflix"] floating enable, sticky enable, border normal
-for_window [title="Netflix"] floating enable, sticky enable, border pixel 2
+for_window [title="Netflix"] floating enable, sticky enable, border pixel 3
 for_window [title="Amarok"] floating enable
 for_window [class="Deadbeef"] floating enable
 
@@ -226,7 +228,7 @@ bindsym $mod+equal workspace $ws12
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace $ws1
 bindsym $mod+Shift+at move container to workspace $ws2
-bindsym $mod+Shift+numbersign move container to workspace $ws3
+bindsym $mod+Shift+numbersign move container to workspace $ws2
 bindsym $mod+Shift+dollar move container to workspace $ws4
 bindsym $mod+Shift+percent move container to workspace $ws5
 bindsym $mod+Shift+asciicircum move container to workspace $ws6
@@ -274,8 +276,8 @@ client.background #1d1f21
 client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 client.placeholder #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 
-client.unfocused $sol_black $sol_base02 #c5c8c6 #5f819d $sol_black
-client.focused_inactive $sol_black $sol_base02 #c5c8c6 #5f819d $sol_black
+client.unfocused $sol_base02 $sol_base02 #c5c8c6 #5f819d $sol_base02
+client.focused_inactive $sol_base02 $sol_base02 #c5c8c6 #5f819d $sol_base02
 
  #Pressing $mod and current workspace number takes you back to the previousle active workspace
 # workspace_auto_back_and_forth yes

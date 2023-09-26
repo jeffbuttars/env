@@ -3,9 +3,9 @@
 # set $left_op DP-3
 
 # 2K
-set $left_op DP-4
+set $left_op DP-1
 # 4K
-set $center_op DP-3-3
+set $center_op DP-4-3
 # 13" Laptop
 set $right_op eDP-1
 
