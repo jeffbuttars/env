@@ -3,171 +3,204 @@
 # Inserts a blank line between shell prompts
 # add_newline = true
 
-# format = """
-# $time\
-# $username\
-# $hostname\
-# $shlvl\
-# $kubernetes\
-# $directory\
-# $git_branch\
-# $git_commit\
-# $git_state\
-# $git_status\
-# $hg_branch\
-# $docker_context\
-# $package\
-# $cmake\
-# $dart\
-# $dotnet\
-# $elixir\
-# $elm\
-# $erlang\
-# $golang\
-# $helm\
-# $java\
-# $julia\
-# $kotlin\
-# $nim\
-# $nodejs\
-# $ocaml\
-# $perl\
-# $php\
-# $purescript\
-# $python\
-# $ruby\
-# $rust\
-# $scala\
-# $swift\
-# $terraform\
-# $vagrant\
-# $zig\
-# $nix_shell\
-# $conda\
-# $memory_usage\
-# $aws\
-# $gcloud\
-# $openstack\
-# $env_var\
-# $crystal\
-# $custom\
-# $cmd_duration\
-# $line_break\
-# $lua\
-# $jobs\
-# $battery\
-# $status\
-# $shell\
-# $character"""
-
 format = "$all"
-# Which is equivalent to
-# format = """
-# $username\
-# $hostname\
-# $shlvl\
-# $kubernetes\
-# $directory\
-# $git_branch\
-# $git_commit\
-# $git_state\
-# $git_status\
-# $hg_branch\
-# $docker_context\
-# $package\
-# $cmake\
-# $dart\
-# $dotnet\
-# $elixir\
-# $elm\
-# $erlang\
-# $golang\
-# $helm\
-# $java\
-# $julia\
-# $kotlin\
-# $nim\
-# $nodejs\
-# $ocaml\
-# $perl\
-# $php\
-# $purescript\
-# $python\
-# $ruby\
-# $rust\
-# $scala\
-# $swift\
-# $terraform\
-# $vagrant\
-# $zig\
-# $nix_shell\
-# $conda\
-# $memory_usage\
-# $aws\
-# $gcloud\
-# $openstack\
-# $env_var\
-# $crystal\
-# $custom\
-# $cmd_duration\
-# $line_break\
-# $lua\
-# $jobs\
-# $battery\
-# $time\
-# $status\
-# $shell\
-# $character"""
+# format = '$all$directory$character'
 
+[aws]
+symbol = "  "
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-format = "$symbol "
-# success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-
-# error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
-error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
-vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
-
-
-[python]
-symbol = " "
-style = "green"
-version_format = "${major}.${minor}"
-# format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
-format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
-
-[memory_usage]
+[bun]
 disabled = true
-threshold = 50
-format = "$symbol [R ${ram}( | S ${swap})]($style) "
-symbol = "M"
-# style = "bold dimmed green"
+symbol = "🍞"
+format = '[$symbol:$version ]($style)'
 
-[time]
-disabled = true
-style = "bold fg:black bg:green"
-# success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# format = '[🕙$time]($style)[](fg:green) '
-format = '[](fg:green)[$time]($style)[](fg:green) '
-# format = "[$time]($style) "
+[buf]
+symbol = " "
 
-[lua]
-symbol = " "
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " 󰌾"
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[fossil_branch]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[guix_shell]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[haxe]
+symbol = " "
+
+[hg_branch]
+symbol = " "
 
 [hostname]
-ssh_only = true
-format =  "@ [$hostname](bold red)\n"
-trim_at = "."
-disabled = false
+ssh_symbol = " "
 
-[username]
-format = "[$user]($style) "
-disabled = false
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[lua]
+symbol = ""
+format = '[$symbol($version )]($style)'
+style = "blue"
+
+[memory_usage]
+symbol = "󰍛 "
+
+[meson]
+symbol = "󰔷 "
+
+[nim]
+symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = ""
+format = '[$symbol($version )]($style)'
+style = "white"
+
+[os.symbols]
+Alpaquita = " "
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+Artix = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "󰛓 "
+Gentoo = " "
+HardenedBSD = "󰞌 "
+Illumos = "󰈸 "
+Linux = " "
+Mabox = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = "󰈺 "
+openSUSE = " "
+OracleLinux = "󰌷 "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = "󰀘 "
+Solus = "󰠳 "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = "󰍲 "
+
+[os]
+disabled = true
+
+[package]
+disabled = true
+symbol = "󰏗 "
+
+[pijul_channel]
+symbol = " "
+
+
+[rlang]
+symbol = "󰟔 "
+
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+[scala]
+symbol = " "
+
+[python]
+symbol = ""
+style = "green"
+# version_format = "${major}.${minor}"
+# # format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
+format = '[${symbol}${pyenv_prefix}(${version})($virtualenv) ]($style)'
+
+# [memory_usage]
+# disabled = true
+# threshold = 50
+# format = "$symbol [R ${ram}( | S ${swap})]($style) "
+# symbol = "M"
+# # style = "bold dimmed green"
+# 
+# [time]
+# disabled = true
+# style = "bold fg:black bg:green"
+# # success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # format = '[🕙$time]($style)[](fg:green) '
+# format = '[](fg:green)[$time]($style)[](fg:green) '
+# # format = "[$time]($style) "
+# 
+# 
+# [hostname]
+# ssh_only = true
+# format =  "@ [$hostname](bold red)\n"
+# trim_at = "."
+# disabled = false
+# 
+# [username]
+# format = "[$user]($style) "
+# disabled = false
+
+# # Replace the "❯" symbol in the prompt with "➜"
+# [character]                            # The name of the module we are configuring is "character"
+# format = "$symbol "
+# # success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+# 
+# # error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
+# error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
+# vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
+# 
+# 

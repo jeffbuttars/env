@@ -45,7 +45,7 @@ load_nvm() {
     fi
 
     # Use the default env
-    nvm_ver_to_use='node'
+    nvm_ver_to_use='default'
 
     if [[ -n "$1" ]]; then
         nvm_ver_to_use="$1"
