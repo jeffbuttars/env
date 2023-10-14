@@ -31,10 +31,11 @@ workspace $ws6 output $center_op
 # Scractch windows
 workspace $ws7 output $center_op
 workspace $ws8 output $center_op
-workspace $ws9 output $center_op
 # E-mail, calendars, etc.
 workspace $ws12 output $center_op
 
+# Misc.
+workspace $ws9 output $right_op
 # Media management
 workspace $ws3 output $right_op
 # Music
@@ -52,4 +53,5 @@ exec --no-startup-id transmission-qt --remote 10.6.6.6
 
 exec --no-startup-id 'i3-msg workspace $ws1'
 exec --no-startup-id 'i3-msg workspace $ws5'
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
+exec --no-startup-id signal-desktop
