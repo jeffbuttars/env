@@ -2,18 +2,21 @@ local wezterm = require 'wezterm';
 local TERM_META = os.getenv("TERM_META")
 -- local HOME = os.getenv("HOME")
 
-local c_scheme = "rose-pine-dawn"
--- local c_scheme = "Solarized (light) (terminal.sexy)"
+-- local c_scheme = "rose-pine-dawn"
+local c_scheme = "Solarized (light) (terminal.sexy)"
+-- local c_scheme = "NeoSolarized Light"
 -- local c_scheme = "Spring"
 -- local c_scheme = "dayfox"
 -- local c_scheme = "dawnfox"
 
 -- local background_image = HOME .. "/Pictures/wallpaper/spikegungs.jpg"
 
-if (TERM_META == "dark")
-then
-    c_scheme = "rose-pine-moon"
+if (TERM_META == "dark") then
+    c_scheme = "Catppuccin Mocha"
+else
+    c_scheme = "Catppuccin Latte"
     -- c_scheme = "Solarized Dark - Patched"
+    -- c_scheme = "NeoSolarized Dight"
     -- c_scheme = "nordfox"
     -- c_scheme = "terafox"
     -- background_image = HOME .. "/Pictures/wallpaper/spikegungs.jpg"
@@ -54,6 +57,8 @@ end)
 
 
 return {
+    color_scheme_dirs = { "/home/jeff/.config/wezterm/themes" },
+
     font = wezterm.font("FiraCode Nerd Font Mono"),
     font_size = 18.0,
     use_fancy_tab_bar = true,
@@ -91,6 +96,14 @@ return {
     keys = {
         { key = "LeftArrow",  mods = "SHIFT", action = wezterm.action { ActivateTabRelative = -1 } },
         { key = "RightArrow", mods = "SHIFT", action = wezterm.action { ActivateTabRelative = 1 } },
+        {
+            key = 'K',
+            mods = 'CTRL|SHIFT',
+            action = wezterm.action.Multiple {
+                wezterm.action.ClearScrollback 'ScrollbackAndViewport',
+                wezterm.action.SendKey { key = 'L', mods = 'CTRL' },
+            },
+        },
     },
     exit_behavior = "Close",
     term = "wezterm",

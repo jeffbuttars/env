@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jeff.buttars"
-version = "0.1.0"
+version = "1.0.0"
 description = ""
 authors = ["Jeff Buttars <jeffbuttars@gmail.com>"]
 
@@ -14,9 +14,6 @@ httpx = ">=0.22.0"
 immutables = ">=0.15"
 inotify = ">=0.2.10"
 Markdown = ">=3.3.4"
-matplotlib = ">=3.5.3"
-mkdocs = ">=1.1.2"
-mkdocs-material = ">=6.1.0"
 mkdocs-pdf-export-plugin = ">=0.5.8"
 mkdocs-with-pdf = ">=0.8.0"
 mkpdfs-mkdocs = ">=1.0.1"
@@ -34,6 +31,15 @@ typesystem = ">0.3"
 watchgod = ">=0.6"
 websockets = ">=10.3"
 yoyo-migrations = ">=7.2.1"
+pygobject = "^3.46.0"
+uuid7 = "^0.1.0"
+matplotlib = "^3.8.0"
+update = "^0.0.1"
+opencv-pg = "^1.0.2"
+pytesseract = "^0.3.10"
+imutils = "^0.5.4"
+pysimplegui = "^4.60.5"
+plantuml = "^0.3.0"
 
 [tool.poetry.group.dev.dependencies]
 assertpy = ">=1.1"
@@ -50,7 +56,6 @@ jedi = ">=0.18.0"
 jedi-language-server = ">=0.40.0"
 mypy = "*"
 mypy-ls = ">=0.5.1"
-pyls-black = ">=0.4.6"
 pyls-flake8 = ">=0.4.0"
 pyls-isort = ">=0.2.2"
 pyls-memestra = ">=0.0.15"
@@ -62,7 +67,8 @@ python-lsp-autoimport = ">=0.0.1"
 python-lsp-black = ">=1.0.0"
 python-lsp-server = {extras = ["all"], version = "*"}
 rope = ">=1.2.0"
-ruff = ">=0.0.37"
+ruff = "*"
+# ruff-lsp = "*"
 ssort = ">=0.10.1"
 types-cachetools = ">=5.2.1"
 types-orjson = ">=0.1.1"
@@ -71,12 +77,34 @@ typesystem = ">0.3"
 watchgod = ">=0.6"
 websockets = ">=10.3"
 yoyo-migrations = ">=7.2.1"
+python-lsp-ruff = "^1.5.1"
 
 [tool.black]
 line-length = 99
 
 [tool.ruff]
+target-version = "py311"
 line-length = 99
+ignore-init-module-imports = true
+
+# pyflakes, pycodestyle, isort
+# select = ["F", "E", "W", "I001", "I002"]
+
+# Isort and mccabe
+select = ["I001", "I002", "C901", "F"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+# fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+fixable = ["ALL"]
+
+# F401: Report unused-imports, but don't fix them for me.
+unfixable = ["F401"]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.mccabe]
+max-complexity = 10
 
 [tool.pycodestyle]
 max-line-length = 99
@@ -100,7 +128,7 @@ ensure_newline_before_comments = true
 max-line-length = "99"
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 ignore_missing_imports = true
 
 [tool.pylsp-mypy]
@@ -108,7 +136,7 @@ enabled = true
 live_mode = true
 
 [tool.pyright]
-pythonVersion = "3.10"
+pythonVersion = "3.11"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
