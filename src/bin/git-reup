@@ -5,6 +5,12 @@ set -e
 REBASE_MASTER=false
 MERGE_FROM_MASTER=true
 
+MAIN_OR_MASTER='master'
+
+if [[ $(git config --get init.defaultbranch) == "main" ]]; then
+    MAIN_OR_MASTER='main'
+fi
+
 if [[ "$1" = "-r" ]]; then
     REBASE_MASTER=true
     shift
@@ -33,22 +39,22 @@ if [[ -n $DIRTY ]]; then
 fi
 
 # If not on branch master, stash and change to branch master
-if [[ "$ORIG_BRANCH" != "master" ]]; then
+if [[ "$ORIG_BRANCH" != "$MAIN_OR_MASTER" ]]; then
     echo "REUP: current branch is $ORIG_BRANCH"
     echo "REUP: checking out master..."
-    git checkout master
+    git checkout $MAIN_OR_MASTER
 fi
 
 git pull
 echo "REUP: rebasing from upstream..."
-git pull --rebase upstream master
+git pull --rebase upstream $MAIN_OR_MASTER
 
 # push update to origin master
-echo "REUP: Push updated master to origin"
-git push origin master
+echo "REUP: Push updated $MAIN_OR_MASTER  to origin"
+git push origin $MAIN_OR_MASTER
 
 # Change back to branch if necessary and pop the stash if stashed.
-if [[ "$ORIG_BRANCH" != "master" ]]; then
+if [[ "$ORIG_BRANCH" != "$MAIN_OR_MASTER" ]]; then
     echo "REUP: Returning to branch $ORIG_BRANCH"
     git co "$ORIG_BRANCH"
     if [[ -n $DIRTY ]]; then
@@ -59,11 +65,11 @@ if [[ "$ORIG_BRANCH" != "master" ]]; then
     if [[ "$MERGE_FROM_MASTER" = "true" ]]; then
         # If -r was given as an option, rebase master back to the branch instead of merge
         if [[ "$REBASE_MASTER" = "true" ]]; then
-            echo "REUP: Rebasing from master..."
-            git rebase master
+            echo "REUP: Rebasing from $MAIN_OR_MASTER..."
+            git rebase $MAIN_OR_MASTER
         else
-            echo "REUP: Merge back from master..."
-            git merge master
+            echo "REUP: Merge back from $MAIN_OR_MASTER..."
+            git merge $MAIN_OR_MASTER
         fi
 
         echo "PUSHing $ORIG_BRANCH changes back to origin"
