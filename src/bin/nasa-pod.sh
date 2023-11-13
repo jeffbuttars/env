@@ -32,6 +32,12 @@ DESCRIPTION_DIR=/tmp
 
 mkdir -p "$PICTURES_DIR"
 
+SET_BG='feh --bg-fill'
+if [[ -n $HYPRLAND_INSTANCE_SIGNATURE ]]; then
+    echo "Using swaybg to set background"
+    SET_BG='swaybg -i'
+fi
+
 # ********************************
 # *** FUNCTIONS
 # ********************************
@@ -131,15 +137,16 @@ else
 
         echo "Setting image as wallpaper"
         #gconftool-2 -t string -s /desktop/gnome/background/picture_filename $PICTURES_DIR/${TODAY}_apod.jpg
-        feh --bg-max $PICTURES_DIR/${TODAY}_apod.jpg
+        $SET_BG "$PICTURES_DIR/${TODAY}_apod.jpg"
 
         save_description
 
     # If the picture is the same
     else
         echo "Picture is the same, finishing up"
-        feh --bg-max $PICTURES_DIR/${TODAY}_apod.jpg
+        $SET_BG "$PICTURES_DIR/${TODAY}_apod.jpg"
     fi
 fi
 
+$SET_BG "$PICTURES_DIR/${TODAY}_apod.jpg"
 clean_up
