@@ -17,10 +17,11 @@ HAS_FDFIND=$(command -v fdfind)
 
 
 # Allow the cargo version of neovide to have precidence
-if [ -f "${HOME}/.cargo/bin/neovide" ]; then
-    HAS_NEOVIDE="${HOME}/.cargo/bin/neovide"
-fi
+# if [ -f "${HOME}/.cargo/bin/neovide" ]; then
+#     HAS_NEOVIDE="${HOME}/.cargo/bin/neovide"
+# fi
 
+EDITOR_CMD="nvim"
 
 if [[ $1 ]]; then
     # Use the command specified
@@ -41,7 +42,7 @@ fi
 
 if [[ -z $HAS_FZF ]]; then
    # No fzf, so just open the editor!
-   $EDITOR_CMD "$@"
+   $EDITOR_CMD
    exit
 fi
 
@@ -85,9 +86,10 @@ elif [[ -n $HAS_BATCAT ]]; then
 fi
 
 FNAME=$(fzf "${FZF_ARGS}")
+# echo "EXEC: $EDITOR_CMD $FNAME"
 
 if [[ $FNAME ]]; then
     $EDITOR_CMD "$FNAME"
 else
-    echo "No filename selected, not starting $EDITOR_CMD"
+    $EDITOR_CMD
 fi
