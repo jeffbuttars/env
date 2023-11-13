@@ -69,3 +69,5 @@
 	spellcheck = false
 [init]
 	defaultBranch = main
+[safe]
+	directory = /home/jeff/Dev/PP/Grabber/pv_grabber
