@@ -24,7 +24,7 @@ pycmarkgfm = ">=1.2.0"
 pydantic = {extras = ["email", "dotenv"], version = ">=1.9.1"}
 pyfakefs = "*"
 pyproj = ">=3.2.1"
-python = ">=3.10,<3.12"
+python = ">=3.11,<3.12"
 qrcode = {extras = ["all"], version = ">=7.3.1"}
 randomname = ">=0.1.5"
 typesystem = ">0.3"
@@ -40,6 +40,10 @@ pytesseract = "^0.3.10"
 imutils = "^0.5.4"
 pysimplegui = "^4.60.5"
 plantuml = "^0.3.0"
+ptpython = "^3.0.23"
+openai = "^0.28.1"
+pillow = "^10.1.0"
+fleet-context = "^1.0.12"
 
 [tool.poetry.group.dev.dependencies]
 assertpy = ">=1.1"
