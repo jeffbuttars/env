@@ -409,8 +409,6 @@ bindsym $mod+ctrl+l exec ~/bin/fuzzy_screen_lock
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
 
-# set $Locker xscreensaver-command -lock && sleep 1
-
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
@@ -425,7 +423,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-# Enable the menu bar for power managment defined above
+# Enable the menu bar for power management defined above
 bindsym $mod+Pause mode "$mode_system"
 
 # media keys
@@ -456,7 +454,6 @@ exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83703
 
-exec_always xautolock -time 60 -locker ~/bin/fuzzy_screen_lock
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id wmctrl -c Plasma
