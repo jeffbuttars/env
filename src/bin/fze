@@ -15,8 +15,7 @@ HAS_FZF=$(command -v fzf)
 HAS_FD=$(command -v fd)
 HAS_FDFIND=$(command -v fdfind)
 
-
-# Allow the cargo version of neovide to have precidence
+# Allow the cargo version of neovide to have precedence
 # if [ -f "${HOME}/.cargo/bin/neovide" ]; then
 #     HAS_NEOVIDE="${HOME}/.cargo/bin/neovide"
 # fi
@@ -24,72 +23,74 @@ HAS_FDFIND=$(command -v fdfind)
 EDITOR_CMD="nvim"
 
 if [[ $1 ]]; then
-    # Use the command specified
-    EDITOR_CMD="$1"
+	# Use the command specified
+	EDITOR_CMD="$1"
 else
-    # Determine which editor to use
-    # Order of precidence is: neovide, neovim, vim, vi
-    if [[ -n $HAS_NEOVIDE ]]; then
-        EDITOR_CMD='neovide'
-    elif [[ -n $HAS_NEOVIM ]]; then
-        EDITOR_CMD='nvim'
-    elif [[ -n $HAS_VIM ]]; then
-        EDITOR_CMD='vim'
-    else
-        EDITOR_CMD='vi'
-    fi
+	# Determine which editor to use
+	# Order of precedence is: neovide, neovim, vim, vi
+	if [[ -n $HAS_NEOVIDE ]]; then
+		EDITOR_CMD='neovide'
+	elif [[ -n $HAS_NEOVIM ]]; then
+		EDITOR_CMD='nvim'
+	elif [[ -n $HAS_VIM ]]; then
+		EDITOR_CMD='vim'
+	else
+		EDITOR_CMD='vi'
+	fi
+fi
+
+if [[ "${EDITOR_CMD}" == "n" ]]; then
+	EDITOR_CMD="nvim"
 fi
 
 if [[ -z $HAS_FZF ]]; then
-   # No fzf, so just open the editor!
-   $EDITOR_CMD
-   exit
+	# No fzf, so just open the editor!
+	$EDITOR_CMD
+	exit
 fi
 
 # We have fzf. If can't show a preview with less or bat, use the simple form
 FZF_ARGS=""
 
 if [[ -z $HAS_FD ]]; then
-    if [[ $HAS_FDFIND ]]; then
-        HAS_FD="$HAS_FDFIND"
-    fi
+	if [[ $HAS_FDFIND ]]; then
+		HAS_FD="$HAS_FDFIND"
+	fi
 fi
-
 
 # Use `fd` if it's available
 if [[ $HAS_FD ]]; then
-    # Setting fd as the default source for fzf.
-    export FZF_DEFAULT_COMMAND="$HAS_FD --type f \
+	# Setting fd as the default source for fzf.
+	export FZF_DEFAULT_COMMAND="$HAS_FD --type f \
         --exclude __pycache__"
 
-    # follow symbolic links and don't want it to exclude hidden files.
-    # Slower, but shows much more
-    # export FZF_DEFAULT_COMMAND="$HAS_FD --type f --hidden --follow --exclude .git"
+	# follow symbolic links and don't want it to exclude hidden files.
+	# Slower, but shows much more
+	# export FZF_DEFAULT_COMMAND="$HAS_FD --type f --hidden --follow --exclude .git"
 fi
-
 
 # If we have less, previw with less
 if [[ -n $HAS_LESS ]]; then
-    FZF_ARGS=--preview='less {}'
+	FZF_ARGS=--preview='less {}'
 fi
 
 BAT_THEME=""
-if [[ "$TERM_META" ==  "light" ]]; then
-    BAT_THEME="--theme \"GitHub\""
+if [[ "$TERM_META" == "light" ]]; then
+	BAT_THEME="--theme \"GitHub\""
 fi
 
 # If we have bat, previw with bat
 if [[ -n $HAS_BAT ]]; then
-    FZF_ARGS=--preview="bat --color \"always\" $BAT_THEME {}"
+	FZF_ARGS=--preview="bat --color \"always\" $BAT_THEME {}"
 elif [[ -n $HAS_BATCAT ]]; then
-    FZF_ARGS=--preview="batcat --color \"always\" $BAT_THEME {}"
+	FZF_ARGS=--preview="batcat --color \"always\" $BAT_THEME {}"
 fi
 
 FNAME=$(fzf "${FZF_ARGS}")
 # echo "EXEC: $EDITOR_CMD $FNAME"
 
 if [[ $FNAME ]]; then
-    $EDITOR_CMD "$FNAME"
+	$EDITOR_CMD "$FNAME"
 else
-    $EDITOR_CMD
+	$EDITOR_CMD
 fi
