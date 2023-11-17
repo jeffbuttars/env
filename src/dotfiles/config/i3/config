@@ -55,10 +55,7 @@ bindsym $mod+Tab scratchpad show
 # Use the xprop command to get window info
 # for_window [title="^.*Mail.*Google Chrome.*"] workspace $wsMail
 # for_window [title="^.*Gmail.*Google Chrome.*"] workspace $wsMail
-for_window [title="^.*jeffb@perceptview.com.*Gmail.*$"] move container to workspace $wsMail
-for_window [title="^.*jeffbuttars@gmail.com.*Gmail.*$"] move container to workspace $wsMail
-for_window [title="^.*jeff@jeffbuttars.com.*Gmail.*$"] move container to workspace $wsMail
-for_window [title="^.*jeff@ammo.enterprises.*Gmail.*$"] move container to workspace $wsMail
+for_window [title="^.*jeff.*Gmail.*$"] move container to workspace $wsMail
 for_window [title="^.*Mail.*jeff@sabledynamics.com.*"] move container to workspace $wsMail
 
 for_window [title="^.*WhatsApp.*"] move container to workspace $wsMessaging
