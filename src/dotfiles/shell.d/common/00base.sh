@@ -2,6 +2,9 @@
 
 umask 0027
 
+# Create some dirs for vim to put backup, swap files, etc. into
+mkdir -p "${HOME}/tmp/.vim/{backup,swap,undo}"
+
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]; then
 	export SSH_ASKPASS=/usr/bin/ksshaskpass

@@ -1,15 +1,14 @@
 #!/bin/bash
 
 __ScriptVersion="1.0"
-WATCH_DIR="$PWD/*"
+WATCH_DIR="$PWD/"
 
 #===  FUNCTION  ================================================================
 #         NAME:  usage
 #  DESCRIPTION:  Display usage information.
 #===============================================================================
-function usage ()
-{
-    echo "Usage :  $0 [options] [--]
+function usage() {
+	echo "Usage :  $0 [options] [--]
 
     Options:
     -h|help       Display this message
@@ -17,70 +16,76 @@ function usage ()
     -c|clear      Clear screen between calls
     -d|dir  Directory to watch for changes"
 
-}    # ----------  end of function usage  ----------
+} # ----------  end of function usage  ----------
 
 #-----------------------------------------------------------------------
 #  Handle command line arguments
 #-----------------------------------------------------------------------
 
-while getopts ":d:hvc" opt
-do
-  case $opt in
+while getopts ":d:hvc" opt; do
+	case $opt in
 
-    h|help     )  usage; exit 0   ;;
+	h)
+		usage
+		exit 0
+		;;
 
-    v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+	v)
+		echo "$0 -- Version $__ScriptVersion"
+		exit 0
+		;;
 
-    d|dir  )  WATCH_DIR=$OPTARG;;
+	d) WATCH_DIR=$OPTARG ;;
 
-    c|dir  )  CLEAR_TERM='true';;
+	c) CLEAR_TERM='true' ;;
 
-    * )  echo -e "\n  Option does not exist : $OPTARG\n"
-          usage; exit 1   ;;
+	*)
+		echo -e "\n  Option does not exist : $OPTARG\n"
+		usage
+		exit 1
+		;;
 
-  esac    # --- end of case ---
+	esac # --- end of case ---
 done
-shift $(($OPTIND-1))
+shift $(($OPTIND - 1))
 
 echo "WATCH_DIR: $WATCH_DIR"
 
 declare -a commands
 
-run_cmds ()
-{
-    for (( i=0; i<${#commands[@]}; i++ ));
-    do
-        echo "Running '${commands[$i]}' " 1>&2
-        ${commands[$i]}
-    done
+run_cmds() {
+	for ((i = 0; i < ${#commands[@]}; i++)); do
+		echo "Running '${commands[$i]}' " 1>&2
+		echo "" 1>&2
+		${commands[$i]}
+	done
 }
 
 SLEEP_TIME=3
 
 if [[ -z $@ ]]; then
-    echo "no commands to run!!!!"
-    exit 1
+	echo "no commands to run!!!!"
+	exit 1
 fi
 
-commands=( "$@" )
+commands=("$@")
 
 # echo "Running commands '${commands[@]}' on modify"
 run_cmds ${commands[@]}
 sleep $SLEEP_TIME
 
 echo "watching $WATCH_DIR"
-$(inotifywait -e modify -r $WATCH_DIR)
+inotifywait -q -e modify -r "$WATCH_DIR"
 
-while [[ true ]]
-do
-    echo "Change detected, running command"
-    # if [[ $CLEAR_TERM == 'true' ]]; then
-    #     printf '\033c'
-    # fi
+while [[ true ]]; do
+	# echo "Change detected, running command"
+	# if [[ $CLEAR_TERM == 'true' ]]; then
+	#     printf '\033c'
+	# fi
 
-    run_cmds ${commands[@]}
-    sleep $SLEEP_TIME
-    $(inotifywait -e modify -r $WATCH_DIR)
+	run_cmds ${commands[@]}
+	sleep $SLEEP_TIME
+	inotifywait -q -e modify -r "$WATCH_DIR"
 done
 
 echo "Done $?"

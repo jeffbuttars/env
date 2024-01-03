@@ -3,11 +3,12 @@
 # set $left_op DP-3
 
 # 2K
-set $left_op DP-1
+set $left_op DP-3
 # 4K
 set $center_op DP-4-3
 # 13" Laptop
 set $right_op eDP-1
+
 
 ### monitor layout ###
 
@@ -17,41 +18,34 @@ bindsym Control+2 focus output $center_op
 bindsym Control+3 focus output $right_op
 
 ### 3 monitor layout for home ###
-# Personal browser stuff
-workspace $ws1 output $left_op
-# Day job browser stuff
-workspace $ws2 output $left_op
-# Services in dev
-workspace $ws10 output $left_op
+# Left
+workspace $wsMoneyBrowser output $left_op
+workspace $wsBrowser2 output $left_op
+workspace $wsBrowser3 output $left_op
+workspace $wsRando output $left_op
 
-# Main code space
-workspace $ws5 output $center_op
-# Aux code space
-workspace $ws6 output $center_op
-# Scractch windows
-workspace $ws7 output $center_op
-workspace $ws8 output $center_op
-# E-mail, calendars, etc.
-workspace $ws12 output $center_op
+# Center
+workspace $wsCode output $center_op
+workspace $wsCode2 output $center_op
+workspace $wVM output $center_op
+workspace $wMail output $center_op
 
-# Misc.
-workspace $ws9 output $right_op
-# Media management
-workspace $ws3 output $right_op
-# Music
-workspace $ws4 output $right_op
-# Messaging
-workspace $ws11 output $right_op
+# Right
+workspace $wsServices output $right_op
+workspace $wsMedia output $right_op
+workspace $wsMusic output $right_op
+workspace $wsMessaging output $right_op
 
 # Mouse bindings
 bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
 bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
 
-exec_always --no-startup killall -9 picom
-exec_always --no-startup picom -b
+# Picom works poorly on intel gpu
+# exec_always --no-startup killall -9 picom
+# exec_always --no-startup picom -b
+
 exec --no-startup-id transmission-qt --remote 10.6.6.6
 
-exec --no-startup-id 'i3-msg workspace $ws1'
-exec --no-startup-id 'i3-msg workspace $ws5'
-# exec --no-startup-id nm-applet
+exec --no-startup-id 'i3-msg workspace $wsMoneyBrowser'
+exec --no-startup-id 'i3-msg workspace $wsCode'
 exec --no-startup-id signal-desktop
