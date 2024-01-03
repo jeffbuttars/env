@@ -1,0 +1,41 @@
+import = [
+"/usr/share/alacritty/themes/catppuccin_latte.toml",
+]
+
+# shell = "/usr/bin/zsh"
+# working_directory = "$HOME"
+
+
+[window]
+decorations = "Full"
+# blur = true
+
+[scrolling]
+history = 100000
+
+[font]
+size = 12
+
+[font.normal]
+# family = "Hack Nerd Font Mono"
+# family = "Monospace"
+# family = "Inconsolata Nerd Font Mono"
+family = "FiraCode Nerd Font Mono"
+# style = "Medium"
+# style = "Regular"
+# style = "Light"
+
+[selection]
+save_to_clipboard = true
+
+# [cursor]
+# shape = "Beam"
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+bindings = [
+  {key = "CapsLock", chars = "Escape"}
+]
+
