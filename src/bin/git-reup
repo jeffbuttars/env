@@ -1,48 +1,69 @@
 #!/bin/bash
 
-set -e
+# This only works if an `upstream` remote exists.
+git remote show upstream
+HAS_UPSTREAM=$?
+
+if [[ "$HAS_UPSTREAM" != "0" ]]; then
+	echo "No upstream remote found, can not reup"
+	exit $HAS_UPSTREAM
+fi
 
 REBASE_MASTER=false
 MERGE_FROM_MASTER=true
 
-MAIN_OR_MASTER='master'
+MAIN_OR_MASTER=$(git config --get init.defaultbranch)
 
-if [[ $(git config --get init.defaultbranch) == "main" ]]; then
-    MAIN_OR_MASTER='main'
+if [[ -z $MAIN_OR_MASTER ]]; then
+	# Look for a main or master branch
+	if [[ $(git branch --list main) ]]; then
+		MAIN_OR_MASTER="main"
+	elif [[ $(git branch --list master) ]]; then
+		MAIN_OR_MASTER="master"
+	fi
 fi
 
+if [[ -z "$MAIN_OR_MASTER" ]]; then
+	echo "No main or master branch found, a default branch is not set, cannot reup"
+	exit 1
+fi
+
+echo "Using trunk branch: $MAIN_OR_MASTER"
+
+set -e
+
 if [[ "$1" = "-r" ]]; then
-    REBASE_MASTER=true
-    shift
+	REBASE_MASTER=true
+	shift
 fi
 
 if [[ "$1" = "-n" ]]; then
-    MERGE_FROM_MASTER=false
-    shift
+	MERGE_FROM_MASTER=false
+	shift
 fi
 
 BRANCHES=''
 if [[ -n $@ ]]; then
-    BRANCHES="$@"
+	BRANCHES="$@"
 else
-    BRANCHES=$(git rev-parse --abbrev-ref HEAD)
+	BRANCHES=$(git rev-parse --abbrev-ref HEAD)
 fi
 
 ORIG_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 DIRTY=$(git status -uno --porcelain)
 if [[ -n $DIRTY ]]; then
-    # Stash if needed
-    echo "REUP: $ORIG_BRANCH is dirty, stashing changes..."
-    git stash save "Stashed by reup $$"
-    echo "REUP: stashed"
+	# Stash if needed
+	echo "REUP: $ORIG_BRANCH is dirty, stashing changes..."
+	git stash save "Stashed by reup $$"
+	echo "REUP: stashed"
 fi
 
 # If not on branch master, stash and change to branch master
 if [[ "$ORIG_BRANCH" != "$MAIN_OR_MASTER" ]]; then
-    echo "REUP: current branch is $ORIG_BRANCH"
-    echo "REUP: checking out master..."
-    git checkout $MAIN_OR_MASTER
+	echo "REUP: current branch is $ORIG_BRANCH"
+	echo "REUP: checking out $MAIN_OR_MASTER..."
+	git checkout $MAIN_OR_MASTER
 fi
 
 git pull
@@ -55,26 +76,26 @@ git push origin $MAIN_OR_MASTER
 
 # Change back to branch if necessary and pop the stash if stashed.
 if [[ "$ORIG_BRANCH" != "$MAIN_OR_MASTER" ]]; then
-    echo "REUP: Returning to branch $ORIG_BRANCH"
-    git co "$ORIG_BRANCH"
-    if [[ -n $DIRTY ]]; then
-        echo "REUP: restoring from stash..."
-        git stash pop
-    fi
+	echo "REUP: Returning to branch $ORIG_BRANCH"
+	git co "$ORIG_BRANCH"
+	if [[ -n $DIRTY ]]; then
+		echo "REUP: restoring from stash..."
+		git stash pop
+	fi
 
-    if [[ "$MERGE_FROM_MASTER" = "true" ]]; then
-        # If -r was given as an option, rebase master back to the branch instead of merge
-        if [[ "$REBASE_MASTER" = "true" ]]; then
-            echo "REUP: Rebasing from $MAIN_OR_MASTER..."
-            git rebase $MAIN_OR_MASTER
-        else
-            echo "REUP: Merge back from $MAIN_OR_MASTER..."
-            git merge $MAIN_OR_MASTER
-        fi
+	if [[ "$MERGE_FROM_MASTER" = "true" ]]; then
+		# If -r was given as an option, rebase master back to the branch instead of merge
+		if [[ "$REBASE_MASTER" = "true" ]]; then
+			echo "REUP: Rebasing from $MAIN_OR_MASTER..."
+			git rebase $MAIN_OR_MASTER
+		else
+			echo "REUP: Merge back from $MAIN_OR_MASTER..."
+			git merge $MAIN_OR_MASTER
+		fi
 
-        echo "PUSHing $ORIG_BRANCH changes back to origin"
-        git push
-    fi
+		echo "PUSHing $ORIG_BRANCH changes back to origin"
+		git push
+	fi
 fi
 
 echo -e "\n### REUP IS DONE ###"
