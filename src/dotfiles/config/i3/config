@@ -12,6 +12,44 @@
 # Alt
 set $mod Mod1
 
+# Workspace names
+# set $ws1 " 1  Web / Docs"
+set $ws1 " 1  Browser "
+set $wsMoneyBrowser " 1  Browser "
+
+set $ws2 " 2  Browser "
+set $wsBrowser2 " 2  Browser "
+
+set $ws3 " 3  Browser "
+set $wsBrowser3 " 3  Browser "
+
+set $ws4 " 4  "
+set $wsRando " 4  "
+
+set $ws5 " 5   "
+set $wsCode " 5   "
+
+set $ws6 " 6   "
+set $wsCode2 " 6   "
+
+set $ws7 " 7  VM"
+set $wsVM " 7  VM"
+
+set $ws8 " 8  Mail"
+set $wsMail " 8  Mail"
+
+set $ws9 " 9  󱂅 "
+set $wsServices " 9  󱂅 "
+
+set $ws10 " 10  "
+set $wsMedia " 10  "
+
+set $ws11 " 11  Music"
+set $wsMusic " 11  Music"
+
+set $ws12 " 12 󰍡 Messaging "
+set $wsMessaging " 12 󰍡 Messaging "
+
 # "Windows" key
 #set $mod Mod4
 # set $mod Super_L
@@ -38,7 +76,8 @@ default_border normal 3
 # font xft:Inconsolata Medium 11
 # font xft:Oxygen-Sans 12
 # font pango: MesloLGMDZ Nerd Font Mono 8
-font pango: FuraCode Nerd Font Mono 10
+# font pango: FiraCode Nerd Font Mono 10
+font xft: FiraCode Nerd Font Mono 10
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -49,14 +88,13 @@ floating_minimum_size 50 x 50
 # send window to the scratch pad. Use what is typically my minimize shortcut
 bindsym $mod+Control+i move scratchpad
 # Show the scratchpad
-bindsym $mod+Shift+i scratchpad show
-bindsym $mod+Tab scratchpad show
+bindsym $mod+Shift+i scratchpad show, move position center, border normal
+bindsym $mod+Tab scratchpad show,  move position center, border normal
 
 # Use the xprop command to get window info
-# for_window [title="^.*Mail.*Google Chrome.*"] workspace $wsMail
-# for_window [title="^.*Gmail.*Google Chrome.*"] workspace $wsMail
-for_window [title="^.*jeff.*Gmail.*$"] move container to workspace $wsMail
-for_window [title="^.*Mail.*jeff@sabledynamics.com.*"] move container to workspace $wsMail
+for_window [title="^.*jeff.* - Gmail - .*$"] move container to workspace $wsMail
+for_window [title="^.*Mail.*jeff@sabledynamics.com.*Private Email.*"] move container to workspace $wsMail
+for_window [title="^.*Mail.*jeffb@perceptview.com - PerceptView Mail.*"] move container to workspace $wsMail
 
 for_window [title="^.*WhatsApp.*"] move container to workspace $wsMessaging
 for_window [title="^.*Discord.*"] move container to workspace $wsMessaging
@@ -66,21 +104,20 @@ for_window [class="Slack"] move container to workspace $wsMessaging
 for_window [title="^Slack.*"] move container to workspace $wsMessaging
 for_window [title="^Signal.*"] move container to workspace $wsMessaging
 
-for_window [title="^Transmission.*"] move container to workspace $ws3, floating disable
-for_window [title="^.*PassThePopcorn.*"] move container to workspace $ws3
+for_window [title="^Transmission.*"] move container to workspace $wsMedia, floating disable
+for_window [title="^.*PassThePopcorn.*"] move container to workspace $wsMedia
 
 for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace $wsVM
 
 
-include ~/.config/i3/theme-solarized-config
+# include ~/.config/i3/theme-solarized-config
 include ~/.config/i3/theme-latte-config
 
 # for_window [class="konsole"] border pixel 4
 # for_window [class="kitty"] border pixel 2
-for_window [title="QjackCtl"] floating enable, border normal 3
-for_window [title="^Audacity.*"] floating enable, border normal 2
-for_window [title="^Zoom.*"] floating enable, border normal 3
-for_window [title="^Hamster.*"] floating enable, border normal 3
+for_window [title="QjackCtl"] floating enable, move position center
+for_window [title="^Audacity.*"] floating enable  move position center
+for_window [title="^Zoom.*"] floating enable,  move position center
 
 # For Neovim peek plugin
 # do not focus preview window on open
@@ -93,7 +130,7 @@ no_focus [title="^Peek preview.*$"]
 # for_window [class="plasmashell" title="Desktop — Plasma"] kill; floating enable; border none
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [class="plasmashell" title="^Desktop @ QRect.*$"] kill; floating enable; border none
-for_window [class="plasmashell" window_type="notification"] floating enable, border none
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move position center
 no_focus [class="plasmashell" window_type="notification"]
 for_window [title="Plasma"] floating enable, border none
 for_window [title="Plasma-desktop"] floating enable, border none
@@ -102,12 +139,12 @@ for_window [class="win7"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
 for_window [class="Yakuake"] floating enable, border pixel 2
 for_window [title="Yakuake"] floating enable, border pixel 2
-for_window [class="Kmix"] floating enable, border none
-for_window [class="kruler"] floating enable; border none
-for_window [class="klipper"] floating enable; border none
-for_window [class="Kcalc"] floating enable, border normal 3
-for_window [class="Plasmoidviewer"] floating enable, border none
-for_window [class="(?i)*nextcloud"] floating disable
+for_window [class="Kmix"] floating enable, border none,  move position center
+for_window [class="kruler"] floating enable; border none,  move position center
+for_window [class="klipper"] floating enable; border none,  move position center
+for_window [class="Kcalc"] floating enable, border normal 3,  move position center
+for_window [class="Plasmoidviewer"] floating enable, border none,  move position center
+for_window [class="(?i)*nextcloud"] floating disable,  move position center
 # no_focus [class="plasmashell"]
 for_window [class="plasmashell" window_type="notification"] floating enable, border none
 no_focus [class="plasmashell" window_type="notification"]
@@ -115,28 +152,27 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [class="plasmawindowed"] floating enable, move position mouse, resize set 640 680
 
 
-for_window [class="vlc"] floating enable, border normal 3
-for_window [class="Mplayer"] floating enable, border normal 3
-for_window [class="^.*mpv$"] floating enable, border normal 3
-for_window [class="qjackctl"] floating enable, border normal 3
+for_window [class="vlc"] floating enable,  move position center
+for_window [class="Mplayer"] floating enable,  move position center
+for_window [class="^.*mpv$"] floating enable,  move position center
+for_window [class="qjackctl"] floating enable,  move position center
 
-for_window [class="NC"] floating enable
-for_window [class="Cadence.py"] floating enable
-for_window [class="Skype"] floating enable
-for_window [title="^Android Emulator.*"] floating enable, border normal 3
+# for_window [class="NC"] floating enable
+# for_window [class="Cadence.py"] floating enable
+# for_window [class="Skype"] floating enable
+for_window [title="^Android Emulator.*"] floating enable, border normal 3,  move position center
 
 
 for_window [class="dde-desktop"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [title="Plex"] floating enable, sticky enable, border normal
-for_window [title="Plex"] floating enable, sticky enable, border normal 3
-# for_window [title="^.*YouTube$"] floating enable, sticky enable, border normal
-for_window [title="^.*YouTube$"] floating enable, sticky enable, border normal 3
-# for_window [title="Netflix"] floating enable, sticky enable, border normal
-for_window [title="Netflix"] floating enable, sticky enable, border normal 3
-for_window [title="Amarok"] floating enable, border normal 3
-for_window [class="Deadbeef"] floating enable, border normal 3
+for_window [title="^Plex$"] floating enable, sticky enable, move position center
+for_window [title="^.*YouTube$"] floating enable, sticky enable, move position center
+# for_window [title="Netflix"] floating enable, sticky enable, border normal,  move position center
+for_window [title="Netflix"] floating enable, sticky enable, move position center
+for_window [title="Amarok"] floating enable,  move position center
+for_window [class="Deadbeef"] floating enable, move position center
 
 # Float by type
 # for_window [window_role="pop-up" title=".*(?!)YouTube$"] floating enable, border normal
@@ -148,7 +184,7 @@ for_window [window_role="About"] floating enable
 for_window [window_type="dialog"] floating enable
 for_window [window_type="menu"] floating enable, border none
 for_window [title="gkrellm"] floating enable, enable sticky, border none
-for_window [class="jamesdsp"] floating enable, enable sticky, border normal
+for_window [class="jamesdsp"] floating enable, enable sticky, border normal,  move position center
 
 
 no_focus [window_role="pop-up"]
@@ -161,7 +197,7 @@ for_window [window_role="Preferences"] floating enable, border pixel 2
 for_window [window_role="About"] floating enable, border pixel 2
 for_window [window_type="dialog"] floating enable, border pixel 2
 for_window [window_type="menu"] floating enable, border pixel 2
-for_window [instance="__scratchpad"] floating enable, border pixel 2
+for_window [instance="__scratchpad"] floating enable, border normal 2, move position center
 
 for_window [title=".*Audio Volume — System Settings.*"] floating disable
 for_window [class="Pulseeffects"] move container to workspace $wsMusic
@@ -169,51 +205,11 @@ for_window [class="Pulseeffects"] move container to workspace $wsMusic
 for_window [title=".*Google Play Music.*"] floating disable, move container to workspace $wsMusic
 for_window [title="^YouTube Music.*"] floating disable, move container to workspace $wsMusic
 for_window [title=".*MellowPlayer*"] move container to workspace $wsMusic
-for_window [title="^Spotify Premium$"] move container to workspace $wsMusic, border pixel 2
-for_window [title="^Spotify$"] move container to workspace $wsMusic, border pixel 2
+for_window [title="^Spotify Premium$"] move container to workspace $wsMusic
+for_window [title="^Spotify$"] move container to workspace $wsMusic
 
+# for_window [floating] move position center
 
-# Workspace names
-# set $ws1 " 1  Web / Docs"
-set $ws1 " 1  "
-# set $ws2 " 2  Web / Docs"
-set $ws2 " 2  "
-# set $ws3 " 3  Web / Docs"
-set $ws3 " 3  "
-# set $ws4 " 4  Music"
-set $ws4 " 4  "
-# set $wsMusic " 4  Music"
-set $wsMusic " 4  "
-
-# set $ws5 " 5  Code"
-# set $wsCode " 5  Code"
-set $ws5 " 5  "
-set $wsCode " 5  "
-# set $ws6 " 6  Dev"
-set $ws6 " 6  "
-# set $ws7 " 7  Dev"
-set $ws7 " 7  "
-# set $ws8 " 8 VMs "
-# set $wsVM " 8 VMs "
-set $ws8 " 8 "
-set $wsVM " 8 "
-
-# set $ws9 " 9   Debug Output"
-# set $wsDebug " 9   Debug Output"
-set $ws9 " 9  "
-set $wsDebug " 9  "
-# set $ws10 " 10  Dev Services"
-# set $wsServices " 10  Dev Services"
-set $ws10 " 10  "
-set $wsServices " 10  "
-# set $ws11 " 11  Messaging"
-# set $wsMessaging " 11  Messaging"
-set $ws11 " 11  "
-set $wsMessaging " 11  "
-# set $ws12 " 12  Mail"
-# set $wsMail " 12  Mail"
-set $ws12 " 12  "
-set $wsMail " 12  "
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -232,7 +228,7 @@ bindsym $mod+equal workspace $ws12
 # move focused container to workspace
 bindsym $mod+Shift+exclam move container to workspace $ws1
 bindsym $mod+Shift+at move container to workspace $ws2
-bindsym $mod+Shift+numbersign move container to workspace $ws2
+bindsym $mod+Shift+numbersign move container to workspace $ws3
 bindsym $mod+Shift+dollar move container to workspace $ws4
 bindsym $mod+Shift+percent move container to workspace $ws5
 bindsym $mod+Shift+asciicircum move container to workspace $ws6
@@ -242,7 +238,6 @@ bindsym $mod+Shift+parenleft move container to workspace $ws9
 bindsym $mod+Shift+parenright move container to workspace $ws10
 bindsym $mod+Shift+underscore move container to workspace $ws11
 bindsym $mod+Shift+plus move container to workspace $ws12
-
 
 
 hide_edge_borders smart
@@ -273,6 +268,7 @@ bindsym $mod+Shift+Return exec konsole --hide-menubar --profile dark
 
 bindsym $mod+F12 exec konsole --hide-menubar --profile red
 bindsym $mod+ctrl+t exec --no-startup-id wezterm
+# bindsym $mod+ctrl+t exec --no-startup-id alacritty
 #bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -332,9 +328,9 @@ bindsym $mod+shift+A focus child
 #bindcode $mod+d focus child
 
 # reload the configuration file
-bindsym $mod+Shift+C exec ~/.i3/genconfig.sh; reload
+bindsym $mod+Shift+C reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R exec ~/.i3/genconfig.sh; restart; $HOME/.config/polybar/launch.sh
+bindsym $mod+Shift+R restart
 # bindsym $mod+Shift+R exec ~/.i3/genconfig.sh; restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+E exit
@@ -384,24 +380,27 @@ bindsym $mod+r mode "resize"
 # }
 
 # My own hotkeys
-bindsym $mod+F1 exec google-chrome-stable --profile-directory=Default
+# bindsym $mod+F1 exec google-chrome-stable --profile-directory=Default --enable-logging --v=1, exec google-chrome-stable --profile-directory='Profile 12' --enable-logging --v=1
+bindsym $mod+F1 exec google-chrome-stable --profile-directory=Default, exec google-chrome-stable --profile-directory='Profile 12'
 bindsym $mod+F2 exec dolphin
-bindsym $mod+F3 exec ~/bin/bserve
-bindsym $mod+shift+F3 exec ~/bin/bserve -n
-# bindsym $mod+F4 exec ~/bin/music
-# bindsym $mod+F4 exec /opt/google/chrome/google-chrome --profile-directory=Default --app-id=cinhimbnkkaeohfgghhklpknlkffjgod
-bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default
+bindsym $mod+F3 exec ~/bin/dev-serve.sh
+bindsym $mod+shift+F3 exec ~/bin/dev-serve.sh -n
+bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default --enable-logging --v=1
 
 bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com' --profile-directory=Default
 bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
 # bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
 bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
 bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/' --profile-directory=Default
-bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop
+# bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop  # Started at startup
 bindsym $mod+Escape exec krunner
 bindsym $mod+ctrl+Escape exec rofi -show combi
 # bindsym $mod+Escape exec ulauncher
 bindsym $mod+ctrl+l exec ~/bin/fuzzy_screen_lock
+
+# Move workspace left/right to different output
+bindsym $mod+ctrl+greater move workspace to output right
+bindsym $mod+ctrl+less move workspace to output left
 
 # Jump to urgent window
 bindsym $mod+x [urgent=latest] focus
@@ -455,4 +454,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id wmctrl -c Plasma
 
-include ~/.config/i3/`hostname`-config
+include ~/.config/i3/`~/bin/pick_i3_config.sh`-config
+
+exec_always --no-startup-id $HOME/bin/pick_i3_config.sh &

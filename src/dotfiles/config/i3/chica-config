@@ -27,7 +27,7 @@ workspace $wsRando output $left_op
 # Center
 workspace $wsCode output $center_op
 workspace $wsCode2 output $center_op
-workspace $wVM output $center_op
+workspace $wsVM output $center_op
 workspace $wMail output $center_op
 
 # Right
