@@ -106,7 +106,8 @@ select = ["I001", "I002", "C901", "F"]
 fixable = ["ALL"]
 
 # F401: Report unused-imports, but don't fix them for me.
-unfixable = ["F401"]
+# F841: Report unused-variables, but don't fix them for me.
+unfixable = ["F401", "F841"]
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"

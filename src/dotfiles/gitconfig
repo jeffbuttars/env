@@ -34,7 +34,8 @@
     edit = "!nvim $(git ls-files -m)"
 
 [diff]
-    tool = vimdiff
+  tool = vimdiff
+  colorMoved = default
 
 [difftool "vimdiff"]
     cmd = vimdiff $REMOTE $LOCAL
@@ -48,8 +49,15 @@
 	default = current
 
 [merge]
-    tool = diffconflicts
-    defaultToUpstream = true
+  tool = diffconflicts
+  defaultToUpstream = true
+  conflictstyle = diff3
+
+[blame]
+  pager = delta
+  hyperlinks = true
+  navigate = true
+
 [mergetool "diffconflicts"]
     cmd = ~/bin/vimdiffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
     trustExitCode = true
@@ -57,6 +65,16 @@
 [core]
 	excludesfile = /home/jeffre/.gitignore_global
 	editor = nvim
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true # use n and N to move between diff sections
+  light = true    # light background theme
+  side-by-side = true
+  line-numbers = true
 
 [oh-my-zsh]
 	hide-status = 1
