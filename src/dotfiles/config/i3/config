@@ -83,13 +83,14 @@ font xft: FiraCode Nerd Font Mono 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 floating_minimum_size 50 x 50
+# floating_maximum_size 1440 x 1440
 
 # Scratchpad settings
 # send window to the scratch pad. Use what is typically my minimize shortcut
 bindsym $mod+Control+i move scratchpad
 # Show the scratchpad
 bindsym $mod+Shift+i scratchpad show, move position center, border normal
-bindsym $mod+Tab scratchpad show,  move position center, border normal
+bindsym $mod+Tab scratchpad show, move position center, border normal
 
 # Use the xprop command to get window info
 for_window [title="^.*jeff.* - Gmail - .*$"] move container to workspace $wsMail
@@ -115,9 +116,9 @@ include ~/.config/i3/theme-latte-config
 
 # for_window [class="konsole"] border pixel 4
 # for_window [class="kitty"] border pixel 2
-for_window [title="QjackCtl"] floating enable, move position center
-for_window [title="^Audacity.*"] floating enable  move position center
-for_window [title="^Zoom.*"] floating enable,  move position center
+for_window [title="QjackCtl"] floating enable, move position center, border normal
+for_window [title="^Audacity.*"] floating enable  move position center, border normal
+for_window [title="^Zoom.*"] floating enable,  move position center, border normal
 
 # For Neovim peek plugin
 # do not focus preview window on open
@@ -149,13 +150,13 @@ for_window [class="(?i)*nextcloud"] floating disable,  move position center
 for_window [class="plasmashell" window_type="notification"] floating enable, border none
 no_focus [class="plasmashell" window_type="notification"]
 
-for_window [class="plasmawindowed"] floating enable, move position mouse, resize set 640 680
+for_window [class="plasmawindowed"] resize set 640 680, floating enable, move position mouse
 
 
-for_window [class="vlc"] floating enable,  move position center
-for_window [class="Mplayer"] floating enable,  move position center
-for_window [class="^.*mpv$"] floating enable,  move position center
-for_window [class="qjackctl"] floating enable,  move position center
+for_window [class="vlc"] floating enable,  move position center, border normal
+for_window [class="Mplayer"] floating enable,  move position center, border normal
+for_window [class="^.*mpv$"] floating enable,  move position center, border normal
+for_window [class="qjackctl"] floating enable,  move position center, border normal
 
 # for_window [class="NC"] floating enable
 # for_window [class="Cadence.py"] floating enable
@@ -167,16 +168,15 @@ for_window [class="dde-desktop"] floating enable, border none
 for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [title="Plex"] floating enable, sticky enable, border normal
-for_window [title="^Plex$"] floating enable, sticky enable, move position center
-for_window [title="^.*YouTube$"] floating enable, sticky enable, move position center
+for_window [title="^Plex$"]  resize set 1440 1440, floating enable, sticky enable, move position center, border normal
+for_window [title="^.*YouTube$"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
 # for_window [title="Netflix"] floating enable, sticky enable, border normal,  move position center
-for_window [title="Netflix"] floating enable, sticky enable, move position center
-for_window [title="Amarok"] floating enable,  move position center
-for_window [class="Deadbeef"] floating enable, move position center
+for_window [title="Netflix"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
+for_window [title="Amarok"] floating enable,  move position center, border normal
+for_window [class="Deadbeef"] floating enable, move position center, border normal
 
 # Float by type
 # for_window [window_role="pop-up" title=".*(?!)YouTube$"] floating enable, border normal
-for_window [window_role="pop-up" title=".*(?!)YouTube$"] floating enable, border pixel 2
 for_window [window_role="bubble"] floating enable, border none
 for_window [window_role="task_dialog"] floating enable, border none
 for_window [window_role="Preferences"] floating enable
