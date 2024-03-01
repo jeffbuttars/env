@@ -1,7 +1,7 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Catppuccin-Frappe
+ColorScheme=Catppuccin-Latte
 DimmValue=0
 Font=FiraCode Nerd Font Mono,16,-1,5,50,0,0,0,0,0
 UseFontLineChararacters=true
@@ -10,10 +10,10 @@ WordModeAttr=true
 WordModeBrahmic=false
 
 [Cursor Options]
-CursorShape=2
+CursorShape=1
 CustomCursorColor=136,136,136
-CustomCursorTextColor=136,136,136
-UseCustomCursorColor=true
+CustomCursorTextColor=0,0,0
+UseCustomCursorColor=false
 
 [Encoding Options]
 DefaultEncoding=UTF-8
@@ -24,7 +24,7 @@ DimWhenInactive=false
 Environment=TERM=konsole-256color,TERM_META=light
 Icon=utilities-terminal
 InvertSelectionColors=true
-Name=Light
+Name=light
 Parent=FALLBACK/
 StartInCurrentSessionDir=false
 TerminalCenter=true
