@@ -60,7 +60,7 @@
 
 [mergetool "diffconflicts"]
     cmd = ~/bin/vimdiffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
-    trustExitCode = true
+    trustExitCode = false
     keepBackup = false
 [core]
 	excludesfile = /home/jeffre/.gitignore_global
