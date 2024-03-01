@@ -13,6 +13,7 @@ update_path_if_exists "${HOME}/.luarocks/bin"
 update_path_if_exists "${HOME}/.rvm/bin"
 update_path_if_exists "${HOME}/.go/bin"
 update_path_if_exists "${HOME}/go/bin"
+update_path_if_exists "${HOME}/.local/go/bin"
 # update_path_if_exists "$HOME/.poetry/bin" true
 
 # echo "PATH: $PATH"

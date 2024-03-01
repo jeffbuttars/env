@@ -93,9 +93,9 @@ bindsym $mod+Shift+i scratchpad show, move position center, border normal
 bindsym $mod+Tab scratchpad show, move position center, border normal
 
 # Use the xprop command to get window info
-for_window [title="^.*jeff.* - Gmail - .*$"] move container to workspace $wsMail
-for_window [title="^.*Mail.*jeff@sabledynamics.com.*Private Email.*"] move container to workspace $wsMail
-for_window [title="^.*Mail.*jeffb@perceptview.com - PerceptView Mail.*"] move container to workspace $wsMail
+for_window [title="^.*jeff.* - Gmail - .*$"] move container to workspace $wsMail, border normal
+for_window [title="^.*jeff@sabledynamics.com.*Private Email.*"] move container to workspace $wsMail, border normal
+for_window [title="^.*jeffb@perceptview.com - PerceptView Mail.*"] move container to workspace $wsMail, border normal
 
 for_window [title="^.*WhatsApp.*"] move container to workspace $wsMessaging
 for_window [title="^.*Discord.*"] move container to workspace $wsMessaging
@@ -111,6 +111,7 @@ for_window [title="^.*PassThePopcorn.*"] move container to workspace $wsMedia
 for_window [title="^Oracle VM VirtualBox Manager.*"] move container to workspace $wsVM
 
 
+# Color config
 # include ~/.config/i3/theme-solarized-config
 include ~/.config/i3/theme-latte-config
 
@@ -120,7 +121,7 @@ for_window [title="QjackCtl"] floating enable, move position center, border norm
 for_window [title="^Audacity.*"] floating enable  move position center, border normal
 for_window [title="^Zoom.*"] floating enable,  move position center, border normal
 
-# For Neovim peek plugin
+# For Neovim peek(markdown) plugin
 # do not focus preview window on open
 no_focus [title="^Peek preview.*$"]
 
@@ -153,9 +154,9 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [class="plasmawindowed"] resize set 640 680, floating enable, move position mouse
 
 
-for_window [class="vlc"] floating enable,  move position center, border normal
-for_window [class="Mplayer"] floating enable,  move position center, border normal
-for_window [class="^.*mpv$"] floating enable,  move position center, border normal
+for_window [class="vlc"] resize set 1440 1440, floating enable,  move position center, border normal
+for_window [class="Mplayer"] resize set 1440 1440, floating enable,  move position center, border normal
+for_window [class="^.*mpv$"] resize set 1440 1440, floating enable,  move position center, border normal
 for_window [class="qjackctl"] floating enable,  move position center, border normal
 
 # for_window [class="NC"] floating enable
@@ -172,6 +173,7 @@ for_window [title="^Plex$"]  resize set 1440 1440, floating enable, sticky enabl
 for_window [title="^.*YouTube$"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
 # for_window [title="Netflix"] floating enable, sticky enable, border normal,  move position center
 for_window [title="Netflix"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
+for_window [title="^Prime Video.*$"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
 for_window [title="Amarok"] floating enable,  move position center, border normal
 for_window [class="Deadbeef"] floating enable, move position center, border normal
 
@@ -263,7 +265,7 @@ default_orientation auto
 popup_during_fullscreen smart
 
 # start a terminal
-bindsym $mod+Return exec konsole --hide-menubar --profile Light
+bindsym $mod+Return exec konsole --hide-menubar --profile light
 bindsym $mod+Shift+Return exec konsole --hide-menubar --profile dark
 
 bindsym $mod+F12 exec konsole --hide-menubar --profile red
@@ -385,13 +387,23 @@ bindsym $mod+F1 exec google-chrome-stable --profile-directory=Default, exec goog
 bindsym $mod+F2 exec dolphin
 bindsym $mod+F3 exec ~/bin/dev-serve.sh
 bindsym $mod+shift+F3 exec ~/bin/dev-serve.sh -n
-bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default --enable-logging --v=1
 
-bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com' --profile-directory=Default
-bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
+# bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default --enable-logging --v=1
+bindsym $mod+F4 workspace $wsMusic, exec brave --app='https://music.youtube.com/?source=pwa'
+
+# bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com' --profile-directory=Default
+bindsym $mod+F5 exec brave --app='https://youtube.com'
+
+# bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
+bindsym $mod+F6 exec brave --app='https://app.plex.tv/web/app#'
+
 # bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
-bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
-bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/' --profile-directory=Default
+# bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
+bindsym $mod+F7 exec brave --app='https://www.netflix.com/browse'
+
+# bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/' --profile-directory=Default
+bindsym $mod+F8 exec brave --app='https://www.amazon.com/Amazon-Video/b?node=2858778011&ref_=nav_em__aiv_0_2_3_2'
+
 # bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop  # Started at startup
 bindsym $mod+Escape exec krunner
 bindsym $mod+ctrl+Escape exec rofi -show combi
