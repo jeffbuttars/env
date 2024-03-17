@@ -34,11 +34,14 @@
     edit = "!nvim $(git ls-files -m)"
 
 [diff]
-  tool = vimdiff
+  tool = nvimdiff
   colorMoved = default
 
-[difftool "vimdiff"]
-    cmd = vimdiff $REMOTE $LOCAL
+; [difftool "vimdiff"]
+;     cmd = vimdiff $REMOTE $LOCAL
+
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$REMOTE\" \"$LOCAL\""
 
 [stash]
     showPatch
@@ -63,7 +66,7 @@
     trustExitCode = false
     keepBackup = false
 [core]
-	excludesfile = /home/jeffre/.gitignore_global
+	excludesfile = /home/jeff/.gitignore_global
 	editor = nvim
   pager = delta
 
@@ -72,7 +75,8 @@
 
 [delta]
   navigate = true # use n and N to move between diff sections
-  light = true    # light background theme
+  ; light = true    # light background theme
+  syntax-theme = GitHub
   side-by-side = true
   line-numbers = true
 
@@ -85,3 +89,5 @@
 	fontdiff = -family \"FantasqueSansMono Nerd Font Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 [cola]
 	spellcheck = false
+[maintenance]
+	repo = /home/jeff/Dev/AwareView

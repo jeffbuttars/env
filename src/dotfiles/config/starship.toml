@@ -155,7 +155,7 @@ symbol = " "
 symbol = " "
 
 [python]
-symbol = ""
+symbol = ""
 style = "green"
 # version_format = "${major}.${minor}"
 # # format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\)) ]($style)'
@@ -167,7 +167,7 @@ format = '[${symbol}${pyenv_prefix}(${version})($virtualenv) ]($style)'
 # format = "$symbol [R ${ram}( | S ${swap})]($style) "
 # symbol = "M"
 # # style = "bold dimmed green"
-# 
+#
 # [time]
 # disabled = true
 # style = "bold fg:black bg:green"
@@ -175,14 +175,14 @@ format = '[${symbol}${pyenv_prefix}(${version})($virtualenv) ]($style)'
 # # format = '[🕙$time]($style)[](fg:green) '
 # format = '[](fg:green)[$time]($style)[](fg:green) '
 # # format = "[$time]($style) "
-# 
-# 
+#
+#
 # [hostname]
 # ssh_only = true
 # format =  "@ [$hostname](bold red)\n"
 # trim_at = "."
 # disabled = false
-# 
+#
 # [username]
 # format = "[$user]($style) "
 # disabled = false
@@ -198,9 +198,9 @@ format = '[${symbol}${pyenv_prefix}(${version})($virtualenv) ]($style)'
 # # success_symbol = "[ ](bg:green)[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 # # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 # # success_symbol = "[](green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-# 
+#
 # # error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
 # error_symbol = "[](red)"     # The format string used before the text input if the previous command failed.
 # vicmd_symbol = "[](green)"     # The format string used before the text input if the shell is in vim normal mode.
-# 
-# 
+#
+#
