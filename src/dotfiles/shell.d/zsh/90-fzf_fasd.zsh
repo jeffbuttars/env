@@ -14,11 +14,7 @@
 # eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 
 # Initialize fasd
-fasd_cmd_exists=""
-if [[ -f /usr/bin/fasd ]]
-then
-    fasd_cmd_exists='/usr/bin/fasd'
-fi
+fasd_cmd_exists="$(command -v fasd)"
 
 if [[ -n $fasd_cmd_exists ]]; then
     eval "$(fasd --init auto)"
@@ -54,7 +50,7 @@ if [[ -n $fasd_cmd_exists ]]; then
     # ------------
 
     if [[ -f  "/usr/share/fzf/key-bindings.zsh" ]]; then
-        source "/usr/share/fzf/key-bindings.zsh" 
+        source "/usr/share/fzf/key-bindings.zsh"
     elif [[ -f  "$HOME/.fzf/shell/key-bindings.zsh" ]]; then
         source "$HOME/.fzf/shell/key-bindings.zsh"
     fi
