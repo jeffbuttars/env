@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local TERM_META = os.getenv("TERM_META")
+local HOSTNAME = os.getenv("HOSTNAME")
 -- local HOME = os.getenv("HOME")
 
 -- local c_scheme = "rose-pine-dawn"
@@ -55,11 +56,25 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	window:set_config_overrides(overrides)
 end)
 
+font_size = 18.0
+if HOSTNAME == "PV-LT-002" then
+	font_size = 12.0
+end
+
 return {
 	color_scheme_dirs = { "/home/jeff/.config/wezterm/themes" },
 
-	font = wezterm.font_with_fallback({ "FiraCode Nerd Font Mono", "Hack Nerd Font Mono", "Monospace" }),
-	font_size = 18.0,
+	font = wezterm.font_with_fallback({
+		"InconsolataGo Nerd Font Mono",
+		"GoMono Nerd Font Mono",
+		"FiraCode Nerd Font Mono",
+		"FiraCode Nerd Font",
+		"Hack Nerd Font Mono",
+		"Monospace",
+	}),
+
+	font_size = font_size,
+
 	use_fancy_tab_bar = true,
 	hide_tab_bar_if_only_one_tab = true,
 	text_background_opacity = 1.0,
