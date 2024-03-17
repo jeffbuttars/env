@@ -1,5 +1,6 @@
 [user] name = Jeff Buttars
 	email = jeffbuttars@gmail.com
+	; signkey = /home/jeff/.ssh/id_rsa.pub
 
 [alias]
     co = checkout
@@ -7,7 +8,7 @@
     cob = "!f() { git checkout -b $1 --track origin/$1; }; f"
     ci = commit
     cim = commit --verbose
-    cia = commit -a
+    ; cia = commit -a
     st = status -sb
     stu = status -uno -sb
     br = branch
@@ -16,6 +17,7 @@
     brz = !git checkout $(git branch -a -vv | fzf --height 40% --ansi --multi --tac)
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s\\033[0m:  %s\\n\", substr($2, 1, length($2)-1), $1)}'
     brg = "!f() { git branch --list --sort=-committerdate | grep -i $@; }; f"
+    staash = stash --all
     stl = stash list
     stp = stash pop
     type = cat-file -t
@@ -58,6 +60,9 @@
   hyperlinks = true
   navigate = true
 
+[column]
+	ui = auto
+
 [mergetool "diffconflicts"]
     cmd = ~/bin/vimdiffconflicts nvim $BASE $LOCAL $REMOTE $MERGED
     trustExitCode = false
@@ -85,3 +90,13 @@
 	fontdiff = -family \"FantasqueSansMono Nerd Font Mono\" -size 14 -weight normal -slant roman -underline 0 -overstrike 0
 [cola]
 	spellcheck = false
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[gpg]
+	format = ssh
+[maintenance]
+	repo = /home/jeff/Dev/PP/AwareView
+; [commit]
+; 	gpgsign = true

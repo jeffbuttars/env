@@ -58,8 +58,14 @@ end)
 return {
 	color_scheme_dirs = { "/home/jeff/.config/wezterm/themes" },
 
-	font = wezterm.font_with_fallback({ "FiraCode Nerd Font Mono", "Hack Nerd Font Mono", "Monospace" }),
-	font_size = 18.0,
+	font = wezterm.font_with_fallback({
+		"InconsolataGo Nerd Font Mono",
+		"GoMono Nerd Font Mono",
+		"FiraCode Nerd Font Mono",
+		"Hack Nerd Font Mono",
+		"Monospace",
+	}),
+	font_size = 20.0,
 	use_fancy_tab_bar = true,
 	hide_tab_bar_if_only_one_tab = true,
 	text_background_opacity = 1.0,
@@ -90,8 +96,10 @@ return {
 
 	scrollback_lines = 1000000,
 	enable_scroll_bar = true,
-	default_cursor_style = "BlinkingBar",
-	cursor_blink_rate = 500,
+	default_cursor_style = "BlinkingUnderline",
+	cursor_blink_rate = 750,
+	underline_thickness = "2pt",
+	-- cursor_thickness = "1pt",
 	keys = {
 		{ key = "LeftArrow", mods = "SHIFT", action = wezterm.action({ ActivateTabRelative = -1 }) },
 		{ key = "RightArrow", mods = "SHIFT", action = wezterm.action({ ActivateTabRelative = 1 }) },
