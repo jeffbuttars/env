@@ -57,6 +57,7 @@ pyqt5-qt5 = "5.15.2"
 pytz = "^2024.1"
 procfs = "^0.5.0"
 pyqt5 = "^5.15.10"
+pandas = "^2.2.1"
 
 [tool.poetry.group.dev.dependencies]
 assertpy = ">=1.1"
