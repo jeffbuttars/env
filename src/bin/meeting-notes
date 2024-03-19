@@ -18,6 +18,14 @@ if [[ ! -f "${FILE}" ]]; then
 	cat <<EOF >"${FILE}"
 # ${NAME} - _${TODAY}_
 
+## Summary
+
+
+## People
+
+
+## Notes
+
 
 EOF
 fi
