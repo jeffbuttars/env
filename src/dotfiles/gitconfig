@@ -3,6 +3,7 @@
 	; signkey = /home/jeff/.ssh/id_rsa.pub
 
 [alias]
+    dft = difftool
     co = checkout
     sw = switch
     cob = "!f() { git checkout -b $1 --track origin/$1; }; f"
@@ -39,11 +40,17 @@
   tool = nvimdiff
   colorMoved = default
 
-; [difftool "vimdiff"]
-;     cmd = vimdiff $REMOTE $LOCAL
+[difftool]
+  prompt = true
+
+[difftool "vimdiff"]
+    cmd = vimdiff $REMOTE $LOCAL
 
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$REMOTE\" \"$LOCAL\""
+
+; [pager]
+;   difftool = true
 
 [stash]
     showPatch
@@ -100,7 +107,5 @@
 	sort = -committerdate
 [gpg]
 	format = ssh
-; [maintenance]
- ;repo =,
-; [commit]
-; 	gpgsign = true
+[rebase]
+	updateRefs = true
