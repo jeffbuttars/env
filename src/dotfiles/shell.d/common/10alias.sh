@@ -5,26 +5,23 @@ vims=('nvim' 'vim' 'vi')
 
 # Select which vim to use in order of preference. First found wins.
 
-start_vim()
-{
-    # load nvm if it's not already
-    # We need nvim for some plugins
-    if [[ ! $NVM_DIR ]]; then
-        if [[ $(command -v load_nvm) ]]; then
-            echo "Loading nvm ..."
-            load_nvm
-        fi
-    fi
+start_vim() {
+	# load nvm if it's not already
+	# We need nvim for some plugins
+	if [[ ! $NVM_DIR ]]; then
+		if [[ $(command -v load_nvm) ]]; then
+			echo "Loading nvm ..."
+			load_nvm
+		fi
+	fi
 
-    for var in $vims
-    do
-        v=$(command -v "$var")
-        if [[ -n $v ]]
-        then
-            $v $@
-            return $?
-        fi
-    done
+	for var in $vims; do
+		v=$(command -v "$var")
+		if [[ -n $v ]]; then
+			$v $@
+			return $?
+		fi
+	done
 }
 
 alias vi=start_vim
@@ -49,33 +46,34 @@ alias grep="grep -I \
 
 # Enable PCM if it's around
 if [ -f ~/.upkg/pcm/pcm.sh ]; then
-    alias pcm='~/.upkg/pcm/pcm.sh'
+	alias pcm='~/.upkg/pcm/pcm.sh'
 fi
 
 fit_add() {
-    # Use fzf to multiple select file to add to the Git index
-    local flist=""
+	# Use fzf to multiple select file to add to the Git index
+	local flist=""
 
-    # git add "$(git status -s | fzf --multi --with-nth=2| xargs echo -en)"
-    flist=$(git status -s | fzf --multi | awk '{print $2}')
+	# git add "$(git status -s | fzf --multi --with-nth=2| xargs echo -en)"
+	flist=$(git status -s | fzf --multi | awk '{print $2}')
 
-    if [[ -z $flist ]]; then
-        return
-    fi
+	if [[ -z $flist ]]; then
+		return
+	fi
 
-    while IFS= read -r line; do
-        git add "$line"
-        echo "git add '$line'"
-    done <<< "$flist"
+	while IFS= read -r line; do
+		git add "$line"
+		echo "git add '$line'"
+	done <<<"$flist"
 
-    echo ""
-    git status -uno -sb
+	echo ""
+	git status -uno -sb
 }
 
 # Git aliases
 alias gst='git status -sb'
 alias gsp='git status -uno -sb'
 alias gp='git push'
+alias gpf='git push --force-with-lease'
 alias gpl='git pull'
 alias gplt='git pullt'
 alias greup='git reup'
@@ -92,16 +90,16 @@ alias open='xdg-open'
 alias vif='nvim +Files'
 
 if [[ "$TERM" == "xterm-kitty" ]]; then
-    alias kcat='kitty +kitten icat'
-    alias kdiff="kitty +kitten diff"
-    alias icat='kitty +kitten icat'
+	alias kcat='kitty +kitten icat'
+	alias kdiff="kitty +kitten diff"
+	alias icat='kitty +kitten icat'
 fi
 
 cmd_exists=$(command -v prettyping)
 if [[ -n $cmd_exists ]]; then
-    alias ping='prettyping'
+	alias ping='prettyping'
 else
-    echo "Install 'prettyping' for a, pretry, ping"
+	echo "Install 'prettyping' for a, pretry, ping"
 fi
 
 # cmd_exists=$(command -v ncdu)
@@ -120,13 +118,13 @@ alias lt='ls --tree'
 alias docker-compose='docker compose'
 
 if [[ -x /usr/bin/exa ]]; then
-    alias ls='exa'
-    alias ll='ls -l --header'
+	alias ls='exa'
+	alias ll='ls -l --header'
 fi
 
 # Fancy checkout branch picker with fzf
 if [[ -x /usr/bin/fzf ]]; then
-    gch () {
-        git checkout "$(git branch --list --sort=-refname --sort=-committerdate --color | fzf --ansi | tr -d '[:space:]')"
-    }
+	gch() {
+		git checkout "$(git branch --list --sort=-refname --sort=-committerdate --color | fzf --ansi | tr -d '[:space:]')"
+	}
 fi
