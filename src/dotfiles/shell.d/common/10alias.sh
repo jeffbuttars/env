@@ -54,7 +54,7 @@ fit_add() {
 	local flist=""
 
 	# git add "$(git status -s | fzf --multi --with-nth=2| xargs echo -en)"
-	flist=$(git status -s | fzf --multi | awk '{print $2}')
+	flist=$(git status -s | fzf --color --multi | awk '{print $2}')
 
 	if [[ -z $flist ]]; then
 		return
@@ -76,9 +76,8 @@ alias gp='git push'
 alias gpf='git push --force-with-lease'
 alias gpl='git pull'
 alias gplt='git pullt'
+alias gws='git-wt-switch'
 alias greup='git reup'
-alias gcm='git cim'
-alias ga='git add'
 
 alias ga=fit_add
 
