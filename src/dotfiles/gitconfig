@@ -63,7 +63,7 @@
 [merge]
   tool = diffconflicts
   defaultToUpstream = true
-  conflictstyle = diff3
+  ; conflictstyle = diff3
 
 [blame]
   pager = delta

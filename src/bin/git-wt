@@ -3,27 +3,31 @@
 declare -a RUN_FILES=("compose.override.yml" ".env" ".env.dev" ".env.prod")
 
 _git_worktree_relisted() {
-	git worktree list 2>/dev/null | column --table --table-order 3,1,2
+	git worktree list 2>/dev/null | awk '{printf("%s %s %s\n"), $3, $1, $2}'
 }
 
 _git-wt-get-dir() {
 	if [[ -z $1 ]]; then
+		# echo "No name param" >&2
 		echo ""
 		return
 	fi
 
 	local wt_name="$1"
 
-	_git_worktree_relisted | while read wt; do
+	_git_worktree_relisted | while read -r wt; do
+		# echo "Looking at ${wt}" >&2
 		name=$(echo "$wt" | awk '{print $1}')
 		wtdir=$(echo "$wt" | awk '{print $2}')
 
-		if [[ "$name" == "[${wt_name}]" ]]; then
+		if [[ "$name" == "[${wt_name}]" ]] && [[ -n $wtdir ]]; then
+			# echo "Found at $wtdir" >&2
 			echo "$wtdir"
 			return
 		fi
 	done
 
+	# echo "nothing found" >&2
 	echo ""
 }
 
@@ -69,9 +73,9 @@ _git-wt-cp-run-files-into-cur-wt() {
 		return
 	fi
 
-	cur_wt_dir=$(_git-wt-get-dir "$cur_wt_name")
+	cur_wt_dir=$(_git-wt-get-dir "${cur_wt_name}")
 	if [[ -z ${cur_wt_dir} ]]; then
-		echo "Can't find worktree directory!"
+		echo "Can't find worktree directory for '${cur_wt_name}'!: '${cur_wt_dir}'"
 		return
 	fi
 
@@ -128,7 +132,7 @@ _git-wt-cp-run-files() {
 }
 
 if [[ -z $1 ]] || [[ "$1" == "list" ]] || [[ "$1" == "l" ]]; then
-	_git_worktree_relisted
+	git worktree list 2>/dev/null | column --table --output-width 100 --table-order 3,1,2 --table-truncate 3
 	exit 0
 fi
 

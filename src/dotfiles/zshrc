@@ -67,11 +67,13 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 # # CD without typing cd
 # AUTO_CD="true"
 
+# https://github.com/zsh-users/zsh-autosuggestions
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 source_if_exists "${HOME}/.local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 source_if_exists "${HOME}/.local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 bindkey '^ ' autosuggest-accept
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#555'
 
 # Look for $HOME/.zsh_local
 # That's where you put computer specific things that don't go in the repo
