@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local TERM_META = os.getenv("TERM_META")
-local HOSTNAME = os.getenv("HOSTNAME")
+
+local hname = assert(io.popen("hostname", "r"))
+local HOSTNAME = assert(hname:read("*a"))
 -- local HOME = os.getenv("HOME")
 
 -- local c_scheme = "rose-pine-dawn"
@@ -56,9 +58,11 @@ wezterm.on("user-var-changed", function(window, pane, name, value)
 	window:set_config_overrides(overrides)
 end)
 
-font_size = 18.0
+font_size = 20.0
 if HOSTNAME == "PV-LT-002" then
-	font_size = 12.0
+	font_size = 20.0
+elseif HOSTNAME == "chica" then
+	font_size = 20.0
 end
 
 return {
@@ -123,4 +127,12 @@ return {
 	},
 	exit_behavior = "Close",
 	term = "wezterm",
+
+	launch_menu = {
+		{ args = { "top" } },
+		{
+			label = "NeoVim",
+			args = { "neovim" },
+		},
+	},
 }
