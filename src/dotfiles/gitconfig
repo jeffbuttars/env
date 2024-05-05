@@ -15,7 +15,8 @@
     br = branch
     brl = branch --list --color --sort=-refname --sort=-committerdate
     ; brz = !git branch -a -vv --color=always | grep -v '/HEAD\s' | fzf --height 40% --ansi --multi --tac | sed 's/^..//' | awk '{print $1}' | sed "s#^remotes/[^/]*/##"
-    brz = !git checkout $(git branch -a -vv | fzf --height 40% --ansi --multi --tac)
+    swz = !git switch $(git branch --list | column --table | fzf)
+    brz = !git checkout $(git branch --list | column --table | fzf)
     lb = !git reflog show --pretty=format:'%gs ~ %gd' --date=relative | grep 'checkout:' | grep -oE '[^ ]+ ~ .*' | awk -F~ '!seen[$1]++' | head -n 10 | awk -F' ~ HEAD@{' '{printf(\"  \\033[33m%s\\033[0m:  %s\\n\", substr($2, 1, length($2)-1), $1)}'
     brg = "!f() { git branch --list --sort=-committerdate | grep -i $@; }; f"
     staash = stash --all
