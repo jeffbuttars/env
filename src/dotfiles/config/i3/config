@@ -50,6 +50,33 @@ set $wsMusic " 11  Music"
 set $ws12 " 12 󰍡 Messaging "
 set $wsMessaging " 12 󰍡 Messaging "
 
+# Catppuccin colors
+set $rosewater #dc8a78
+set $flamingo  #dd7878
+set $pink      #ea76cb
+set $mauve     #8839ef
+set $red       #d20f39
+set $maroon    #e64553
+set $peach     #fe640b
+set $green     #40a02b
+set $teal      #179299
+set $sky       #04a5e5
+set $sapphire  #209fb5
+set $blue      #1e66f5
+set $lavender  #7287fd
+set $text      #4c4f69
+set $subtext1  #5c5f77
+set $subtext0  #6c6f85
+set $overlay2  #7c7f93
+set $overlay1  #8c8fa1
+set $overlay0  #9ca0b0
+set $surface2  #acb0be
+set $surface1  #bcc0cc
+set $surface0  #ccd0da
+set $base      #eff1f5
+set $mantle    #e6e9ef
+set $crust     #dce0e8
+
 # "Windows" key
 #set $mod Mod4
 # set $mod Super_L
@@ -77,7 +104,7 @@ default_border normal 3
 # font xft:Oxygen-Sans 12
 # font pango: MesloLGMDZ Nerd Font Mono 8
 # font pango: FiraCode Nerd Font Mono 10
-font xft: FiraCode Nerd Font Mono 10
+font xft: FiraCode Nerd Font Mono 12
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -367,8 +394,19 @@ bindsym $mod+r mode "resize"
 
 #userid Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#     font xft:FiraCode Nerd Font Mono 12
+bar {
+  colors {
+      background         $base
+      statusline         $text
+      focused_statusline $text
+      focused_separator  $base
+      focused_workspace  $green $green $base
+      active_workspace   $blue $blue $base
+      inactive_workspace $base $base $text
+      urgent_workspace   $red $red $base
+      binding_mode       $base $base $surface1
+    }
+    # font xft:FiraCode Nerd Font Mono 12
 # #         #font xft:DejaVu Sans 16
 # #         # font xft:Oxygen-Sans Bold 10
 # #         # font xft:Meslo LG S Regular for Powerline Plus Nerd File Types Plus Font Awesome Plus Pomicons 12
@@ -376,10 +414,12 @@ bindsym $mod+r mode "resize"
 # #         font pango: MesloLGMDZ Nerd Font Mono 12
 # #         # mode hide
 # #         modifier Mod1
-#     status_command i3status
-#     position top
-#     tray_output primary
-# }
+    # status_command i3status
+    output primary
+    tray_output primary
+    status_command i3blocks
+    position top
+}
 
 # My own hotkeys
 # bindsym $mod+F1 exec google-chrome-stable --profile-directory=Default --enable-logging --v=1, exec google-chrome-stable --profile-directory='Profile 12' --enable-logging --v=1
@@ -447,10 +487,11 @@ bindsym XF86AudioStop exec playerctl stop
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
-bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
-bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
+bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume" && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume" && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute" && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
+
 
 exec_always ~/.fehbg
 exec_always ~/bin/nasa-pod.sh &
@@ -462,7 +503,7 @@ exec_always xrdb -merge ~/.Xresources
 exec yakuake
 exec xflux -z 83703
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id wmctrl -c Plasma
 
