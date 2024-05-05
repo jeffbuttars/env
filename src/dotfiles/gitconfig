@@ -109,3 +109,5 @@
 	format = ssh
 [rebase]
 	updateRefs = true
+[init]
+	defaultBranch = main
