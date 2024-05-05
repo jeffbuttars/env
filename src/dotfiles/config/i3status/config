@@ -1,0 +1,71 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        output_format = "i3bar"
+        colors = true
+        interval = 5
+        color_good = "#40a02b"
+        color_degraded = "#fe640b"
+        color_bad = "#d20f39"
+}
+
+#order += "ipv6"
+# order += "wireless _first_"
+# order += "ethernet _first_"
+# order += "battery all"
+# # order += "disk /"
+# order += "cpu_temperature 0"
+# order += "load"
+# order += "memory"
+order += "tztime local"
+
+# wireless _first_ {
+#         format_up = "﬉: (%quality at %essid) %ip"
+#         format_down = "﬉ "
+# }
+#
+# ethernet _first_ {
+#         format_up = "%ip ﯱ"
+#         format_down = " Down"
+# }
+
+# battery all {
+#     # format = "%status %percentage REM: %remaining (%emptytime %consumption)"
+#     format = "%status %percentage (%emptytime %consumption)"
+#     format_down = "No battery"
+#     status_chr = ""
+#     status_bat = "🔋 BAT"
+#     status_unk = "? UNK"
+#     status_full = " FULL"
+#     path = "/sys/class/power_supply/BAT%d/uevent"
+#     low_threshold = 30
+# }
+
+# disk "/" {
+#         format = "%avail"
+# }
+
+# load {
+#         format = "%1min %5min %15min"
+# }
+#
+# cpu_temperature 0 {
+#         format = " %degrees °C"
+#         #path = "/sys/devices/platform/coretemp.0/temp1_input"
+# }
+#
+# memory {
+#         format = "%used | %available"
+#         threshold_degraded = "1G"
+#         format_degraded = "MEMORY < %available"
+# }
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
