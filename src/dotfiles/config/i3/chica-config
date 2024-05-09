@@ -10,6 +10,26 @@ set $center_op DP-4-3
 set $right_op eDP-1
 
 
+bar {
+  status_command i3status
+  position top
+  output DP-3
+  output eDP-1
+
+  colors {
+      background         $base
+      statusline         $text
+      focused_statusline $text
+      focused_separator  $base
+      focused_workspace  $green $green $base
+      active_workspace   $blue $blue $base
+      inactive_workspace $base $base $text
+      urgent_workspace   $red $red $base
+      binding_mode       $base $base $surface1
+    }
+}
+
+
 ### monitor layout ###
 
 # Focus by monitor
