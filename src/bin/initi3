@@ -5,11 +5,14 @@ export KDEWM='i3'
 # Start the ssh-agent
 [ -n "$SSH_AGENT_PID" ] || eval "$(ssh-agent -s)"
 
-/usr/bin/startplasma-x11
+#/usr/bin/startplasma-x11
 
 # Stop the ssh-agent
 [ -z "$SSH_AGENT_PID" ] || eval "$(ssh-agent -k)"
 
 if [[ $(command -v load_nvm) ]]; then
-    load_nvm
+	load_nvm
 fi
+
+systemctl --user stop plasma-kwin_x11
+systemctl --user restart plasma-i3-wm
