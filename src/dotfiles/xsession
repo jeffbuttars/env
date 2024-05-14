@@ -1,1 +1,14 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+export WS1=" 1  Browser "
+export WS2=" 2  Browser "
+export WS3=" 3  Browser "
+export WS4=" 4  "
+export WS5=" 5   "
+export WS6=" 6   "
+export WS7=" 7  VM"
+export WS8=" 8  Mail"
+export WS9=" 9  󱂅 "
+export WS10=" 10  "
+export WS11=" 11  Music"
+export WS12=" 12 󰍡 Messaging "

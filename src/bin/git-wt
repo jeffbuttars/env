@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+
+declare -a RUN_FILES=("compose.override.yml" ".env" ".env.dev" ".env.prod")
+
+_git_worktree_relisted() {
+	git worktree list 2>/dev/null | awk '{printf("%s %s %s\n"), $3, $1, $2}'
+}
+
+_git-wt-get-dir() {
+	if [[ -z $1 ]]; then
+		# echo "No name param" >&2
+		echo ""
+		return
+	fi
+
+	local wt_name="$1"
+
+	_git_worktree_relisted | while read -r wt; do
+		# echo "Looking at ${wt}" >&2
+		name=$(echo "$wt" | awk '{print $1}')
+		wtdir=$(echo "$wt" | awk '{print $2}')
+
+		if [[ "$name" == "[${wt_name}]" ]] && [[ -n $wtdir ]]; then
+			# echo "Found at $wtdir" >&2
+			echo "$wtdir"
+			return
+		fi
+	done
+
+	# echo "nothing found" >&2
+	echo ""
+}
+
+_git-wt-find-main() {
+	_git_worktree_relisted | while read wt; do
+		name=$(echo "$wt" | awk '{print $1}')
+		wtdir=$(echo "$wt" | awk '{print $2}')
+
+		if [[ "$name" == '[main]' ]]; then
+			echo "$wtdir"
+			return
+		fi
+	done
+	echo ""
+}
+
+_git-wt-current() {
+	local git_dir=""
+
+	git_dir=$(git rev-parse --git-dir 2>/dev/null)
+	if [[ "$?" != "0" ]]; then
+		echo ""
+		return
+	fi
+
+	if [[ "$git_dir" == ".git" ]]; then
+		echo ""
+		return
+	fi
+
+	basename "$git_dir"
+}
+
+_git-wt-cp-run-files-into-cur-wt() {
+	local cur_wt_name
+	local cur_wt_dir
+	local main_src_dir
+
+	# If we're in the main/cloned dir or not a worktree, do nothing
+	cur_wt_name=$(_git-wt-current)
+	if [[ -z ${cur_wt_name} ]]; then
+		echo "Not in a worktree"
+		return
+	fi
+
+	cur_wt_dir=$(_git-wt-get-dir "${cur_wt_name}")
+	if [[ -z ${cur_wt_dir} ]]; then
+		echo "Can't find worktree directory for '${cur_wt_name}'!: '${cur_wt_dir}'"
+		return
+	fi
+
+	# Then, are we in a worktree dir?
+	main_src_dir=$(_git-wt-find-main)
+	if [[ -z ${main_src_dir} ]]; then
+		echo "Unable to find main src dir"
+		return
+	fi
+
+	_git-wt-cp-run-files "$main_src_dir" "$cur_wt_dir"
+}
+
+_git-wt-cp-run-files() {
+	if [[ "$#" != "2" ]]; then
+		return
+	fi
+
+	local src_dir="$1"
+	local dest_dir="$2"
+
+	if [[ ! -d "$src_dir" ]]; then
+		return
+	fi
+
+	if [[ ! -d "$dest_dir" ]]; then
+		return
+	fi
+
+	cd "$src_dir" || return
+
+	for runfile in "${RUN_FILES[@]}"; do
+		# echo "Looking for $runfile in $src_dir ..."
+
+		find "." -name "$runfile" | while read -r rfile; do
+			prefix_dir=$(dirname "$rfile")
+			fname=$(basename "$rfile")
+			con_dir=$(readlink -f "${dest_dir}/${prefix_dir}")
+			dst_file="${con_dir}/${fname}"
+
+			if [[ -d "$con_dir" ]]; then
+				if [[ ! -f "$dst_file" ]]; then
+					ln -v "$rfile" "$dst_file"
+				# else
+				# 	echo "file already exists, not creating link: $rfile -> $dst_file"
+				fi
+			# else
+			# 	echo "Expected destination dir doesn't exist: ${con_dir}/${fname}"
+			fi
+		done
+	done
+
+	cd - || return
+}
+
+if [[ -z $1 ]] || [[ "$1" == "list" ]] || [[ "$1" == "l" ]]; then
+	git worktree list 2>/dev/null | column --table --output-width 100 --table-order 3,1,2 --table-truncate 3
+	exit 0
+fi
+
+if [[ "$1" == 'cp' ]]; then
+	_git-wt-cp-run-files-into-cur-wt
+	exit
+fi
+
+if [[ "$1" == 'add' ]]; then
+	args=("$@")
+	last_arg=${args[${#args[@]}]}
+	second_last_arg=${args[${#args[@]} - 1]}
+
+	if [[ "$(git worktree $*)" ]]; then
+		# Do our best to link over runtime, non git, files into the new workspace
+		if [[ -d "$last_arg" ]]; then
+			_git-wt-cp-run-files "$PWD" "$last_arg"
+		elif [[ -d "$second_last_arg" ]]; then
+			_git-wt-cp-run-files "$PWD" "$second_last_arg"
+		fi
+	fi
+
+	exit
+fi
+
+exec git worktree "$*"

@@ -1,93 +1,153 @@
 #!/bin/bash
 
+#stash Allow the cargo version of neovide to have precedence
+# if [ -f "${HOME}/.cargo/bin/neovide" ]; then
+#     HAS_NEOVIDE="${HOME}/.cargo/bin/neovide"
+# fi
+
 # fzf --preview 'bat --color "always" {}'
 # neovide $(fzf --preview 'bat --color "always" {}')
 # neovide $(fzf --preview)
 # neovide $(fzf --preview 'less {}')
 
-HAS_NEOVIDE=$(command -v neovide)
-HAS_NEOVIM=$(command -v nvim)
-HAS_VIM=$(command -v vim)
-HAS_BAT=$(command -v bat)
-HAS_BATCAT=$(command -v batcat)
-HAS_LESS=$(command -v less)
-HAS_FZF=$(command -v fzf)
-HAS_FD=$(command -v fd)
-HAS_FDFIND=$(command -v fdfind)
-
-
-# Allow the cargo version of neovide to have precidence
-if [ -f "${HOME}/.cargo/bin/neovide" ]; then
-    HAS_NEOVIDE="${HOME}/.cargo/bin/neovide"
-fi
-
-
-if [[ $1 ]]; then
-    # Use the command specified
-    EDITOR_CMD="$1"
-else
-    # Determine which editor to use
-    # Order of precidence is: neovide, neovim, vim, vi
-    if [[ -n $HAS_NEOVIDE ]]; then
-        EDITOR_CMD='neovide'
-    elif [[ -n $HAS_NEOVIM ]]; then
-        EDITOR_CMD='nvim'
-    elif [[ -n $HAS_VIM ]]; then
-        EDITOR_CMD='vim'
-    else
-        EDITOR_CMD='vi'
-    fi
-fi
-
-if [[ -z $HAS_FZF ]]; then
-   # No fzf, so just open the editor!
-   $EDITOR_CMD "$@"
-   exit
-fi
-
+DEFAULT_EDITOR_CMD="vi"
+CLI_EDITOR_CMD=""
+EDITOR_CMD=""
+START_DIR=""
 # We have fzf. If can't show a preview with less or bat, use the simple form
 FZF_ARGS=""
 
-if [[ -z $HAS_FD ]]; then
-    if [[ $HAS_FDFIND ]]; then
-        HAS_FD="$HAS_FDFIND"
-    fi
+choose_editor() {
+	if [[ -n $1 ]]; then
+		# Use the command specified
+		EDITOR_CMD="$1"
+	else
+		# Determine which editor to use
+		# Order of precedence is: neovim, vim, vi
+		if [[ -n $(command -v nvim) ]]; then
+			EDITOR_CMD='nvim'
+		elif [[ -n $(command -v vim) ]]; then
+			EDITOR_CMD='vim'
+		else
+			EDITOR_CMD="$DEFAULT_EDITOR_CMD"
+		fi
+	fi
+
+	if [[ "${EDITOR_CMD}" == "n" ]]; then
+		EDITOR_CMD="nvim"
+	elif [[ "${EDITOR_CMD}" == "v" ]]; then
+		if [[ -n $(command -v neovide) ]]; then
+			EDITOR_CMD='neovide'
+		fi
+	fi
+
+	if [[ -z $(command -v "$EDITOR_CMD") ]]; then
+		echo >&2 "Unabled to find editor: $EDITOR_CMD, using default editor: $DEFAULT_EDITOR_CMD"
+		sleep 1
+		EDITOR_CMD="$DEFAULT_EDITOR_CMD"
+	fi
+}
+
+build_fzf_args() {
+	HAS_FD=$(command -v fd)
+	if [[ -z $HAS_FD ]]; then
+		HAS_FDFIND=$(command -v fdfind)
+
+		if [[ $HAS_FDFIND ]]; then
+			HAS_FD="$HAS_FDFIND"
+		fi
+	fi
+
+	# Use `fd` if it's available
+	if [[ $HAS_FD ]]; then
+		# Setting fd as the default source for fzf.
+		export FZF_DEFAULT_COMMAND="$HAS_FD --type f  --hidden --follow \
+          --exclude __pycache__"
+
+		# follow symbolic links and don't want it to exclude hidden files.
+		# Slower, but shows much more
+		# export FZF_DEFAULT_COMMAND="$HAS_FD --type f --hidden --follow --exclude .git"
+	fi
+
+	BAT_THEME=""
+	if [[ "$TERM_META" == "light" ]]; then
+		BAT_THEME="--theme \"GitHub\""
+	fi
+
+	# Select a preview command
+	if [[ -n $(command -v bat) ]]; then
+		FZF_ARGS=--preview="bat --color \"always\" $BAT_THEME {}"
+	elif [[ -n $(command -v batcat) ]]; then
+		FZF_ARGS=--preview="batcat --color \"always\" $BAT_THEME {}"
+	elif [[ -n $(command -v less) ]]; then
+		FZF_ARGS=--preview='less {}'
+	fi
+
+	if [[ $START_DIR ]]; then
+		FZF_ARGS+=" --query '$START_DIR'"
+	fi
+}
+
+#===  FUNCTION  ================================================================
+#         NAME:  usage
+#  DESCRIPTION:  Display usage information.
+#===============================================================================
+function usage() {
+	echo "Usage :  $0 [options] <start_dir>
+
+    Options:
+    -e       Specify editor
+    -h       Display this message
+    -v       Display script version"
+
+} # ----------  end of function usage  ----------
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+while [ $OPTIND -le $# ]; do
+
+	if getopts ":have:" opt; then
+		case $opt in
+
+		e)
+			CLI_EDITOR_CMD="$OPTARG"
+			;;
+
+		h)
+			usage
+			exit 0
+			;;
+
+		*)
+			START_DIR="$OPTARG"
+			;;
+		esac # --- end of case ---
+	else
+		START_DIR="${!OPTIND}"
+		((OPTIND++))
+	fi
+done
+
+choose_editor "$CLI_EDITOR_CMD"
+build_fzf_args
+
+if [[ -z $(command -v fzf) ]]; then
+	# No fzf, so just open the editor!
+	$EDITOR_CMD
+	exit
 fi
 
-
-# Use `fd` if it's available
-if [[ $HAS_FD ]]; then
-    # Setting fd as the default source for fzf.
-    export FZF_DEFAULT_COMMAND="$HAS_FD --type f \
-        --exclude __pycache__"
-
-    # follow symbolic links and don't want it to exclude hidden files.
-    # Slower, but shows much more
-    # export FZF_DEFAULT_COMMAND="$HAS_FD --type f --hidden --follow --exclude .git"
-fi
-
-
-# If we have less, previw with less
-if [[ -n $HAS_LESS ]]; then
-    FZF_ARGS=--preview='less {}'
-fi
-
-BAT_THEME=""
-if [[ "$TERM_META" ==  "light" ]]; then
-    BAT_THEME="--theme \"GitHub\""
-fi
-
-# If we have bat, previw with bat
-if [[ -n $HAS_BAT ]]; then
-    FZF_ARGS=--preview="bat --color \"always\" $BAT_THEME {}"
-elif [[ -n $HAS_BATCAT ]]; then
-    FZF_ARGS=--preview="batcat --color \"always\" $BAT_THEME {}"
-fi
-
+# echo "fzf ${FZF_ARGS}"
+# echo "$EDITOR_CMD"
+# exit 0
+# Run fzf and get the selected file
 FNAME=$(fzf "${FZF_ARGS}")
+# echo "EXEC: $EDITOR_CMD $FNAME"
 
 if [[ $FNAME ]]; then
-    $EDITOR_CMD "$FNAME"
+	$EDITOR_CMD "$FNAME"
 else
-    echo "No filename selected, not starting $EDITOR_CMD"
+	$EDITOR_CMD
 fi

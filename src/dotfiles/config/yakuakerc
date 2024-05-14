@@ -20,6 +20,11 @@ Width 3840=1218
 [Favorite Profiles]
 Favorites=dark.profile,Light.profile,red.profile
 
+[KFileDialog Settings]
+Recent Files[$e]=faye1bw.jpg,file:$HOME/Pictures/wallpaper/faye1bw.jpg
+Recent URLs[$e]=file:$HOME/Pictures/wallpaper/
+detailViewIconSize=16
+
 [Shortcuts]
 close-active-terminal=Ctrl+Shift+R
 close-session=Ctrl+Shift+W
@@ -48,7 +53,7 @@ view-full-screen=Ctrl+Shift+F11
 
 [Window]
 DynamicTabTitles=true
-Height=47
+Height=49
 ShowSystrayIcon=false
 ToggleToFocus=true
 Width=95

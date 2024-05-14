@@ -1,0 +1,36 @@
+# Solaraized colors:
+set $sol_base03  #002b36
+set $sol_base02  #073642
+set $sol_base01  #586e75
+set $sol_base00  #657b83
+set $sol_base0   #839496
+set $sol_base1   #93a1a1
+set $sol_base2   #eee8d5
+set $sol_base3   #fdf6e3
+set $sol_yellow  #b58900
+set $sol_orange  #cb4b16
+set $sol_red     #dc322f
+set $sol_magenta #d33682
+set $sol_violet  #6c71c4
+set $sol_blue    #268bd2
+set $sol_cyan    #2aa198
+set $sol_green   #859900
+set $sol_black   #000000
+
+#class                    border        backgr       text        split          child border
+client.focused          $sol_green   $sol_green $sol_base3   $sol_green
+# client.focused_inactive #073642       #002b36     $sol_base2   $sol_red
+# client.unfocused        #073642       #002b36     $sol_base1   $sol_red
+# client.urgent           $sol_base2    $sol_base3  $sol_red     $sol_blue
+# client.background       $sol_green
+
+# https://github.com/unix121/i3wm-themer/blob/master/src/themes/000.json
+client.background #1d1f21
+# client.unfocused #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+# client.focused_inactive #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+client.placeholder #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+
+client.unfocused $sol_base02 $sol_base02 #c5c8c6 #5f819d $sol_base02
+client.focused_inactive $sol_base02 $sol_base02 #c5c8c6 #5f819d $sol_base02
+

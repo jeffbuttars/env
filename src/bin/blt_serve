@@ -1,6 +1,12 @@
 #!/bin/bash
 
+REMOTE_SHELL_CMD_DEV='ssh bst-lt-dev'
+# REMOTE_SHELL_CMD_DEV='ssh bst-lt-dev-bt'
+REMOTE_SHELL_CMD_COP='ssh bst-lt-dev-cop'
+
+
 if [[ -f "$HOME/.bst.sh" ]]; then
+    # shellcheck source=/dev/null
     . "$HOME/.bst.sh"
 fi
 
@@ -16,7 +22,7 @@ i3msg ()
 {
     socketpath=$(i3 --get-socketpath)
     if [[ "$?" == "0" ]] && [[ $socketpath ]]; then
-        i3-msg $@
+        i3-msg "$@"
     fi
 }
 
@@ -32,11 +38,11 @@ shellexec ()
         echo -e "set +e\ntrap 'echo \"Dead now!\"' SIGINT SIGTERM\n$1\nzsh -i" > "$tmpfile"
     fi
 
-    echo "shellexec: $(cat $tmpfile)"
+    echo "shellexec: $(cat "$tmpfile")"
 
     i3msg "workspace \"$I3_DEV_WKSPACE\""
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
-    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile" &
+    konsole --hide-menubar --profile red --workdir "$WORK_DIR" -e "zsh $tmpfile" &
     sleep 0.5
 }
 
@@ -51,11 +57,11 @@ shellexec_blocking ()
         echo -e "$1;\n" > "$tmpfile"
     fi
 
-    echo "shellexec_blocking: $(cat $tmpfile)"
+    echo "shellexec_blocking: $(cat "$tmpfile")"
 
     i3-msg "workspace \"$I3_DEV_WKSPACE\""
     # bindsym $mod+Ctrl+1 [workspace=$ws1] kill
-    konsole --hide-menubar --profile red --workdir $WORK_DIR -e "zsh $tmpfile"
+    konsole --hide-menubar --profile red --workdir "$WORK_DIR" -e "zsh $tmpfile"
 }
 
 do_cmd()
@@ -75,15 +81,15 @@ i3msg 'split vertical'
 
 shellexec_blocking "make -j3 images-base;"
 
-shellexec "ssh bst-lt-dev"
+shellexec "$REMOTE_SHELL_CMD_DEV"
 do_cmd "./scripts/serve -s pgsql dbwatch"
 sleep 2
 
-shellexec "ssh bst-lt-dev"
+shellexec "$REMOTE_SHELL_CMD_DEV"
 do_cmd "./scripts/serve -s hal pipeline"
 sleep 2
 
-shellexec "ssh bst-lt-dev"
+shellexec "$REMOTE_SHELL_CMD_DEV"
 do_cmd "./scripts/serve -s sims/dynetics sims/grabber sims/rfagent sims/echoguard-31 sims/echoguard-32 sims/echoguard-33 sims/echoguard-34 sims/grabber-2 sims/grabber-3 sims/cot sims/trd_orion"
 sleep 2
 
@@ -91,15 +97,15 @@ sleep 2
 i3msg 'focus parent'
 i3msg 'split horizontal'
 
-shellexec "ssh bst-lt-dev"
-do_cmd "./scripts/serve -s api api_v3"
+shellexec "$REMOTE_SHELL_CMD_DEV"
+do_cmd "./scripts/serve -s api api_v3 api_v3_1"
 sleep 2
 
 i3msg 'split vertical'
 
-shellexec "ssh bst-lt-dev"
+shellexec "$REMOTE_SHELL_CMD_DEV"
 do_cmd "./scripts/serve -s esink"
 sleep 2
 
-shellexec "ssh bst-lt-dev-cop"
-do_cmd "nvm use bst; yarn yrebuild; yarn start"
+shellexec "$REMOTE_SHELL_CMD_COP"
+do_cmd "load_nvm; use default; yarn yrebuild; yarn start"

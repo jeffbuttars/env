@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# If not running interactively, don't do anything and return early
+[[ $- == *i* ]] || return
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -161,3 +164,11 @@ if [[ -f "${HOME}/.shell.d/index" ]]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f ~/.cargo/env ] && source ~/.cargo/env
+
+if [[ -f "${HOME}/.nvm" ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi

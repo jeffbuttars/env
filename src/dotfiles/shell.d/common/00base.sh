@@ -2,21 +2,21 @@
 
 umask 0027
 
+# Create some dirs for vim to put backup, swap files, etc. into
+mkdir -p "${HOME}/tmp/.vim/{backup,swap,undo}"
+
 # SSH Keychain
-if [[ -x /usr/bin/ksshaskpass ]]
-then
-    export SSH_ASKPASS=/usr/bin/ksshaskpass
+if [[ -x /usr/bin/ksshaskpass ]]; then
+	export SSH_ASKPASS=/usr/bin/ksshaskpass
 fi
 
-if [[ -x /usr/bin/keychain ]]
-then
-   eval $(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)
+if [[ -x /usr/bin/keychain ]]; then
+	eval "$(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)"
 fi
 
 # Default to a light shell if not set otherwise.
-if [[ -z $TERM_META ]]
-then
-    export TERM_META=light
+if [[ -z $TERM_META ]]; then
+	export TERM_META=light
 fi
 
 export PSQL_EDITOR='nvim -c"set ft=sql"'
@@ -26,6 +26,8 @@ export VISUAL=vim
 
 # Neovide
 export NeovideMultiGrid=true
+NEOVIDE_MULTIGRID=true
+export NEOVIDE_MULTIGRID
 
 source_if_exists "${HOME}/.cargo/env"
 

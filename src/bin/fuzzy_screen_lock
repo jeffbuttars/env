@@ -1,42 +1,146 @@
 #!/bin/bash
 
 BG_COLOR="666666"
-SCREEN_OFF_TIMEOUT=30  # seconds
+SCREEN_OFF_TIMEOUT=300 # seconds
+WALLPAPERS_ROOT="$HOME/Pictures/wallpaper"
 
-TMP_IMAGE="/tmp/screen_pic_saver.png"
+WALLPAPERS=()
 
-scrot --overwrite $TMP_IMAGE
-mogrify -blur 15,5 $TMP_IMAGE
+for WPIC in ${WALLPAPERS_ROOT}/{*.png,*.jpg}; do
+	WALLPAPERS+=("$WPIC")
+done
 
-i3lock -n --color="$BG_COLOR" --image=$TMP_IMAGE
-# i3lock --color="$BG_COLOR" --image=$TMP_IMAGE && sleep $SCREEN_OFF_TIMEOUT && xset dpms force off
+WALLPAPERS_SIZE=${#WALLPAPERS[@]}
+WALLPAPERS_INDEX=$((RANDOM % WALLPAPERS_SIZE))
+
+echo "WALLPAPERS_INDEX: $WALLPAPERS_INDEX"
+
+WALLPAPER=${WALLPAPERS[$WALLPAPERS_INDEX]}
+
+echo "WALLPAPER: $WALLPAPER"
+
+if [[ -f "${WALLPAPER}" ]]; then
+	bname=$(basename "${WALLPAPER}")
+	# get the suffix of the filename
+	suffix="${bname##*.}"
+
+	SAVER_IMAGE="/tmp/screen_saver_pic.png"
+	IMAGE_COPY="/tmp/${bname}"
+
+	rm -f "$SAVER_IMAGE" "$IMAGE_COPY"
+	cp -f "${WALLPAPER}" "$IMAGE_COPY"
+
+	if [[ "$suffix" != "png" ]]; then
+		convert -resize 2560 "${IMAGE_COPY}" "${SAVER_IMAGE}"
+		rm -f "$IMAGE_COPY"
+	fi
+fi
+
+# Take a pic of the desktop, blur it and use it
+# if [[ $(command -v scrot) ]]; then
+# 	scrot --overwrite $SAVER_IMAGE
+# 	mogrify -blur 15,5 $SAVER_IMAGE
+# fi
+#
+# revert() {
+#   xset dpms 0 0 0
+# }
+# trap revert HUP INT TERM
+# xset +dpms dpms 5 5 5
+# i3lock -n
+# revert
+
+SO_PID=''
+TEXT_ALPHA='88'
+TEXT_COLOR="000000${TEXT_ALPHA}"
+TEXT_OUTLINE_COLOR="EEEEEE${TEXT_ALPHA}"
+
+unlocked() {
+	echo "Unlocked"
+
+	echo "Setting cpu governor to performance"
+	sudo cpupower frequency-set -g performance
+
+	if [[ -n "$SO_PID" ]]; then
+		echo "Unlocked killing $SO_PID"
+		kill -9 $SO_PID
+	fi
+
+	# xset dpms force on
+}
+
+screens_off() {
+	trap unlocked HUP INT TERM
+	echo "Screens off: Setting cpu governor to powersave"
+	sudo cpupower frequency-set -g powersave
+	sleep $SCREEN_OFF_TIMEOUT
+	xset dpms force off
+}
+
+if [[ -f $SAVER_IMAGE ]]; then
+	# echo "Running: i3lock --tiling --image $SAVER_IMAGE"
+	screens_off &
+	SO_PID=$!
+
+	trap unlocked HUP INT TERM
+	# i3lock -n --tiling --image "$SAVER_IMAGE"
+	# --{inside, ring}wrong-color=rrggbbaa
+	# i3lock -n --max --clock --radius=200 --insidever-color=ff000088 --ringver-color=ff000088 --image "$SAVER_IMAGE"
+	i3lock -n --max --clock \
+		--radius=200 \
+		--date-color=${TEXT_COLOR} \
+		--dateoutline-color=${TEXT_OUTLINE_COLOR} \
+		--time-color=${TEXT_COLOR} \
+		--timeoutline-color=${TEXT_OUTLINE_COLOR} \
+		--date-size=100 \
+		--time-size=200 \
+		--timeoutline-width=1 \
+		--dateoutline-width=1 \
+		--date-pos=tx:ty+200 \
+		--slideshow-interval=15 \
+		--slideshow-random-selection \
+		--image "${WALLPAPERS_ROOT}"
+	# --image "$SAVER_IMAGE"
+	unlocked
+else
+	# echo "Running: i3lock --color=$BG_COLOR"
+	screens_off &
+	SO_PID=$!
+
+	trap unlocked HUP INT TERM
+	i3lock -n --color="$BG_COLOR"
+	unlocked
+fi
+
+# i3lock --color="$BG_COLOR" --image=$SAVER_IMAGE && sleep $SCREEN_OFF_TIMEOUT && xset dpms force off
 
 # killall plasmashell; plasmashell &
 # i3-msg restart
-if [[ -f $HOME/bin/post_screen_lock.sh ]]; then
-    $HOME/bin/post_screen_lock.sh
-fi
+# if [[ -f $HOME/bin/post_screen_lock.sh ]]; then
+# 	$HOME/bin/post_screen_lock.sh
+# fi
+
+# sleep $SCREEN_OFF_TIMEOUT
+# xset dpms force off
 
 exit 0
 
-
-INACTIVITY_TIMEOUT=60  # minutes
-
-CMD_I3LOCK=$(command -v i3lock)
-CMD_XSET=$(command -v xset)
-CMD_SCROT=$(command -v scrot)
-CMD_XAUTOLOCK=$(command -v xautolock)
-
-BASE_COMMAND="i3lock -c $BG_COLOR"
-
-LOCK_COMMAND="$BASE_COMMAND"
-
-# && sleep 30 && xset dpms force off"
-
-
-# run_lock()
-# {
-    
-# }
-
-# xautolock -detectsleep -time $INACTIVITY_TIMEOUT -locker ~/bin/fuzzy_screen_lock
+# INACTIVITY_TIMEOUT=60 # minutes
+#
+# CMD_I3LOCK=$(command -v i3lock)
+# CMD_XSET=$(command -v xset)
+# CMD_SCROT=$(command -v scrot)
+# CMD_XAUTOLOCK=$(command -v xautolock)
+#
+# BASE_COMMAND="i3lock -c $BG_COLOR"
+#
+# LOCK_COMMAND="$BASE_COMMAND"
+#
+# # && sleep 30 && xset dpms force off"
+#
+# # run_lock()
+# # {
+#
+# # }
+#
+# # xautolock -detectsleep -time $INACTIVITY_TIMEOUT -locker ~/bin/fuzzy_screen_lock

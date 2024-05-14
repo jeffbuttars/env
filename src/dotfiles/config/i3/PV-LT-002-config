@@ -1,0 +1,91 @@
+
+# Output vars
+
+# 2K
+set $left_op DP-7
+#set $left_op DP-8
+# 4K
+set $center_op DP-10
+#set $center_op DP-12
+# 13" Laptop
+set $right_op eDP-1
+
+bar {
+  status_command i3status
+  position top
+  output eDP-1
+  output DP-7
+  #output eDP-8
+  # output DP-10
+  #output DP-12
+
+  colors {
+      background         $base
+      statusline         $text
+      focused_statusline $text
+      focused_separator  $base
+      focused_workspace  $green $green $base
+      active_workspace   $blue $blue $base
+      inactive_workspace $base $base $text
+      urgent_workspace   $red $red $base
+      binding_mode       $base $base $surface1
+    }
+}
+
+
+### monitor layout ###
+
+# Focus by monitor
+bindsym Control+1 focus output $left_op
+bindsym Control+2 focus output $center_op
+bindsym Control+3 focus output $right_op
+
+### 3 monitor layout for home ###
+# Left
+workspace $wsMoneyBrowser output $left_op
+workspace $wsBrowser2 output $left_op
+workspace $wsBrowser3 output $left_op
+workspace $wsRando output $left_op
+
+# Center
+workspace $wsCode output $center_op
+workspace $wsCode2 output $center_op
+workspace $wsVM output $center_op
+workspace $wMail output $center_op
+
+# Right
+workspace $wsServices output $right_op
+workspace $wsMedia output $right_op
+workspace $wsMusic output $right_op
+workspace $wsMessaging output $right_op
+
+# Mouse bindings
+#bindsym --whole-window $mod+button4 exec picom-trans -c -- +5
+#bindsym --whole-window $mod+button5 exec picom-trans -c -- -5
+
+# Picom works poorly on intel gpu
+# exec_always --no-startup killall -9 picom
+# exec_always --no-startup picom -b
+
+# exec --no-startup-id 'i3-msg workspace $wsMoneyBrowser'
+# exec --no-startup-id 'i3-msg workspace $wsCode'
+# exec --no-startup-id signal-desktop
+#
+# exec --no-startup-id plasmashell
+
+exec systemctl --user plasma-plasmashell.service
+exec systemctl --user start plasma-gmenudbusmenuproxy.service
+exec systemctl --user plasma-kactivitymanagerd.service
+exec systemctl --user plasma-kded.service
+  #plasma-kglobalaccel.service
+exec systemctl --user plasma-kscreen.service
+#plasma-ksmserver.service
+#plasma-kwin_x11.service                                                                               loaded active running KDE Window Manager
+exec systemctl --user plasma-polkit-agent.service
+exec systemctl --user plasma-powerdevil.service
+exec systemctl --user plasma-xdg-desktop-portal-kde.service
+exec systemctl --user plasma-dolphin
+  #plasma-xembedsniproxy.service                                                                         loaded active running Handle legacy xembed system tray icons
+  #plasma-core.target                                                                                    loaded active active  KDE Plasma Workspace Core
+  #plasma-workspace-x11.target                                                                           loaded active active  plasma-workspace-x11.target
+  #plasma-workspace.target

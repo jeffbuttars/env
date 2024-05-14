@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+BASE_DIR="$HOME/Documents/MeetingNotes/$(date +'%Y-%m')"
+NAME="$*"
+ARGS="-c ZenMode -c MarkdownPreview"
+
+if [[ ! $NAME ]]; then
+	NAME='MeetingNotes'
+fi
+
+mkdir -p "$BASE_DIR"
+
+TODAY=$(date +'%Y-%m-%d')
+FILE="${BASE_DIR}/${TODAY}_${NAME}.md"
+
+# If the file doesn't exist, create a "template"
+if [[ ! -f "${FILE}" ]]; then
+	cat <<EOF >"${FILE}"
+# ${NAME} - _${TODAY}_
+
+## Summary
+
+
+## People
+
+
+## Notes
+
+
+EOF
+fi
+
+VCMD="vim"
+if [[ $(command -v nvim) ]]; then
+	VCMD="nvim"
+fi
+
+"${VCMD}" ${ARGS} "${FILE}"

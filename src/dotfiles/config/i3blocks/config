@@ -1,0 +1,44 @@
+[DISK]
+command=df -h / | awk '/\//{ printf(" 💾 %4s/%s \n", $4, $2) }'
+interval=2
+# color=#C9E3DB
+
+[CPU_TEMP]
+command=~/.config/i3blocks/temp/cpu_temp.sh
+interval=1
+# color=#FEFeFe
+
+[CPU_USAGE]
+min_width='          '
+align=left
+command=~/.config/i3blocks/cpu/cpu_info.sh
+interval=1
+markup=pango
+
+[CPU_FEQ]
+min_width='     '
+align=left
+command=~/.config/i3blocks/cpu/freq.sh
+interval=1
+markup=pango
+
+[MEM]
+command=~/.config/i3blocks/memory/mem_bars.sh
+interval=1
+markup=pango
+# color=#FEC925
+#command=free -h | awk '/Mem:/ { printf(" 🐏 %5s/%s \n", $3, $2) }'
+
+[BACKLIGHT]
+command=~/.config/i3blocks/backlight/backlight.sh $button
+interval=1
+markup=pango
+
+[BATTERY]
+command=~/.config/i3blocks/battery/battery_info.sh
+color=#4c4f69
+interval=3
+
+[TIME_DATE]
+command=date +" %a, %b %d - %H:%M:%S"
+interval=1
