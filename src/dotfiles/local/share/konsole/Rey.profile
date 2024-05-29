@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=Sweet-Mars
+ColorScheme=Breeze
 Font=FiraCode NF,14,-1,5,53,0,0,0,0,0,Retina
 
 [Cursor Options]

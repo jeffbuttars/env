@@ -166,8 +166,11 @@ for_window [title="Plasma-desktop"] floating enable, border none
 for_window [title="plasma-desktop"] floating enable, border none
 for_window [class="win7"] floating enable, border none
 for_window [class="krunner"] floating enable, border none
+# for_window [class="Yakuake"] floating enable, move position center, border pixel 2
+# for_window [title="Yakuake"] floating enable, move position center, border pixel 2
 for_window [class="Yakuake"] floating enable, border pixel 2
 for_window [title="Yakuake"] floating enable, border pixel 2
+
 for_window [class="Kmix"] floating enable, border none,  move position center
 for_window [class="kruler"] floating enable; border none,  move position center
 for_window [class="klipper"] floating enable; border none,  move position center
@@ -429,20 +432,20 @@ bindsym $mod+F3 exec ~/bin/dev-serve.sh
 bindsym $mod+shift+F3 exec ~/bin/dev-serve.sh -n
 
 # bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default --enable-logging --v=1
-bindsym $mod+F4 workspace $wsMusic, exec brave --app='https://music.youtube.com/?source=pwa'
+bindsym $mod+F4 workspace $wsMusic, exec brave-browser
 
 # bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com' --profile-directory=Default
-bindsym $mod+F5 exec brave --app='https://youtube.com'
+bindsym $mod+F5 exec brave-browser --app='https://youtube.com'
 
 # bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
-bindsym $mod+F6 exec brave --app='https://app.plex.tv/web/app#'
+bindsym $mod+F6 exec brave-browser --app='https://app.plex.tv/web/app#'
 
 # bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
 # bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
-bindsym $mod+F7 exec brave --app='https://www.netflix.com/browse'
+bindsym $mod+F7 exec brave-browser --app='https://www.netflix.com/browse'
 
 # bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/' --profile-directory=Default
-bindsym $mod+F8 exec brave --app='https://www.amazon.com/Amazon-Video/b?node=2858778011&ref_=nav_em__aiv_0_2_3_2'
+bindsym $mod+F8 exec brave-browser --app='https://www.amazon.com/Amazon-Video/b?node=2858778011&ref_=nav_em__aiv_0_2_3_2'
 
 # bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop  # Started at startup
 bindsym $mod+Escape exec krunner
@@ -496,17 +499,15 @@ bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /compon
 exec_always ~/.fehbg
 exec_always ~/bin/nasa-pod.sh &
 
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 # exec_always xmodmap ~/.Xmodmap
 exec_always xrdb -merge ~/.Xresources
-exec yakuake
-exec xflux -z 83703
 
 # exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id wmctrl -c Plasma
 
 include ~/.config/i3/`~/bin/pick_i3_config.sh`-config
-
 exec_always --no-startup-id $HOME/bin/pick_i3_config.sh &
+exec --no-startup-id /usr/lib/pam_kwallet_init
