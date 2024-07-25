@@ -109,7 +109,7 @@ return {
 
 	scrollback_lines = 1000000,
 	enable_scroll_bar = true,
-	default_cursor_style = "BlinkingUnderline",
+	default_cursor_style = "BlinkingBar",
 	cursor_blink_rate = 750,
 	underline_thickness = "2pt",
 	-- cursor_thickness = "1pt",

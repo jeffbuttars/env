@@ -51,6 +51,7 @@ pyqt5-qt5 = "5.15.2"
 procfs = "^0.5.0"
 pyqt5 = "^5.15.10"
 pandas = "^2.2.1"
+mkdocs = "^1.6.0"
 
 [tool.poetry.group.dev.dependencies]
 assertpy = ">=1.1"
@@ -77,6 +78,7 @@ types-orjson = ">=0.1.1"
 types-ujson = ">=5.5.0"
 typesystem = ">0.3"
 websockets = ">=10.3"
+django-stubs = {extras = ["compatible-mypy"], version = "^5.0.2"}
 
 [tool.black]
 line-length = 99
@@ -130,6 +132,11 @@ max-line-length = "99"
 [tool.mypy]
 python_version = "3.12"
 ignore_missing_imports = true
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "avapi.settings"
+# You can either specify django_settings_module as seen above, or let django_stubs use the DJANGO_SETTINGS_MODULE variable from your environment.
 
 [tool.pylsp-mypy]
 enabled = true
