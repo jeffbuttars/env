@@ -2,21 +2,38 @@
 
 umask 0027
 
+_list_ssh_priv_keys() {
+  local keys=""
+  local extension
+
+  for key in ~/.ssh/id_*; do
+    extension=${key##*.}
+    privname="${key%.*}"
+    # echo "$key $privname $extension"
+    if [[ "$extension" == "pub" ]] && [[ -f "$privname" ]]; then
+      keys+="$(basename "${privname}") "
+    fi
+  done
+
+  echo $keys
+}
+
 # Create some dirs for vim to put backup, swap files, etc. into
 mkdir -p "${HOME}/tmp/.vim/{backup,swap,undo}"
 
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]; then
-	export SSH_ASKPASS=/usr/bin/ksshaskpass
+  export SSH_ASKPASS=/usr/bin/ksshaskpass
 fi
 
 if [[ -x /usr/bin/keychain ]]; then
-	eval "$(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)"
+  # eval "$(keychain --quiet --eval --agents ssh --inherit any id_rsa)"
+  eval "$(keychain --quiet --eval --agents ssh --inherit any $(_list_ssh_priv_keys))"
 fi
 
 # Default to a light shell if not set otherwise.
 if [[ -z $TERM_META ]]; then
-	export TERM_META=light
+  export TERM_META=light
 fi
 
 export PSQL_EDITOR='nvim -c"set ft=sql"'
