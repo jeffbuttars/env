@@ -3,7 +3,11 @@
 # set $left_op DP-3
 
 # 2K
-set $left_op DP-3
+# direct connect
+# set $left_op DP-3
+# dock connect
+set $left_op DP-4-1
+
 # 4K
 set $center_op DP-4-3
 # 13" Laptop
@@ -13,7 +17,7 @@ set $right_op eDP-1
 bar {
   status_command i3status
   position top
-  output DP-3
+  output DP-4-1
   output eDP-1
 
   colors {

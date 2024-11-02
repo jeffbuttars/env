@@ -432,20 +432,20 @@ bindsym $mod+F3 exec ~/bin/dev-serve.sh
 bindsym $mod+shift+F3 exec ~/bin/dev-serve.sh -n
 
 # bindsym $mod+F4 workspace $wsMusic, exec google-chrome-stable --app='https://music.youtube.com/?source=pwa' --profile-directory=Default --enable-logging --v=1
-bindsym $mod+F4 workspace $wsMusic, exec brave-browser
+bindsym $mod+F4 workspace $wsMusic, exec brave  --app='https://music.youtube.com/?source=pwa'
 
 # bindsym $mod+F5 exec google-chrome-stable --app='https://youtube.com' --profile-directory=Default
-bindsym $mod+F5 exec brave-browser --app='https://youtube.com'
+bindsym $mod+F5 exec brave --app='https://youtube.com'
 
 # bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
-bindsym $mod+F6 exec brave-browser --app='https://app.plex.tv/web/app#'
+bindsym $mod+F6 exec brave --app='https://app.plex.tv/web/app#'
 
 # bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
 # bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
-bindsym $mod+F7 exec brave-browser --app='https://www.netflix.com/browse'
+bindsym $mod+F7 exec brave --app='https://www.netflix.com/browse'
 
 # bindsym $mod+F8 exec google-chrome-stable --app='https://www.amazon.com/' --profile-directory=Default
-bindsym $mod+F8 exec brave-browser --app='https://www.amazon.com/Amazon-Video/b?node=2858778011&ref_=nav_em__aiv_0_2_3_2'
+bindsym $mod+F8 exec brave --app='https://www.amazon.com/Amazon-Video/b?node=2858778011&ref_=nav_em__aiv_0_2_3_2'
 
 # bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop  # Started at startup
 bindsym $mod+Escape exec krunner
