@@ -7,16 +7,16 @@ mkdir -p "${HOME}/tmp/.vim/{backup,swap,undo}"
 
 # SSH Keychain
 if [[ -x /usr/bin/ksshaskpass ]]; then
-	export SSH_ASKPASS=/usr/bin/ksshaskpass
+  export SSH_ASKPASS=/usr/bin/ksshaskpass
 fi
 
 if [[ -x /usr/bin/keychain ]]; then
-	eval "$(keychain --quiet --eval --agents ssh --inherit any id_rsa id_dsa)"
+  eval "$(keychain --quiet --eval --agents ssh --inherit any id_rsa)"
 fi
 
 # Default to a light shell if not set otherwise.
 if [[ -z $TERM_META ]]; then
-	export TERM_META=light
+  export TERM_META=light
 fi
 
 export PSQL_EDITOR='nvim -c"set ft=sql"'
