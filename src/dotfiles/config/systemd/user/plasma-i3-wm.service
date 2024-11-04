@@ -6,6 +6,6 @@ Description=i3 w/Plasma Window Manager
 Before=plasma-workspace.target
 
 [Service]
-ExecStart=/usr/local/bin/i3
+ExecStart=/usr/bin/env i3
 Slice=session.slice
 Restart=on-failure
