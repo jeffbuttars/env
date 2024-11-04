@@ -1,8 +1,8 @@
 local wezterm = require("wezterm")
 local TERM_META = os.getenv("TERM_META")
 
-local hname = assert(io.popen("hostname", "r"))
-local HOSTNAME = assert(hname:read("*a"))
+local HOSTNAME = os.getenv("HOSTNAME")
+-- local hname = assert(io.popen("hostname", "r"))
 -- local HOME = os.getenv("HOME")
 
 -- local c_scheme = "rose-pine-dawn"
@@ -60,9 +60,7 @@ end)
 
 font_size = 20.0
 if HOSTNAME == "PV-LT-002" then
-	font_size = 20.0
-elseif HOSTNAME == "chica" then
-	font_size = 20.0
+	font_size = 18.0
 end
 
 return {
@@ -109,6 +107,7 @@ return {
 
 	scrollback_lines = 1000000,
 	enable_scroll_bar = true,
+	-- default_cursor_style = "BlinkingUnderline",
 	default_cursor_style = "BlinkingBar",
 	cursor_blink_rate = 750,
 	underline_thickness = "2pt",
