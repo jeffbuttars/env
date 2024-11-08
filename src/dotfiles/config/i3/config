@@ -200,7 +200,10 @@ for_window [class="dde-osd"] floating enable, border none
 for_window [class="Klipper"] floating enable, border none
 # for_window [title="Plex"] floating enable, sticky enable, border normal
 for_window [title="^Plex$"]  resize set 1440 1440, floating enable, sticky enable, move position center, border normal
-for_window [title="^.*YouTube$"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
+# for_window [title="^Emby$"]  resize set 1440 1440, floating enable, sticky enable, move position center, border normal
+for_window [class="youtube.com"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
+for_window [title="^.*YouTube$"] resize set 1440 1080, floating enable, sticky enable, move position center, border normal
+for_window [title="ephi"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
 # for_window [title="Netflix"] floating enable, sticky enable, border normal,  move position center
 for_window [title="Netflix"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
 for_window [title="^Prime Video.*$"] resize set 1440 1440, floating enable, sticky enable, move position center, border normal
@@ -309,6 +312,9 @@ bindsym $mod+Control+x kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
+
+# Let plasma do it
+# bindsym F12 exec yakuake
 
 # change focus
 bindsym $mod+h focus left
@@ -438,7 +444,10 @@ bindsym $mod+F4 workspace $wsMusic, exec brave  --app='https://music.youtube.com
 bindsym $mod+F5 exec brave --app='https://youtube.com'
 
 # bindsym $mod+F6 exec google-chrome-stable --app='https://app.plex.tv/web/app#' --profile-directory=Default
-bindsym $mod+F6 exec brave --app='https://app.plex.tv/web/app#'
+# bindsym $mod+F6 exec brave --app='https://app.plex.tv/web/app#'
+# bindsym $mod+F6 exec emby-theater
+bindsym $mod+F6 exec google-chrome-stable --app='http://newjes.us:8096/web/index.html#!/home'
+
 
 # bindsym $mod+F6 exec export QT_QPA_PLATFORM=xcb && plex-desktop
 # bindsym $mod+F7 exec google-chrome-stable --app='https://www.netflix.com/browse' --profile-directory=Default
@@ -448,7 +457,9 @@ bindsym $mod+F7 exec brave --app='https://www.netflix.com/browse'
 bindsym $mod+F8 exec brave --app='https://www.amazon.com/Amazon-Video/b?node=2858778011&ref_=nav_em__aiv_0_2_3_2'
 
 # bindsym $mod+F9 workspace $wsMessaging, exec slack, exec signal-desktop  # Started at startup
-bindsym $mod+Escape exec krunner
+#
+# Let plasma do it
+# bindsym $mod+Escape exec krunner
 bindsym $mod+ctrl+Escape exec rofi -show combi
 # bindsym $mod+Escape exec ulauncher
 bindsym $mod+ctrl+l exec ~/bin/fuzzy_screen_lock
@@ -511,3 +522,4 @@ exec --no-startup-id wmctrl -c Plasma
 include ~/.config/i3/`~/bin/pick_i3_config.sh`-config
 exec_always --no-startup-id $HOME/bin/pick_i3_config.sh &
 exec --no-startup-id /usr/lib/pam_kwallet_init
+exec --no-startup-id signal-desktop --password-store=kwallet6 &

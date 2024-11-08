@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Myi3
-Comment=improved dynamic tiling window manager
+Name=Plasma (i3) / My i3
+Comment=KDE with i3
 Exec=/usr/local/bin/initi3
 TryExec=/usr/local/bin/initi3
-Type=Application
+Type=XSession
 X-LightDM-DesktopName=Myi3
 DesktopNames=Myi3
