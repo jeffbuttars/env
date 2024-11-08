@@ -1,5 +1,5 @@
 [Appearance]
-ColorScheme=Catppuccin-Mocha
+ColorScheme=Itchy
 Font=FuraMono Nerd Font Mono,16,-1,5,50,0,0,0,0,0
 
 [General]

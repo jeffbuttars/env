@@ -2,13 +2,11 @@
 Frames=0
 
 [Appearance]
-Skin=default
 SkinInstalledWithKns=false
 TerminalHighlightOnManualActivation=true
-Translucency=true
 
 [Desktop Entry]
-DefaultProfile=Light.profile
+DefaultProfile=light.profile
 
 [Dialogs]
 FirstRun=false
@@ -53,7 +51,8 @@ view-full-screen=Ctrl+Shift+F11
 
 [Window]
 DynamicTabTitles=true
-Height=49
+Height=50
+Position=48
+ShowOnAllDesktops=false
 ShowSystrayIcon=false
 ToggleToFocus=true
-Width=95

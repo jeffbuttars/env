@@ -145,6 +145,9 @@ live_mode = true
 [tool.pyright]
 pythonVersion = "3.12"
 
+[tool.typos.default.extend-words]
+hae = "hae"
+
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

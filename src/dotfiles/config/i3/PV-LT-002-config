@@ -1,23 +1,25 @@
 
 # Output vars
 
-# 2K
-set $left_op DP-7
-#set $left_op DP-8
+# DualUP
+#set $left_op DP-7
+set $left_op DP-8
+
 # 4K
-set $center_op DP-10
-#set $center_op DP-12
+#set $center_op DP-10
+set $center_op DP-12
 # 13" Laptop
 set $right_op eDP-1
 
 bar {
+  # Put this on displays that the base config status doesn't cover
   status_command i3status
   position top
   output eDP-1
   output DP-7
-  #output eDP-8
+  output DP-8
   # output DP-10
-  #output DP-12
+  # output DP-12
 
   colors {
       background         $base

@@ -60,7 +60,7 @@ end)
 
 font_size = 20.0
 if HOSTNAME == "PV-LT-002" then
-	font_size = 18.0
+	font_size = 22.0
 end
 
 return {

@@ -1,9 +1,9 @@
 [Appearance]
 AntiAliasFonts=true
 BoldIntense=true
-ColorScheme=Catppuccin-Latte
+ColorScheme=Itchy
 DimmValue=0
-Font=FiraCode Nerd Font Mono,16,-1,5,50,0,0,0,0,0
+Font=FiraCode Nerd Font Mono Med,14,-1,5,57,0,0,0,0,0,Regular
 UseFontLineChararacters=true
 WordMode=true
 WordModeAttr=true
@@ -13,7 +13,7 @@ WordModeBrahmic=false
 CursorShape=1
 CustomCursorColor=136,136,136
 CustomCursorTextColor=0,0,0
-UseCustomCursorColor=false
+UseCustomCursorColor=true
 
 [Encoding Options]
 DefaultEncoding=UTF-8

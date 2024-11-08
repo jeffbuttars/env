@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Location of worktrees relative to the main wt/branch
+# RELATIVE_WT_LOCATION='.worktrees'
+
 declare -a RUN_FILES=("compose.override.yml" ".env" ".env.dev" ".env.prod")
 
 _git_worktree_relisted() {
@@ -8,7 +11,7 @@ _git_worktree_relisted() {
 
 _git-wt-get-dir() {
 	if [[ -z $1 ]]; then
-		# echo "No name param" >&2
+		# echo "_git-wt-get-dir No name param" >&2
 		echo ""
 		return
 	fi
@@ -16,18 +19,18 @@ _git-wt-get-dir() {
 	local wt_name="$1"
 
 	_git_worktree_relisted | while read -r wt; do
-		# echo "Looking at ${wt}" >&2
+		# echo "_git-wt-get-dir Looking at ${wt}" >&2
 		name=$(echo "$wt" | awk '{print $1}')
 		wtdir=$(echo "$wt" | awk '{print $2}')
 
 		if [[ "$name" == "[${wt_name}]" ]] && [[ -n $wtdir ]]; then
-			# echo "Found at $wtdir" >&2
+			# echo "_git-wt-get-dir Found at $wtdir" >&2
 			echo "$wtdir"
 			return
 		fi
 	done
 
-	# echo "nothing found" >&2
+	# echo "_git-wt-get-dir nothing found" >&2
 	echo ""
 }
 
@@ -46,6 +49,14 @@ _git-wt-find-main() {
 
 _git-wt-current() {
 	local git_dir=""
+
+	# Get the branch name first, if for some reason that's empty, use the dirname
+	branch_name=$(git branch --show-current 2>/dev/null)
+
+	if [[ -n $branch_name ]]; then
+		echo "$branch_name"
+		return
+	fi
 
 	git_dir=$(git rev-parse --git-dir 2>/dev/null)
 	if [[ "$?" != "0" ]]; then
@@ -75,7 +86,7 @@ _git-wt-cp-run-files-into-cur-wt() {
 
 	cur_wt_dir=$(_git-wt-get-dir "${cur_wt_name}")
 	if [[ -z ${cur_wt_dir} ]]; then
-		echo "Can't find worktree directory for '${cur_wt_name}'!: '${cur_wt_dir}'"
+		echo "Can't find worktree directory for '${cur_wt_name}'"
 		return
 	fi
 
@@ -119,11 +130,11 @@ _git-wt-cp-run-files() {
 			if [[ -d "$con_dir" ]]; then
 				if [[ ! -f "$dst_file" ]]; then
 					ln -v "$rfile" "$dst_file"
-				# else
-				# 	echo "file already exists, not creating link: $rfile -> $dst_file"
+				else
+					echo "file already exists, not creating link: $rfile -> $dst_file" >&2
 				fi
 			# else
-			# 	echo "Expected destination dir doesn't exist: ${con_dir}/${fname}"
+			# 	echo "Expected destination dir doesn't exist: ${con_dir}/${fname}" >&2
 			fi
 		done
 	done
@@ -132,7 +143,7 @@ _git-wt-cp-run-files() {
 }
 
 if [[ -z $1 ]] || [[ "$1" == "list" ]] || [[ "$1" == "l" ]]; then
-	git worktree list 2>/dev/null | column --table --output-width 100 --table-order 3,1,2 --table-truncate 3
+	git worktree list 2>/dev/null | column --table --output-width 140 --table-order 3,1,2 --table-truncate 3
 	exit 0
 fi
 
@@ -158,4 +169,5 @@ if [[ "$1" == 'add' ]]; then
 	exit
 fi
 
-exec git worktree "$*"
+echo "Passing through to git worktree"
+exec git worktree $@

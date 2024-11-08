@@ -16,6 +16,7 @@ SUBTEXT0=#6c6f85
 PEACH=#fe640b
 MAROON=#e64553
 RED=#d20f39
+MIN_WIDTH="  "
 
 ramp_coreload_0=▁
 ramp_color_0=$SUBTEXT0
@@ -81,6 +82,7 @@ for prev_idle in "${PREV_IDLES[@]}"; do
 
 	LONG_LINE="${LONG_LINE}$segment"
 
+	MIN_WIDTH+=" "
 	((idx++))
 done
 
@@ -107,6 +109,11 @@ COMP_COLOR=$(eval echo "\$ramp_color_${COMP_RAMP}")
 
 SHORT_LINE="$COMP_BAR $COMP_CPU_USAGE%"
 
+if [[ $COMP_CPU_USAGE -lt 10 ]]; then
+	COMP_CPU_USAGE=" $COMP_CPU_USAGE"
+fi
+
 echo "$LONG_LINE $COMP_CPU_USAGE%"
 echo "$SHORT_LINE"
 echo "$COMP_COLOR"
+#echo "min_width='${MIN_WIDTH}'"
